@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<if:interfaces xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <if:interface>
+    <if:name>eth</if:name>
+    <if:type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</if:type>
+  </if:interface>
+</if:interfaces>

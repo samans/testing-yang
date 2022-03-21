@@ -1,0 +1,23 @@
+     +--rw bridge* [name]
+        +--rw name           dot1qtypes:name-type
+        +--rw address        ieee:mac-address
+        +--rw bridge-type    identityref
+        +--rw component* [id]
+           +--rw name?                    string
+           +--rw id                       uint32
+           +--rw type                     identityref
+           +--rw bridge-vlan
+           |  +--rw vlan* [vid]
+           |  |  +--rw vid               dot1qtypes:vlan-index-type
+           |  |  +--rw name?             dot1qtypes:name-type
+
+     +--rw interface* [name]
+        +--rw name                        string
+        +--rw type                        identityref
+        +--ro oper-status                 enumeration
+        +--ro statistics
+        |  +--ro discontinuity-time    yang:date-and-time
+        +--rw dot1q:bridge-port
+           +--rw dot1q:bridge-name?   -> /bridges/bridge/name
+           +--rw dot1q:component-id?  -> /bridges/bridge[dot1q:name=current()/../bridge-name]/component/id
+           +--rw dot1q:port-type?        identityref

@@ -1,0 +1,113 @@
+spawn yanglint
+> load iana-if-type
+> load ieee802-dot1q-bridge
+> load ieee802-dot1q-pb
+> data -t data -f json pb.xml
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "my peb name",
+        "address": "10-20-30-40-50-60",
+        "bridge-type": "ieee802-dot1q-bridge:provider-edge-bridge",
+        "up-time": 0,
+        "component": [
+          {
+            "id": 1,
+            "name": "svlan1",
+            "type": "ieee802-dot1q-bridge:s-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false,
+              "vlan": [
+                {
+                  "vid": 200,
+                  "name": "svid200"
+                }
+              ]
+            }
+          },
+          {
+            "id": 2,
+            "name": "cvlan1",
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "cep1",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2021-10-11T12:14:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "my peb name",
+          "component-id": 2,
+          "port-type": "ieee802-dot1q-bridge:customer-edge-port",
+          "pvid": 200,
+          "ieee802-dot1q-pb:cvid-registration": [
+            {
+              "cvid": 200,
+              "svid": 400
+            }
+          ]
+        }
+      },
+      {
+        "name": "cnp1",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2021-10-11T12:14:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "my peb name",
+          "component-id": 1,
+          "port-type": "ieee802-dot1q-bridge:customer-network-port"
+        }
+      },
+      {
+        "name": "pnp1",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2021-10-11T12:14:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "my peb name",
+          "component-id": 1,
+          "port-type": "ieee802-dot1q-bridge:provider-network-port",
+          "pvid": 400
+        }
+      }
+    ]
+  }
+}
+> quit

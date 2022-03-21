@@ -1,0 +1,588 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "bridge1",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "ieee802-dot1q-bridge:customer-vlan-bridge",
+        "up-time": 0,
+        "component": [
+          {
+            "name": "cv1",
+            "id": 1,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          },
+          {
+            "name": "cv2",
+            "id": 2,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00",
+          "in-octets": "10008187",
+          "in-unicast-pkts": "324",
+          "in-broadcast-pkts": "12",
+          "in-multicast-pkts": "0",
+          "in-discards": 45,
+          "in-errors": 0,
+          "in-unknown-protos": 0,
+          "out-octets": "1231411",
+          "out-unicast-pkts": "234",
+          "out-broadcast-pkts": "56",
+          "out-multicast-pkts": "0",
+          "out-discards": 0,
+          "out-errors": 0
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv1",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00",
+          "in-octets": "13123211231",
+          "in-unicast-pkts": "324343",
+          "in-broadcast-pkts": "1232",
+          "in-multicast-pkts": "0",
+          "in-discards": 45,
+          "in-errors": 0,
+          "in-unknown-protos": 0,
+          "out-octets": "12313144411",
+          "out-unicast-pkts": "234234",
+          "out-broadcast-pkts": "5657",
+          "out-multicast-pkts": "0",
+          "out-discards": 0,
+          "out-errors": 0
+        },
+        "ieee802-dot1ae-pry:pry": {
+          "if-secy-support": true,
+          "if-address": "11-22-33-44-55-00",
+          "if-max-peers": 16,
+          "if-num-peers": 5,
+          "peer-entry": [
+            "11-22-33-44-55-01",
+            "11-22-33-44-55-02",
+            "11-22-33-44-55-03",
+            "11-22-33-44-55-04",
+            "11-22-33-44-55-05",
+            "11-22-33-44-55-06"
+          ],
+          "reception": {
+            "privacy-protection": true,
+            "default-reassembly-algorithm": true,
+            "rx-statistics": {
+              "in-user-frames": "1000",
+              "in-user-octets": "140000",
+              "in-pad-octets": "1492",
+              "in-mppdus": "900",
+              "in-encapsulated-frames": "800",
+              "in-user-express-fragments": "200",
+              "in-user-preemptable-fragments": "200",
+              "in-express-discard-fragments": "0",
+              "in-preemptable-discard-fragments": "0",
+              "in-unknown-mppcis": "0",
+              "in-errored-mppdus": "0",
+              "in-user-unprotected-frames": "0",
+              "in-user-unprotected-octets": "0"
+            }
+          },
+          "transmission": {
+            "privacy-protection": true,
+            "privacy-selection": [
+              {
+                "user-priority": 7,
+                "privacy-type": "ieee802-dot1ae-pry:privacy-frame",
+                "frame-access-priority": 6,
+                "frame-reveal-de": "visible",
+                "frame-padding": "to-16"
+              },
+              {
+                "user-priority": 6,
+                "privacy-type": "ieee802-dot1ae-pry:privacy-frame",
+                "frame-access-priority": 6,
+                "frame-reveal-de": "hidden",
+                "frame-padding": "to-64"
+              },
+              {
+                "user-priority": 5,
+                "privacy-type": "ieee802-dot1ae-pry:none"
+              },
+              {
+                "user-priority": 4,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 3,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 2,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 1,
+                "privacy-type": "ieee802-dot1ae-pry:express-channel"
+              },
+              {
+                "user-priority": 0,
+                "privacy-type": "ieee802-dot1ae-pry:express-channel"
+              }
+            ],
+            "channel": [
+              {
+                "channel-id": "ieee802-dot1ae-pry:express-channel",
+                "enable": true,
+                "fragment-enable": true,
+                "access-priority": 2,
+                "user-data-frame-size": 1522,
+                "mppdu-generation": "default",
+                "requested-kbit-rate": 10000000,
+                "mppdu-bits-on-wire": 1532,
+                "mppdu-interval": 152000,
+                "user-burst-octets": 10000,
+                "tx-statistics": {
+                  "out-pc-user-frames": "1000",
+                  "out-pc-user-octets": "14000",
+                  "out-pc-pad-octets": "64000",
+                  "out-mppdus": "1200",
+                  "out-encapsulated-frames": "800",
+                  "out-express-fragments": "200",
+                  "out-preempt-fragments": "200"
+                }
+              },
+              {
+                "channel-id": "ieee802-dot1ae-pry:preemptable-channel",
+                "enable": false,
+                "fragment-enable": true,
+                "access-priority": 3,
+                "user-data-frame-size": 1522,
+                "mppdu-generation": "default",
+                "requested-kbit-rate": 10000000,
+                "mppdu-bits-on-wire": 1532,
+                "mppdu-interval": 1520000,
+                "user-burst-octets": 10000,
+                "tx-statistics": {
+                  "out-pc-user-frames": "0",
+                  "out-pc-user-octets": "0",
+                  "out-pc-pad-octets": "0",
+                  "out-mppdus": "0",
+                  "out-encapsulated-frames": "0",
+                  "out-express-fragments": "0",
+                  "out-preempt-fragments": "0"
+                }
+              }
+            ],
+            "frame-tx-statistics": {
+              "out-privacy-frames": "12343",
+              "out-pf-user-octets": "14007870",
+              "out-pf-pad-octets": "64000",
+              "out-unprotected-frames": "12343",
+              "out-unprotected-octets": "14007870"
+            }
+          }
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv2",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1
+        },
+        "ieee802-dot1x:pae": {
+          "pae-system": "pae1",
+          "vp-enable": false,
+          "port-capabilities": {
+            "supp": true,
+            "auth": true,
+            "mka": true,
+            "macsec": true,
+            "announcements": true,
+            "listener": true,
+            "virtual-ports": true,
+            "in-service-upgrades": false
+          },
+          "port-name": "eth1",
+          "port-number": 1,
+          "controlled-port-name": "eth1",
+          "controlled-port-number": 2,
+          "uncontrolled-port-name": "eth1",
+          "uncontrolled-port-number": 3,
+          "common-port-name": "eth1",
+          "common-port-number": 4,
+          "port-type": "real-port",
+          "supplicant": {
+            "held-period": 10,
+            "retry-max": 10,
+            "enabled": true,
+            "authenticate": true,
+            "authenticated": true,
+            "failed": true
+          },
+          "authenticator": {
+            "quiet-period": 320,
+            "reauth-period": 100,
+            "reauth-enable": true,
+            "retry-max": 10,
+            "enabled": true,
+            "authenticate": true,
+            "authenticated": true,
+            "failed": false
+          },
+          "kay": {
+            "enable": true,
+            "actor": {
+              "priority": 1,
+              "sci": "abcedefg"
+            },
+            "key-server": {
+              "priority": 2,
+              "sci": "abcedefg"
+            },
+            "group": {
+              "join": true,
+              "form": true,
+              "new": true
+            },
+            "macsec": {
+              "capable": true,
+              "desired": true,
+              "protect": true,
+              "validate": true,
+              "replay-protect": true
+            },
+            "suspend-on-request": true,
+            "suspend-for": 15,
+            "suspended-while": 30,
+            "active": true,
+            "authenticated": false,
+            "secured": false,
+            "failed": true,
+            "key-number": {
+              "tx": 10,
+              "rx": 10
+            },
+            "association-number": {
+              "tx": 10,
+              "rx": 10
+            },
+            "participants": [
+              {
+                "participant": 42,
+                "cached": false,
+                "active": false,
+                "retain": false,
+                "activate": "on-oper-up",
+                "peers": {
+                  "live": [
+                    "abcdefgh"
+                  ],
+                  "potential": [
+                    "ABCDEFGH"
+                  ]
+                },
+                "ckn": "teststring",
+                "kmd": "TestStringTestString",
+                "nid": "99",
+                "auth-data": "authenticated",
+                "principal": true,
+                "dist-ckn": "TestStringTestString"
+              }
+            ]
+          },
+          "logon-nid": {
+            "selected": "TestStringTestStringTestStringTestStringTestStringTestStringTestStringTestString",
+            "pae-nid-group": [
+              {
+                "nid": "77",
+                "use-eap": "immediate",
+                "unauth-allowed": "auth-fail",
+                "unsecure-allowed": "mka-fail",
+                "unauthenticated-access": "limited-access",
+                "access-capabilities": "eapMkaMacSec",
+                "kmd": "TestStringTestStringTestStringTestString"
+              }
+            ],
+            "connected": "TestStringTestStringTestStringTestString",
+            "requested": "TestStringTestStringTestStringTestString"
+          },
+          "announcer": {
+            "enable": true,
+            "announce": [
+              {
+                "announces": 456,
+                "pae-nid-group": [
+                  {
+                    "nid": "77",
+                    "use-eap": "immediate",
+                    "unauth-allowed": "never",
+                    "unsecure-allowed": "mka-server",
+                    "unauthenticated-access": "open-access",
+                    "access-capabilities": "higherLayer",
+                    "kmd": "TestStringTestStringTestStringTestString"
+                  }
+                ],
+                "nid": "TestString",
+                "access-status": "remedial-access"
+              }
+            ]
+          },
+          "listener": {
+            "enable": true,
+            "announcement": [
+              {
+                "announcements": 1,
+                "nid": "TestString",
+                "kmd": "TestString",
+                "specific": true,
+                "access-status": "remedial-access",
+                "requested-nid": true,
+                "unauthenticated-access": "remedial-access",
+                "access-capabilities": "higherLayerFallback",
+                "cipher-suites": [
+                  {
+                    "index": 1,
+                    "cipherSuite": "ReallyStrongCipher",
+                    "cipherSuiteCapability": 42
+                  }
+                ]
+              }
+            ]
+          },
+          "eapol-statistics": {
+            "invalid-eapol-frame-rx": 2,
+            "eap-length-error-frames-rx": 1,
+            "eapol-announcements-rx": 100,
+            "eapol-announce-reqs-rx": 5,
+            "eapol-port-unavailable": 2,
+            "eapol-start-frames-rx": 8,
+            "eapol-eap-frames-rx": 10,
+            "eapol-logoff-frames-rx": 2,
+            "eapol-mk-no-cfn": 0,
+            "eapol-mk-invalid-frames-rx": 8,
+            "last-eapol-frame-source": "99-99-99-00-00-00",
+            "last-eapol-frame-version": 1,
+            "eapol-supp-eap-frames-tx": 2,
+            "eapol-logoff-frames-tx": 1,
+            "eapol-announcements-tx": 2,
+            "eapol-announce-reqs-tx": 2,
+            "eapol-start-frames-tx": 5,
+            "eapol-auth-eap-frames-tx": 2,
+            "eapol-mka-frames-tx": 1
+          },
+          "logon-process": {
+            "logon": true,
+            "connect": "secure",
+            "port-valid": true,
+            "session-statistics": [
+              {
+                "session-id": "TheSession",
+                "user-name": "TheName",
+                "octets-rx": "100",
+                "octets-tx": "100",
+                "frames-rx": "100",
+                "frames-tx": "100",
+                "time": 123456,
+                "terminate-cause": "system_access_control_disabled"
+              }
+            ]
+          },
+          "ieee802-dot1ae-secy:secy": {
+            "controlled-port": {
+              "provided-port": 2,
+              "mac-enabled": true,
+              "mac-operational": true,
+              "oper-point-to-point-mac": true,
+              "admin-point-to-point-mac": "auto",
+              "controlled-port-enabled": true
+            },
+            "uncontrolled-port": {
+              "provided-port": 3,
+              "mac-enabled": true,
+              "mac-operational": true,
+              "oper-point-to-point-mac": true,
+              "admin-point-to-point-mac": "auto"
+            },
+            "common-port": {
+              "common-port": 4
+            },
+            "verification": {
+              "validate-frames": "strict",
+              "replay-protect": true,
+              "replay-window": 1,
+              "in-pkts-untagged": "0",
+              "in-pkts-no-tag": "1000",
+              "in-pkts-bad-tag": "0",
+              "in-pkts-no-sa": "0",
+              "in-pkts-no-sa-error": "0",
+              "in-pkts-overrun": "0",
+              "in-octets-validated": "534905398",
+              "in-octets-decrypted": "534905398",
+              "receive-sc": [
+                {
+                  "sci": "00-11-22-00-00-00-0000",
+                  "created-time": "2020-12-18T18:59:00-05:00",
+                  "started-time": "2020-12-18T18:59:00-05:00",
+                  "stopped-time": "2020-12-18T18:59:00-05:00",
+                  "receiving": true,
+                  "in-pkts-ok": "534905398",
+                  "in-pkts-unchecked": "0",
+                  "in-pkts-delayed": "0",
+                  "in-pkts-late": "5",
+                  "in-pkts-invalid": "0",
+                  "in-pkts-not-valid": "0",
+                  "receive-sa": [
+                    {
+                      "rxa": 1,
+                      "in-use": true,
+                      "ssci": 31,
+                      "next-pn": "55",
+                      "created-time": "2020-12-18T18:59:00-05:00",
+                      "started-time": "2020-12-18T18:59:00-05:00",
+                      "stopped-time": "2020-12-18T18:59:00-05:00",
+                      "lowest-pn": "123434",
+                      "key-identifier": "123MKA"
+                    }
+                  ]
+                }
+              ]
+            },
+            "generation": {
+              "max-transmit-channels": 16,
+              "max-transmit-keys": 16,
+              "protect-frames": true,
+              "always-include-sci": true,
+              "use-es": true,
+              "use-scb": true,
+              "user-priority-tc": [
+                {
+                  "user-priority": 0,
+                  "traffic-class": 0,
+                  "access-class-de0": 0,
+                  "access-class-de1": 0
+                },
+                {
+                  "user-priority": 1,
+                  "traffic-class": 1
+                },
+                {
+                  "user-priority": 2,
+                  "access-class-de0": 2,
+                  "access-class-de1": 2
+                },
+                {
+                  "user-priority": 3,
+                  "traffic-class": 3,
+                  "access-class-de0": 3,
+                  "access-class-de1": 3
+                }
+              ],
+              "transmit-sc": [
+                {
+                  "sci": "14-76-14-61-46-14-6777",
+                  "created-time": "2020-12-18T18:59:00-05:00",
+                  "started-time": "2020-12-18T18:59:00-05:00",
+                  "stopped-time": "2020-12-18T18:59:00-05:00",
+                  "transmitting": true,
+                  "encoding-sa": 1,
+                  "out-pkts-protected": "12312",
+                  "out-pkts-encrypted": "12312",
+                  "transmit-sa": [
+                    {
+                      "txa": 1,
+                      "in-use": true,
+                      "ssci": 123,
+                      "next-pn": "23423245",
+                      "created-time": "2020-12-18T18:59:00-05:00",
+                      "started-time": "2020-12-18T18:59:00-05:00",
+                      "stopped-time": "2020-12-18T18:59:00-05:00",
+                      "confidentiality": true,
+                      "key-identifier": "123MKA"
+                    }
+                  ]
+                }
+              ]
+            },
+            "cipher-suite-control": [
+              {
+                "implemented-cipher-suite": "1156780",
+                "enable-use": true,
+                "require-confidentiality": true
+              }
+            ]
+          },
+          "ieee802-dot1x-eapol:eapol-group-address": "11-22-33-44-55-66"
+        }
+      }
+    ]
+  },
+  "ietf-system:system": {
+    "contact": "test",
+    "ieee802-dot1x:pae-system": {
+      "name": "pae1",
+      "system-access-control": "enabled",
+      "ieee802-dot1ae-secy:secy-system": {
+        "cipher-suites": [
+          {
+            "cipher-suite": "1156780",
+            "name": "KeyA",
+            "integrity-protection": true,
+            "confidentiality-protection": true,
+            "offset-confidentiality": false,
+            "changes-data-length": false,
+            "icv-length": 8
+          },
+          {
+            "cipher-suite": "1550664",
+            "name": "KeyB",
+            "integrity-protection": true,
+            "confidentiality-protection": true,
+            "offset-confidentiality": false,
+            "changes-data-length": false,
+            "icv-length": 8
+          }
+        ]
+      }
+    }
+  }
+}

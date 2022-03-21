@@ -1,0 +1,69 @@
+module minerals {
+  yang-version "1.1";
+  namespace urn:test:minerals;
+  prefix m;
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+  revision 2021-09-22 {
+    description
+      "Initial revision.";
+    reference
+      "minerals";
+  }
+  container minerals {
+    description
+      "minerals";
+    list mineral {
+      key "mineral-name";
+      leaf mineral-name {
+        type string;
+        description
+          "Name of Mineral";
+      }
+      leaf color {
+        type string;
+        description
+          "Predominate color of mineral";
+      }
+      leaf hardness {
+        type decimal64 {
+          fraction-digits "1";
+        }
+        units "mohs";
+      }
+    }
+  }
+  container samples {
+    description
+      "samples";
+    list sample {
+      key "sample-id";
+      leaf sample-id {
+        type string;
+        description
+          "Sample ID";
+      }
+      leaf streak {
+        type string;
+        description
+          "Result of streak test";
+      }
+      leaf cleavage {
+        type string;
+        description
+          "Observed cleavage";
+      }
+      leaf mineral-ref {
+        type leafref {
+          path '/minerals/mineral/mineral-name';
+        }
+        description
+          "Suggested mineral identification";
+      }
+    }
+  }
+}

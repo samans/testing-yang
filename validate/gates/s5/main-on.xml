@@ -1,0 +1,15 @@
+<!--augment must test
+$ yanglint
+-->
+<main-container
+   xmlns="urn:ieee:exp:yang:main"
+   xmlns:a1="urn:ieee:exp:yang:aug1">
+      <main-list>
+         <leaf1>foo</leaf1>
+         <leaf2>foo</leaf2>
+      </main-list>
+      <main-list>
+         <leaf1>bar</leaf1>
+         <leaf2>barbar</leaf2>
+      </main-list>
+</main-container>

@@ -1,0 +1,29 @@
+
+module aug1 {
+   yang-version "1.1";
+   namespace
+      urn:ieee:exp:yang:aug1;
+   prefix a1;
+   import main {
+      prefix m;
+   }
+   organization
+      "IEEE";
+   contact
+      "IEEE";
+   description
+      "augment test must statement impact";
+   revision 2021-10-12 {
+      description
+         "aug1 test";
+   }
+
+   augment "/m:main-container/m:main-list" {
+      container main-list-constraints {
+
+         must "(string-length(../m:leaf2) < 4)" {
+            error-message "leaf2 too big";
+         }
+      }
+   }
+}

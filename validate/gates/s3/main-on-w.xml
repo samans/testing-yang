@@ -1,0 +1,22 @@
+<!--augment must test
+$ yanglint
+-->
+<main-container
+   xmlns="urn:ieee:exp:yang:main"
+   xmlns:a1="urn:ieee:exp:yang:aug1">
+      <main-list>
+         <leaf1>foo</leaf1>
+         <leaf2>foo</leaf2>
+      </main-list>
+      <main-list>
+         <leaf1>bar</leaf1>
+         <leaf2>bar</leaf2>
+         <a1:tsn-type>tsn-on</a1:tsn-type>
+         <a1:admin-control-list>
+            <a1:gate-control-entry>
+               <a1:index>42</a1:index>
+               <a1:gce-leaf1>Pizza</a1:gce-leaf1>
+            </a1:gate-control-entry>
+         </a1:admin-control-list>
+      </main-list>
+</main-container>

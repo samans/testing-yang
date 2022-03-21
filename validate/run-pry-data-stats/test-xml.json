@@ -1,0 +1,373 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "bridge1",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "ieee802-dot1q-bridge:customer-vlan-bridge",
+        "up-time": 0,
+        "component": [
+          {
+            "name": "cv1",
+            "id": 1,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          },
+          {
+            "name": "cv2",
+            "id": 2,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00",
+          "in-octets": "13123211231",
+          "in-unicast-pkts": "324343",
+          "in-broadcast-pkts": "1232",
+          "in-multicast-pkts": "0",
+          "in-discards": 45,
+          "in-errors": 0,
+          "in-unknown-protos": 0,
+          "out-octets": "12313144411",
+          "out-unicast-pkts": "234234",
+          "out-broadcast-pkts": "5657",
+          "out-multicast-pkts": "0",
+          "out-discards": 0,
+          "out-errors": 0
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv1",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-12-18T18:59:00-05:00"
+        },
+        "ieee802-dot1ae:secy": {
+          "controlled-port-number": 1,
+          "verification": {
+            "validate-frames": "strict",
+            "replay-protect": true,
+            "replay-window": 1,
+            "in-pkts-untagged": "0",
+            "in-pkts-no-tag": "1000",
+            "in-pkts-bad-tag": "0",
+            "in-pkts-no-sa": "0",
+            "in-pkts-no-sa-error": "0",
+            "in-pkts-overrun": "0",
+            "in-octets-validated": "534905398",
+            "in-octets-decrypted": "534905398",
+            "receive-sc": [
+              {
+                "sci": "1475",
+                "created-time": "2020-12-18T18:59:00-05:00",
+                "started-time": "2020-12-18T18:59:00-05:00",
+                "stopped-time": "2020-12-18T18:59:00-05:00",
+                "receiving": true,
+                "in-pkts-ok": "534905398",
+                "in-pkts-unchecked": "0",
+                "in-pkts-delayed": "0",
+                "in-pkts-late": "5",
+                "in-pkts-invalid": "0",
+                "in-pkts-not-valid": "0",
+                "receive-sa": [
+                  {
+                    "rxa": 1,
+                    "in-use": true,
+                    "ssci": 31,
+                    "next-pn": "55",
+                    "created-time": "2020-12-18T18:59:00-05:00",
+                    "started-time": "2020-12-18T18:59:00-05:00",
+                    "stopped-time": "2020-12-18T18:59:00-05:00",
+                    "lowest-pn": "123434",
+                    "enable-receive": true,
+                    "updt-next-pn": "123434",
+                    "updt-lowest-pn": "123435",
+                    "key-identifier": "123MKA"
+                  }
+                ]
+              }
+            ]
+          },
+          "generation": {
+            "max-transmit-channels": 16,
+            "max-transmit-keys": 16,
+            "protect-frames": true,
+            "always-include-sci": true,
+            "use-es": true,
+            "use-scb": true,
+            "user-priority-tc": [
+              {
+                "user-priority": 0,
+                "traffic-class": 0,
+                "access-class-de0": 0,
+                "access-class-de1": 0
+              },
+              {
+                "user-priority": 1,
+                "traffic-class": 1
+              },
+              {
+                "user-priority": 2,
+                "access-class-de0": 2,
+                "access-class-de1": 2
+              },
+              {
+                "user-priority": 3,
+                "traffic-class": 3,
+                "access-class-de0": 3,
+                "access-class-de1": 3
+              }
+            ],
+            "transmit-sc": [
+              {
+                "sci": "1476",
+                "created-time": "2020-12-18T18:59:00-05:00",
+                "started-time": "2020-12-18T18:59:00-05:00",
+                "stopped-time": "2020-12-18T18:59:00-05:00",
+                "transmitting": true,
+                "encoding-sa": 1,
+                "out-pkts-protected": "12312",
+                "out-pkts-encrypted": "12312",
+                "transmit-sa": [
+                  {
+                    "txa": 1,
+                    "in-use": true,
+                    "ssci": 123,
+                    "next-pn": "23423245",
+                    "created-time": "2020-12-18T18:59:00-05:00",
+                    "started-time": "2020-12-18T18:59:00-05:00",
+                    "stopped-time": "2020-12-18T18:59:00-05:00",
+                    "confidentiality": true,
+                    "key-identifier": "456MKA"
+                  }
+                ]
+              }
+            ]
+          },
+          "controlled-interface": {
+            "provided-interface": 1,
+            "mac-enabled": true,
+            "mac-operational": true,
+            "oper-point-to-point-mac": true,
+            "admin-point-to-point-mac": "auto",
+            "controlled-port-enabled": true,
+            "in-octets": "2345235",
+            "in-unicast-pkts": "1232",
+            "in-broadcast-pkts": "0",
+            "in-multicast-pkts": "0",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "12341234",
+            "out-unicast-pkts": "12312",
+            "out-broadcast-pkts": "0",
+            "out-multicast-pkts": "0",
+            "out-discards": 0,
+            "out-errors": 0
+          },
+          "uncontrolled-interface": {
+            "provided-interface": 1,
+            "mac-enabled": true,
+            "mac-operational": true,
+            "oper-point-to-point-mac": true,
+            "admin-point-to-point-mac": "auto",
+            "in-octets": "2345235",
+            "in-unicast-pkts": "1232",
+            "in-broadcast-pkts": "0",
+            "in-multicast-pkts": "0",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "12341234",
+            "out-unicast-pkts": "12312",
+            "out-broadcast-pkts": "0",
+            "out-multicast-pkts": "0",
+            "out-discards": 0,
+            "out-errors": 0
+          },
+          "common-port": {
+            "common-port": 1,
+            "in-octets": "2345235",
+            "in-unicast-pkts": "1232",
+            "in-broadcast-pkts": "0",
+            "in-multicast-pkts": "0",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "12341234",
+            "out-unicast-pkts": "12312",
+            "out-broadcast-pkts": "0",
+            "out-multicast-pkts": "0",
+            "out-discards": 0,
+            "out-errors": 0
+          }
+        },
+        "ieee802-dot1ae-pry:pry": {
+          "reception": {
+            "max-peers": 16,
+            "peer-src-address": [
+              "11-22-33-44-55-01",
+              "11-22-33-44-55-02",
+              "11-22-33-44-55-03",
+              "11-22-33-44-55-04",
+              "11-22-33-44-55-05",
+              "11-22-33-44-55-06"
+            ],
+            "fragment-ordering": "ieee802-dot1ae-pry:default-strict-ordered"
+          },
+          "reception-stats": {
+            "in-user-protected-frames": "1000",
+            "in-user-protected-octets": "140000",
+            "in-mppdus": "900",
+            "in-encapsulated-frames": "800",
+            "in-user-express-fragments": "200",
+            "in-user-preemptable-fragments": "200",
+            "in-express-discard-fragments": "0",
+            "in-preemptable-discard-fragments": "0",
+            "in-pad-octets": "1492",
+            "in-unknown-mppcis": "0",
+            "in-errored-mppdus": "0",
+            "in-user-express-frames": "60",
+            "in-user-preemptable-frames": "20",
+            "in-user-unprotected-frames": "0",
+            "in-user-unprotected-octets": "0"
+          },
+          "transmission": {
+            "privacy-protection": true,
+            "pry-source-address": "11-22-33-44-55-65",
+            "use-mka-group-address": false,
+            "mppdu-dest-address": "aa-22-33-44-55-66",
+            "fragment-enable": true,
+            "user-priority-to-pry": [
+              {
+                "user-priority": 7,
+                "privacy-type": "ieee802-dot1ae-pry:frame",
+                "frame-access-priority": 6,
+                "frame-reveal-de": "visible",
+                "frame-privacy-padding": "to-16"
+              },
+              {
+                "user-priority": 6,
+                "privacy-type": "ieee802-dot1ae-pry:frame",
+                "frame-access-priority": 6,
+                "frame-reveal-de": "hidden",
+                "frame-privacy-padding": "to-64"
+              },
+              {
+                "user-priority": 5,
+                "privacy-type": "ieee802-dot1ae-pry:none"
+              },
+              {
+                "user-priority": 4,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 3,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 2,
+                "privacy-type": "ieee802-dot1ae-pry:preemptable-channel"
+              },
+              {
+                "user-priority": 1,
+                "privacy-type": "ieee802-dot1ae-pry:express-channel"
+              },
+              {
+                "user-priority": 0,
+                "privacy-type": "ieee802-dot1ae-pry:express-channel"
+              }
+            ],
+            "frame": {
+              "user-data-frame-size": 1518
+            },
+            "channel": [
+              {
+                "channel-id": "ieee802-dot1ae-pry:express-channel",
+                "enabled": true,
+                "access-priority": 2,
+                "user-data-frame-size": 1518,
+                "user-data-burst-size": 10000,
+                "requested-bit-rate": "10000000000",
+                "channel-frame-size": 1520,
+                "channel-burst-size": 10000,
+                "actual-bit-rate": "9705882352"
+              }
+            ]
+          },
+          "channel-stats": {
+            "out-user-protected-frames": "1000",
+            "out-user-protected-octets": "14000",
+            "out-encapsulated-frames": "800",
+            "out-express-fragments": "200",
+            "out-preemptable-fragments": "200",
+            "out-pad-octets": "64000",
+            "out-mppdus": "1200"
+          },
+          "frame-stats": {
+            "out-encapsulated-frames": "0",
+            "out-user-protected-octets": "0"
+          },
+          "unprotected-frame-stats": {
+            "out-user-frames": "0",
+            "out-user-octets": "0"
+          }
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv2",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1
+        },
+        "ieee802-dot1x:pae": {
+          "pae-system": "pae1"
+        }
+      }
+    ]
+  },
+  "ietf-system:system": {
+    "contact": "test",
+    "ieee802-dot1x:pae-system": {
+      "name": "pae1",
+      "system-access-control": "enabled"
+    }
+  }
+}

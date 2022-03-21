@@ -1,0 +1,14 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn yanglint
+expect ">"
+send "load iana-if-type\r"
+expect ">"
+send "load ieee802-dot1q-bridge\r"
+expect ">"
+send "load ieee802-dot1q-pb\r"
+expect ">"
+send "data -t data -f json e01.xml\r"
+expect ">"
+send "quit\r"
+expect eof

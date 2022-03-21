@@ -1,0 +1,190 @@
+module: ieee802-dot1x
+  +--rw nid-group
+     +--rw pae-nid-group* [nid]
+        +--rw nid                       dot1x-types:pae-nid
+        +--rw use-eap?                  enumeration
+        +--rw unauth-allowed?           enumeration
+        +--rw unsecure-allowed?         enumeration
+        +--rw unauthenticated-access?   enumeration
+        +--rw access-capabilities?
+        |       dot1x-types:pae-nid-capabilities
+        +--ro kmd?                      dot1x-types:pae-kmd
+
+  augment /sys:system:
+    +--rw pae-system
+       +--rw name?                     string
+       +--rw system-access-control?    enumeration
+       +--rw system-announcements?     enumeration
+       +--ro eapol-protocol-version?   uint8
+       +--ro mka-version?              uint8
+       +--ro pae*                      if:interface-ref
+  augment /if:interfaces/if:interface:
+    +--rw pae
+       +--rw pae-system?
+       |       -> /sys:system/dot1x:pae-system/name
+       +--rw vp-enable?                  boolean
+       +--rw port-capabilities
+       |  +--rw supp?                  boolean
+       |  +--rw auth?                  boolean
+       |  +--rw mka?                   boolean
+       |  +--rw macsec?                boolean
+       |  +--rw announcements?         boolean
+       |  +--rw listener?              boolean
+       |  +--rw virtual-ports?         boolean
+       |  +--rw in-service-upgrades?   boolean
+       +--ro port-name?                  if:interface-ref
+       +--ro port-number?                dot1x-types:pae-if-index
+       +--ro controlled-port-name?       if:interface-ref
+       +--ro controlled-port-number?     dot1x-types:pae-if-index
+       +--ro uncontrolled-port-name?     if:interface-ref
+       +--ro uncontrolled-port-number?   dot1x-types:pae-if-index
+       +--ro common-port-name?           if:interface-ref
+       +--ro common-port-number?         dot1x-types:pae-if-index
+       +--rw port-type?                  enumeration
+       +--ro virtual-port
+       |  +--ro max?            uint32
+       |  +--ro current?        yang:gauge32
+       |  +--ro start?          boolean
+       |  +--ro peer-address?   ieee:mac-address
+       +--rw supplicant
+       |  +--rw held-period?     uint16
+       |  +--rw retry-max?       uint32
+       |  +--ro enabled?         boolean
+       |  +--ro authenticate?    boolean
+       |  +--ro authenticated?   boolean
+       |  +--ro failed?          boolean
+       +--rw authenticator
+       |  +--rw quiet-period?    uint16
+       |  +--rw reauth-period?   uint32
+       |  +--rw reauth-enable?   boolean
+       |  +--rw retry-max?       uint32
+       |  +--ro enabled?         boolean
+       |  +--ro authenticate?    boolean
+       |  +--ro authenticated?   boolean
+       |  +--ro failed?          boolean
+       +--rw kay
+       |  +--rw enable?               boolean
+       |  +--rw actor
+       |  |  +--rw priority?   uint8
+       |  |  +--ro sci?        dot1x-types:sci-list-entry
+       |  +--rw key-server
+       |  |  +--rw priority?   uint8
+       |  |  +--ro sci?        dot1x-types:sci-list-entry
+       |  +--rw group
+       |  |  +--rw join?   boolean
+       |  |  +--rw form?   boolean
+       |  |  +--rw new?    boolean
+       |  +--rw macsec
+       |  |  +--rw capable?          boolean
+       |  |  +--rw desired?          boolean
+       |  |  +--ro protect?          boolean
+       |  |  +--ro validate?         boolean
+       |  |  +--ro replay-protect?   boolean
+       |  +--rw suspend-on-request?   boolean
+       |  +--rw suspend-for?          uint8
+       |  +--ro suspended-while?      uint8
+       |  +--ro active?               boolean
+       |  +--ro authenticated?        boolean
+       |  +--ro secured?              boolean
+       |  +--ro failed?               boolean
+       |  +--ro key-number
+       |  |  +--ro tx?   dot1x-types:mka-kn
+       |  |  +--ro rx?   dot1x-types:mka-kn
+       |  +--ro association-number
+       |  |  +--ro tx?   dot1x-types:mka-an
+       |  |  +--ro rx?   dot1x-types:mka-an
+       |  +--rw participants* [participant]
+       |     +--rw participant    uint32
+       |     +--rw cached?        boolean
+       |     +--rw active?        boolean
+       |     +--rw retain?        boolean
+       |     +--rw activate?      enumeration
+       |     +--ro peers
+       |     |  +--ro live*        dot1x-types:sci-list-entry
+       |     |  +--ro potential*   dot1x-types:sci-list-entry
+       |     +--ro ckn?           dot1x-types:pae-ckn
+       |     +--ro kmd?           dot1x-types:pae-kmd
+       |     +--ro nid?           dot1x-types:pae-nid
+       |     +--ro auth-data?     dot1x-types:pae-auth-data
+       |     +--ro principal?     boolean
+       |     +--ro dist-ckn?      dot1x-types:pae-ckn
+       +--rw logon-nid
+       |  +--rw selected?        dot1x-types:pae-nid
+       |  +--rw pae-nid-group* [nid]
+       |  |  +--rw nid                       dot1x-types:pae-nid
+       |  |  +--rw use-eap?                  enumeration
+       |  |  +--rw unauth-allowed?           enumeration
+       |  |  +--rw unsecure-allowed?         enumeration
+       |  |  +--rw unauthenticated-access?   enumeration
+       |  |  +--rw access-capabilities?
+       |  |  |       dot1x-types:pae-nid-capabilities
+       |  |  +--ro kmd?                      dot1x-types:pae-kmd
+       |  +--ro connected?       dot1x-types:pae-nid
+       |  +--ro requested?       dot1x-types:pae-nid
+       +--rw announcer
+       |  +--rw enable?     boolean
+       |  +--rw announce* [announces]
+       |     +--rw announces        uint32
+       |     +--rw pae-nid-group* [nid]
+       |     |  +--rw nid                       dot1x-types:pae-nid
+       |     |  +--rw use-eap?                  enumeration
+       |     |  +--rw unauth-allowed?           enumeration
+       |     |  +--rw unsecure-allowed?         enumeration
+       |     |  +--rw unauthenticated-access?   enumeration
+       |     |  +--rw access-capabilities?
+       |     |  |       dot1x-types:pae-nid-capabilities
+       |     |  +--ro kmd?                      dot1x-types:pae-kmd
+       |     +--ro nid?             dot1x-types:pae-nid
+       |     +--ro access-status?   dot1x-types:pae-access-status
+       +--rw listener
+       |  +--rw enable?         boolean
+       |  +--ro announcement* [announcements]
+       |     +--ro announcements             uint32
+       |     +--ro nid?                      dot1x-types:pae-nid
+       |     +--ro kmd?                      dot1x-types:pae-kmd
+       |     +--ro specific?                 boolean
+       |     +--ro access-status?
+       |     |       dot1x-types:pae-access-status
+       |     +--ro requested-nid?            boolean
+       |     +--ro unauthenticated-access?
+       |     |       dot1x-types:pae-access-status
+       |     +--ro access-capabilities?
+       |     |       dot1x-types:pae-nid-capabilities
+       |     +--ro cipher-suites* [index]
+       |        +--ro index                    uint16
+       |        +--ro cipherSuite?             string
+       |        +--ro cipherSuiteCapability?   uint32
+       +--ro eapol-statistics
+       |  +--ro invalid-eapol-frame-rx?       yang:counter32
+       |  +--ro eap-length-error-frames-rx?   yang:counter32
+       |  +--ro eapol-announcements-rx?       yang:counter32
+       |  +--ro eapol-announce-reqs-rx?       yang:counter32
+       |  +--ro eapol-port-unavailable?       yang:counter32
+       |  +--ro eapol-start-frames-rx?        yang:counter32
+       |  +--ro eapol-eap-frames-rx?          yang:counter32
+       |  +--ro eapol-logoff-frames-rx?       yang:counter32
+       |  +--ro eapol-mk-no-cfn?              yang:counter32
+       |  +--ro eapol-mk-invalid-frames-rx?   yang:counter32
+       |  +--ro last-eapol-frame-source?      ieee:mac-address
+       |  +--ro last-eapol-frame-version?     uint8
+       |  +--ro eapol-supp-eap-frames-tx?     yang:counter32
+       |  +--ro eapol-logoff-frames-tx?       yang:counter32
+       |  +--ro eapol-announcements-tx?       yang:counter32
+       |  +--ro eapol-announce-reqs-tx?       yang:counter32
+       |  +--ro eapol-start-frames-tx?        yang:counter32
+       |  +--ro eapol-auth-eap-frames-tx?     yang:counter32
+       |  +--ro eapol-mka-frames-tx?          yang:counter32
+       +--rw logon-process
+          +--rw logon?                boolean
+          +--ro connect?              enumeration
+          +--ro port-valid?           boolean
+          +--ro session-statistics* [session-id]
+             +--ro session-id         dot1x-types:pae-session-id
+             +--ro user-name?
+             |       dot1x-types:pae-session-user-name
+             +--ro octets-rx?         yang:counter64
+             +--ro octets-tx?         yang:counter64
+             +--ro frames-rx?         yang:counter64
+             +--ro frames-tx?         yang:counter64
+             +--ro time?              uint32
+             +--ro terminate-cause?   enumeration

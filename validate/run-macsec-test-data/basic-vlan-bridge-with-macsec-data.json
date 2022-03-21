@@ -1,0 +1,403 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "bridge1",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "customer-vlan-bridge",
+        "component": [
+          {
+            "name": "cv1",
+            "id": 1,
+            "type": "c-vlan-component",
+            "traffic-class-enabled": true,
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "filtering-database": {
+              "aging-time": 300
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          },
+          {
+            "name": "cv2",
+            "id": 2,
+            "type": "c-vlan-component",
+            "traffic-class-enabled": true,
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "filtering-database": {
+              "aging-time": 300
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          }
+        ],
+        "up-time": 0
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:bridge",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-01-31T23:59:00Z"
+        },
+        "enabled": true,
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv1",
+          "port-type": "c-vlan-bridge-port",
+          "pvid": 1,
+          "default-priority": 0,
+          "priority-regeneration": {
+            "priority0": 0,
+            "priority1": 1,
+            "priority2": 2,
+            "priority3": 3,
+            "priority4": 4,
+            "priority5": 5,
+            "priority6": 6,
+            "priority7": 7
+          },
+          "pcp-selection": "8P0D",
+          "use-dei": false,
+          "drop-encoding": false,
+          "service-access-priority-selection": false,
+          "service-access-priority": {
+            "priority0": 0,
+            "priority1": 1,
+            "priority2": 2,
+            "priority3": 3,
+            "priority4": 4,
+            "priority5": 5,
+            "priority6": 6,
+            "priority7": 7
+          },
+          "acceptable-frame": "admit-all-frames",
+          "enable-ingress-filtering": false,
+          "enable-restricted-vlan-registration": false,
+          "enable-vid-translation-table": false,
+          "enable-egress-vid-translation-table": false,
+          "statistics": {
+          }
+        },
+        "ieee802-dot1x:pae": {
+          "eapol-statistics": {
+          },
+          "logon-process": {
+            "logon": false
+          }
+        },
+        "ieee802-dot1ae:secy": {
+          "verification": {
+            "validate-frames": "strict",
+            "replay-protect": true,
+            "replay-window": 0
+          },
+          "generation": {
+            "protect-frames": true,
+            "always-include-sci": false,
+            "use-es": false,
+            "use-scb": false
+          },
+          "controlled-interface": {
+            "admin-point-to-point-mac": "auto"
+          },
+          "uncontrolled-interface": {
+            "admin-point-to-point-mac": "auto"
+          }
+        },
+        "ieee802-dot1ae-pry:pry": {
+          "mac-privacy-enabled": true,
+          "use-pae-dest-address": true
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2020-01-31T23:59:00Z"
+        },
+        "enabled": true,
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv2",
+          "port-type": "c-vlan-bridge-port",
+          "pvid": 1,
+          "default-priority": 0,
+          "priority-regeneration": {
+            "priority0": 0,
+            "priority1": 1,
+            "priority2": 2,
+            "priority3": 3,
+            "priority4": 4,
+            "priority5": 5,
+            "priority6": 6,
+            "priority7": 7
+          },
+          "pcp-selection": "8P0D",
+          "use-dei": false,
+          "drop-encoding": false,
+          "service-access-priority-selection": false,
+          "service-access-priority": {
+            "priority0": 0,
+            "priority1": 1,
+            "priority2": 2,
+            "priority3": 3,
+            "priority4": 4,
+            "priority5": 5,
+            "priority6": 6,
+            "priority7": 7
+          },
+          "acceptable-frame": "admit-all-frames",
+          "enable-ingress-filtering": false,
+          "enable-restricted-vlan-registration": false,
+          "enable-vid-translation-table": false,
+          "enable-egress-vid-translation-table": false,
+          "statistics": {
+          }
+        },
+        "ieee802-dot1ae:secy": {
+          "controlled-port-number": 1,
+          "verification": {
+            "max-receive-channels": 10,
+            "max-receive-keys": 20,
+            "validate-frames": "strict",
+            "replay-protect": true,
+            "replay-window": 0,
+            "in-pkts-untagged": "0",
+            "in-pkts-no-tag": "10",
+            "in-pkts-bad-tag": "0",
+            "in-pkts-no-sa": "0",
+            "in-pkts-overrun": "0",
+            "in-octets-validated": "0",
+            "in-octets-decrypted": "12314",
+            "receive-sc": [
+              {
+                "sci": "01-01-01-01-01-01",
+                "created-time": "2021-08-19T12:59:00.00Z",
+                "started-time": "2021-08-19T12:59:00.01Z",
+                "stopped-time": "2021-08-19T12:59:00.02Z",
+                "receiving": true,
+                "in-pkts-ok": "1000",
+                "in-pkts-unchecked": "10",
+                "in-pkts-delayed": "2",
+                "in-pkts-late": "2",
+                "in-pkts-invalid": "0",
+                "in-pkts-not-valid": "0",
+                "receive-sa": [
+                  {
+                    "rxa": 1,
+                    "in-use": true,
+                    "ssci": 20,
+                    "next-pn": "1245",
+                    "created-time": "2021-08-19T12:59:00.03Z",
+                    "started-time": "2021-08-19T12:59:00.04Z",
+                    "stopped-time": "2021-08-19T12:59:00.05Z"
+                  }
+                ]
+              }
+            ]
+          },
+          "generation": {
+            "sci-base": "",
+            "max-transmit-channels": 16,
+            "max-transmit-keys": 16,
+            "protect-frames": true,
+            "always-include-sci": true,
+            "use-es": true,
+            "use-scb": true,
+            "including-sci": true,
+            "out-pkts-untagged": "40",
+            "out-pkts-too-long": "0",
+            "out-octets-protected": "2000",
+            "out-octets-encrypted": "200000",
+            "user-priority-tc": [
+              {
+                "user-priority": 0,
+                "traffic-class": 0,
+                "access-class-de0": 0,
+                "access-class-de1": 0
+              },
+              {
+                "user-priority": 1,
+                "traffic-class": 1,
+                "access-class-de0": 1,
+                "access-class-de1": 1
+              },
+              {
+                "user-priority": 2,
+                "traffic-class": 2,
+                "access-class-de0": 2,
+                "access-class-de1": 2
+              },
+              {
+                "user-priority": 3,
+                "traffic-class": 3,
+                "access-class-de0": 3,
+                "access-class-de1": 3
+              }
+            ],
+            "transmit-sc": [
+              {
+                "sci": "01-01-10-10-10-10",
+                "created-time": "2021-08-19T12:59:00.06Z",
+                "started-time": "2021-08-19T12:59:00.07Z",
+                "stopped-time": "2021-08-19T12:59:00.08Z",
+                "transmitting": true,
+                "encoding-sa": 0,
+                "out-pkts-protected": "1000",
+                "out-pkts-encrypted": "1000",
+                "transmit-sa": [
+                  {
+                    "txa": 0,
+                    "in-use": true,
+                    "ssci": 2,
+                    "next-pn": "2000000",
+                    "created-time": "2021-08-19T12:59:00.09Z",
+                    "started-time": "2021-08-19T12:59:00.10Z",
+                    "stopped-time": "2021-08-19T12:59:00.11Z",
+                    "confidentiality": true,
+                    "key-identifier": "134bd758b0ee5c11c55ff6ab19fdb199"
+                  }
+                ]
+              }
+            ]
+          },
+          "current-cipher-suite": {
+            "cipher-suite-identifier": "1",
+            "data-key": [
+              {
+                "key-index": 0,
+                "key-identifier": "134bd758b0ee5c11c55ff6ab19fdb199",
+                "transmits": true,
+                "receives": true
+              }
+            ]
+          },
+          "controlled-interface": {
+            "provided-interface": 1,
+            "mac-enabled": true,
+            "mac-operational": true,
+            "oper-point-to-point-mac": true,
+            "admin-point-to-point-mac": "force-true",
+            "controlled-port-enabled": true,
+            "in-octets": "50000",
+            "in-unicast-pkts": "100",
+            "in-broadcast-pkts": "10",
+            "in-multicast-pkts": "10",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "50500050",
+            "out-unicast-pkts": "2323",
+            "out-broadcast-pkts": "10",
+            "out-multicast-pkts": "10",
+            "out-discards": 0,
+            "out-errors": 0
+          },
+          "uncontrolled-interface": {
+            "provided-interface": 2,
+            "mac-enabled": true,
+            "mac-operational": true,
+            "oper-point-to-point-mac": true,
+            "admin-point-to-point-mac": "force-true",
+            "in-octets": "60000",
+            "in-unicast-pkts": "600",
+            "in-broadcast-pkts": "2",
+            "in-multicast-pkts": "1",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "555004",
+            "out-unicast-pkts": "575",
+            "out-broadcast-pkts": "10",
+            "out-multicast-pkts": "10",
+            "out-discards": 0,
+            "out-errors": 0
+          },
+          "common-port": {
+            "in-octets": "200",
+            "in-unicast-pkts": "5",
+            "in-broadcast-pkts": "1",
+            "in-multicast-pkts": "1",
+            "in-discards": 0,
+            "in-errors": 0,
+            "out-octets": "300",
+            "out-unicast-pkts": "7",
+            "out-broadcast-pkts": "1",
+            "out-multicast-pkts": "1",
+            "out-discards": 0,
+            "out-errors": 0
+          },
+          "cipher-suite-control": [
+            {
+              "implemented-cipher-suite": "10",
+              "enable-use": true,
+              "require-confidentiality": true
+            }
+          ]
+        },
+        "ieee802-dot1x:pae": {
+          "pae-system": "pae1",
+          "eapol-statistics": {
+          },
+          "logon-process": {
+            "logon": false
+          }
+        },
+        "ieee802-dot1ae-pry:pry": {
+          "mac-privacy-enabled": true,
+          "use-pae-dest-address": true
+        }
+      }
+    ]
+  },
+  "ietf-system:system": {
+    "contact": "test",
+    "ieee802-dot1x:pae-system": {
+      "name": "pae1",
+      "system-access-control": "enabled"
+    },
+    "ieee802-dot1ae:secy-system": {
+      "cipher-suites": [
+        {
+          "cipher-suite": "1",
+          "name": "TestCipher",
+          "integrity-protection": true,
+          "confidentiality-protection": true,
+          "offset-confidentiality": true,
+          "changes-data-length": true,
+          "icv-length": 16
+        }
+      ]
+    },
+    "dns-resolver": {
+      "options": {
+        "timeout": 5,
+        "attempts": 2
+      }
+    }
+  }
+}

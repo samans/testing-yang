@@ -1,0 +1,12 @@
+module: minerals
+  +--rw mineral-db
+  |  +--rw mineral* [mineral-name]
+  |     +--rw mineral-name           string
+  |     +--rw physical-properties?   string
+  |     +--rw hardness?              decimal64
+  +--rw samples
+     +--rw sample* [sample-id]
+        +--rw sample-id      string
+        +--rw streak?        string
+        +--rw cleavage?      string
+        +--rw mineral-ref?   -> /mineral-db/mineral/mineral-name

@@ -1,0 +1,39 @@
+
+module: ieee802-dot1ae-pry
+  augment /if:interfaces/if:interface:
+    +--rw pry {macsec-priv}?
+       +--rw mac-privacy-enabled?          boolean
+       +--ro pry-source-address?           ieee:mac-address
+       +--rw use-pae-dest-address?         boolean
+       +--rw pry-destination-address?      ieee:mac-address
+       +--rw user-priority-to-pry* [user-priority]
+       |  +--rw user-priority                 uint8
+       |  +--rw privacy-type                  identityref
+       |  +--rw frame-access-priority?
+       |  |       dot1q-types:priority-type
+       |  +--rw frame-de-bit-visible?         enumeration
+       |  +--rw frame-nearest-multiple-pad?   uint16
+       +--rw channel* [channel-id]
+       |  +--rw channel-id              identityref
+       |  +--rw access-priority?        dot1q-types:priority-type
+       |  +--rw user-data-frame-size?   uint16
+       |  +--rw requested-bit-rate      uint64
+       |  +--ro actual-bit-rate?        uint64
+       |  +--rw burst-size              uint32
+       |  +--ro total-size-on-wire?     uint16
+       |  +--rw fragment-enable?        boolean
+       +--rw frame!
+       |  +--rw user-data-frame-size?   uint16
+       +--ro out-mppdus?                   yang:counter64
+       +--ro out-user-frames?              yang:counter64
+       +--ro out-user-octets?              yang:counter64
+       +--ro out-pad-octets?               yang:counter64
+       +--ro out-user-fragments?           yang:counter64
+       +--ro in-mppdus?                    yang:counter64
+       +--ro in-errored-mppdus?            yang:counter64
+       +--ro in-user-frames?               yang:counter64
+       +--ro in-errored-user-frames?       yang:counter64
+       +--ro in-user-octets?               yang:counter64
+       +--ro in-pad-octets?                yang:counter64
+       +--ro in-user-dropped-fragments?    yang:counter64
+       +--ro in-user-errored-fragments?    yang:counter64

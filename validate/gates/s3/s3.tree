@@ -1,0 +1,11 @@
+module: main
+  +--rw main-container
+     +--rw main-list* [leaf1]
+        +--rw leaf1                    string
+        +--rw leaf2?                   string
+        +--rw a1:tsn-type?             string
+        +--rw a1:admin-control-list
+           +--rw a1:gate-control-entry* [index]
+           |  +--rw a1:index        uint32
+           |  +--rw a1:gce-leaf1?   string
+           +--rw a1:augleaf1?             string

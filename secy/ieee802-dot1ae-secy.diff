@@ -1,0 +1,1412 @@
+module ieee802-dot1ae-secy {					module ieee802-dot1ae-secy {
+  yang-version "1.1";						  yang-version "1.1";
+  namespace urn:ieee:std:802.1AE:yang:ieee802-dot1ae-secy;	  namespace urn:ieee:std:802.1AE:yang:ieee802-dot1ae-secy;
+  prefix secy;							  prefix secy;
+  import ietf-interfaces {					  import ietf-interfaces {
+    prefix if;							    prefix if;
+  }								  }
+  import ietf-yang-types {					  import ietf-yang-types {
+    prefix yang;						    prefix yang;
+  }								  }
+  import ietf-system {						  import ietf-system {
+    prefix sys;							    prefix sys;
+  }								  }
+  import ieee802-dot1x-types {					  import ieee802-dot1x-types {
+    prefix dot1x-types;						    prefix dot1x-types;
+  }								  }
+  import ieee802-dot1q-types {					  import ieee802-dot1q-types {
+    prefix dot1q-types;						    prefix dot1q-types;
+  }								  }
+  import ieee802-dot1x{						  import ieee802-dot1x{
+    prefix dot1x;						    prefix dot1x;
+  }								  }
+
+  organization							  organization
+    "Institute of Electrical and Electronics Engineers";	    "Institute of Electrical and Electronics Engineers";
+  contact							  contact
+    "WG-URL: http://ieee802.org/1/				    "WG-URL: http://ieee802.org/1/
+    WG-EMail: stds-802-1-l@ieee.org				    WG-EMail: stds-802-1-l@ieee.org
+    								    
+    Contact: IEEE 802.1 Working Group Chair			    Contact: IEEE 802.1 Working Group Chair
+    Postal: C/O IEEE 802.1 Working Group			    Postal: C/O IEEE 802.1 Working Group
+           IEEE Standards Association				           IEEE Standards Association
+           445 Hoes Lane					           445 Hoes Lane
+           Piscataway, NJ 08855					           Piscataway, NJ 08855
+           USA							           USA
+    								    
+    E-mail: stds-802-1-chairs@ieee.org";			    E-mail: stds-802-1-chairs@ieee.org";
+  description							  description
+    "The MAC security entity (SecY) MIB module. A SecY is a p	    "The MAC security entity (SecY) MIB module. A SecY is a p
+    shim providing MAC Security (MACsec) in an interface stac	    shim providing MAC Security (MACsec) in an interface stac
+    								    
+    Each SecY transmits MACsec protected frames on one or mor	    Each SecY transmits MACsec protected frames on one or mor
+    Channels (SCs) to each of the other SecYs attached to the	    Channels (SCs) to each of the other SecYs attached to the
+    and participating in the same Secure Connectivity Associa	    and participating in the same Secure Connectivity Associa
+    (CA). The CA is a security relationship, that is establis	    (CA). The CA is a security relationship, that is establis
+    maintained by key agreement protocols and supported by MA	    maintained by key agreement protocols and supported by MA
+    provide full connectivity between its participants. Each 	    provide full connectivity between its participants. Each 
+    provides unidirectional point to multipoint connectivity 	    provides unidirectional point to multipoint connectivity 
+    participant to all the others and is supported by a succe	    participant to all the others and is supported by a succe
+    similarly point to multipoint Secure Associations (SAs). 	    similarly point to multipoint Secure Associations (SAs). 
+    Secure Association Key (SAK) used to protect frames is ch	    Secure Association Key (SAK) used to protect frames is ch
+    an SA is replaced by its (overlapping) successor so fresh	    an SA is replaced by its (overlapping) successor so fresh
+    be used without disrupting a long lived SC and CA.		    be used without disrupting a long lived SC and CA.
+    								    
+    Two different upper interfaces, a Controlled Port (for fr	    Two different upper interfaces, a Controlled Port (for fr
+    protected by MACsec, providing an instance of the secure 	    protected by MACsec, providing an instance of the secure 
+    service) and an Uncontrolled Port (for frames not requiri	    service) and an Uncontrolled Port (for frames not requiri
+    protection, like the key agreement frames used to establi	    protection, like the key agreement frames used to establi
+    and distribute keys) are associated with a SecY shim.";	    and distribute keys) are associated with a SecY shim.";
+  revision 2022-02-24 {					      |	  revision 2022-02-22 {
+    description							    description
+      "Updates based upon comment resolution on draft TBD";	      "Updates based upon comment resolution on draft TBD";
+    reference							    reference
+      "IEEE Std 802.1AE-2018, Media Access Control (MAC) Secu	      "IEEE Std 802.1AE-2018, Media Access Control (MAC) Secu
+  }								  }
+  								  
+  /* ------------------------------------------			  /* ------------------------------------------
+   *  Typedefs							   *  Typedefs
+   * ------------------------------------------			   * ------------------------------------------
+   */								   */
+  typedef sec-an-type {						  typedef sec-an-type {
+    type uint8 {						    type uint8 {
+      range "0..3";						      range "0..3";
+    }								    }
+    description							    description
+      "A 2 bit number that is concatenated with a MACsec Secu	      "A 2 bit number that is concatenated with a MACsec Secu
+      Channel Identifier to identify a Secure Association. In	      Channel Identifier to identify a Secure Association. In
+      an Association Number (AN) assigned by the Key Server f	      an Association Number (AN) assigned by the Key Server f
+      with the key number for transmission.			      with the key number for transmission.
+      								      
+      Each SC is comprised of a succession of SAs, each with 	      Each SC is comprised of a succession of SAs, each with 
+      different SAK, identified by a Secure Association Ident	      different SAK, identified by a Secure Association Ident
+      (SAI) comprising an SCI concatenated with a two-bit AN.	      (SAI) comprising an SCI concatenated with a two-bit AN.
+      is unique for SAs used by SecYs participating in a give	      is unique for SAs used by SecYs participating in a give
+      any instant.";						      any instant.";
+    reference							    reference
+      "9.6 of 802.1AE";						      "9.6 of 802.1AE";
+  }								  }
+  typedef sec-pn-type {						  typedef sec-pn-type {
+    type uint64;						    type uint64;
+    description							    description
+      "This is the Packet Number. It may be a 32 bit or a 64 	      "This is the Packet Number. It may be a 32 bit or a 64 
+      unsigned value. A monotonically increasing value that i	      unsigned value. A monotonically increasing value that i
+      guaranteed unique for each MACsec frame transmitted usi	      guaranteed unique for each MACsec frame transmitted usi
+      given Secure Association Key (SAK).";			      given Secure Association Key (SAK).";
+    reference							    reference
+      "9.8 of 802.1AE";						      "9.8 of 802.1AE";
+  }								  }
+  typedef sec-sci-type {					  typedef sec-sci-type {
+    type string {					      |	    type uint64;
+      pattern '[0-9a-fA-F]{2}(-[0-9a-fA-F]{2}){5}-[0-9a-fA-F] <
+    }							      <
+    //type uint64;					      <
+    description							    description
+      "The Secure Channel Identifier is 8 bytes (SCI). The SC	      "The Secure Channel Identifier is 8 bytes (SCI). The SC
+      octet binary number, where the first 6 octets represent	      octet binary number, where the first 6 octets represent
+      Address (in canonical format), and the next 2 octets re	      Address (in canonical format), and the next 2 octets re
+      the Port Identifier. Integers may be entered as hexadec	      the Port Identifier. Integers may be entered as hexadec
+    reference							    reference
+      "9.9 of 802.1AE";						      "9.9 of 802.1AE";
+  }								  }
+  typedef sec-eui64-type {					  typedef sec-eui64-type {
+    type uint64;						    type uint64;
+    description							    description
+      "A 64 bit Identifier.";					      "A 64 bit Identifier.";
+    reference							    reference
+      "10.7.25 of 802.1AE";					      "10.7.25 of 802.1AE";
+  }								  }
+  typedef sec-key-identifier-type {				  typedef sec-key-identifier-type {
+    type string {						    type string {
+      length "2..32";						      length "2..32";
+    }								    }
+    description							    description
+      "The keyIdentifier is an octet string, whose format and	      "The keyIdentifier is an octet string, whose format and
+      interpretation depends on the key agreement protocol in	      interpretation depends on the key agreement protocol in
+      does not contain any information about the SAK other th	      does not contain any information about the SAK other th
+      explicitly chosen by the key agreement protocol to publ	      explicitly chosen by the key agreement protocol to publ
+      identify the key. If MKA is being used, it is the 128-b	      identify the key. If MKA is being used, it is the 128-b
+      Identifier (KI) specified by IEEE Std 802.1X encoded in	      Identifier (KI) specified by IEEE Std 802.1X encoded in
+      string as specified by that standard.";			      string as specified by that standard.";
+  }								  }
+
+  								  
+  /* ------------------------------------------			  /* ------------------------------------------
+   * List of features that may be optionally			   * List of features that may be optionally
+   * implemented/supported					   * implemented/supported
+   * ------------------------------------------			   * ------------------------------------------
+   */								   */
+  /* ---------------------------------------------------	  /* ---------------------------------------------------
+   * Group objects used by 802.1ae YANG module			   * Group objects used by 802.1ae YANG module
+   * ---------------------------------------------------	   * ---------------------------------------------------
+   */								   */
+  grouping provided-port {				      |	  grouping provided-interface-grouping {
+    description							    description
+      "This holds statistics for the Provided interface ports	      "This holds statistics for the Provided interface ports
+      controlled port and the uncontrolled port.";		      controlled port and the uncontrolled port.";
+    leaf provided-port {				      |	    leaf provided-interface {
+      type dot1x-types:pae-if-index;				      type dot1x-types:pae-if-index;
+      config false;						      config false;
+      description						      description
+        "The controlled or uncontrolled Port for this Secy.";	        "The controlled or uncontrolled Port for this Secy.";
+      reference							      reference
+        "10.7.4 of 802.1AE";					        "10.7.4 of 802.1AE";
+    }								    }
+    leaf mac-enabled {						    leaf mac-enabled {
+      type boolean;						      type boolean;
+      config false;						      config false;
+      description						      description
+        "The mac-enabled parameter is TRUE if use of the serv	        "The mac-enabled parameter is TRUE if use of the serv
+        permitted and is otherwise FALSE. The value of this p	        permitted and is otherwise FALSE. The value of this p
+        is determined by administrative controls specific to 	        is determined by administrative controls specific to 
+        entity providing the service.";				        entity providing the service.";
+      reference							      reference
+        " 6.4 of 802.1AE";					        " 6.4 of 802.1AE";
+    }								    }
+    leaf mac-operational {					    leaf mac-operational {
+      type boolean;						      type boolean;
+      config false;						      config false;
+      description						      description
+        "The mac-operational parameter is TRUE if, and only i	        "The mac-operational parameter is TRUE if, and only i
+        service requests can be made and service indications 	        service requests can be made and service indications 
+        occur.";						        occur.";
+      reference							      reference
+        "6.4 of 802.1AE 6.4";					        "6.4 of 802.1AE 6.4";
+    }								    }
+    leaf oper-point-to-point-mac {				    leaf oper-point-to-point-mac {
+      type boolean;						      type boolean;
+      config false;						      config false;
+      description						      description
+        "If the operPointToPointMAC parameter is TRUE, the se	        "If the operPointToPointMAC parameter is TRUE, the se
+        used as if it provides connectivity to at most one ot	        used as if it provides connectivity to at most one ot
+        system; if FALSE, the service is used as if it can pr	        system; if FALSE, the service is used as if it can pr
+        connectivity to a number of systems.";			        connectivity to a number of systems.";
+      reference							      reference
+        "6.5 of 802.1AE";					        "6.5 of 802.1AE";
+    }								    }
+    leaf admin-point-to-point-mac {				    leaf admin-point-to-point-mac {
+      type enumeration {					      type enumeration {
+        enum force-true {					        enum force-true {
+          value 1;						          value 1;
+          description						          description
+            "If admin-point-to-point-mac is set to force-true	            "If admin-point-to-point-mac is set to force-true
+            oper-point-to-point-mac shall be TRUE, regardless	            oper-point-to-point-mac shall be TRUE, regardless
+            indications to the contrary generated by the serv	            indications to the contrary generated by the serv
+            providing entity.";					            providing entity.";
+          reference						          reference
+            "6.5 of 802.1AE";					            "6.5 of 802.1AE";
+        }							        }
+        enum force-false {					        enum force-false {
+          value 2;						          value 2;
+          description						          description
+            "If admin-point-to-point-mac is set to force-fals	            "If admin-point-to-point-mac is set to force-fals
+            oper-point-to-point-mac shall be FALSE.";		            oper-point-to-point-mac shall be FALSE.";
+          reference						          reference
+            "6.5 of 802.1AE";					            "6.5 of 802.1AE";
+        }							        }
+        enum auto {						        enum auto {
+          value 3;						          value 3;
+          description						          description
+            "If admin-point-to-point-mac is set to auto		            "If admin-point-to-point-mac is set to auto
+            oper-point-to-point-mac is as currently determine	            oper-point-to-point-mac is as currently determine
+            service providing entity.";				            service providing entity.";
+          reference						          reference
+            "6.5 of 802.1AE";					            "6.5 of 802.1AE";
+        }							        }
+      }								      }
+      default "auto";						      default "auto";
+      description						      description
+        "Each service access point can make available status	        "Each service access point can make available status
+        parameters that reflect the point-to-point status for	        parameters that reflect the point-to-point status for
+        service instance provided, and that allow administrat	        service instance provided, and that allow administrat
+        control over the use of that information.The		        control over the use of that information.The
+        adminPointToPointMAC parameter can take one of three 	        adminPointToPointMAC parameter can take one of three 
+      reference							      reference
+        "6.5 of 802.1AE";					        "6.5 of 802.1AE";
+    }								    }
+  }								  }
+  								  
+  //end provided-interface-grouping				  //end provided-interface-grouping
+  /* common SC items */						  /* common SC items */
+  grouping secy-secure-channel-grouping {			  grouping secy-secure-channel-grouping {
+    description							    description
+      "The secy-secure-channel grouping contains configuratio	      "The secy-secure-channel grouping contains configuratio
+      state common to both transmit and receive SCs.";		      state common to both transmit and receive SCs.";
+    leaf created-time {						    leaf created-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when the SC was created.";	        "This is the system time when the SC was created.";
+      reference							      reference
+        "10.7.12 of 802.1AE";					        "10.7.12 of 802.1AE";
+    }								    }
+    leaf started-time {						    leaf started-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when receiving last became T	        "This is the system time when receiving last became T
+        the SC.";						        the SC.";
+      reference							      reference
+        "10.7.12 of 802.1AE";					        "10.7.12 of 802.1AE";
+    }								    }
+    leaf stopped-time {						    leaf stopped-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when receiving last became F	        "This is the system time when receiving last became F
+        the SC.";						        the SC.";
+      reference							      reference
+        "10.7.12 of 802.1AE";					        "10.7.12 of 802.1AE";
+    }								    }
+  }								  }
+  								  
+  // end secy-secure-channel-grouping				  // end secy-secure-channel-grouping
+  /* common SA items */						  /* common SA items */
+  grouping secy-secure-association-grouping {			  grouping secy-secure-association-grouping {
+    description							    description
+      "The secy-secure-association grouping contains configur	      "The secy-secure-association grouping contains configur
+      state common to both transmit and receive Security	      state common to both transmit and receive Security
+      Associations(SAs).";					      Associations(SAs).";
+    leaf in-use {						    leaf in-use {
+      type boolean;						      type boolean;
+      config false;						      config false;
+      description						      description
+        "If inUse is True, and MAC_Operational is True for th	        "If inUse is True, and MAC_Operational is True for th
+        Port, the SA can receive and transmit frames.";		        Port, the SA can receive and transmit frames.";
+      reference							      reference
+        "10.7.14, 10.7.23 of 802.1AE";				        "10.7.14, 10.7.23 of 802.1AE";
+    }								    }
+    leaf ssci {							    leaf ssci {
+      type uint32;						      type uint32;
+      config false;						      config false;
+      description						      description
+        "Short Secure Channel Identifier for the Send and Tra	        "Short Secure Channel Identifier for the Send and Tra
+      reference							      reference
+        "10.7.14, 10.7.23 of 802.1AE";				        "10.7.14, 10.7.23 of 802.1AE";
+    }								    }
+    leaf next-pn {						    leaf next-pn {
+      type sec-pn-type;						      type sec-pn-type;
+      config false;						      config false;
+      description						      description
+        "The Next Packet Number, one more than the highest PN	        "The Next Packet Number, one more than the highest PN
+        in the SecTAG of successfully validates frames receiv	        in the SecTAG of successfully validates frames receiv
+        this SA.";						        this SA.";
+      reference							      reference
+        "10.7.14, 10.7.23 of 802.1AE";				        "10.7.14, 10.7.23 of 802.1AE";
+    }								    }
+    leaf created-time {						    leaf created-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when the SA was created.";	        "This is the system time when the SA was created.";
+      reference							      reference
+        "10.7.14, 10.7.23 of 802.1AE";				        "10.7.14, 10.7.23 of 802.1AE";
+    }								    }
+    leaf started-time {						    leaf started-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when inUse last became True 	        "This is the system time when inUse last became True 
+        SA.";							        SA.";
+      reference							      reference
+        "10.7.14 of 802.1AE";					        "10.7.14 of 802.1AE";
+    }								    }
+    leaf stopped-time {						    leaf stopped-time {
+      type yang:date-and-time;					      type yang:date-and-time;
+      config false;						      config false;
+      description						      description
+        "This is the system time when inUse last became False	        "This is the system time when inUse last became False
+        SA.";							        SA.";
+      reference							      reference
+        "10.7.14 of 802.1AE";					        "10.7.14 of 802.1AE";
+    }								    }
+  }								  }
+							      >	  
+  // end secy-secure-association-grouping			  // end secy-secure-association-grouping
+							      >	  grouping secy-statistics-grouping {
+							      >	    description
+							      >	      "A collection of interface-related statistics objects."
+							      >	    leaf in-octets {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The total number of octets received on the interface
+							      >	        including framing characters.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifHCInOctets";
+							      >	    }
+							      >	    leaf in-unicast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The number of packets, delivered by this sub-layer t
+							      >	        higher (sub-)layer, that were not addressed to a mult
+							      >	        broadcast address at this sub-layer.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifHCInUcastPkts
+							      >	    }
+							      >	    leaf in-broadcast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The number of packets, delivered by this sub-layer t
+							      >	        higher (sub-)layer, that were addressed to a broadcas
+							      >	        at this sub-layer.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB -
+							      >	                  ifHCInBroadcastPkts";
+							      >	    }
+							      >	    leaf in-multicast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The number of packets, delivered by this sub-layer t
+							      >	        higher (sub-)layer, that were addressed to a multicas
+							      >	        at this sub-layer. For a MAC-layer protocol, this inc
+							      >	        both Group and Functional addresses.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB -
+							      >	                  ifHCInMulticastPkts";
+							      >	    }
+							      >	    leaf in-discards {
+							      >	      type yang:counter32;
+							      >	      config false;
+							      >	      description
+							      >	        "The number of inbound packets that were chosen to be
+							      >	        discarded even though no errors had been detected to 
+							      >	        their being deliverable to a higher-layer protocol. O
+							      >	        possible reason for discarding such a packet could be
+							      >	        up buffer space.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifInDiscards";
+							      >	    }
+							      >	    leaf in-errors {
+							      >	      type yang:counter32;
+							      >	      config false;
+							      >	      description
+							      >	        "For packet-oriented interfaces, the number of inboun
+							      >	        that contained errors preventing them from being deli
+							      >	        to a higher-layer protocol. For character- oriented o
+							      >	        fixed-length interfaces, the number of inbound transm
+							      >	        units that contained errors preventing them from bein
+							      >	        deliverable to a higher-layer protocol.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifInErrors";
+							      >	    }
+							      >	    leaf out-octets {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The total number of octets transmitted out of the in
+							      >	        including framing characters.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifHCOutOctets";
+							      >	    }
+							      >	    leaf out-unicast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The total number of packets that higher-level protoc
+							      >	        requested be transmitted and that were not addressed 
+							      >	        multicast or broadcast address at this sub-layer, inc
+							      >	        those that were discarded or not sent.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifHCOutUcastPkt
+							      >	    }
+							      >	    leaf out-broadcast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The total number of packets that higher-level protoc
+							      >	        requested be transmitted and that were addressed to a
+							      >	        broadcast address at this sub-layer, including those 
+							      >	        discarded or not sent.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB -
+							      >	                  ifHCOutBroadcastPkts";
+							      >	    }
+							      >	    leaf out-multicast-pkts {
+							      >	      type yang:counter64;
+							      >	      config false;
+							      >	      description
+							      >	        "The total number of packets that higher-level protoc
+							      >	        requested be transmitted and that were addressed to a
+							      >	        multicast address at this sub-layer, including those 
+							      >	        discarded or not sent. For a MAC-layer protocol, this
+							      >	        both Group and Functional addresses.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB -
+							      >	                  ifHCOutMulticastPkts";
+							      >	    }
+							      >	    leaf out-discards {
+							      >	      type yang:counter32;
+							      >	      config false;
+							      >	      description
+							      >	        "The number of outbound packets that were chosen to b
+							      >	        discarded even though no errors had been detected to 
+							      >	        their being transmitted. One possible reason for disc
+							      >	        such a packet could be to free up buffer space.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifOutDiscards";
+							      >	    }
+							      >	    leaf out-errors {
+							      >	      type yang:counter32;
+							      >	      config false;
+							      >	      description
+							      >	        "For packet-oriented interfaces, the number of outbou
+							      >	        packets that could not be transmitted because of erro
+							      >	        character-oriented or fixed-length interfaces, the nu
+							      >	        outbound transmission units that could not be transmi
+							      >	        because of errors.
+							      >	        
+							      >	        Discontinuities in the value of this counter can occu
+							      >	        re-initialization of the management system and at oth
+							      >	        as indicated by the value of 'discontinuity-time'.";
+							      >	      reference
+							      >	        "RFC 2863: The Interfaces Group MIB - ifOutErrors";
+							      >	    }
+							      >	  } // end secy-statistics-grouping
+  								  
+   /* ---------------------------------------------------     |	  /* ---------------------------------------------------
+   * Configuration objects used by 802.1ae YANG module		   * Configuration objects used by 802.1ae YANG module
+   * ---------------------------------------------------	   * ---------------------------------------------------
+   */								   */
+  augment "/if:interfaces/if:interface/dot1x:pae" {		  augment "/if:interfaces/if:interface/dot1x:pae" {
+    container secy {						    container secy {
+      description						      description
+        "Augment interface with 802.1 SecY configuration node	        "Augment interface with 802.1 SecY configuration node
+        management information for each SecY is indexed by	        management information for each SecY is indexed by
+        controlled-portNumber within a SecY System. This cont	        controlled-portNumber within a SecY System. This cont
+        relationship complements that specified in IEEE Std 8	        relationship complements that specified in IEEE Std 8
+        where the management information for each PAE is inde	        where the management information for each PAE is inde
+        portNumber within a PAE System";			        portNumber within a PAE System";
+      reference							      reference
+        "10.7 of 802.1AE";					        "10.7 of 802.1AE";
+      container controlled-port {			      |	      leaf controlled-port-number {
+        description					      |	        type dot1x-types:pae-if-index;
+          "Controlled port control and status";		      |	        
+        uses provided-port;				      |	        //type sec-if-index-type;
+        leaf controlled-port-enabled {			      <
+          type boolean;					      <
+          config false;					      <
+          description					      <
+            "By setting ControlledPortEnabled False, the KaY  <
+            prohibit use of the Controlled Port until the sec <
+            connectivity required has been configured.";      <
+          reference					      <
+            "10.7.6 of 802.1AE";			      <
+        }						      <
+      }							      <
+      container uncontrolled-port {			      <
+        description						        description
+          "Uncontrolled port control and status";	      |	          "Controlled Port Number";
+        uses provided-port;				      <
+      }								      }
+      							      <
+      /* See IEEE Std 802.1AE-2018 Clause 10.4.  The common p <
+       * of a MAC Internal Sublayer Service (ISS), which is d <
+       * of macsec (defined in 802.1d).  Assume that the oper <
+       * statistics are already implemented in a yang model f <
+       * an pae-if-ref is sufficient.			      <
+       */						      <
+      container common-port {				      <
+        description					      <
+          "This list the statistics for the Provided interfac <
+          both the controlled port and the uncontrolled port. <
+        leaf common-port {				      <
+          type dot1x-types:pae-if-index;		      <
+          config false;					      <
+          description					      <
+            "The common Port for this Secy.";		      <
+          reference					      <
+            "10.7.4 of 802.1AE";			      <
+        }						      <
+      }							      <
+      							      <
+      // end common-port				      <
+      container verification {					      container verification {
+        description						        description
+          "This is the Verification controls for validation a	          "This is the Verification controls for validation a
+          protect for a given secy.";				          protect for a given secy.";
+        reference						        reference
+          "10.6 of 802.1AE";					          "10.6 of 802.1AE";
+        leaf max-receive-channels {				        leaf max-receive-channels {
+          type uint8;						          type uint8;
+          config false;						          config false;
+          description						          description
+            "Specifies Maximum Number of Receive Channels for	            "Specifies Maximum Number of Receive Channels for
+          reference						          reference
+            "10.7.7 of 802.1AE";				            "10.7.7 of 802.1AE";
+        }							        }
+        leaf max-receive-keys {					        leaf max-receive-keys {
+          type uint8;						          type uint8;
+          config false;						          config false;
+          description						          description
+            "Specifies Maximum Number of Receive Keys for a S	            "Specifies Maximum Number of Receive Keys for a S
+          reference						          reference
+            "10.7.7 of 802.1AE";				            "10.7.7 of 802.1AE";
+        }							        }
+        leaf validate-frames {					        leaf validate-frames {
+          type enumeration {					          type enumeration {
+            enum disabled {					            enum disabled {
+              value 1;						              value 1;
+              description					              description
+                "Frame Verification is disabled. Remove SecTA	                "Frame Verification is disabled. Remove SecTA
+                ICVs (if present) from received frames.";	                ICVs (if present) from received frames.";
+            }							            }
+            enum check {					            enum check {
+              value 2;						              value 2;
+              description					              description
+                "Frame Verification is enabled. Do not discar	                "Frame Verification is enabled. Do not discar
+                frames.";					                frames.";
+            }							            }
+            enum strict {					            enum strict {
+              value 3;						              value 3;
+              description					              description
+                "Frame Verification is enabled and strictly e	                "Frame Verification is enabled and strictly e
+                Discard any invalid frames.";			                Discard any invalid frames.";
+            }							            }
+            enum null {						            enum null {
+              value 4;						              value 4;
+              description					              description
+                "No Frame Verification is performed, do not	                "No Frame Verification is performed, do not
+                remove-secTags or ICVs";			                remove-secTags or ICVs";
+            }							            }
+          }							          }
+          default "strict";					          default "strict";
+          description						          description
+            "Controls the frame verification settings. If the	            "Controls the frame verification settings. If the
+            management control validate-frames is not Strict,	            management control validate-frames is not Strict,
+            without a SecTAG are received, counted, and deliv	            without a SecTAG are received, counted, and deliv
+            the Controlled Port; otherwise, they are counted 	            the Controlled Port; otherwise, they are counted 
+            discarded. If validate-frames is Disabled, crypto	            discarded. If validate-frames is Disabled, crypto
+            validation is not applied to tagged frames, but f	            validation is not applied to tagged frames, but f
+            whose original service user data can be recovered	            whose original service user data can be recovered
+            delivered. Frames with a SecTAG that has the TCI 	            delivered. Frames with a SecTAG that has the TCI 
+            but the C bit clear are discarded, as this reserv	            but the C bit clear are discarded, as this reserv
+            encoding is used to identify frames with a SecTAG	            encoding is used to identify frames with a SecTAG
+            not to be delivered to the Controlled Port. If	            not to be delivered to the Controlled Port. If
+            validate-frames is Null, all received frames are 	            validate-frames is Null, all received frames are 
+            to the Controlled Port without modification, irre	            to the Controlled Port without modification, irre
+            of the absence, presence, or validity of a SecTAG	            of the absence, presence, or validity of a SecTAG
+          reference						          reference
+            "10.7.8 of 802.1AE";				            "10.7.8 of 802.1AE";
+        }							        }
+        leaf replay-protect {					        leaf replay-protect {
+          type boolean;						          type boolean;
+          default "true";					          default "true";
+          description						          description
+            "If the Packet Number (PN) of the received frame 	            "If the Packet Number (PN) of the received frame 
+            than the lowest acceptable packet number for the 	            than the lowest acceptable packet number for the 
+            replay-protect is enabled, the frame is discarded	            replay-protect is enabled, the frame is discarded
+            in-pkts-late counter incremented. The replayProte	            in-pkts-late counter incremented. The replayProte
+            replayWindow controls allows replay protection to	            replayWindow controls allows replay protection to
+            disabled, to operate on a packet number window, o	            disabled, to operate on a packet number window, o
+            enforce strict frame order. If replayProtect is s	            enforce strict frame order. If replayProtect is s
+            the replayWindow is not zero, frames within the w	            the replayWindow is not zero, frames within the w
+            be received out of order; however, they are not r	            be received out of order; however, they are not r
+            protected.";					            protected.";
+          reference						          reference
+            "10.6.2, 10.4 of 802.1AE";				            "10.6.2, 10.4 of 802.1AE";
+        }							        }
+        leaf replay-window {					        leaf replay-window {
+          type uint32;						          type uint32;
+          default "0";						          default "0";
+          description						          description
+            "Controls the replay-window size in packets that 	            "Controls the replay-window size in packets that 
+            media access control methods and provider network	            media access control methods and provider network
+            can misorder frames with different priorities and	            can misorder frames with different priorities and
+            addresses.";					            addresses.";
+          reference						          reference
+            "10.7.8 of 802.1AE";				            "10.7.8 of 802.1AE";
+        }							        }
+        leaf in-pkts-untagged {					        leaf in-pkts-untagged {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of packets received without the MACse	            "The number of packets received without the MACse
+            (SecTAG) received while validate-frames was not s	            (SecTAG) received while validate-frames was not s
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-pkts-no-tag {					        leaf in-pkts-no-tag {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of packets received without the MACse	            "The number of packets received without the MACse
+            (SecTAG) discarded because validate-frames was se	            (SecTAG) discarded because validate-frames was se
+            strict.";						            strict.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-pkts-bad-tag {					        leaf in-pkts-bad-tag {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of received packets discarded with an	            "The number of received packets discarded with an
+            MACsec tag (SecTAG), zero value PN, or invalid IC	            MACsec tag (SecTAG), zero value PN, or invalid IC
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-pkts-no-sa {					        leaf in-pkts-no-sa {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of received packets discarded with an	            "The number of received packets discarded with an
+            SCI or for an unused SA.";				            SCI or for an unused SA.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-pkts-no-sa-error {				        leaf in-pkts-no-sa-error {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of packets discarded because the rece	            "The number of packets discarded because the rece
+            is unknown or the SA is not in use.";		            is unknown or the SA is not in use.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-pkts-overrun {					        leaf in-pkts-overrun {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of packets discarded because they exc	            "The number of packets discarded because they exc
+            cryptographic performance capabilities.";		            cryptographic performance capabilities.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf in-octets-validated {				        leaf in-octets-validated {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of plaintext octets recovered from pa	            "The number of plaintext octets recovered from pa
+            that were integrity protected but not encrypted."	            that were integrity protected but not encrypted."
+          reference						          reference
+            "10.6, 10.6.3 of 802.1AE";				            "10.6, 10.6.3 of 802.1AE";
+        }							        }
+        leaf in-octets-decrypted {				        leaf in-octets-decrypted {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of plaintext octets recovered from pa	            "The number of plaintext octets recovered from pa
+            that were integrity protected and encrypted.";	            that were integrity protected and encrypted.";
+          reference						          reference
+            "10.6, 10.6.3 of 802.1AE";				            "10.6, 10.6.3 of 802.1AE";
+        }							        }
+        list receive-sc {					        list receive-sc {
+          key "sci";						          key "sci";
+          config false;						          config false;
+          description						          description
+            "This is the Receive Security Channel Status for 	            "This is the Receive Security Channel Status for 
+            secure channel identifier.";			            secure channel identifier.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+          leaf sci {						          leaf sci {
+            type sec-sci-type;					            type sec-sci-type;
+            description						            description
+              "Each SecY transmits frames conveying secure MA	              "Each SecY transmits frames conveying secure MA
+              requests of any given priority on a single SC. 	              requests of any given priority on a single SC. 
+              provides unidirectional point-to-multipoint	              provides unidirectional point-to-multipoint
+              communication, and it can be long lived, persis	              communication, and it can be long lived, persis
+              through SAK changes. Each SC is identified by a	              through SAK changes. Each SC is identified by a
+              Channel Identifier (SCI) comprising a 48-bit MA	              Channel Identifier (SCI) comprising a 48-bit MA
+              concatenated with a 16-bit Port Identifier.";	              concatenated with a 16-bit Port Identifier.";
+            reference						            reference
+              "7.1.2 and figure 7.7 of 802.1AE";		              "7.1.2 and figure 7.7 of 802.1AE";
+          }							          }
+          uses secy-secure-channel-grouping;			          uses secy-secure-channel-grouping;
+          leaf receiving {					          leaf receiving {
+            type boolean;					            type boolean;
+            config false;					            config false;
+            description						            description
+              "Receiving is True if in-use is True for any of	              "Receiving is True if in-use is True for any of
+              for the SC, and False otherwise";			              for the SC, and False otherwise";
+            reference						            reference
+              "10.7.12 of 802.1AE";				              "10.7.12 of 802.1AE";
+          }							          }
+          leaf in-pkts-ok {					          leaf in-pkts-ok {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number of validated packets."	              "For this SC, the number of validated packets."
+            reference						            reference
+              "10.6.5, 10.7.9 of 802.1AE";			              "10.6.5, 10.7.9 of 802.1AE";
+          }							          }
+          leaf in-pkts-unchecked {				          leaf in-pkts-unchecked {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number of packets while		              "For this SC, the number of packets while
+              validate-frames was disabled.";			              validate-frames was disabled.";
+            reference						            reference
+              "10.6.5, 10.7.9 of 802.1AE";			              "10.6.5, 10.7.9 of 802.1AE";
+          }							          }
+          leaf in-pkts-delayed {				          leaf in-pkts-delayed {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number of received packets, w	              "For this SC, the number of received packets, w
+              Packet Number (PN) lower than the lowest accept	              Packet Number (PN) lower than the lowest accept
+              lowest-pn and replay-protect is false.";		              lowest-pn and replay-protect is false.";
+            reference						            reference
+              "10.6.5, 10.7.9 of 802.1AE";			              "10.6.5, 10.7.9 of 802.1AE";
+          }							          }
+          leaf in-pkts-late {					          leaf in-pkts-late {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number of discarded packets, 	              "For this SC, the number of discarded packets, 
+              the Packet Number (PN) was lower than the lowes	              the Packet Number (PN) was lower than the lowes
+              acceptable PN lowest-pn and replay-protect is t	              acceptable PN lowest-pn and replay-protect is t
+            reference						            reference
+              "10.7.9 of 802.1AE";				              "10.7.9 of 802.1AE";
+          }							          }
+          leaf in-pkts-invalid {				          leaf in-pkts-invalid {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number packets that failed va	              "For this SC, the number packets that failed va
+              but could be received because validate-frames w	              but could be received because validate-frames w
+              'check' and the data was not encrypted (so the 	              'check' and the data was not encrypted (so the 
+              frame could be recovered).";			              frame could be recovered).";
+            reference						            reference
+              "10.7.9 of 802.1AE";				              "10.7.9 of 802.1AE";
+          }							          }
+          leaf in-pkts-not-valid {				          leaf in-pkts-not-valid {
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "For this SC, the number of packets discarded b	              "For this SC, the number of packets discarded b
+              validation failed and validate-frames was 'stri	              validation failed and validate-frames was 'stri
+              the data was encrypted (so the original frame c	              the data was encrypted (so the original frame c
+              be recovered).";					              be recovered).";
+            reference						            reference
+              "10.7.9 of 802.1AE";				              "10.7.9 of 802.1AE";
+          }							          }
+          list receive-sa {					          list receive-sa {
+            key "rxa";						            key "rxa";
+            description						            description
+              "This is the Receive Security Association Statu	              "This is the Receive Security Association Statu
+              this association";				              this association";
+            uses secy-secure-association-grouping;		            uses secy-secure-association-grouping;
+            leaf rxa {						            leaf rxa {
+              type sec-an-type;					              type sec-an-type;
+              description					              description
+                "The Association Number for this Receiving Se	                "The Association Number for this Receiving Se
+                Association";					                Association";
+              reference						              reference
+                "10.7.13 of 802.1AE";				                "10.7.13 of 802.1AE";
+            }							            }
+            leaf lowest-pn {					            leaf lowest-pn {
+              type sec-pn-type;					              type sec-pn-type;
+              config false;					              config false;
+              description					              description
+                "The lowest acceptable packet number. A recei	                "The lowest acceptable packet number. A recei
+                with a lower PN is discarded if replay-protec	                with a lower PN is discarded if replay-protec
+                enabled.";					                enabled.";
+              reference						              reference
+                "10.7.14 of 802.1AE";				                "10.7.14 of 802.1AE";
+            }							            }
+							      >	            leaf enable-receive {
+							      >	              type boolean;
+							      >	              description
+							      >	                "When the SA is created, enable-receive and i
+							      >	                False and the SA cannot be used to receive fr
+							      >	                SA shall be able to receive, and in-use shall
+							      >	                when enable-receive is set. The SA shall stop
+							      >	                receiving, and in-use shall be False, when
+							      >	                enable-receive is reset.";
+							      >	              reference
+							      >	                "10.7.15 of 802.1AE";
+							      >	            }
+							      >	            
+							      >	            ////   The following is confusing to me.
+							      >	            leaf updt-next-pn {
+							      >	              type sec-pn-type;
+							      >	              config false;
+							      >	              description
+							      >	                "The value of next-pn shall be set to the gre
+							      >	                its existing value and the supplied of updt-n
+							      >	                Initially, following creation, the values of 
+							      >	                will have been set to the values supplied by 
+							      >	              reference
+							      >	                "10.7.15 of 802.1AE";
+							      >	            }
+							      >	            leaf updt-lowest-pn {
+							      >	              type sec-pn-type;
+							      >	              config false;
+							      >	              description
+							      >	                "The value of lowest-pn shall be set to the g
+							      >	                its existing value and the supplied of updt-l
+							      >	                Initially, following creation, the values of 
+							      >	                will have been set to the values supplied by 
+							      >	              reference
+							      >	                "10.7.15 of 802.1AE";
+							      >	            }
+            leaf key-identifier {				            leaf key-identifier {
+              type sec-key-identifier-type;			              type sec-key-identifier-type;
+              config false;					              config false;
+              description					              description
+                "The key-identifier is an octet string, whose	                "The key-identifier is an octet string, whose
+                and interpretation depends on the key agreeme	                and interpretation depends on the key agreeme
+                protocol in use. It does not contain any info	                protocol in use. It does not contain any info
+                about the SAK other than that explicitly chos	                about the SAK other than that explicitly chos
+                key agreement protocol to publicly identify t	                key agreement protocol to publicly identify t
+                If MKA is being used, it is the 128-bit Key I	                If MKA is being used, it is the 128-bit Key I
+                (KI) specified by IEEE Std 802.1X encoded in 	                (KI) specified by IEEE Std 802.1X encoded in 
+                string as specified by that standard";		                string as specified by that standard";
+              reference						              reference
+                "10.7.14, 10.7.24, of 802.1AE";			                "10.7.14, 10.7.24, of 802.1AE";
+            }							            }
+          }							          }
+        }							        }
+      }								      }
+      container generation {					      container generation {
+        description						        description
+          "This is the Generation controls for given secy.";	          "This is the Generation controls for given secy.";
+        reference						        reference
+          "10.5 of 802.1AE";					          "10.5 of 802.1AE";
+        leaf sci-base {						        leaf sci-base {
+          type sec-sci-type;				      |	          type string;
+          config false;						          config false;
+          description						          description
+            "This is the base for a set of secure channels Se	            "This is the base for a set of secure channels Se
+            Channel Identifier.";				            Channel Identifier.";
+          reference						          reference
+            "7.1.2, 10.7.17 of 802.1AE";			            "7.1.2, 10.7.17 of 802.1AE";
+        }							        }
+        leaf max-transmit-channels {				        leaf max-transmit-channels {
+          type uint8;					      |	          type uint16;
+          description						          description
+            "Number of Transmit Channels";			            "Number of Transmit Channels";
+          reference						          reference
+            "10.7.16 of 802.1AE";				            "10.7.16 of 802.1AE";
+        }							        }
+        leaf max-transmit-keys {				        leaf max-transmit-keys {
+          type uint8;					      |	          type uint16;
+          description						          description
+            "Number of Transmit Keys";				            "Number of Transmit Keys";
+          reference						          reference
+            "10.7.16 of 802.1AE";				            "10.7.16 of 802.1AE";
+        }							        }
+        							        
+        ////   All channels or per channel?			        ////   All channels or per channel?
+        leaf protect-frames {					        leaf protect-frames {
+          type boolean;						          type boolean;
+          default "true";					          default "true";
+          description						          description
+            "The protect-frames control is provided to facili	            "The protect-frames control is provided to facili
+            deployment.";					            deployment.";
+          reference						          reference
+            "10.7.17 of 802.1AE";				            "10.7.17 of 802.1AE";
+        }							        }
+        leaf always-include-sci {				        leaf always-include-sci {
+          type boolean;						          type boolean;
+          default "false";					          default "false";
+          description						          description
+            "Mandates inclusion of an explicit SCI in the Sec	            "Mandates inclusion of an explicit SCI in the Sec
+            transmitting protected frames.";			            transmitting protected frames.";
+          reference						          reference
+            "10.5.3, 10.7.17 of 802.1AE";			            "10.5.3, 10.7.17 of 802.1AE";
+        }							        }
+        leaf use-es {						        leaf use-es {
+          type boolean;						          type boolean;
+          default "false";					          default "false";
+          description						          description
+            "Enables use of the ES bit in the SecTAG when tra	            "Enables use of the ES bit in the SecTAG when tra
+            protected frames.";					            protected frames.";
+          reference						          reference
+            "10.5.3, 10.7.17 of 802.1AE";			            "10.5.3, 10.7.17 of 802.1AE";
+        }							        }
+        leaf use-scb {						        leaf use-scb {
+          type boolean;						          type boolean;
+          default "false";					          default "false";
+          description						          description
+            "Enables use of the SCB bit in the SecTAG when	            "Enables use of the SCB bit in the SecTAG when
+            transmitting protected frames.";			            transmitting protected frames.";
+          reference						          reference
+            "10.5.3, 10.7.17 of 802.1AE";			            "10.5.3, 10.7.17 of 802.1AE";
+        }							        }
+        leaf including-sci {					        leaf including-sci {
+          type boolean;						          type boolean;
+          config false;						          config false;
+          description						          description
+            "True if an explicit SCI is included in the SecTA	            "True if an explicit SCI is included in the SecTA
+            transmitting protected frames.";			            transmitting protected frames.";
+          reference						          reference
+            "10.5.3, 10.7.17 of 802.1AE";			            "10.5.3, 10.7.17 of 802.1AE";
+        }							        }
+        leaf out-pkts-untagged {				        leaf out-pkts-untagged {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of packets transmitted without a SecT	            "The number of packets transmitted without a SecT
+            because protect-frames is configured false.";	            because protect-frames is configured false.";
+          reference						          reference
+            "10.7.18 of 802.1AE";				            "10.7.18 of 802.1AE";
+        }							        }
+        leaf out-pkts-too-long {				        leaf out-pkts-too-long {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of transmit packets discarded because	            "The number of transmit packets discarded because
+            length is greater than the ifMtu of the Common Po	            length is greater than the ifMtu of the Common Po
+          reference						          reference
+            "10.7.18 of 802.1AE";				            "10.7.18 of 802.1AE";
+        }							        }
+        leaf out-octets-protected {				        leaf out-octets-protected {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of plain text octets integrity protec	            "The number of plain text octets integrity protec
+            not encrypted in transmitted frames.";		            not encrypted in transmitted frames.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        leaf out-octets-encrypted {				        leaf out-octets-encrypted {
+          type yang:counter64;					          type yang:counter64;
+          config false;						          config false;
+          description						          description
+            "The number of plain text octets integrity protec	            "The number of plain text octets integrity protec
+            encrypted in transmitted frames.";			            encrypted in transmitted frames.";
+          reference						          reference
+            "10.7.9 of 802.1AE";				            "10.7.9 of 802.1AE";
+        }							        }
+        							        
+        list user-priority-tc {					        list user-priority-tc {
+          key "user-priority";					          key "user-priority";
+          description						          description
+            "Each entry in the Traffic Class Table is a traff	            "Each entry in the Traffic Class Table is a traff
+            represented by an integer from 0 (default) throug	            represented by an integer from 0 (default) throug
+            comprises the numeric value of the four most sign	            comprises the numeric value of the four most sign
+            of the Port Identifier component of the SCI for t	            of the Port Identifier component of the SCI for t
+            SC. The default for this table is every row has a	            SC. The default for this table is every row has a
+            priority with the first row having all zeros, the	            priority with the first row having all zeros, the
+            having all ones etc. up to the last row having al	            having all ones etc. up to the last row having al
+          reference						          reference
+            "10.7.17 of 802.1AE";				            "10.7.17 of 802.1AE";
+          leaf user-priority {					          leaf user-priority {
+            type dot1q-types:priority-type;			            type dot1q-types:priority-type;
+            description						            description
+              "The User Priority";				              "The User Priority";
+            reference						            reference
+              "10.7.17 of 802.1AE";				              "10.7.17 of 802.1AE";
+          }							          }
+          leaf traffic-class {					          leaf traffic-class {
+            type dot1q-types:priority-type;			            type dot1q-types:priority-type;
+            description						            description
+              "The traffic class that maps to the four most s	              "The traffic class that maps to the four most s
+              bits of the Port Identifier component of the SC	              bits of the Port Identifier component of the SC
+              selected SC";					              selected SC";
+            reference						            reference
+              "10.7.17 of 802.1AE";				              "10.7.17 of 802.1AE";
+          }							          }
+          leaf access-class-de0 {				          leaf access-class-de0 {
+            type uint8 {					            type uint8 {
+              range "0..15";					              range "0..15";
+            }							            }
+            description						            description
+              "The Access priority when PCP Discard eligible 	              "The Access priority when PCP Discard eligible 
+              set(0). Access Priority is the high 3 bits and 	              set(0). Access Priority is the high 3 bits and 
+               DE bit is the lower bit.";			               DE bit is the lower bit.";
+            reference						            reference
+              "10.7.17 of 802.1AE";				              "10.7.17 of 802.1AE";
+          }							          }
+          leaf access-class-de1 {				          leaf access-class-de1 {
+            type uint8 {					            type uint8 {
+              range "0..15";					              range "0..15";
+          }							          }
+          description						          description
+            "The Access priority when PCP Discard eligible is	            "The Access priority when PCP Discard eligible is
+             set(1). Access Priority is the high 3 bits and t	             set(1). Access Priority is the high 3 bits and t
+             DE bit is the lower bit.";				             DE bit is the lower bit.";
+          reference						          reference
+            "10.7.17 of 802.1AE";				            "10.7.17 of 802.1AE";
+          }							          }
+        }							        }
+     								     
+        //uses secy-pcp-grouping;				        //uses secy-pcp-grouping;
+        list transmit-sc {					        list transmit-sc {
+          key "sci";						          key "sci";
+          config false;						          config false;
+          description						          description
+            "This is the transmit Security Channel, status fo	            "This is the transmit Security Channel, status fo
+            Security Channel Identifier.";			            Security Channel Identifier.";
+          reference						          reference
+            "10.7.1 of 802.1AE";				            "10.7.1 of 802.1AE";
+          leaf sci {						          leaf sci {
+            type sec-sci-type;					            type sec-sci-type;
+            description						            description
+              "Each SecY transmits frames conveying secure MA	              "Each SecY transmits frames conveying secure MA
+              requests of any given priority on a single SC. 	              requests of any given priority on a single SC. 
+              provides unidirectional point-to-multipoint	              provides unidirectional point-to-multipoint
+              communication, and it can be long lived, persis	              communication, and it can be long lived, persis
+              through SAK changes. Each SC is identified by a	              through SAK changes. Each SC is identified by a
+              Channel Identifier (SCI) comprising a 48-bit MA	              Channel Identifier (SCI) comprising a 48-bit MA
+              concatenated with a 16-bit Port Identifier.";	              concatenated with a 16-bit Port Identifier.";
+            reference						            reference
+              "7.1.2 and figure 7.7 of 802.1AE";		              "7.1.2 and figure 7.7 of 802.1AE";
+          }							          }
+          uses secy-secure-channel-grouping;			          uses secy-secure-channel-grouping;
+          leaf transmitting {					          leaf transmitting {
+            type boolean;					            type boolean;
+            config false;					            config false;
+            description						            description
+              "True if in-use is True for any of the SAs for 	              "True if in-use is True for any of the SAs for 
+              and False otherwise";				              and False otherwise";
+            reference						            reference
+              "10.7.21 of 802.1AE";				              "10.7.21 of 802.1AE";
+          }							          }
+          leaf encoding-sa {					          leaf encoding-sa {
+            type sec-an-type;					            type sec-an-type;
+            config false;					            config false;
+            description						            description
+              "The current value of the encoding-sa variable 	              "The current value of the encoding-sa variable 
+              selected transmit SC.";				              selected transmit SC.";
+            reference						            reference
+              "10.7.24 of 802.1AE";				              "10.7.24 of 802.1AE";
+          }							          }
+          leaf out-pkts-protected {				          leaf out-pkts-protected {
+            							            
+            /* recommended in secyTcMIBCompliance? */		            /* recommended in secyTcMIBCompliance? */
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "The number of integrity protected but not encr	              "The number of integrity protected but not encr
+              packets for this transmit SC.";			              packets for this transmit SC.";
+            reference						            reference
+              "10.7.18, Figure 10-3 of 802.1AE";		              "10.7.18, Figure 10-3 of 802.1AE";
+          }							          }
+          leaf out-pkts-encrypted {				          leaf out-pkts-encrypted {
+            							            
+            /* recommended in secyTcMIBCompliance? */		            /* recommended in secyTcMIBCompliance? */
+            type yang:counter64;				            type yang:counter64;
+            config false;					            config false;
+            description						            description
+              "The number of integrity protected and encrypte	              "The number of integrity protected and encrypte
+              for this transmit SC.";				              for this transmit SC.";
+            reference						            reference
+              "10.7.18, Figure 10-3 of 802.1AE";		              "10.7.18, Figure 10-3 of 802.1AE";
+          }							          }
+          list transmit-sa {					          list transmit-sa {
+            key "txa";						            key "txa";
+            config false;					            config false;
+            description						            description
+              "This is the transmit security association stat	              "This is the transmit security association stat
+              given association number.";			              given association number.";
+            uses secy-secure-association-grouping;		            uses secy-secure-association-grouping;
+            leaf txa {						            leaf txa {
+              type sec-an-type;					              type sec-an-type;
+              config false;					              config false;
+              description					              description
+                "The association number for the SA";		                "The association number for the SA";
+              reference						              reference
+                "10.7.23 of 802.1AE";				                "10.7.23 of 802.1AE";
+            }							            }
+            leaf confidentiality {				            leaf confidentiality {
+              type boolean;					              type boolean;
+              config false;					              config false;
+              description					              description
+                "True if the SA provides confidentiality as w	                "True if the SA provides confidentiality as w
+                integrity for transmitted frames.";		                integrity for transmitted frames.";
+              reference						              reference
+                "10.7.23 of 802.1AE";				                "10.7.23 of 802.1AE";
+            }							            }
+            leaf key-identifier {				            leaf key-identifier {
+              type sec-key-identifier-type;			              type sec-key-identifier-type;
+              config false;					              config false;
+              description					              description
+                "The key-identifier is an octet string, whose	                "The key-identifier is an octet string, whose
+                and interpretation depends on the key agreeme	                and interpretation depends on the key agreeme
+                protocol in use. It does not contain any info	                protocol in use. It does not contain any info
+                about the SAK other than that explicitly chos	                about the SAK other than that explicitly chos
+                key agreement protocol to publicly identify t	                key agreement protocol to publicly identify t
+                If MKA is being used, it is the 128-bit Key I	                If MKA is being used, it is the 128-bit Key I
+                (KI) specified by IEEE Std 802.1X encoded in 	                (KI) specified by IEEE Std 802.1X encoded in 
+                string as specified by that standard";		                string as specified by that standard";
+              reference						              reference
+                "10.7.14, 14.7, 14.8 of 802.1AE";		                "10.7.14, 14.7, 14.8 of 802.1AE";
+            }							            }
+          }							          }
+        }							        }
+      }								      }
+      								      
+      // end generation						      // end generation
+      container current-cipher-suite {				      container current-cipher-suite {
+        description						        description
+          "The CurrentCipherSuite is selected by the KaY. 	          "The CurrentCipherSuite is selected by the KaY. 
+          The Current Cipher Suite may also be selected and k	          The Current Cipher Suite may also be selected and k
+          created by management, but a conformant implementat	          created by management, but a conformant implementat
+          shall provide a mechanism to allow such selection 	          shall provide a mechanism to allow such selection 
+          and creation by network management to be disabled."	          and creation by network management to be disabled."
+        leaf cipher-suite-identifier {				        leaf cipher-suite-identifier {
+          type sec-eui64-type;					          type sec-eui64-type;
+          							          
+          //must "boolean(/../../cipher-suites/cipher-suite=.	          //must "boolean(/../../cipher-suites/cipher-suite=.
+          description						          description
+            "The Cipher Suite currently used by this SecY.";	            "The Cipher Suite currently used by this SecY.";
+          reference						          reference
+            "10.7.27 of 802.1AE";				            "10.7.27 of 802.1AE";
+        }							        }
+        list data-key {						        list data-key {
+          key "key-index";					          key "key-index";
+          description						          description
+            "An index of Keys Used";				            "An index of Keys Used";
+          leaf key-index {					          leaf key-index {
+            type uint32;					            type uint32;
+            description						            description
+              "Numeric key number used as index";		              "Numeric key number used as index";
+            reference						            reference
+              "10.7.27 of 802.1AE";				              "10.7.27 of 802.1AE";
+          }							          }
+          leaf key-identifier {					          leaf key-identifier {
+            type sec-key-identifier-type;			            type sec-key-identifier-type;
+            config false;					            config false;
+            description						            description
+              "Key Identifier (KI), comprising the Key Server	              "Key Identifier (KI), comprising the Key Server
+              (providing the more significant bits) and a 32-	              (providing the more significant bits) and a 32-
+              Number (KN) assigned by that Key Server (sequen	              Number (KN) assigned by that Key Server (sequen
+              beginning with 1). Each KI is used to identify 	              beginning with 1). Each KI is used to identify 
+              corresponding SAK for the purposes of SAI assig	              corresponding SAK for the purposes of SAI assig
+              and appears in the clear in MKPDUs, so network	              and appears in the clear in MKPDUs, so network
+              management equipment and personnel can observe 	              management equipment and personnel can observe 
+              diagnose MKA operation (if necessary) without h	              diagnose MKA operation (if necessary) without h
+              access to any secret key.";			              access to any secret key.";
+            reference						            reference
+              "10.7.28 of 802.1AE";				              "10.7.28 of 802.1AE";
+          }							          }
+          leaf transmits {					          leaf transmits {
+            type boolean;					            type boolean;
+            config false;					            config false;
+            description						            description
+              "Transmits true means key is used for transmitt	              "Transmits true means key is used for transmitt
+              direction.";					              direction.";
+            reference						            reference
+              "10.5 of 802.1AE";				              "10.5 of 802.1AE";
+          }							          }
+          leaf receives {					          leaf receives {
+            type boolean;					            type boolean;
+            config false;					            config false;
+            description						            description
+              "Receives true means key is used for receiving 	              "Receives true means key is used for receiving 
+              direction.";					              direction.";
+            reference						            reference
+              "10.5 of 802.1AE";				              "10.5 of 802.1AE";
+          }							          }
+        }							        }
+      }								      }
+      								      
+      // end current-cipher-suite				      // end current-cipher-suite
+							      |	      container controlled-interface {
+							      >	        description
+							      >	          "Controlled interface control and status";
+							      >	        uses provided-interface-grouping;
+							      >	        leaf controlled-port-enabled {
+							      >	          type boolean;
+							      >	          config false;
+							      >	          description
+							      >	            "By setting ControlledPortEnabled False, the KaY 
+							      >	            prohibit use of the Controlled Port until the sec
+							      >	            connectivity required has been configured.";
+							      >	          reference
+							      >	            "10.7.6 of 802.1AE";
+							      >	        }
+							      >	        uses secy-statistics-grouping;
+							      >	      }
+							      >	      container uncontrolled-interface {
+							      >	        description
+							      >	          "Uncontrolled interface control and status";
+							      >	        uses provided-interface-grouping;
+							      >	        uses secy-statistics-grouping;
+							      >	      }
+							      >	      
+							      >	      /* See IEEE Std 802.1AE-2018 Clause 10.4.  The common p
+							      >	       * of a MAC Internal Sublayer Service (ISS), which is d
+							      >	       * of macsec (defined in 802.1d).  Assume that the oper
+							      >	       * statistics are already implemented in a yang model f
+							      >	       * an pae-if-ref is sufficient.
+							      >	       */
+							      >	      container common-port {
+							      >	        description
+							      >	          "This list the statistics for the Provided interfac
+							      >	          both the controlled port and the uncontrolled port.
+							      >	        leaf common-port {
+							      >	          type dot1x-types:pae-if-index;
+							      >	          config false;
+							      >	          description
+							      >	            "The common Port for this Secy.";
+							      >	          reference
+							      >	            "10.7.4 of 802.1AE";
+							      >	        }
+							      >	        uses secy-statistics-grouping;
+							      >	      }
+							      >	      
+							      >	      // end common-port
+      list cipher-suite-control {				      list cipher-suite-control {
+        key "implemented-cipher-suite";				        key "implemented-cipher-suite";
+        description						        description
+          "The MKA Key Server selects the Cipher Suite to be 	          "The MKA Key Server selects the Cipher Suite to be 
+          protect communication within a CA. If enable-use is	          protect communication within a CA. If enable-use is
+          for the selected Cipher Suite, the SecY does not pa	          for the selected Cipher Suite, the SecY does not pa
+          in the CA and MAC_Operational for the Controlled Po	          in the CA and MAC_Operational for the Controlled Po
+          remains false. If the MKA Key Server has selected i	          remains false. If the MKA Key Server has selected i
+          protection and enableUse and require-confidentialit	          protection and enableUse and require-confidentialit
+          both True for the selected Cipher Suite, confidenti	          both True for the selected Cipher Suite, confidenti
+          protection is used.";					          protection is used.";
+        leaf implemented-cipher-suite {				        leaf implemented-cipher-suite {
+          type sec-eui64-type;					          type sec-eui64-type;
+          							          
+          //must "boolean(/../i../cipher-suites/cipher-suite=	          //must "boolean(/../i../cipher-suites/cipher-suite=
+          description						          description
+            "cipher suite identifier (EUI-64)";			            "cipher suite identifier (EUI-64)";
+          reference						          reference
+            "10.7.26 of 802.1AE";				            "10.7.26 of 802.1AE";
+        }							        }
+        leaf enable-use {					        leaf enable-use {
+          type boolean;						          type boolean;
+          default "true";					          default "true";
+          description						          description
+            "Enables use of the Cipher Suite by this SecY.";	            "Enables use of the Cipher Suite by this SecY.";
+          reference						          reference
+            "10.7.26 of 802.1AE";				            "10.7.26 of 802.1AE";
+        }							        }
+        leaf require-confidentiality {				        leaf require-confidentiality {
+          type boolean;						          type boolean;
+          default "true";					          default "true";
+          description						          description
+            "This value is true if the Cipher Suite can only 	            "This value is true if the Cipher Suite can only 
+            to provide both confidentiality and integrity (an	            to provide both confidentiality and integrity (an
+            integrity only, or confidentiality with an offset	            integrity only, or confidentiality with an offset
+            use of the Cipher Suite by this SecY.";		            use of the Cipher Suite by this SecY.";
+          reference						          reference
+            "10.7.26 of 802.1AE";				            "10.7.26 of 802.1AE";
+        }							        }
+      }								      }
+    }								    }
+  }								  }
+  								  
+  // end secy augment interfaces				  // end secy augment interfaces
+  /*								  /*
+   Secy System							   Secy System
+   */								   */
+  augment "/sys:system/dot1x:pae-system" {			  augment "/sys:system/dot1x:pae-system" {
+    description							    description
+      "Augment system with 802.1ae MACSec System Ciber Suites	      "Augment system with 802.1ae MACSec System Ciber Suites
+    container secy-system {					    container secy-system {
+      description						      description
+        "Augment system with 802.1 SecY configuration nodes."	        "Augment system with 802.1 SecY configuration nodes."
+      list cipher-suites {					      list cipher-suites {
+        key "cipher-suite";					        key "cipher-suite";
+        description						        description
+          "A list of configuration parameters and operational	          "A list of configuration parameters and operational
+          associated with a cipher suite.";			          associated with a cipher suite.";
+        leaf cipher-suite {					        leaf cipher-suite {
+          type sec-eui64-type;					          type sec-eui64-type;
+          description						          description
+            "A globally unique 64-bit (EUI-64) identifier for	            "A globally unique 64-bit (EUI-64) identifier for
+            cipher suite";					            cipher suite";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf name {						        leaf name {
+          type string {						          type string {
+            length "1..254";					            length "1..254";
+          }							          }
+          config false;						          config false;
+          description						          description
+            "Cipher Suite Name, a human readable and displaya	            "Cipher Suite Name, a human readable and displaya
+            (IETF RFC 2279) string.";				            (IETF RFC 2279) string.";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf integrity-protection {				        leaf integrity-protection {
+          type boolean;						          type boolean;
+          config false;						          config false;
+          description						          description
+            "True if integrity protection without confidentia	            "True if integrity protection without confidentia
+            be provided.";					            be provided.";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf confidentiality-protection {			        leaf confidentiality-protection {
+          type boolean;						          type boolean;
+          config false;						          config false;
+          description						          description
+            "True if confidentiality with integrity protectio	            "True if confidentiality with integrity protectio
+            provided.";						            provided.";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf offset-confidentiality {				        leaf offset-confidentiality {
+          type boolean;						          type boolean;
+          config false;						          config false;
+          description						          description
+            "True if a selectable offset for confidentiality 	            "True if a selectable offset for confidentiality 
+            provided";						            provided";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf changes-data-length {				        leaf changes-data-length {
+          type boolean;						          type boolean;
+          config false;						          config false;
+          description						          description
+            "Indicates that the cipher suite changes the data	            "Indicates that the cipher suite changes the data
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+        leaf icv-length {					        leaf icv-length {
+          type uint16;						          type uint16;
+          config false;						          config false;
+          description						          description
+            "The number of octets in the ICV";			            "The number of octets in the ICV";
+          reference						          reference
+            "10.7.25 of 802.1AE";				            "10.7.25 of 802.1AE";
+        }							        }
+      }								      }
+    }								    }
+  } // end /sys:system						  } // end /sys:system
+}								}

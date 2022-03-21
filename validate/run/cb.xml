@@ -1,0 +1,50 @@
+<dot1q:bridges
+  xmlns:dot1q="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge">
+  <dot1q:bridge>
+    <dot1q:name>theCVB</dot1q:name>
+    <dot1q:address>10-20-30-40-50-AF</dot1q:address>
+    <dot1q:bridge-type>dot1q:customer-vlan-bridge</dot1q:bridge-type>
+    <dot1q:component>
+      <dot1q:name>cvlan1</dot1q:name>
+      <dot1q:id>2</dot1q:id>
+      <dot1q:type>dot1q:c-vlan-component</dot1q:type>
+      <dot1q:bridge-vlan>
+         <dot1q:vlan>
+            <dot1q:vid>10</dot1q:vid>
+            <dot1q:name>cvid10</dot1q:name>
+         </dot1q:vlan>
+      </dot1q:bridge-vlan>
+    </dot1q:component>
+  </dot1q:bridge>
+</dot1q:bridges>
+<if:interfaces
+  xmlns:if="urn:ietf:params:xml:ns:yang:ietf-interfaces"
+  xmlns:dot1q="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge"
+  xmlns:ia="urn:ietf:params:xml:ns:yang:iana-if-type">
+    <if:interface>
+      <if:name>if1</if:name>
+      <if:type>ia:ethernetCsmacd</if:type>
+      <if:oper-status>up</if:oper-status>
+      <if:statistics>
+         <if:discontinuity-time>2021-10-11T16:14:00Z</if:discontinuity-time>
+      </if:statistics>
+      <dot1q:bridge-port>
+        <dot1q:bridge-name>theCVB</dot1q:bridge-name>
+        <dot1q:component-id>2</dot1q:component-id>
+        <dot1q:port-type>dot1q:c-vlan-bridge-port</dot1q:port-type>
+      </dot1q:bridge-port>
+    </if:interface>
+    <if:interface>
+      <if:name>if2</if:name>
+      <if:type>ia:ethernetCsmacd</if:type>
+      <if:oper-status>up</if:oper-status>
+      <if:statistics>
+         <if:discontinuity-time>2021-10-11T16:14:00Z</if:discontinuity-time>
+      </if:statistics>
+      <dot1q:bridge-port>
+        <dot1q:bridge-name>theCVB</dot1q:bridge-name>
+        <dot1q:component-id>2</dot1q:component-id>
+        <dot1q:port-type>dot1q:c-vlan-bridge-port</dot1q:port-type>
+      </dot1q:bridge-port>
+    </if:interface>
+</if:interfaces>
