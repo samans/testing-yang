@@ -1,0 +1,315 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "ne1",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "ieee802-dot1q-bridge:provider-edge-bridge",
+        "up-time": 0,
+        "component": [
+          {
+            "name": "sv0",
+            "id": 0,
+            "type": "ieee802-dot1q-bridge:s-vlan-component",
+            "bridge-port": [
+              "eth3",
+              "eth4",
+              "eth5"
+            ],
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "filtering-database": {
+              "vlan-registration-entry": [
+                {
+                  "database-id": 1,
+                  "vids": "200",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 1,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "untagged"
+                      }
+                    },
+                    {
+                      "port-ref": 5,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "database-id": 1,
+                  "vids": "300",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 2,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "untagged"
+                      }
+                    },
+                    {
+                      "port-ref": 5,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "database-id": 1,
+                  "vids": "400",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 3,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "untagged"
+                      }
+                    },
+                    {
+                      "port-ref": 5,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "database-id": 1,
+                  "vids": "500",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 4,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    },
+                    {
+                      "port-ref": 5,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false,
+              "vlan": [
+                {
+                  "vid": 200,
+                  "name": "E-Line 200",
+                  "untagged-ports": [
+                    "eth1"
+                  ],
+                  "egress-ports": [
+                    "eth1",
+                    "eth5"
+                  ]
+                },
+                {
+                  "vid": 300,
+                  "name": "E-Line 300",
+                  "untagged-ports": [
+                    "eth2"
+                  ],
+                  "egress-ports": [
+                    "eth2",
+                    "eth5"
+                  ]
+                },
+                {
+                  "vid": 400,
+                  "name": "E-Line 400",
+                  "untagged-ports": [
+                    "eth3"
+                  ],
+                  "egress-ports": [
+                    "eth3",
+                    "eth5"
+                  ]
+                },
+                {
+                  "vid": 500,
+                  "name": "E-Line 500",
+                  "egress-ports": [
+                    "eth4",
+                    "eth5"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "cv1",
+            "id": 1,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "bridge-port": [
+              "eth1"
+            ],
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          },
+          {
+            "name": "cv2",
+            "id": 2,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "bridge-port": [
+              "eth2"
+            ],
+            "capabilities": {
+              "extended-filtering": false,
+              "traffic-classes": false,
+              "static-entry-individual-port": false,
+              "ivl-capable": true,
+              "svl-capable": false,
+              "hybrid-capable": false,
+              "configurable-pvid-tagging": false,
+              "local-vlan-capable": false
+            },
+            "bridge-vlan": {
+              "override-default-pvid": false
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne1",
+          "component-name": "cv1",
+          "port-type": "ieee802-dot1q-bridge:customer-edge-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-VLAN-tagged-frames",
+          "enable-ingress-filtering": true,
+          "port-number": 1,
+          "ieee802-dot1q-pb:cvid-registration": [
+            {
+              "cvid": 100,
+              "svid": 200,
+              "untagged-pep": false,
+              "untagged-cep": false
+            }
+          ]
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne1",
+          "component-name": "cv2",
+          "port-type": "ieee802-dot1q-bridge:customer-edge-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-untagged-and-priority-tagged",
+          "enable-ingress-filtering": true,
+          "port-number": 2,
+          "ieee802-dot1q-pb:cvid-registration": [
+            {
+              "cvid": 1,
+              "svid": 300,
+              "untagged-pep": true,
+              "untagged-cep": true
+            }
+          ]
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne1",
+          "component-name": "sv0",
+          "port-type": "ieee802-dot1q-bridge:customer-network-port",
+          "pvid": 400,
+          "acceptable-frame": "admit-only-untagged-and-priority-tagged",
+          "enable-ingress-filtering": true,
+          "port-number": 3
+        }
+      },
+      {
+        "name": "eth4",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne1",
+          "component-name": "sv0",
+          "port-type": "ieee802-dot1q-bridge:customer-network-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-VLAN-tagged-frames",
+          "enable-ingress-filtering": true,
+          "enable-vid-translation-table": true,
+          "enable-egress-vid-translation-table": false,
+          "port-number": 4,
+          "vid-translations": [
+            {
+              "local-vid": 100,
+              "relay-vid": 500
+            }
+          ]
+        }
+      },
+      {
+        "name": "eth5",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne1",
+          "component-name": "sv0",
+          "port-type": "ieee802-dot1q-bridge:provider-network-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-VLAN-tagged-frames",
+          "enable-ingress-filtering": true,
+          "port-number": 5
+        }
+      }
+    ]
+  }
+}

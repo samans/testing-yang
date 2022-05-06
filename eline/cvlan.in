@@ -1,0 +1,22 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn yanglint
+expect ">"
+send "load iana-if-type\r"
+expect ">"
+send "load ieee802-types\r"
+expect ">"
+send "load ietf-yang-types\r"
+expect ">"
+send "load ietf-interfaces\r"
+expect ">"
+send "load ieee802-dot1q-types\r"
+expect ">"
+send "load ieee802-dot1q-bridge\r"
+expect ">"
+send "load ieee802-dot1q-pb\r"
+expect ">"
+send "data -t data -f json e-line-examples-c-vlan-bridge.json -o cvlan-output.json\r"
+expect ">"
+send "quit\r"
+expect eof

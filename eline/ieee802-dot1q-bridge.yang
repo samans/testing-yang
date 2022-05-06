@@ -42,6 +42,12 @@ module ieee802-dot1q-bridge {
     
     This version of this YANG module is part of IEEE Std 802.1Q; see the
     standard itself for full legal notices.";
+  revision 2022-05-06 {
+    description
+      "Rebase Qrev with Qcw updates.";
+    reference
+      "IEEE Std 802.1Q-2022, Bridges and Bridged Networks.";
+  }
   revision 2022-01-19 {
     description
       "Published as part of IEEE Std 802.1Q-2022.";
@@ -1164,8 +1170,19 @@ module ieee802-dot1q-bridge {
       description
         "Bridge Port is an extension of the IETF Interfaces model
         (RFC7223).";
+      leaf bridge-name {
+        type leafref {
+          path "/dot1q:bridges/dot1q:bridge/dot1q:name";
+        }
+        // mandatory true; yang 1.1 only
+        description
+          "Used to reference configured Bridge node.";
+      }  
       leaf component-name {
-        type string;
+        type leafref {
+          path "/dot1q:bridges/dot1q:bridge[dot1q:name=current()/../bridge-name]/dot1q:component/dot1q:name";
+        }
+        // mandatory true; yang 1.1 only
         description
           "Used to reference configured Component node.";
       }
@@ -1179,8 +1196,9 @@ module ieee802-dot1q-bridge {
           "12.4.2.1 of IEEE Std 802.1Q-2022";
       }
       leaf pvid {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1312,8 +1330,9 @@ module ieee802-dot1q-bridge {
         uses dot1qtypes:transmission-selection-table-grouping;
       }
       leaf acceptable-frame {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1339,8 +1358,9 @@ module ieee802-dot1q-bridge {
           "12.10.1.3, 6.9 of IEEE Std 802.1Q-2022";
       }
       leaf enable-ingress-filtering {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1353,8 +1373,9 @@ module ieee802-dot1q-bridge {
           "12.10.1.4, 8.6.2 of IEEE Std 802.1Q-2022";
       }
       leaf enable-restricted-vlan-registration {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1367,8 +1388,9 @@ module ieee802-dot1q-bridge {
           "11.2.3.2.3, 12.10.1.6 of IEEE Std 802.1Q-2022";
       }
       leaf enable-vid-translation-table {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1382,8 +1404,9 @@ module ieee802-dot1q-bridge {
           "12.10.1.8, 6.9 of IEEE Std 802.1Q-2022";
       }
       leaf enable-egress-vid-translation-table {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1397,8 +1420,9 @@ module ieee802-dot1q-bridge {
           "12.10.1.8, 6.9 of IEEE Std 802.1Q-2022";
       }
       list protocol-group-vid-set {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1466,8 +1490,9 @@ module ieee802-dot1q-bridge {
           "12.4.2, 6.8.2 of IEEE Std 802.1Q-2022";
       }
       leaf protocol-based-vlan-classification {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1481,8 +1506,9 @@ module ieee802-dot1q-bridge {
           "5.4.1.2 of IEEE Std 802.1Q-2022";
       }
       leaf max-vid-set-entries {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1672,8 +1698,9 @@ module ieee802-dot1q-bridge {
           with the bridge port.";
         uses dot1qtypes:bridge-port-statistics-grouping;
         leaf discard-on-ingress-filtering {
-          when
-            "../../component-name != 'd-bridge-component'" {
+          when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+            "/../../dot1q:bridge-name]/dot1q:component[name=current()"+
+            "/../../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
             description
               "Applies to non TPMRs";
           }
@@ -1691,8 +1718,9 @@ module ieee802-dot1q-bridge {
         }
       }
       list vid-translations {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }
@@ -1730,8 +1758,9 @@ module ieee802-dot1q-bridge {
         }
       }
       list egress-vid-translations {
-        when
-          "../component-name != 'd-bridge-component'" {
+        when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+          "/../dot1q:bridge-name]/dot1q:component[name=current()"+
+          "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
           description
             "Applies to non TPMRs";
         }

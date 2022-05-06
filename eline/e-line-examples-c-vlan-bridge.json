@@ -1,0 +1,143 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "ne2",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "ieee802-dot1q-bridge:customer-vlan-bridge",
+        "component": [
+          {
+            "name": "cv0",
+            "id": 0,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "bridge-port": [
+              "eth1",
+              "eth2",
+              "eth3"
+            ],
+            "filtering-database": {
+              "vlan-registration-entry": [
+                {
+                  "database-id": 1,
+                  "vids": "200",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 1,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    },
+                    {
+                      "port-ref": 3,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "database-id": 1,
+                  "vids": "300",
+                  "entry-type": "static",
+                  "port-map": [
+                    {
+                      "port-ref": 2,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "untagged"
+                      }
+                    },
+                    {
+                      "port-ref": 3,
+                      "static-vlan-registration-entries": {
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            "bridge-vlan": {
+              "vlan": [
+                {
+                  "vid": 200,
+                  "name": "E-Line 200",
+                  "egress-ports": [
+                    "eth1",
+                    "eth3"
+                  ]
+                },
+                {
+                  "vid": 300,
+                  "name": "E-Line 300",
+                  "untagged-ports": [
+                    "eth2"
+                  ],
+                  "egress-ports": [
+                    "eth2",
+                    "eth3"
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-04-06T11:00:00+02:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne2",
+          "component-name": "cv0",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-VLAN-tagged-frames",
+          "enable-ingress-filtering": true,
+          "port-number": 1
+        }
+      },
+      {
+        "name": "eth2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-04-06T11:00:00+02:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne2",
+          "component-name": "cv0",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 300,
+          "acceptable-frame": "admit-only-untagged-and-priority-tagged",
+          "enable-ingress-filtering": true,
+          "port-number": 2
+        }
+      },
+      {
+        "name": "eth3",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2022-04-06T11:00:00+02:00"
+        },
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "ne2",
+          "component-name": "cv0",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1,
+          "acceptable-frame": "admit-only-VLAN-tagged-frames",
+          "enable-ingress-filtering": true,
+          "port-number": 3
+        }
+      }
+    ]
+  }
+}
