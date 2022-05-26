@@ -1,0 +1,5 @@
+<!--A simple example in Yanglint -->
+<rlt-db
+  xmlns="urn:test:mw-option">
+    <mode>one-plus-zero</mode>
+</rlt-db>

@@ -1,0 +1,7 @@
+<!--A simple example in Yanglint -->
+<samples
+  xmlns="urn:test:minerals">
+    <sample>
+       <streak-pattern>"White | Black"</streak-pattern>
+    </sample>
+</samples>

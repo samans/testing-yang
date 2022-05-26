@@ -1,0 +1,44 @@
+13,18d12
+<   revision 2022-05-26 {
+<     description
+<       "Change the way rlt mode is defined";
+<     reference
+<       "mw-option test";
+<   }
+27d20
+<     status deprecated;
+34d26
+<     status deprecated;
+39d30
+<     status deprecated;
+44d34
+<     status deprecated;
+50,71c40,42
+<     choice mode-option {
+<       mandatory true;
+<       leaf mode {
+<         type identityref {
+<           base rlt-mode;
+<         }
+<       }
+<       container rlt-mode {
+<         description
+<           "mode configuration";
+<         leaf num-bonded-carriers {
+<           type uint32;
+<           mandatory true;
+<           description
+<             "Number of bonded carriers";
+<         }
+<         leaf num-protecting-carriers {
+<           type uint32;
+<           mandatory true;
+<           description
+<             "Number of protecting carriers";
+<         }
+---
+>     leaf mode {
+>       type identityref {
+>         base rlt-mode;
+72a44
+>       mandatory true;
