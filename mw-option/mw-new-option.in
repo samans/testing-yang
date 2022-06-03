@@ -1,0 +1,12 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn /usr/local/bin/yanglint
+expect ">"
+send "verb verbose\r"
+expect ">"
+send "load mw-option@2022-05-26\r"
+expect ">"
+send "data -t config -f json mw-new-option.xml\r"
+expect ">"
+send "quit\r"
+expect eof

@@ -1,0 +1,8 @@
+<!--A simple example in Yanglint -->
+<rlt-db
+  xmlns="urn:test:mw-option">
+    <rlt-mode>
+       <num-bonded-carriers>2</num-bonded-carriers>
+       <num-protecting-carriers>0</num-protecting-carriers>
+    </rlt-mode>
+</rlt-db>

@@ -5,8 +5,7 @@
          "same-schema-as-file": "file:///acme-diagnostics-schema.json"
        },
        "timestamp": "2018-01-25T17:00:38Z",
-       "description":  ["NETCONF statistics, \
-           The data may change at any time."],
+       "description":  ["NETCONF statistics, The data may change at any time."],
        "content-data": {
          "ietf-netconf-monitoring:netconf-state": {
            "statistics": {

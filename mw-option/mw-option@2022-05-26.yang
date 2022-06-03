@@ -50,6 +50,7 @@ module mw-option {
     choice mode-option {
       mandatory true;
       leaf mode {
+        status deprecated;
         type identityref {
           base rlt-mode;
         }
