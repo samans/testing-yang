@@ -1,0 +1,14 @@
+{
+   "ietf-netconf-monitoring:netconf-state": {
+     "statistics": {
+       "netconf-start-time": "2018-12-05T17:45:00Z",
+       "in-bad-hellos": 32,
+       "in-sessions": 397,
+       "dropped-sessions": 87,
+       "in-rpcs": 8711,
+       "in-bad-rpcs": 408,
+       "out-rpc-errors": 408,
+       "out-notifications": 39007
+     }
+   }
+}
