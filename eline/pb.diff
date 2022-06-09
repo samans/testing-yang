@@ -1,0 +1,29 @@
+36c36
+<   revision 2022-05-06 {
+---
+>   revision 2022-05-19 {
+38c38
+<       "Update to rebase on Qcw";
+---
+>       "Published as part of IEEE Std 802.1Qcw.";
+40c40,42
+<       "IEEE Std 802.1Q-2022, Bridges and Bridged Networks.";
+---
+>       "IEEE Std 802.1Qcw - Bridges and Bridged Networks - Amendment: 
+>       YANG Data Models for Scheduled Traffic, Frame Preemption, and 
+>       Per-Stream Filtering and Policing.";
+73c75,76
+<       when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()" +
+---
+>       when
+>         "/dot1q:bridges/dot1q:bridge[dot1q:name=current()" +
+128c131,132
+<       when "/dot1q:bridges/dot1q:bridge[dot1q:name=current() " +
+---
+>       when
+>         "/dot1q:bridges/dot1q:bridge[dot1q:name=current() " +
+158c162,163
+<       when "/dot1q:bridges/dot1q:bridge[dot1q:name=current() " +
+---
+>       when
+>         "/dot1q:bridges/dot1q:bridge[dot1q:name=current() " +

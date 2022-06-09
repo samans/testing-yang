@@ -1,0 +1,123 @@
+45c45,46
+<   revision 2022-05-06 {
+---
+>   
+>   revision 2022-05-19 {
+47c48
+<       "Rebase Qrev with Qcw updates.";
+---
+>       "Published as part of IEEE Std 802.1Qcw.";
+49c50,52
+<       "IEEE Std 802.1Q-2022, Bridges and Bridged Networks.";
+---
+>       "IEEE Std 802.1Qcw - Bridges and Bridged Networks - Amendment: 
+>       YANG Data Models for Scheduled Traffic, Frame Preemption, and 
+>       Per-Stream Filtering and Policing.";
+1199c1202,1203
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1201c1205
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1333c1337,1338
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1335c1340
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1361c1366,1367
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1363c1369
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1376c1382,1383
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1378c1385
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1391c1398,1399
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1393c1401
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1407c1415,1416
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1409c1418
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" { 
+1423c1432,1433
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1425c1435
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" { 
+1493c1503,1504
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1495c1506
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" { 
+1509c1520,1521
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1511c1523
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1701c1713,1714
+<           when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>           when
+>             "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1703c1716
+<             "/../../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>             "/../../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1721c1734,1735
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1723c1737
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {
+1761c1775,1776
+<         when "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+---
+>         when
+>           "/dot1q:bridges/dot1q:bridge[dot1q:name=current()"+
+1763c1778
+<           "/../dot1q:component-name]/dot1q:type != 'dot1q:d-bridge-component'" {  
+---
+>           "/../dot1q:component-name]/dot1q:type != 'd-bridge-component'" {

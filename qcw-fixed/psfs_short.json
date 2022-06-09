@@ -1,0 +1,197 @@
+{
+  "ieee802-dot1q-bridge:bridges": {
+    "bridge": [
+      {
+        "name": "bridge1",
+        "address": "10-10-10-10-10-10",
+        "bridge-type": "ieee802-dot1q-bridge:customer-vlan-bridge",
+        "component": [
+          {
+            "name": "cv1",
+            "id": 1,
+            "type": "ieee802-dot1q-bridge:c-vlan-component",
+            "ieee802-dot1q-psfp-bridge:flow-meters": {
+              "flow-meter-instance-table": [
+                {
+                  "flow-meter-instance-id": 1,
+                  "committed-information-rate": "1000000000",
+                  "committed-burst-size": 10000,
+                  "excess-information-rate": "10000000",
+                  "excess-burst-size": 100000,
+                  "coupling-flag": "one",
+                  "color-mode": "color-aware",
+                  "drop-on-yellow": true,
+                  "mark-all-frames-red-enable": false,
+                  "mark-all-frames-red": false
+                }
+              ],
+              "max-flow-meter-instances": 1000
+            },
+            "ieee802-dot1q-psfp-bridge:stream-gates": {
+              "stream-gate-instance-table": [
+                {
+                  "stream-gate-instance-id": 1,
+                  "gate-enable": true,
+                  "admin-gate-states": "open",
+                  "admin-ipv": "null",
+                  "oper-ipv": "null",
+                  "admin-control-list": {
+                    "gate-control-entry": [
+                      {
+                        "index": 1,
+                        "operation-name": "ieee802-dot1q-psfp:set-gate-and-ipv",
+                        "time-interval-value": 1000,
+                        "gate-state-value": "open",
+                        "ipv-spec": "null",
+                        "interval-octet-max": 1000
+                      },
+                      {
+                        "index": 2,
+                        "operation-name": "ieee802-dot1q-psfp:set-gate-and-ipv",
+                        "time-interval-value": 1000,
+                        "gate-state-value": "open",
+                        "ipv-spec": "null",
+                        "interval-octet-max": 1000
+                      }
+                    ]
+                  },
+                  "admin-cycle-time": {
+                    "numerator": 10,
+                    "denominator": 100
+                  },
+                  "admin-cycle-time-extension": 100,
+                  "admin-base-time": {
+                    "seconds": "1",
+                    "nanoseconds": 1000
+                  },
+                  "config-change": false,
+                  "gate-closed-due-to-invalid-rx-enable": true,
+                  "gate-closed-due-to-invalid-rx": false,
+                  "gate-closed-due-octets-exceeded-enable": false,
+                  "gate-closed-due-octets-exceeded": false
+                }
+              ],
+              "supported-list-max": 100,
+              "supported-cycle-max": {
+                "numerator": 100,
+                "denominator": 1000
+              },
+              "supported-interval-max": 1000
+            },
+            "ieee802-dot1q-psfp-bridge:stream-filters": {
+              "stream-filter-instance-table": [
+                {
+                  "stream-filter-instance-id": 1,
+                  "wildcard": [null],
+                  "priority-spec": "three",
+                  "max-sdu-size": 0,
+                  "stream-blocked-due-to-oversize-frame-enabled": true,
+                  "stream-blocked-due-to-oversize-frame": true,
+                  "stream-gate-ref": 1,
+                  "flow-meter-ref": 1,
+                  "flow-meter-enable": true
+                }
+              ]
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:bridge",
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv1",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1,
+          "ieee802-dot1q-sched-bridge:gate-parameter-table": {
+            "queue-max-sdu-table": [
+              {
+                "traffic-class": 0,
+                "queue-max-sdu": 100
+              }
+            ],
+            "gate-enabled": true,
+            "admin-gate-states": 255,
+            "admin-control-list": {
+              "gate-control-entry": [
+                {
+                  "index": 1,
+                  "operation-name": "ieee802-dot1q-sched:set-gate-states",
+                  "time-interval-value": 100,
+                  "gate-states-value": 255
+                }
+              ]
+            },
+            "admin-cycle-time": {
+              "numerator": 10,
+              "denominator": 1000
+            },
+            "admin-cycle-time-extension": 999,
+            "admin-base-time": {
+              "seconds": "1",
+              "nanoseconds": 1000
+            },
+            "config-change": true,
+            "supported-list-max": 100,
+            "supported-cycle-max": {
+              "numerator": 10,
+              "denominator": 1000
+            },
+            "supported-interval-max": 100
+          }
+        }
+      },
+      {
+        "name": "eth1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "ieee802-dot1q-bridge:bridge-port": {
+          "bridge-name": "bridge1",
+          "component-name": "cv1",
+          "port-type": "ieee802-dot1q-bridge:c-vlan-bridge-port",
+          "pvid": 1,
+          "ieee802-dot1q-sched-bridge:gate-parameter-table": {
+            "queue-max-sdu-table": [
+              {
+                "traffic-class": 0,
+                "queue-max-sdu": 100
+              }
+            ],
+            "gate-enabled": true,
+            "admin-gate-states": 255,
+            "admin-control-list": {
+              "gate-control-entry": [
+                {
+                  "index": 1,
+                  "operation-name": "ieee802-dot1q-sched:set-gate-states",
+                  "time-interval-value": 100,
+                  "gate-states-value": 255
+                }
+              ]
+            },
+            "admin-cycle-time": {
+              "numerator": 10,
+              "denominator": 1000
+            },
+            "admin-cycle-time-extension": 999,
+            "admin-base-time": {
+              "seconds": "1",
+              "nanoseconds": 1000
+            },
+            "config-change": true,
+            "supported-list-max": 100,
+            "supported-cycle-max": {
+              "numerator": 10,
+              "denominator": 1000
+            },
+            "supported-interval-max": 100
+          }
+        }
+      }
+    ]
+  }
+}
