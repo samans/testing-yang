@@ -74,7 +74,7 @@
                     <in-discards>0</in-discards> 
                     <in-errors>0</in-errors> 
                     <out-octets>100</out-octets> 
-                    <out-descards>0</out-discards> 
+                    <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
                 <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
@@ -151,7 +151,7 @@
                         <egress-vid-translations> <!-- list --> 
                             <relay-vid></relay-vid> 
                             <local-vid></local-vid> 
-                         </vid-translations> 
+                         </egress-vid-translations> 
                     </statistics> 
                 </bridge-port> 
             </interface> 
@@ -170,7 +170,7 @@
                     <in-discards>0</in-discards> 
                     <in-errors>0</in-errors> 
                     <out-octets>100</out-octets> 
-                    <out-descards>0</out-discards> 
+                    <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
                 <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
@@ -247,7 +247,7 @@
                         <egress-vid-translations> <!-- list --> 
                             <relay-vid></relay-vid> 
                             <local-vid></local-vid> 
-                         </vid-translations> 
+                         </egress-vid-translations> 
                     </statistics> 
                 </bridge-port> 
             </interface> 
@@ -266,7 +266,7 @@
                     <in-discards>0</in-discards> 
                     <in-errors>0</in-errors> 
                     <out-octets>100</out-octets> 
-                    <out-descards>0</out-discards> 
+                    <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
                 <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
@@ -306,13 +306,13 @@
                     <in-discards>0</in-discards> 
                     <in-errors>0</in-errors> 
                     <out-octets>100</out-octets> 
-                    <out-descards>0</out-discards> 
+                    <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
             </interface> 
             <interface> 
                 <name>esc1-ip1</name> 
-                <description><Unique TAG identifying the configuring CNC></description> 
+                <description>Unique TAG identifying the configuring CNC</description> 
                 <type>bridge</type> 
                 <oper-status>up</oper-status> 
                 <phys-address>aa-bb-cc-dd-ee-05</phys-address> 
@@ -326,7 +326,7 @@
                     <in-discards>0</in-discards> 
                     <in-errors>0</in-errors> 
                     <out-octets>100</out-octets> 
-                    <out-descards>0</out-discards> 
+                    <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
             </interface> 
@@ -463,21 +463,21 @@
                         <vid-to-fid-allocation> 
                             <vids>100</vids> 
                             <fid>1</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                         </vid-to-fid-allocation> 
                         <vid-to-fid-allocation> 
                             <vids>101</vids> 
                             <fid>2</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                         </vid-to-fid-allocation> 
                         <fid-to-vid-allocation> 
                             <fid>1</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                             <vid>100</vid> 
                         </fid-to-vid-allocation> 
                         <fid-to-vid-allocation> 
                             <fid>2</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                             <vid>101</vid> 
                         </fid-to-vid-allocation> 
                         <vid-to-fid> 
@@ -567,21 +567,21 @@
                         <vid-to-fid-allocation> 
                             <vids>100</vids> 
                             <fid>1</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                         </vid-to-fid-allocation> 
                         <vid-to-fid-allocation> 
                             <vids>101</vids> 
                             <fid>2</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                         </vid-to-fid-allocation> 
                         <fid-to-vid-allocation> 
                             <fid>1</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                             <vid>100</vid> 
                         </fid-to-vid-allocation> 
                         <fid-to-vid-allocation> 
                             <fid>2</fid> 
-                            <allocation-type>fixed</alllocation-type> 
+                            <allocation-type>fixed</allocation-type> 
                             <vid>101</vid> 
                         </fid-to-vid-allocation> 
                         <vid-to-fid> 
