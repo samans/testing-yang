@@ -1,0 +1,11 @@
+#! /usr/bin/expect -f
+spawn /usr/local/bin/yanglint
+expect ">"
+send "load ietf-hardware\r"
+expect ">"
+send "load ietf-system\r"
+expect ">"
+send "data -t config -f json ia-station.xml\r"
+expect ">"
+send "quit\r"
+expect eof

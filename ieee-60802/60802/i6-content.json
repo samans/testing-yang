@@ -1,0 +1,609 @@
+{
+      "ietf-system": {
+        "system": {
+          "contact": "Any contact name",
+          "location": "Any system location",
+          "domain-name": "Any domain name"
+        }
+      },
+      "ietf-hardware:ietf-hardware": {
+        "hardware": {
+          "component": [
+            {
+              "name": "Any PLC",
+              "mfg-name": "Any company",
+              "model-name": "Any model name"
+            }
+          ]
+        }
+      },
+      "ietf-interface:ietf-interface": {
+        "interfaces": {
+          "interface": [
+            {
+              "name": "bc1-p1",
+              "description": "Bridge component 1, port 1",
+              "type": "ethernetCsmacd",
+              "oper-status": "up",
+              "phys-address": [null],
+              "higher-layer-if": [null],
+              "lower-layer-if": [null],
+              "speed": 100000000,
+              "statistics": {
+                "discontinuity-time": "2022-04-20T08:33:21+01:00",
+                "in-octets": 100,
+                "in-discards": 0,
+                "in-errors": 0,
+                "out-octets": 100,
+                "out-discards": 0,
+                "out-errors": 0
+              },
+              "bridge-port": {
+                "bridge-name": "bc1",
+                "component-name": "Bridge component 1",
+                "port-type": "c-vlan-bridge-port",
+                "pvid": 100,
+                "default-priority": 0,
+                "priority-regeneration": {
+                  "priority0": 0,
+                  "priority1": 1,
+                  "priority2": 2,
+                  "priority3": 3,
+                  "priority4": 4,
+                  "priority5": 5,
+                  "priority6": 6,
+                  "priority7": 7
+                },
+                "traffic-class-v2": {
+                  "traffic-class-table": {
+                    "traffic-class": 0,
+                    "priority": [
+                      {
+                        "index": 0,
+                        "priority": 0
+                      },
+                      {
+                        "index": 1,
+                        "priority": 1
+                      },
+                      {
+                        "index": 2,
+                        "priority": 2
+                      },
+                      {
+                        "index": 3,
+                        "priority": 3
+                      },
+                      {
+                        "index": 4,
+                        "priority": 4
+                      },
+                      {
+                        "index": 5,
+                        "priority": 5
+                      },
+                      {
+                        "index": 6,
+                        "priority": 6
+                      },
+                      {
+                        "index": 7,
+                        "priority": 7
+                      }
+                    ]
+                  }
+                },
+                "transimssion-selection-algorithm-table": {
+                  "transmission-selection-algorithm-map": {
+                    "traffic-class": 0,
+                    "transmission-selection-algorithm": "strict-priority"
+                  }
+                },
+                "acceptable-frame": "admit-only-VLAN-tagged-frames",
+                "enable-ingress-filtering": true,
+                "enable-restricted-vlan-registration": false,
+                "enable-vid-translation-table": true,
+                "enable-egress-vid-translation-table": true,
+                "admin-point-to-point": "force-true",
+                "statistics": {
+                  "counter": [null],
+                  "vid-translations": {
+                    "local-vid": [null],
+                    "relay-vid": [null]
+                  },
+                  "egress-vid-translations": {
+                    "relay-vid": [null],
+                    "local-vid": [null]
+                  }
+                }
+              }
+            },
+            {
+              "name": "bc1-p2",
+              "description": "Bridge component 1, port 2",
+              "type": "ethernetCsmacd",
+              "oper-status": "up",
+              "phys-address": [null],
+              "higher-layer-if": [null],
+              "lower-layer-if": [null],
+              "speed": 100000000,
+              "statistics": {
+                "discontinuity-time": "2022-04-20T08:33:21+01:00",
+                "in-octets": 100,
+                "in-discards": 0,
+                "in-errors": 0,
+                "out-octets": 100,
+                "out-discards": 0,
+                "out-errors": 0
+              },
+              "bridge-port": {
+                "bridge-name": "bc1",
+                "component-name": "Bridge component 1",
+                "port-type": "c-vlan-bridge-port",
+                "pvid": 100,
+                "default-priority": 0,
+                "priority-regeneration": {
+                  "priority0": 0,
+                  "priority1": 1,
+                  "priority2": 2,
+                  "priority3": 3,
+                  "priority4": 4,
+                  "priority5": 5,
+                  "priority6": 6,
+                  "priority7": 7
+                },
+                "traffic-class-v2": {
+                  "traffic-class-table": {
+                    "traffic-class": 0,
+                    "priority": [
+                      {
+                        "index": 0,
+                        "priority": 0
+                      },
+                      {
+                        "index": 1,
+                        "priority": 1
+                      },
+                      {
+                        "index": 2,
+                        "priority": 2
+                      },
+                      {
+                        "index": 3,
+                        "priority": 3
+                      },
+                      {
+                        "index": 4,
+                        "priority": 4
+                      },
+                      {
+                        "index": 5,
+                        "priority": 5
+                      },
+                      {
+                        "index": 6,
+                        "priority": 6
+                      },
+                      {
+                        "index": 7,
+                        "priority": 7
+                      }
+                    ]
+                  }
+                },
+                "transimssion-selection-algorithm-table": {
+                  "transmission-selection-algorithm-map": {
+                    "traffic-class": 0,
+                    "transmission-selection-algorithm": "strict-priority"
+                  }
+                },
+                "acceptable-frame": "admit-all-frames",
+                "enable-ingress-filtering": true,
+                "enable-restricted-vlan-registration": false,
+                "enable-vid-translation-table": true,
+                "enable-egress-vid-translation-table": true,
+                "admin-point-to-point": "force-true",
+                "statistics": {
+                  "counter": [null],
+                  "vid-translations": {
+                    "local-vid": [null],
+                    "relay-vid": [null]
+                  },
+                  "egress-vid-translations": {
+                    "relay-vid": [null],
+                    "local-vid": [null]
+                  }
+                }
+              }
+            },
+            {
+              "name": "bc1-ip3",
+              "description": "Bridge component 1, internal port 3 ",
+              "type": "bridge",
+              "oper-status": "up",
+              "phys-address": [null],
+              "higher-layer-if": "ilan1",
+              "lower-layer-if": [null],
+              "speed": "100G",
+              "statistics": {
+                "discontinuity-time": "2022-04-20T08:33:21+01:00",
+                "in-octets": 100,
+                "in-discards": 0,
+                "in-errors": 0,
+                "out-octets": 100,
+                "out-discards": 0,
+                "out-errors": 0
+              },
+              "bridge-port": {
+                "bridge-name": "bc1",
+                "component-name": "bc1",
+                "port-type": "c-vlan-bridge-port",
+                "pvid": 100,
+                "default-priority": 0,
+                "traffic-class-v2": {
+                  "traffic-class-table": {
+                    "number-of-traffic-classes": 8,
+                    "priority0": 1,
+                    "priority1": 0,
+                    "priority2": 2,
+                    "priority3": 3,
+                    "priority4": 4,
+                    "priority5": 5,
+                    "priority6": 6,
+                    "priority7": 7
+                  }
+                }
+              }
+            },
+            {
+              "name": "ilan1",
+              "description": "Internal LAN 1",
+              "type": "ilan",
+              "oper-status": "up",
+              "phys-address": [null],
+              "higher-layer-if": [null],
+              "lower-layer-if": [
+                "bc1-ip3",
+                "esc1-ip1"
+              ],
+              "speed": "100G",
+              "statistics": {
+                "discontinuity-time": "2022-04-20T08:33:21+01:00",
+                "in-octets": 100,
+                "in-discards": 0,
+                "in-errors": 0,
+                "out-octets": 100,
+                "out-discards": 0,
+                "out-errors": 0
+              }
+            },
+            {
+              "name": "esc1-ip1",
+              "description": "Unique TAG identifying the configuring CNC",
+              "type": "bridge",
+              "oper-status": "up",
+              "phys-address": "aa-bb-cc-dd-ee-05",
+              "higher-layer-if": "ilan1",
+              "lower-layer-if": [
+                "60802-beh-pcp1-vid100",
+                "60802-iso-pcp7-vid101"
+              ],
+              "speed": "100G",
+              "statistics": {
+                "discontinuity-time": "2022-04-20T08:33:21+01:00",
+                "in-octets": 100,
+                "in-discards": 0,
+                "in-errors": 0,
+                "out-octets": 100,
+                "out-discards": 0,
+                "out-errors": 0
+              }
+            }
+          ]
+        }
+      },
+      "ieee802-dot1q-bridge:ieee802-dot1q-bridge": {
+        "bridges": {
+          "bridge": {
+            "name ": "functional-unit-1",
+            "address": "aa-bb-cc-dd-ee-05",
+            "bridge-type": "customer-vlan-bridge",
+            "ports": 4,
+            "components": 2,
+            "component": [
+              {
+                "name": "bc1",
+                "type": "c-vlan-component",
+                "traffic-class-enabled": true,
+                "ports": 3,
+                "bridge-port": [
+                  "bc1-p1",
+                  "bc1-p2",
+                  "bc1-ip3"
+                ],
+                "capabilities": {
+                  "extended-filtering": false,
+                  "traffic-classes": true,
+                  "static-entry-individual-port": false,
+                  "ivl-capable": true,
+                  "svl-capable": true,
+                  "hybrid-capable": true,
+                  "configurable-pvid-tagging": "???",
+                  "local-vlan-capable": false
+                },
+                "filtering-data-base": {
+                  "aging-time": 300,
+                  "size": "???",
+                  "static-entries": 4,
+                  "dynamic-entries": 0,
+                  "static-vlan-registration-entries": 2,
+                  "dynamic-vlan-registraion-entries": 0,
+                  "mac-address-registration-entries": 0,
+                  "filtering-entry": [
+                    {
+                      "database-id": 1,
+                      "address": "aa-bb-cc-dd-ee-05",
+                      "vids": 100,
+                      "entry-type": "static",
+                      "port-map": {
+                        "port-ref": "bc1-ip3",
+                        "control-element": "forward"
+                      },
+                      "status": "mgmt"
+                    },
+                    {
+                      "database-id": 2,
+                      "address": "00-11-22-33-44-01",
+                      "vids": 101,
+                      "entry-type": "static",
+                      "port-map": {
+                        "port-ref": "bc1-p1",
+                        "control-element": "forward"
+                      },
+                      "status": "mgmt"
+                    },
+                    {
+                      "database-id": 2,
+                      "address": "00-11-22-33-44-02",
+                      "vids": 101,
+                      "entry-type": "static",
+                      "port-map": {
+                        "port-ref": "bc1-ip3",
+                        "control-element": "forward"
+                      },
+                      "status": "mgmt"
+                    }
+                  ],
+                  "vlan-registration-entry": [
+                    {
+                      "database-id": 1,
+                      "vids": 100,
+                      "entry-type": "static",
+                      "port-map": [
+                        {
+                          "port-ref": "bc1-p1",
+                          "registrar-admin-control": "fixed-new-ignored",
+                          "vlan-transmitted": "tagged"
+                        },
+                        {
+                          "port-ref": "bc1-p2",
+                          "registrar-admin-control": "fixed-new-ignored",
+                          "vlan-transmitted": "untagged"
+                        },
+                        {
+                          "port-ref": "bc1-ip3",
+                          "registrar-admin-control": "fixed-new-ignored",
+                          "vlan-transmitted": "tagged"
+                        }
+                      ]
+                    },
+                    {
+                      "database-id": 2,
+                      "vids": 101,
+                      "entry-type": "static",
+                      "port-map": [
+                        {
+                          "port-ref": "bc1-p1",
+                          "registrar-admin-control": "fixed-new-ignored",
+                          "vlan-transmitted": "tagged"
+                        },
+                        {
+                          "port-ref": "bc1-ip3",
+                          "registrar-admin-control": "fixed-new-ignored",
+                          "vlan-transmitted": "tagged"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                "permanent-data-base": {
+                  "size": [null],
+                  "static-entries": [null],
+                  "static-vlan-registration-entries": [null],
+                  "filtering-entry": [null]
+                },
+                "bridge-vlan": {
+                  "version": 2,
+                  "max-vids": 128,
+                  "override-default-pvid": true,
+                  "max-msti": 1,
+                  "vlan": [
+                    {
+                      "vid": 100,
+                      "name": "VID100",
+                      "egress-ports": [
+                        "bc1-p1",
+                        "bc1-p2",
+                        "bc1-ip3"
+                      ]
+                    },
+                    {
+                      "vid": 101,
+                      "name": "VID101",
+                      "egress-ports": [
+                        "bc1-p1",
+                        "bc1-ip3"
+                      ]
+                    }
+                  ],
+                  "vid-to-fid-allocation": [
+                    {
+                      "vids": 100,
+                      "fid": 1,
+                      "allocation-type": "fixed"
+                    },
+                    {
+                      "vids": 101,
+                      "fid": 2,
+                      "allocation-type": "fixed"
+                    }
+                  ],
+                  "fid-to-vid-allocation": [
+                    {
+                      "fid": 1,
+                      "allocation-type": "fixed",
+                      "vid": 100
+                    },
+                    {
+                      "fid": 2,
+                      "allocation-type": "fixed",
+                      "vid": 101
+                    }
+                  ],
+                  "vid-to-fid": [
+                    {
+                      "vid": 100,
+                      "fid": 1
+                    },
+                    {
+                      "vid": 101,
+                      "fid": 2
+                    }
+                  ]
+                },
+                "bridge-mst": {
+                  "mstid": 4094,
+                  "fid-to-mstid": {
+                    "fid": 2,
+                    "mstid": 4094
+                  }
+                }
+              },
+              {
+                "name": "esc1",
+                "type": "c-vlan-component",
+                "traffic-class-enabled": true,
+                "ports": 1,
+                "bridge-port": "esc1-ip1",
+                "capabilities": {
+                  "extended-filtering": false,
+                  "traffic-classes": true,
+                  "static-entry-individual-port": false,
+                  "ivl-capable": true,
+                  "svl-capable": true,
+                  "hybrid-capable": true,
+                  "configurable-pvid-tagging": "???",
+                  "local-vlan-capable": false
+                },
+                "filtering-data-base": {
+                  "aging-time": 300,
+                  "size": "???",
+                  "static-entries": 2,
+                  "dynamic-entries": 0,
+                  "static-vlan-registration-entries": 2,
+                  "dynamic-vlan-registraion-entries": 0,
+                  "mac-address-registration-entries": 0,
+                  "vlan-registration-entry": [
+                    {
+                      "database-id": 1,
+                      "vids": 100,
+                      "entry-type": "static",
+                      "port-map": {
+                        "port-ref": "esc1-ip1",
+                        "registrar-admin-control": "fixed-new-ignored",
+                        "vlan-transmitted": "tagged"
+                      }
+                    },
+                    {
+                      "database-id": 2,
+                      "vids": 101,
+                      "entry-type": "static",
+                      "port-map": {
+                        "port-ref": "esc1-ip1",
+                        "registrar-admin-control": "fixed-new-ignored",
+                        "vlan-transmitted": "tagged"
+                      }
+                    }
+                  ]
+                },
+                "permanent-data-base": {
+                  "size": [null],
+                  "static-entries": [null],
+                  "static-vlan-registration-entries": [null],
+                  "filtering-entry": [null]
+                },
+                "bridge-vlan": {
+                  "version": 2,
+                  "max-vids": 128,
+                  "override-default-pvid": true,
+                  "max-msti": 1,
+                  "vlan": [
+                    {
+                      "vid": 100,
+                      "name": "VID100",
+                      "egress-ports": "esc-ip1"
+                    },
+                    {
+                      "vid": 101,
+                      "name": "VID101",
+                      "egress-ports": "esc1-ip1"
+                    }
+                  ],
+                  "vid-to-fid-allocation": [
+                    {
+                      "vids": 100,
+                      "fid": 1,
+                      "allocation-type": "fixed"
+                    },
+                    {
+                      "vids": 101,
+                      "fid": 2,
+                      "allocation-type": "fixed"
+                    }
+                  ],
+                  "fid-to-vid-allocation": [
+                    {
+                      "fid": 1,
+                      "allocation-type": "fixed",
+                      "vid": 100
+                    },
+                    {
+                      "fid": 2,
+                      "allocation-type": "fixed",
+                      "vid": 101
+                    }
+                  ],
+                  "vid-to-fid": [
+                    {
+                      "vid": 100,
+                      "fid": 1
+                    },
+                    {
+                      "vid": 101,
+                      "fid": 2
+                    }
+                  ]
+                },
+                "bridge-mst": {
+                  "mstid": 4094,
+                  "fid-to-mstid": {
+                    "fid": 2,
+                    "mstid": 4094
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+}

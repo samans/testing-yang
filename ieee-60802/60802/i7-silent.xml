@@ -41,7 +41,7 @@
 <!-- ********************************************** --> 
  
     <content-data> 
-        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">  
+        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
             <contact>Any contact name</contact> 
             <domain-name>Any domain name</domain-name> 
             <location>Any system location</location> 
@@ -53,7 +53,7 @@
                 <model-name>Any model name</model-name> 
             </component> 
         </hardware> 
-        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interface">
             <interface> 
                 <name>bc1-p1</name> 
                 <description>Bridge component 1, port 1</description> 

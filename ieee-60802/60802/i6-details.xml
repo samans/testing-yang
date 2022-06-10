@@ -1,47 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?> 
-<!-- this is an example of a instance-data-set for an 608020 IA-Station --> 
-<instance-data-set xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-instance-data"> 
-    <name>60802-PLC_Example</name> 
-    <content-schema> 
-        <inline-yang-library> 
-            <module-set xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-library"> 
-              <name>CPU_Example</name> 
-              <module> 
-                <name>ietf-system</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-system</namespace> 
-              </module> 
-              <module> 
-                <name>ietf-hardware</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-hardware</namespace> 
-              </module> 
-              <module> 
-                <name>ietf-interfaces</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-interfaces</namespace> 
-              </module> 
-              <module> 
-                <name>ietf-dot1q-bridge</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-dot1q-bridge</namespace> 
-              </module> 
-              <module> 
-                <name>ietf-yang-library</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-yang-library</namespace> 
-              </module> 
-            </module-set> 
-        </inline-yang-library> 
-    </content-schema> 
-    <description>This is an example of a PLC as an IA station</description> 
-    <contact>martin.mittelberger@siemens.com</contact> 
-    <revision> 
-        <date>2022-05-12</date> 
-        <description>Draft version</description> 
-    </revision> 
-     
-<!-- ********************************************** --> 
-<!-- ******* Content-Data is starting here ******** --> 
-<!-- ********************************************** --> 
- 
-    <content-data> 
-        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">  
+        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
             <contact>Any contact name</contact> 
             <domain-name>Any domain name</domain-name> 
             <location>Any system location</location> 
@@ -53,7 +11,7 @@
                 <model-name>Any model name</model-name> 
             </component> 
         </hardware> 
-        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interface">
             <interface> 
                 <name>bc1-p1</name> 
                 <description>Bridge component 1, port 1</description> 
@@ -325,7 +283,7 @@
                     <out-errors>0</out-errors> 
                 </statistics> 
             </interface> 
-        </interfaces> 
+       <interfaces> 
         <bridges xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge">
             <bridge> <!-- list --> 
                 <name>functional-unit-1</name> 
@@ -596,5 +554,3 @@
                 </component> 
             </bridge> 
         </bridges> 
-    </content-data> 
-  </instance-data-set> 

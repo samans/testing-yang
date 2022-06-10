@@ -20,7 +20,7 @@
               </module> 
               <module> 
                 <name>ietf-dot1q-bridge</name> 
-                <namespace>urn:ietf:params:xml:ns:yang:ietf-dot1q-bridge</namespace> 
+                <namespace>urn:ieee:std:802.1Q:yang:ietf-dot1q-bridge</namespace> 
               </module> 
               <module> 
                 <name>ietf-yang-library</name> 
@@ -41,7 +41,7 @@
 <!-- ********************************************** --> 
  
     <content-data> 
-        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">  
+        <system xmlns="urn:ietf:params:xml:ns:yang:ietf-system">
             <contact>Any contact name</contact> 
             <domain-name>Any domain name</domain-name> 
             <location>Any system location</location> 
@@ -53,7 +53,7 @@
                 <model-name>Any model name</model-name> 
             </component> 
         </hardware> 
-        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+        <interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interface">
             <interface> 
                 <name>bc1-p1</name> 
                 <description>Bridge component 1, port 1</description> 
@@ -72,7 +72,7 @@
                     <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
-                <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
+                <bridge-port xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge"> 
                     <bridge-name>bc1</bridge-name> 
                     <component-name>Bridge component 1</component-name> 
                     <port-type>c-vlan-bridge-port</port-type> 
@@ -168,7 +168,7 @@
                     <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
-                <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
+                <bridge-port xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge"> 
                     <bridge-name>bc1</bridge-name> 
                     <component-name>Bridge component 1</component-name> 
                     <port-type>c-vlan-bridge-port</port-type> 
@@ -264,7 +264,7 @@
                     <out-discards>0</out-discards> 
                     <out-errors>0</out-errors> 
                 </statistics> 
-                <bridge-port xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge"> 
+                <bridge-port xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge"> 
                     <bridge-name>bc1</bridge-name> 
                     <component-name>bc1</component-name> 
                     <port-type>c-vlan-bridge-port</port-type> 
@@ -326,7 +326,7 @@
                 </statistics> 
             </interface> 
         </interfaces> 
-        <bridges xmlns="urn:ietf:params:xml:ns:yang:ieee802-dot1q-bridge">
+        <bridges xmlns="urn:ieee:std:802.1Q:yang:ieee802-dot1q-bridge">
             <bridge> <!-- list --> 
                 <name>functional-unit-1</name> 
                 <address>aa-bb-cc-dd-ee-05</address> 
