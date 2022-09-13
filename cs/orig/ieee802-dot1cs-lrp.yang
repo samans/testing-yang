@@ -5,7 +5,9 @@ module ieee802-dot1cs-lrp {
   prefix "dot1cs";
 
   import ietf-system { prefix "sys"; }
+  import ieee802-dot1ab-types { prefix "lldp-types"; }
   import ietf-yang-types { prefix "yang"; }
+  import ieee802-dot1q-types { prefix dot1qtypes; }
   import ietf-interfaces { prefix if; }
   import ieee802-types { prefix ieee; }
   import ietf-inet-types { prefix inet; }
@@ -27,13 +29,9 @@ module ieee802-dot1cs-lrp {
  
   description
     "Managed objects to control the Link-local Registration Protocol,
-     IEEE Std 802.1CS
+     IEEE Std 802.1CS";
 
-     Copyright (C) IEEE (2021).  This version of this YANG module
-     is included in Clause 12 of IEEE Std 802.1CS-2020;
-     see the standard itself for full legal notices. ";
-
-   revision 2020-12-03 {
+   revision 2020-07-10 {
     description
       "First defined in IEEE P802.1CS D3.1.";
     reference
@@ -131,7 +129,7 @@ module ieee802-dot1cs-lrp {
             "IEEE 802.1CS Clause (8.2.2.1)";
         }
         leaf my-chassis-id {
-          type ieee:chassis-id-type ;
+          type lldp-types:chassis-id-type ;
           config false;
           description
             "The value transmitted in the My Chassis ID TLV, and expected to be
@@ -140,7 +138,7 @@ module ieee802-dot1cs-lrp {
             "IEEE 802.1CS Clause (8.2.2.2)";
         }
         leaf my-port-id {
-          type ieee:port-id-type ;
+          type lldp-types:port-id-type ;
           config false;
           description
             "The value transmitted in the My Port ID TLV, and expected to be
@@ -149,7 +147,7 @@ module ieee802-dot1cs-lrp {
             "IEEE 802.1CS Clause (8.2.2.3)";
         }
         leaf neighbor-chassis-id {
-          type ieee:chassis-id-type ;
+          type lldp-types:chassis-id-type ;
           config false;
           description
             "The value transmitted in the Neighbor Chassis ID TLV, and expected
@@ -158,7 +156,7 @@ module ieee802-dot1cs-lrp {
             "IEEE 802.1CS Clause (8.2.2.4)";
         }
         leaf neighbor-port-id {
-          type ieee:port-id-type ;
+          type lldp-types:port-id-type ;
           config false;
           description
             "The value transmitted in the Neighbor Port ID TLV, and expected to

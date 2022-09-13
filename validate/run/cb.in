@@ -8,7 +8,7 @@ send "load ieee802-dot1q-bridge\r"
 expect ">"
 send "load ieee802-dot1q-pb\r"
 expect ">"
-send "data -t data -f json cb.xml\r"
+send "data -t config -f json cb.xml\r"
 expect ">"
 send "quit\r"
 expect eof
