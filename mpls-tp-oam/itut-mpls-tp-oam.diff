@@ -1,0 +1,41 @@
+6,17d5
+<   import ieee802-types {
+<     prefix "ieee";
+<     reference
+<       "IEEE Std 802.1ABcu-2022.";
+<   }
+< 
+<   import ieee802-dot1q-types {
+<     prefix "dot1q-types";
+<     reference
+<       "IEEE Std 802.1Qcx-2020.";
+<   }
+< 
+902c890
+<       must "boolean(../country-code) or "
+---
+>       must "boolean(../eth-oam:country-code) or "
+904c892
+<          + "string-length(../carrier-code) <= 13)" {
+---
+>          + "string-length(../eth-oam:carrier-code) <= 13)" {
+919,921c907,909
+<       must "not(boolean(../country-code)) or "
+<          + "(string-length(../carrier-code) = 6) or "
+<          + "(string-length(../carrier-code) < 6 and "
+---
+>       must "not(boolean(../eth-oam:country-code)) or "
+>          + "(string-length(../eth-oam:carrier-code) = 6) or "
+>          + "(string-length(../eth-oam:carrier-code) < 6 and "
+923c911
+<          + "string-length(../carrier-code) <= 12))" {
+---
+>          + "string-length(../eth-oam:carrier-code) <= 12))" {
+941,943c929,931
+<       must "not(boolean(../country-code)) or "
+<          + "(string-length(../carrier-code) < 6) or "
+<          + "(string-length(../carrier-code) = 6 and "
+---
+>       must "not(boolean(../eth-oam:country-code)) or "
+>          + "(string-length(../eth-oam:carrier-code) < 6) or "
+>          + "(string-length(../eth-oam:carrier-code) = 6 and "

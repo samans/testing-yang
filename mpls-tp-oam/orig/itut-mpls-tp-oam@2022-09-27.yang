@@ -1,0 +1,1910 @@
+module itut-mpls-tp-oam {
+  yang-version 1.1;
+  namespace urn:itu:t:rec:mpls-tp-ne-oam:yang:itut-mpls-tp-oam;
+  prefix "tp-oam";
+
+  import ieee802-types {
+    prefix "ieee";
+    reference
+      "IEEE Std 802.1ABcu-2022.";
+  }
+
+  import ieee802-dot1q-types {
+    prefix "dot1q-types";
+    reference
+      "IEEE Std 802.1Qcx-2020.";
+  }
+
+  import ietf-connection-oriented-oam {
+    prefix "co-oam";
+    reference
+      "IETF RFC 8531.";
+  }
+
+  import ietf-yang-types {
+    prefix yang;
+    reference
+      "IETF RFC 6991.";
+  }
+
+  organization
+    "ITU-T Study Group 15 (SG15) Question 14 (Q14/15)";
+
+  contact
+    "Q14/15 Web: <https://www.itu.int/en/ITU-T/studygroups/
+                  2022-2024/15/Pages/q14.aspx>
+    
+    Q14/15 List: <t22sg15q14@lists.itu.int>
+    
+    Editor:      Rod LU
+                 <mailto:lurongduo@chinamobile.com>
+    
+    Editor:      Ze Gang BAI
+                 <mailto:zgbai@fiberhome.com>
+
+    Editor:      Shu LI
+                 <lishu@fiberhome.com>
+    
+    Editor:      Italo BUSI
+                 <italo.busi@huawei.com>
+    
+    Editor:      Kam LAM
+                 <mailto:kam.lam@fhusainc.com>
+    
+    Editor:      Scott MANSFIELD
+                 <scott.mansfield@ericsson.com>";
+
+  description
+    "This module defines a YANG data model for configuring the
+     MPLS-TP OAM capabilities defined in ITU-T G.8113.1, augmenting
+     the IETF Connection Oriented OAM (CO-OAM) YANG model.
+
+     Copyright (c) 2022 ITU.
+     
+     All rights reserved. No part of this publication may be
+     reproduced, by any means whatsoever, without the prior written
+     permission of ITU.";
+  reference
+    "ITU-T G.8113.1 v2.1 (11/2016).";
+
+  revision 2022-09-27 {
+    description
+      "Added:
+      - pattern statement to the country-code and carrier-code
+        leaves (Note);
+      - must statements to the meg-id-code leaf (Note).
+
+      Updated:
+      - length statement of the meg-id-code leaf;
+      - description statement of the meg-id-code leaf;
+
+      Note: these changes are not backward-compatible with the 
+      previous version of the YANG model but do not impact 
+      interoperability with older implementations.";
+    reference
+      "Draft ITU-T G.8152.1 v1.0.5 (09/2022).";
+  }
+  // TSB Editor: update the reference above after publication
+
+  revision 2021-01-16 {
+    description
+      "Initial Version.";
+    reference
+      "ITU-T G.8152.1 v1.0 (01/2021).";
+  }
+  
+  /*
+   * Identities
+   */
+
+  identity mpls-tp {
+    base co-oam:technology-types;
+    description
+      "This is the identity for the MPLS-TP technology using the
+       OAM protocols defined in ITU-T G.8113.1";
+    reference
+      "ITU-T G.8113.1 v2.1 (11/2016).";
+  }
+
+  identity ma-name-itu {
+    base co-oam:name-format;
+    description
+      "Defines MA name format as ITU-T MEG-ID.";
+    reference
+      "ITU-T G.8113.1 v2.1 (11/2016): clause 8.2.";
+  }
+
+  identity oam-type {
+    description
+      "Base identity for the type of the OAM protocol.";
+  }
+
+  identity dual-ended-oam-type {
+    base oam-type;
+    description
+      "Base identity for the type of the dual-ended OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 3.2.1.";
+  }
+
+  identity oam-lm-ccm {
+    base dual-ended-oam-type;
+    description
+      "Dual-ended CCM OAM protocol supporting loss measurement.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 9.2.";
+  }
+
+  identity oam-1dm {
+    base dual-ended-oam-type;
+    description
+      "Dual-ended 1DM OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 9.14.";
+  }
+
+  identity oam-1sl {
+    base dual-ended-oam-type;
+    description
+      "Dual-ended 1SL OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 9.24.";
+  }
+
+  identity single-ended-oam-type {
+    base oam-type;
+    description
+      "Base identity for the type of the dual-ended OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 3.2.19.";
+  }
+
+  identity oam-lm-lmm {
+    base single-ended-oam-type;
+    description
+      "Single-ended LMM/LMR OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clauses 9.12 and 9.13.";
+  }
+
+  identity oam-dm {
+    base single-ended-oam-type;
+    description
+      "Single-ended DMM/DMR OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clauses 9.15 and 9.16.";
+  }
+
+  identity oam-sl {
+    base single-ended-oam-type;
+    description
+      "Single-ended SLM/SLR OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clauses 9.22 and 9.23.";
+  }
+
+  identity granularity-period {
+    description
+      "The base identity to define the Current Data and History Data
+      Granularity Period (e.g., 15min/24h).";
+    reference
+      "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.";
+  }
+
+  identity granularity-period-24h {
+    base granularity-period;
+    description
+      "24 Hours Granularity Period.";
+    reference
+      "ITU-T G.7710 v5.0 (10/2020): clause 10.1.6.1.";
+  }
+
+  identity granularity-period-15min {
+    base granularity-period;
+    description
+      "15 Minutes Granularity Period.";
+    reference
+      "ITU-T G.7710 v5.0 (10/2020): clause 10.1.6.1.";
+  }
+
+  identity dm-period {
+    description
+      "Base identity for the periodicity of the
+      DM (1DM or DMM/DMR) OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+  }
+
+  identity dm-period-100ms {
+    base dm-period;
+    description
+      "DM OAM messages are generated every 100 ms.";
+  }
+
+  identity dm-period-1sec {
+    base dm-period;
+    description
+      "DM OAM messages are generated every 1 s.";
+  }
+
+  identity dm-period-10sec {
+    base dm-period;
+    description
+      "DM OAM messages are generated every 10 s.";
+  }
+
+  identity sl-period {
+    description
+      "Base identity for the periodicity of the
+      SL (1SL or SLM/SLR) OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+  }
+
+  identity sl-period-10ms {
+    base sl-period;
+    description
+      "SL OAM messages are generated every 10 ms.";
+  }
+
+  identity sl-period-100ms {
+    base sl-period;
+    description
+      "SL OAM messages are generated every 100 ms.";
+  }
+
+  identity sl-period-1sec {
+    base sl-period;
+    description
+      "SL OAM messages are generated every second.";
+  }
+
+  identity sl-period-10sec {
+    base sl-period;
+    description
+      "SL OAM messages are generated every 10 seconds.";
+  }
+
+  identity lm-period {
+    description
+      "Base identity for the periodicity of the
+      LM (LMM/LMR) OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+  }
+
+  identity lm-period-100ms {
+    base lm-period;
+    description
+      "LM OAM messages are generated every 100 ms.";
+  }
+
+  identity lm-period-1sec {
+    base lm-period;
+    description
+      "LM OAM messages are generated every 1 s.";
+  }
+
+  identity lm-period-10sec {
+    base lm-period;
+    description
+      "LM OAM messages are generated every 10 s.";
+  }
+
+  /*
+   * Typedefs
+   */
+
+  typedef cc-period {
+    type enumeration  {
+      enum 3dot33ms {
+        description
+          "CCM OAM packets are generated every 3.33 ms.";
+      }
+      enum 10ms {
+        description
+          "CCM OAM packets are generated every 10 ms.";
+      }
+      enum 100ms {
+        description
+          "CCM OAM packets are generated every 100 ms.";
+      }
+      enum 1sec {
+        description
+          "CCM OAM packets are generated every second.";
+      }
+      enum 10sec {
+        description
+          "CCM OAM packets are generated every 10 seconds.";
+      }
+      enum 1min {
+        description
+          "CCM OAM packets are generated every minute.";
+      }
+      enum 10min {
+        description
+          "CCM OAM packets are generated every 10 minutes.";
+      }
+    }
+    description
+      "The periodicity of the CCM OAM packets.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): table 9-3.";
+  }
+
+  typedef mep-type {
+    type enumeration  {
+      enum node {
+        description "A per-node MEP.";
+      }
+      enum down {
+        description "Down MEP.";
+      }
+      enum up {
+        description "Up MEP.";
+      }
+    }
+    description
+      "The type of MEP: per-node, Down MEP or Up MEP.";
+    reference
+      "ITU-T G.8113.1 v2.1 (11/2016): clause 6.3.";
+  }
+
+  typedef ais-lck-period {
+    type enumeration  {
+      enum 1sec {
+        description
+          "AIS/LCK OAM packets are generated every second.";
+      }
+      enum 1min {
+        description
+          "AIS/LCK OAM packets are generated every minute.";
+      }
+    }
+    description
+      "The periodicity of the AIS/LCK OAM packets.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): table 9-4.";
+  }
+
+
+  typedef oam-type {
+    type identityref  {
+      base oam-type;
+    }
+    description
+      "The type of the OAM protocol.";
+  }
+
+  typedef dual-ended-oam-type {
+    type identityref {
+      base dual-ended-oam-type;
+    }
+    description
+      "The type of dual-ended OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 3.2.1.";
+  }
+
+  typedef single-ended-oam-type {
+    type identityref {
+      base single-ended-oam-type;
+    }
+    description
+      "The type of the single-ended OAM protocol.";
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 3.2.19.";
+  }
+
+  typedef granularity-period {
+    type identityref {
+      base granularity-period;
+    }
+    description
+      "The Current Data and History Data Granularity Period (e.g.,
+      15min/24h).";
+    reference
+      "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.";
+  }
+
+  typedef dm-period {
+    type identityref {
+      base dm-period;
+    }
+    description
+      "The periodicity of the DM (1DM or DMM/DMR) OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+  }
+
+  typedef sl-period {
+    type identityref {
+      base sl-period;
+    }
+    description
+      "The periodicity of the SL (1SL or SLM/SLR) OAM messages.";
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): Table 8-2.";
+  }
+
+  typedef lm-period {
+    type identityref {
+      base lm-period;
+    }
+    description
+      "The periodicity of the LM (LMM/LMR) OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+  }
+
+
+  // Editors' note: typedef oam-pdu-generation-type added in v1.1
+  typedef oam-pdu-generation-type {
+    type enumeration {
+      enum single-instance {
+        description
+          "A single instance of on-demand OAM message is 
+          generated.";
+      }
+      enum repetitive-instance {
+        description
+          "Repetitive instances of on-demand OAM message are 
+          generated.";
+      }
+      enum single-series {
+        description
+          "A single serie of on-demand OAM messages is generated.";
+      }
+      enum repetitve-series {
+        description
+          "Repetitive series of on-demand OAM messages are 
+          generated.";
+      }
+    }
+    description
+      "The generation pattern of the on-demand OAM messages.";
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2";
+  }
+  
+  /*
+   * Groupings
+   */
+
+  grouping pro-active-dual-ended-mea-job-control-initiator {
+    description
+      "It contains the attributes of a pro-active dual-ended
+      measurement job control within an initiating MEP.";
+    uses pro-active-measurement-job-control {
+      when "derived-from-or-self(oam-type, 'dual-ended-oam-type')" {
+        description
+          "When the OAM protocol type is dual-ended.";
+      }
+      refine enabled {
+        description
+          "If set to True, the OAM PM process is running:
+          the OAM messages are generated.
+          
+          If set to False, the OAM PM process is stopped:
+          the OAM PM process resources are still allocated
+          but OAM messages are not generated.";
+      }
+    }
+    choice dual-ended-oam-type {
+      description
+        "The dual-ended OAM protocol.";
+      container dm {
+        when "derived-from-or-self(../oam-type, 'oam-1dm')" {
+          description
+            "When the OAM protocol is dual-ended 1DM.";
+        }
+        description
+          "Dual-ended 1DM OAM protocol configuration.";
+        uses oam-dm-config;
+      }
+      container sl {
+        when "derived-from-or-self(../oam-type, 'oam-1sl')" {
+          description
+            "When the OAM protocol is dual-ended 1SL.";
+        }
+        description
+          "Dual-ended 1SL OAM protocol configuration.";
+        uses oam-sl-config;
+      }
+    }
+  }
+
+  grouping pro-active-dual-ended-mea-job-control-target {
+    description
+      "It contains the attributes for a pro-active dual-ended
+      measurement job control within a receiving MEP.";
+    leaf enabled {
+      type boolean;
+      default "true";
+      description
+        "Enables the pro-active measurement job.
+        
+        If set to True, the OAM PM process is running:
+        the received OAM messages are processed and the PM data
+        are collected and reported.
+        
+        If set to False, the OAM PM process is stopped:
+        the OAM PM process resources are still allocated
+        but the received OAM messages are ignored and
+        the PM data collected at the time the measurement job
+        has been disabled are still reported; the current data
+        suspect interval flag is set.";
+    }
+    leaf oam-type {
+      type dual-ended-oam-type;
+      mandatory true;
+      description
+        "The type of dual-ended OAM protocol.";
+    }
+    uses co-oam:cos;
+    choice dual-ended-oam-type {
+      description
+        "The dual-ended OAM protocol.";
+      container dm {
+        when "derived-from-or-self(../oam-type, 'oam-1dm')" {
+          description
+            "When the OAM protocol is dual-ended 1DM.";
+        }
+        leaf test-identifier {
+          type uint32;
+          description
+            "The value of the Test ID field within the optional
+            Test ID TLV.
+
+            If not specified, the Test ID TLV is not included in the
+            OAM messages.";
+          reference
+            "ITU-T G.8013 v5.3 (08/2019): clause 9.14.";
+        }
+        description
+          "Dual-ended 1DM OAM protocol.";
+      }
+      container sl {
+        when "derived-from-or-self(../oam-type, 'oam-1sl')" {
+          description
+            "When the OAM protocol is dual-ended 1SL.";
+        }
+        leaf test-identifier {
+          type uint32;
+          mandatory true;
+          description
+            "The value of the Test ID field.";
+          reference
+            "ITU-T G.8013 v5.3 (08/2019): clause 9.24.";
+        }
+        description
+          "Dual-ended 1SL OAM protocol.";
+      }
+    }
+    list current-data {
+      key "granularity-period";
+      min-elements 1;
+      description
+        "The list of PM current data (one per granularity period)
+        collected by a pro-active dual-ended measurement job.";
+      uses dual-ended-current-data;
+    }
+  }
+
+  grouping dual-ended-current-data {
+    description
+      "The PM current data collected by a pro-active dual-ended
+      measurement job.";
+    uses current-data;
+    container dm-data {
+      when "derived-from-or-self(../../oam-type, 'oam-1dm')" {
+        description
+          "When the OAM protocol is dual-ended 1DM.";
+      }
+      config false;
+      description
+        "The current pro-active delay measurement PM data.";
+      uses pro-active-dual-ended-dm-current-data;
+    }
+    list history-data {
+      key "period-end-time";
+      config false;
+      description
+        "The list of PM history data of a current data collected by a
+        pro-active dual-ended measurement job.";
+      uses history-data;
+      container dm-data {
+        when "derived-from-or-self(../../../oam-type, 'oam-1dm')" {
+          description
+            "When the OAM protocol is dual-ended 1DM.";
+        }
+        config false;
+        description
+          "The history pro-active dual ended delay measurement
+          PM data.";
+        uses pro-active-dual-ended-dm-history-data;
+      }
+    }
+  }
+
+  grouping pro-active-single-ended-mea-job-control {
+    description
+      "It contains the attributes of a pro-active single-ended
+      measurement job control within an initiating MEP.";
+    uses pro-active-measurement-job-control {
+      when "derived-from-or-self(oam-type, " +
+           "'single-ended-oam-type')" {
+        description
+          "When the OAM protocol type is single-ended.";
+      }
+      refine enabled {
+        description
+          "If set to True, the OAM PM process is running:
+          the OAM messages are generated; the received OAM messages
+          are processed and the PM data are collected and reported.
+          
+          If set to False, the OAM PM process is stopped:
+          the OAM PM process resources are still allocated
+          but OAM messages are not generated; the received
+          OAM messages are ignored and the PM data collected
+          at the time the measurement job has been disabled
+          are still reported; the current data
+          suspect interval flag is set.";
+      }
+    }
+    choice single-ended-oam-type {
+      description
+        "The single-ended OAM protocol.";
+      container dm {
+        when "derived-from-or-self(../oam-type, 'oam-dm')" {
+          description
+            "When the OAM protocol is single-ended DMM/DMR.";
+        }
+        description
+          "Single-ended DMM/DMR OAM protocol configuration.";
+        uses oam-dm-config;
+      }
+      container lm {
+        when "derived-from-or-self(../oam-type, 'oam-lm-lmm')" {
+          description
+            "When the OAM protocol is single-ended LMM/LMR.";
+        }
+        description
+          "Single-ended LMM/LMR OAM protocol configuration.";
+        uses oam-lm-config;
+      }
+      container sl {
+        when "derived-from-or-self(../oam-type, 'oam-sl')" {
+          description
+            "When the OAM protocol is single-ended SLM/SLR.";
+        }
+        description
+          "Single-ended SLM/SLR OAM protocol configuration.";
+        uses oam-sl-config;
+      }
+    }
+    list current-data {
+      key "granularity-period";
+      min-elements 1;
+      description
+        "The list of PM current data (one per granularity period)
+        collected by a pro-active single-ended measurement job.";
+      uses single-ended-current-data;
+    }
+  }
+
+  grouping single-ended-current-data {
+    description
+      "The PM of a current data collected by a pro-active
+      single-ended measurement job.";
+    uses current-data;
+    container dm-data {
+      when "derived-from-or-self(../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      config false;
+      description
+        "The current pro-active delay measurement PM data.";
+      uses pro-active-single-ended-dm-current-data;
+    }
+    list history-data {
+      key "period-end-time";
+      config false;
+      description
+        "The list of PM history data of a current data collected by a
+        pro-active single-ended measurement job.";
+      uses history-data;
+      container dm-data {
+        when "derived-from-or-self(../../../oam-type, 'oam-dm')" {
+          description
+            "When the OAM protocol is single-ended DMM/DMR.";
+        }
+        config false;
+        description
+          "The history pro-active single-ended delay measurement PM
+          data.";
+        uses pro-active-single-ended-dm-history-data;
+      }
+    }
+  }
+
+  grouping pro-active-measurement-job-control {
+    description
+      "The common attributes of a pro-active
+      measurement job control.";
+    leaf enabled {
+      type boolean;
+      default "true";
+      description
+        "Enables the pro-active measurement job.";
+    }
+    leaf oam-type {
+      type oam-type;
+      mandatory true;
+      description
+        "The type of the OAM protocol.";
+    }
+    uses co-oam:cos;
+  }
+
+  grouping current-data {
+    description
+      "Defines the common attributes used by the MPLS-TP performance
+      monitoring Current Data.";
+    leaf granularity-period {
+      type granularity-period;
+      mandatory true;
+      description
+        "The granularity period (e.g., 15min/24h) of
+        the Current Data.";
+      reference
+        "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.";
+    }
+    container elapsed-time {
+      config false;
+      description
+        "The difference between the current time and the start time
+        of this current data.";
+      uses time-interval;
+      reference
+        "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.2.";
+    }
+    leaf suspect-interval-flag {
+      type boolean;
+      default false;
+      config false;
+      description
+        "The suspect interval flag.";
+      reference
+        "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.14.";
+    }
+    leaf start-time {
+      type yang:date-and-time;
+      config false;
+      mandatory true;
+      description
+        "The interval start time.
+        
+        The value is bound to the quarter of an hour in case of
+        a 15 minute interval and bound to the hour in case of
+        a 24 hour interval.";
+    }
+    action reset-all-counters {
+      description
+        "Set all PM counters to zero and the suspect interval flag
+        to True.";
+    }
+    reference	
+      "ITU-T Q.822 v1.1 (03/2003): clause 4.3.1.1.";
+  }
+
+  grouping history-data {
+    description
+      "The common attributes used by the performance monitoring
+      History Data.";
+    leaf period-end-time {
+      type yang:date-and-time;
+      config false;
+      mandatory true;
+      description
+        "This attribute contains the time at the end
+        of the interval.";
+    }
+    leaf granularity-period {
+      type granularity-period;
+      config false;
+      mandatory true;
+      description
+        "The granularity period (e.g., 15min/24h) of the History
+        Data.";
+      reference
+        "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.";
+    }
+    leaf suspect-interval-flag {
+      type boolean;
+      default false;
+      config false;
+      description
+        "The suspect interval flag.";
+      reference
+        "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.14.";
+    }
+    reference
+      "ITU-T Q.822 v1.1 (03/2003): clause 4.3.1.2.";
+  }
+
+  grouping mt-ais-lck-common {
+    description
+      "It defines the common attributes for configuring AIS/LCK
+      generation.";
+    leaf period {
+      type ais-lck-period;
+      default "1sec";
+      description
+        "The AIS/LCK PDU generation period.";
+      reference
+        "ITU-T G.8013 v5.3 (08/2019): table 9-4.";
+    }
+    uses co-oam:cos;
+  }
+
+  grouping ma-name-itu {
+    description
+      "The common attributes for the ITU-T MEG ID format.";
+    leaf country-code {
+      type string {
+        length 2;
+        pattern '[A-Z]*' {
+          error-message "The country code (CC) may only consist "
+                      + "of 2 alphabetic characters represented "
+                      + "by uppercase letters (i.e., A-Z).";
+          description
+            "The country code (CC) is a string of 2 alphabetic 
+            characters represented by uppercase letters 
+            (i.e., A-Z).";
+          reference 
+            "ITU-T G.8013 v5.3 (08/2019): clause A.2.";
+        }
+      }
+      description
+        "The Country Code (CC).
+        
+        It is present when the CC and ICC-based global
+        MEG ID format is used and not present when the ICC-based
+        MEG ID format is used.";
+    }
+    leaf carrier-code {
+      type string {
+        length 1..6;
+        pattern '[0-9A-Z]*' {
+          error-message
+            "The ITU Carrier Code (ICC) may only consist of "
+            + "alphabetic (i.e., A-Z) or numeric (i.e., 0-9) "
+            + "characters.";
+          description
+            "The ITU Carrier Code (ICC) is a string of 1-6 
+            alphabetic (i.e., A-Z) or numeric (i.e., 0-9) 
+            characters.";
+          reference 
+            "ITU-T G.8013 v5.3 (08/2019): clause A.1;
+            ITU-T G.8013 v5.3 (08/2019): clause A.2.";
+        }
+      }
+      mandatory true;
+      description
+        "The ITU Carrier Code (ICC).";
+    }
+    leaf meg-id-code {
+      type string {
+        length 1..12;
+      }
+      must "boolean(../country-code) or "
+         + "(string-length() + "
+         + "string-length(../carrier-code) <= 13)" {
+        error-message
+          "When defining an ICC-based MEG ID value " 
+          + "(i.e., no 'country-code' is defined), the combined " 
+          + "string length of the 'carrier-code' " 
+          + "(i.e., the ITU Carrier Code (ICC)) and of the " 
+          + "'meg-id-code' (i.e. the Unique MEG ID Code (UMC)) " 
+          + "shall not exceed 13 characters.";
+        description
+          "When defining an ICC-based MEG ID, the combined length  
+          of the ITU Carrier Code (ICC) and of the Unique MEG ID 
+          Code (UMC) subfields does not exceed 13 characters.";
+        reference
+          "ITU-T G.8013 v5.3 (08/2019): Figure A.3.";
+      }
+      must "not(boolean(../country-code)) or "
+         + "(string-length(../carrier-code) = 6) or "
+         + "(string-length(../carrier-code) < 6 and "
+         + "(string-length() + "
+         + "string-length(../carrier-code) <= 12))" {
+        error-message
+          "When defining a CC and ICC-based MEG ID value " 
+          + "(i.e., the 'country-code' is defined) with an ITU " 
+          + "Carrier Code (ICC) that is less than 6 characters, " 
+          + "the combined length of the 'carrier-code' " 
+          + "(i.e., the ICC) and of the 'meg-id-code' " 
+          + "(i.e. the Unique MEG ID Code (UMC) without the " 
+          + "leading '/' character) shall not exceed 12 characters.";
+        description
+          "When defining a CC and ICC-based MEG ID, with an ITU 
+          Carrier Code (ICC) that is less than 6 characters, the 
+          combined length of the ICC and of the Unique MEG ID Code 
+          (UMC) subfields, excluding the UMC leading '/' character, 
+          does not exceed 12 characters.";
+        reference
+          "ITU-T G.8013 v5.3 (08/2019): Figure A.5.";
+      }
+      must "not(boolean(../country-code)) or "
+         + "(string-length(../carrier-code) < 6) or "
+         + "(string-length(../carrier-code) = 6 and "
+         + "(string-length() <= 7))" {
+        error-message
+          "When defining a CC and ICC-based MEG ID value " 
+          + "(i.e., the 'country-code' is defined) with an ITU " 
+          + "Carrier Code (ICC), that is 6 characters long, the " 
+          + "length of the 'meg-id-code' (i.e. the Unique MEG ID " 
+          + "(UMC)) shall not exceed 7 characters.";
+        description
+          "When defining an CC and ICC-based MEG ID, with an ITU 
+          Carrier Code (ICC) that is 6 characters long, the length 
+          of the Unique MEG ID Code (UMC) subfield does not exceed 
+          7 characters.";
+        reference
+          "ITU-T G.8013 v5.3 (08/2019): Figure A.5.";
+      }
+      mandatory true;
+      description
+        "The Unique MEG ID code (UMC), excluding the trailing NULLs.
+
+        When the MEG ID is using the CC and ICC-based MEG ID format 
+        and the ICC is less than 6 characters, the UMC leading '/' 
+        character is also excluded.";
+    }
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): annex A.";
+  }
+
+  grouping pro-active-dual-ended-dm-current-data {
+    description
+      "The pro-active dual ended delay measurement PM data.";
+    container near-end-dm-data {
+      when "derived-from-or-self(../../../oam-type, 'oam-1dm')" {
+        description
+          "When the OAM protocol is dual-ended 1DM.";
+      }
+      description
+        "The current pro-active near-end delay measurement
+         PM data.";
+      uses dm-performance-data;
+    }
+  }
+
+  grouping pro-active-dual-ended-dm-history-data {
+    description
+      "The pro-active dual ended delay measurement PM data.";
+    container near-end-dm-data {
+      when "derived-from-or-self(../../../../oam-type, 'oam-1dm')" {
+        description
+          "When the OAM protocol is dual-ended 1DM.";
+      }
+      description
+        "The current pro-active near-end delay measurement
+        PM data.";
+      uses dm-performance-data;
+    }
+  }
+
+  grouping dm-performance-data {
+    description
+      "It contains the delay measurement performance data.";
+    leaf minimum-packet-delay {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the minimum packet delay observed
+        over the monitored period.";
+    }
+    leaf average-packet-delay {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the average packet delay observed
+        over the monitored period.";
+    }
+    leaf maximum-packet-delay {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the maximum packet delay observed
+        over the monitored period.";
+    }
+    leaf minimum-packet-delay-variation {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the minimum packet delay variation
+        observed over the monitored period.";
+    }
+    leaf average-packet-delay-variation {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the average packet delay variation
+        observed over the monitored period.";
+    }
+    leaf maximum-packet-delay-variation {
+      type uint64;
+      units "nano-seconds";
+      mandatory true;
+      description
+        "This attribute contains the maximum packet delay variation
+        observed over the monitored period.";
+    }
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2, item 19.";
+  }
+
+  grouping time-interval {
+    description
+      "The attributes (e.g., hours, minutes) defining a time interval
+      with millisecond accuracy.";
+    leaf day {
+      type uint64 {
+        range "0..31";
+      }
+      default 0;
+      description
+        "The number of days in the time interval.";
+    }
+    leaf hour {
+      type uint8 {
+        range "0..23";
+      }
+      default 0;
+      description
+        "The number of hours in the time interval.";
+    }
+    leaf minute {
+      type uint8 {
+        range "0..59";
+      }
+      default 0;
+      description
+        "The number of minutes in the time interval.";
+    }
+    leaf second {
+      type uint8 {
+        range "0..59";
+      }
+      default 0;
+      description
+        "The number of seconds in the time interval.";
+    }
+    leaf msec {
+      type uint16 {
+        range "0..999";
+      }
+      default 0;
+      description
+        "The number of milliseconds in the time interval.";
+    }
+    reference
+      "ITU-T Q.821 v2.0 (02/2000): Annex A.7.";
+  }
+
+  grouping oam-dm-config {
+    description
+      "Delay Measurement OAM protocol (1DM or DMM/DMR)
+      configuration.";
+    leaf period {
+      type dm-period;
+      default "dm-period-100ms";
+      description
+        "The periodicity of the DM (1DM or DMM/DMR)
+        OAM messages.";
+      reference
+        "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+    }
+    leaf test-identifier {
+      type uint32;
+      description
+        "The value of the Test ID field within the optional
+        Test ID TLV.
+        
+        If not specified, the Test ID TLV is not included
+        in the OAM messages.";
+    }
+    leaf data-tlv-length {
+      type uint16;
+      description
+        "The Length of the optional Data TLV to be inserted in the
+        OAM PDU.
+        
+        When configuring this value, care must be taken to avoid
+        exceeding the maximum frame size limitations.
+        
+        If not specified, the Data TLV is not included
+        in the OAM messages.";
+    }
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 9.22, 9.23 and 9.24.";
+  }
+
+  grouping oam-sl-config {
+    description
+      "Synthetic Loss Measurement OAM protocol (1SL or SLM/SLR)
+      configuration.";
+    leaf period {
+      type sl-period;
+      default "sl-period-100ms";
+      description
+        "The periodicity of the SL (1SL or SLM/SLR) OAM messages.";
+      reference
+        "ITU-T G.8051 v6.0 (12/2020): Table 8-2.";
+    }
+    leaf test-identifier {
+      type uint32;
+      mandatory true;
+      description
+        "The value of the Test ID field.";
+    }
+    leaf data-tlv-length {
+      type uint16;
+      description
+        "The Length of the optional Data TLV to be inserted in the
+        OAM PDU.
+        
+        When configuring this value, care must be taken to avoid
+        exceeding the maximum frame size limitations.
+        
+        If not specified, the Data TLV is not included
+        in the OAM messages.";
+    }
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clause 9.22, 9.23 and 9.24.";
+  }
+
+  grouping oam-lm-config {
+    description
+      "Loss Measurement OAM protocol (LMM/LMR) configuration.";
+    leaf period {
+      type lm-period;
+      default "lm-period-100ms";
+      description
+        "The periodicity of the LM (LMM/LMR) OAM messages.";
+      reference
+        "ITU-T G.8151 v6.0 (10/2020): Table 8-2.";
+    }
+    reference
+      "ITU-T G.8013 v5.3 (08/2019): clauses 9.12 and 9.13.";
+  }
+
+  grouping pro-active-single-ended-dm-current-data {
+    description
+      "The pro-active single ended delay measurement PM data.";
+    container near-end-dm-data {
+      when "derived-from-or-self(../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active near-end delay measurement PM data.";
+      uses dm-performance-data;
+    }
+    container far-end-dm-data {
+      when "derived-from-or-self(../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active far-end delay measurement PM data.";
+      uses dm-performance-data;
+    }
+    container bidirectional-dm-data {
+      when "derived-from-or-self(../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active bidirectional delay measurement PM data.";
+      uses dm-performance-data;
+    }
+  }
+
+  grouping pro-active-single-ended-dm-history-data {
+    description
+      "The pro-active single ended delay measurement PM data.";
+    container near-end-dm-data {
+      when "derived-from-or-self(../../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active near-end delay measurement PM data.";
+      uses dm-performance-data;
+    }
+    container far-end-dm-data {
+      when "derived-from-or-self(../../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active far-end delay measurement PM data.";
+      uses dm-performance-data;
+    }
+    container bidirectional-dm-data {
+      when "derived-from-or-self(../../../../oam-type, 'oam-dm')" {
+        description
+          "When the OAM protocol is single-ended DMM/DMR.";
+      }
+      description
+        "The pro-active bidirectional delay measurement PM data.";
+      uses dm-performance-data;
+    }
+  }
+
+  // Editors' note: grouping dm-result added in v1.1
+    grouping dm-result {
+    description
+      "The results of an on-demand delay measurement job.";
+    leaf number-of-samples {
+      type uint16;
+      config false;
+      mandatory true;
+      description
+        "The number of received DM messages received in the 
+        measurement interval.";
+    }
+    leaf-list frame-delay {
+      type uint64;
+      units "nanoseconds";
+      config false;
+      description
+        "The list of frame delay measurements, reported in 
+        chronological order starting from the less recent.
+        
+        The multiplicity is defined by the number-of-samples 
+        attribute.";
+    }
+    leaf-list frame-delay-variation {
+      type int64;
+      units "nanoseconds";
+      config false;
+      description
+        "The list of frame delay variation measurements, reported in 
+        chronological order starting from the less recent.
+
+        The multiplicity is defined by (number-of-samples - 1), 
+        for number-of-samples > 0; or 0 otherwise.";
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2.";
+  }
+
+  // Editors' note: grouping lm-result added in v1.1
+  grouping lm-result {
+    description
+      "The results of an on-demand loss measurement job.";
+    leaf transmitted-frames {
+      type uint64;
+      description
+        "The total number of frames transmitted in the measurement 
+        interval.";
+    }
+    leaf lost-frames {
+      type int64;
+      description
+        "The total number of frames lost in the measurement 
+        interval.";
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2.";
+  }
+
+  // Editors' note: grouping on-demand-dual-ended-dm-data added in v1.1
+  grouping on-demand-dual-ended-dm-data {
+    description
+      "The results of an on-demand dual-ended delay measurement job.";
+    container near-end-dm-data {
+      // Editors' note: check the XPath
+      // when "derived-from-or-self(../../../oam-type, 'oam-1dm')" {
+      //   description
+      //     "When the OAM protocol is dual-ended 1DM.";
+      // }
+      description
+        "The near-end delay measurement PM results.";
+      uses dm-result;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2,";
+  }
+
+  // Editors' note: grouping on-demand-dual-ended-lm-data added in v1.1
+  grouping on-demand-dual-ended-lm-data {
+    description
+      "The results of an on-demand dual-ended loss measurement job.";
+    container near-end-lm-data {
+      description
+        "The near-end loss measurement PM results.";
+      uses lm-result;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2.";
+  }
+
+  // Editors' note: grouping dual-ended-pm-report added in v1.1
+  grouping dual-ended-pm-report {
+    description
+      "The report of a measurement interval of a dual-ended 
+      on-demand measurement job.";
+    leaf time-stamp {
+      type yang:date-and-time;
+      mandatory true;
+      description
+        "The time when the PM report has been generated.";
+    }
+    container lm-data {
+      // Editors' note: check the XPath
+      // when "derived-from-or-self(../../oam-type, 'oam-1sl')" {
+      //   description
+      //     "When the OAM protocol is dual-ended 1SL.";
+      // }
+      description
+        "The on-demand loss measurement PM data report.";
+      uses on-demand-dual-ended-lm-data;
+    }
+    container dm-data {
+      // Editors' note: check the XPath
+      // when "derived-from-or-self(../../oam-type, 'oam-1dm')" {
+      //   description
+      //     "When the OAM protocol is dual-ended 1DM.";
+      // }
+      description
+        "The on-demand delay measurement PM data report.";
+      uses on-demand-dual-ended-dm-data;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2";
+  }
+
+  // Editors' note: grouping on-demand-single-ended-dm-data added in v1.1
+  grouping on-demand-single-ended-dm-data {
+    description
+      "The results of an on-demand single-ended delay measurement job.";
+    container near-end-dm-data {
+      description
+        "The near-end delay measurement PM results.";
+      uses dm-result;
+    }
+    container far-end-dm-data {
+      description
+        "The far-end delay measurement PM results.";
+      uses dm-result;
+    }
+    container bidirectional-dm-data {
+      description
+        "The bidirectional delay measurement PM results.";
+      uses dm-result;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2.";
+  }
+
+  // Editors' note: grouping on-demand-single-ended-lm-data added in v1.1
+  grouping on-demand-single-ended-lm-data {
+    description
+      "The results of an on-demand single-ended loss measurement job.";
+    container near-end-lm-data {
+      description
+        "The near-end loss measurement PM results.";
+      uses lm-result;
+    }
+    container far-end-lm-data {
+      description
+        "The far-end loss measurement PM results.";
+      uses lm-result;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2.";
+  }
+
+  // Editors' note: grouping single-ended-pm-report added in v1.1
+  grouping single-ended-pm-report {
+    description
+      "The report of a measurement interval of a single-ended 
+      on-demand measurement job.";
+    leaf time-stamp {
+      type yang:date-and-time;
+      description
+        "The time when the PM report has been generated.";
+    }
+    container dm-data {
+      // Editors' note: check the XPath
+      // when "derived-from-or-self(../../../oam-type, 'oam-dm')" {
+      //   description
+      //     "When the OAM protocol is single-ended DMM/DMR.";
+      // }
+      description
+        "The on-demand delay measurement PM data report.";
+      uses on-demand-single-ended-dm-data;
+    }
+    container lm-data {
+      // Editors' note: check the XPath
+      // when "derived-from-or-self(../oam-type, 'oam-lm-lmm') or " 
+      //    + "derived-from-or-self(../oam-type, 'oam-sl')" {
+      //   description
+      //     "When the OAM protocol is single-ended LMM/LMR or 
+      //     single-ended SLM/SLR.";
+      // }
+      description
+        "The on-demand loss measurement PM data report.";
+      uses on-demand-single-ended-lm-data;
+    }
+    reference
+      "ITU-T G.8051 v6.0 (12/2020): clause 10.2";
+  }
+
+  // Editors' note: grouping on-demand-dual-ended-mea-job-control-target added in v1.1
+  grouping on-demand-dual-ended-mea-job-control-target {
+    description
+      "The attributes of an on-demand dual-ended measurement job 
+      control within a receiving MEP.
+      
+      If the start time is not
+      reached yet, the OAM PM process is not running: the OAM PM
+      resources are allocated but the received OAM messages are ignored
+      and no PM data is reported. After the start time is reached; if
+      the stop time is not reached yet, the OAM PM process is running:
+      the received OAM messages are processed, and the PM data are
+      collected and reported. If the stop time is reached or the
+      measurement job is aborted, the OAM PM process is stopped: the OAM
+      PM process resources are still allocated the received OAM messages
+      are ignored, and the PM data collected at the time the measurement
+      job has been stopped are still reported.";
+    leaf oam-type {
+      type dual-ended-oam-type;
+      must "not(derived-from-or-self(current(), 'oam-lm-ccm'))" {
+        error-message
+          "The dual-ended CCM OAM protocol cannot be used for " 
+          + "on-demand dual-ended measurement jobs.";
+        description
+          "The dual-ended CCM is not a dual-ended on-demand OAM protocol type.";
+      }
+      mandatory true;
+      description
+        "The type of the dual-ended on-demand OAM protocol.";
+    }
+    uses on-demand-measurement-job-control;
+
+    choice dual-ended-oam-type {
+      description
+        "The dual-ended OAM protocol.";
+      container dm {
+        // Editors' note: check the XPath
+        // when "derived-from-or-self(../oam-type, 'oam-1dm')" {
+        //   description
+        //     "When the OAM protocol is dual-ended 1DM.";
+        // }
+        leaf test-identifier {
+          type uint32;
+          description
+            "The value of the Test ID field within the optional
+            Test ID TLV.
+
+            If not specified, the Test ID TLV is not included in the
+            OAM messages.";
+          reference
+            "ITU-T G.8013 v5.3 (08/2019): clause 9.14.";
+        }
+        description
+          "Dual-ended 1DM OAM protocol.";
+      }
+      container sl {
+        // Editors' note: check the XPath
+        // when "derived-from-or-self(../oam-type, 'oam-1sl')" {
+        //   description
+        //     "When the OAM protocol is dual-ended 1SL.";
+        // }
+        leaf test-identifier {
+          type uint32;
+          mandatory true;
+          description
+            "The value of the Test ID field.";
+          reference
+            "ITU-T G.8013 v5.3 (08/2019): clause 9.24.";
+        }
+        description
+          "Dual-ended 1SL OAM protocol.";
+      }
+    }
+    list report {
+      key "time-stamp";
+      description
+        "The list of reports, one for each measurement interval, of 
+        the on-demand PM measurement job.
+        
+        A report is created at the end of a measurement interval 
+        when the results are ready to be reported.";
+      uses dual-ended-pm-report;
+    }
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2";
+  }
+
+  // Editors' note: grouping on-demand-dual-ended-mea-job-control-initiator added in v1.1
+  grouping on-demand-dual-ended-mea-job-control-initiator {
+    description
+      "The attributes of an on-demand dual-ended measurement job 
+      control within an initiating MEP.
+      
+      If the start time is not
+      reached yet, the OAM PM process is not running: the OAM PM
+      resources are allocated but the OAM messages are not generated.
+      After the start time is reached; if the stop time is not reached
+      yet, the OAM PM process is running: the OAM messages are
+      generated. If the stop time is reached or the measurement job is
+      aborted, the OAM PM process is stopped: the OAM PM process
+      resources are still allocated but OAM messages are not generated.";
+    leaf oam-type {
+      type dual-ended-oam-type;
+      must "not(derived-from-or-self(current(), 'oam-lm-ccm'))" {
+        error-message
+          "The dual-ended CCM OAM protocol cannot be used for " 
+          + "on-demand dual-ended measurement jobs.";
+        description
+          "The dual-ended CCM is not a dual-ended on-demand OAM protocol type.";
+      }
+      mandatory true;
+      description
+        "The type of the dual-ended on-demand OAM protocol.";
+    }
+    uses on-demand-measurement-job-control;
+
+    choice dual-ended-oam-type {
+      description
+        "The dual-ended OAM protocol.";
+      container dm {
+        when "derived-from-or-self(../oam-type, 'oam-1dm')" {
+          description
+            "When the OAM protocol is dual-ended 1DM.";
+        }
+        description
+          "Dual-ended 1DM OAM protocol configuration.";
+        uses oam-dm-config;
+      }
+      container sl {
+        when "derived-from-or-self(../oam-type, 'oam-1sl')" {
+          description
+            "When the OAM protocol is dual-ended 1SL.";
+        }
+        description
+          "Dual-ended 1SL OAM protocol configuration.";
+        uses oam-sl-config;
+      }
+    }
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2";
+  }
+
+  // Editors' note: grouping on-demand-single-ended-mea-job-control added in v1.1
+  grouping on-demand-single-ended-mea-job-control {
+    description
+      "The attributes of an on-demand single-ended measurement job 
+      control within an initiating MEP. 
+      
+      If the start
+      time is not reached yet, the OAM PM process is not running: the
+      OAM PM resources are allocated but the OAM messages are not
+      generated; the received, if any, OAM messages are ignored and no
+      PM data is reported. After the start time is reached; if the stop
+      time is not reached yet, the OAM PM process is running: the OAM
+      messages are generated; the received OAM messages are processed,
+      and the PM data are collected and reported. If the stop time is
+      reached or the measurement job is aborted, the OAM PM process is
+      stopped: the OAM PM process resources are still allocated but OAM
+      messages are not generated; the received OAM messages are ignored,
+      and the PM data collected at the time the measurement job has been
+      stopped are still reported.";
+    leaf oam-type {
+      type single-ended-oam-type;
+      mandatory true;
+      description
+        "The type of the single-ended on-demand OAM protocol.";
+    }
+    uses on-demand-measurement-job-control;
+    leaf destination-address {
+      type ieee:mac-address;
+      mandatory true;
+      description
+        "The Unicast MAC address of the target MEP.";
+    }
+    choice single-ended-oam-type {
+      description
+        "The single-ended OAM protocol.";
+      container dm {
+        when "derived-from-or-self(../oam-type, 'oam-dm')" {
+          description
+            "When the OAM protocol is single-ended DMM/DMR.";
+        }
+        description
+          "Single-ended DMM/DMR OAM protocol configuration.";
+        uses oam-dm-config;
+      }
+      container lm {
+        when "derived-from-or-self(../oam-type, 'oam-lm-lmm')" {
+          description
+            "When the OAM protocol is single-ended LMM/LMR.";
+        }
+        description
+          "Single-ended LMM/LMR OAM protocol configuration.";
+        uses oam-lm-config;
+      }
+      container sl {
+        when "derived-from-or-self(../oam-type, 'oam-sl')" {
+          description
+            "When the OAM protocol is single-ended SLM/SLR.";
+        }
+        description
+          "Single-ended SLM/SLR OAM protocol configuration.";
+        uses oam-sl-config;
+      }
+    }
+    list report {
+      key "time-stamp";
+      description
+        "This list of reports, one for each measurement interval, 
+        of the on-demand PM measurement job.
+        
+        A report is created at the end of a measurement interval 
+        when the results are ready to be reported.";
+      uses single-ended-pm-report;
+    }
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2";
+  }
+
+  // Editors' note: grouping on-demand-measurement-job-control added in v1.1
+  grouping on-demand-measurement-job-control {
+    description
+      "The common attributes of on-demand measurement job control.";
+    leaf start-time {
+      type yang:date-and-time;
+      description
+        "The nominal start time of the on-demand measurement job.
+        
+        By default, it is set to the time the on-demand measurement job is
+        created.";
+    }
+    leaf stop-time {
+      when "not (../oam-pdu-generation-type = 'single-instance')" {
+        description
+          "When the OAM PDU generation type is not a single 
+          instance type.";
+      }
+      type yang:date-and-time;
+      description
+        "The nominal stop time of the on-demand measurement job.";
+    }
+    leaf oam-pdu-generation-type {
+      type oam-pdu-generation-type;
+      mandatory true;
+      description
+        "The pattern that is used for the generation of OAM 
+        messages.";
+    }
+    leaf measurement-interval {
+      when "(../oam-pdu-generation-type = 'single-series') or "
+        + "(../oam-pdu-generation-type = 'repetitve-series')" {
+        description
+          "When the OAM PDU generation type is either a single 
+          series or a repetitive series.";
+      }
+      type uint16 {
+        range "30..max";
+      }
+      units "seconds";
+      mandatory true;
+      description
+        "The measurement interval.";
+    }
+    leaf repetition-period {
+      when "(../oam-pdu-generation-type = 'repetitive-instance') or "
+        + "(../oam-pdu-generation-type = 'repetitve-series')" {
+        description
+          "When the OAM PDU generation type is either a repetitive 
+          instance or a repetitive series.";
+      }
+      type uint32 {
+        range "6..max";
+      }
+      units "seconds";
+      mandatory true;
+      description
+        "The repetition period.";
+    }
+    leaf priority {
+      type dot1q-types:priority-type;
+      description
+        "The priority value on which the MEP performs the 
+        measurement.
+        
+        The default value is the same as the CCM priority.";
+      reference
+        "none";
+    }
+    reference
+      "ITU-T G.8151 v6.0 (10/2020): clause 10.2";
+  }
+
+  /*
+   * Data Nodes
+   */
+
+  augment "/co-oam:domains/co-oam:domain/co-oam:mas/co-oam:ma"
+        + "/co-oam:ma-name" {
+    when "derived-from-or-self(../../co-oam:technology,"
+       + "'mpls-tp')" {
+      description
+        "Augmentation for MPLS-TP G.8113.1 OAM.";
+    }
+    description
+      "Augment MA name.";
+    case ma-name-itu {
+      description
+        "ITU-T MEG-ID format.";
+      container ma-name-itu {
+        when "derived-from-or-self(../co-oam:ma-name-format,"
+           + "'ma-name-itu')" {
+          description
+            "MA Name format is ITU-T MEG ID.";
+        }
+        description
+          "Attributes for the ITU-T MEG-ID format.";
+        uses ma-name-itu;
+      }
+    }
+  }
+
+  augment "/co-oam:domains/co-oam:domain/co-oam:mas/co-oam:ma"
+        + "/co-oam:mip" {
+    when "derived-from-or-self(../../../co-oam:technology,"
+       + "'mpls-tp')" {
+      description
+        "Augmentation for MPLS-TP G.8113.1 OAM.";
+    }
+    description
+      "Augment MIP.";
+    leaf is-full-mip {
+      type boolean;
+      default "true";
+      config false;
+      description
+        "This attribute indicates whether the MIP is a full MIP
+        (true) or a down-half MIP (false).";
+    }
+  }
+
+  augment
+    "/co-oam:domains"+
+    "/co-oam:domain"+
+    "/co-oam:mas"+
+    "/co-oam:ma"+
+    "/co-oam:mep"+
+    "/co-oam:session" {
+    when "derived-from-or-self(../../../../co-oam:technology,"
+       + "'mpls-tp')" {
+      description
+        "Augmentation for MPLS-TP G.8113.1 OAM.";
+    }
+    description
+      "Augment Session.";
+    choice session-type {
+      description
+        "The type of MPLS-TP session.";
+      container pro-active-single-ended-measurement-job {
+        description
+          "A pro-active single-ended measurement job.";
+        container control {
+          description
+            "A pro-active single-ended measurement job control
+            within a initiating MEP.";
+          uses pro-active-single-ended-mea-job-control;
+        }
+        reference
+          "ITU-T G.8151 v6.0 (10/2020): clause 10.2.";
+      }
+      container pro-active-dual-ended-measurement-job {
+        description
+          "A pro-active dual-ended measurement job.";
+        choice role {
+          description
+            "The role of the measurement job control.";
+          container initiator {
+            description
+              "A pro-active dual-ended measurement job control
+              within an initiating MEP.";
+            uses pro-active-dual-ended-mea-job-control-initiator;
+          }
+          container target {
+            description
+              "A pro-active dual-ended measurement job control
+              within a receiving MEP.";
+            uses pro-active-dual-ended-mea-job-control-target;
+          }
+        }
+        reference
+          "ITU-T G.8151 v6.0 (10/2020): clause 10.2.";
+      }
+    }
+  }
+
+  augment "/co-oam:domains/co-oam:domain/co-oam:mas/co-oam:ma"
+        + "/co-oam:mep" {
+    when "derived-from-or-self(../../../co-oam:technology,"
+       + "'mpls-tp')" {
+      description
+        "Augmentation for MPLS-TP G.8113.1 OAM.";
+    }
+    description
+      "Augment MEP.";
+    leaf mep-type {
+      type mep-type;
+      mandatory true;
+      description
+        "The type of MEP: per-node, Down MEP or Up MEP.";
+      reference
+        "ITU-T G.8113.1 v2.1 (11/2016): clause 6.3.";
+    }
+    leaf tcm-mep {
+      type boolean;
+      default false;
+      description
+        "It indicates whether the MEP is TCM or NCM.";
+    }
+    container mt-ais {
+      when "../tcm-mep" {
+        description
+          "When the MEP is a TCM MEP.";
+      }
+      description
+        "Configuration of AIS generation.";
+      uses mt-ais-lck-common;
+    }
+    container mt-lck {
+      when "../tcm-mep" {
+        description
+          "When the MEP is a TCM MEP.";
+      }
+      description
+        "Configuration of LCK generation.";
+      uses mt-ais-lck-common;
+    }
+  }
+
+  augment "/co-oam:domains/co-oam:domain/co-oam:mas/co-oam:ma" {
+    when "derived-from-or-self(../../co-oam:technology,"
+       + "'mpls-tp')" {
+      description
+        "Augmentation for MPLS-TP G.8113.1 OAM.";
+    }
+    description
+      "Augment Maintenance Association.";
+    leaf cc-period {
+      type cc-period;
+      default 1sec;
+      description
+        "The periodicity of the CCM OAM packets.";
+      reference
+        "ITU-T G.8113.1 v2.1 (11/2016): clause 9.1.1.";
+    }
+  }
+}

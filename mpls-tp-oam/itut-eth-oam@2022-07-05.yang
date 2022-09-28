@@ -1,0 +1,2336 @@
+module itut-eth-oam {
+    namespace "urn:itu:t:rec:g.8052.1:yang:itut-eth-oam";
+    prefix itut-eth-oam;
+    import ieee802-dot1q-cfm {
+        prefix ieee802-dot1q-cfm;
+    }
+    import ieee802-dot1q-cfm-types {
+        prefix ieee802-dot1q-cfm-types;
+    }
+    import ieee802-dot1q-types {
+        prefix ieee802-dot1q-types;
+    }
+    import ieee802-types {
+        prefix ieee802-types;
+    }
+    import ieee802-dot1q-cfm {
+       prefix dot1q-cfm;
+    }
+    organization "ITU-T Study Group 15 (SG15) Question 14 (Q14/15)";
+    contact "
+        Q14/15 Web: <https://www.itu.int/en/ITU-T/studygroups/
+                     2017-2020/15/Pages/q14.aspx>
+        
+        Q14/15 List: <t17sg15q14@lists.itu.int>
+        
+        
+        Editor:   Kam LAM
+                  <mailto:kam.lam@fhusainc.com>
+        
+        Editor:   Xiang YUN
+                  <mailto:yunxig@fiberhome.com>
+        
+        Editor:   Scott MANSFIELD
+                  <scott.mansfield@ericsson.com>
+        
+        Editor:   Italo BUSI
+                  <Italo.Busi@huawei.com>";
+    description "This itut-eth-oam UML model (module) of ITU-T Recommendation G.8052.1 specifies the Transport Ethernet OAM information model, which is pruned and refactored from the base G.8052 UML model. 
+        Version 2.00 (09/2022)";
+    revision 2022-07-05 {
+        description "Initial Version.";
+        reference "ITU-T G.8052.1 v1.0.4 (2022/XX)";
+    }
+    augment "/dot1q-cfm:cfm/dot1q-cfm:maintenance-domain"{        uses eth-mip-spec;        description "none";    }    augment "/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep"{        uses eth-mep-oam-spec;        description "none";    }    /********************************************
+    * grouping statements for object references
+    ********************************************/ 
+        grouping alarm-severity-assignment-profile-ref {
+            leaf alarm-severity-assignment-profile-asap-id {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:asap/itut-eth-oam:asap-id';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping threshold-profile-ref {
+            leaf threshold-profile-threshold-profile-id {
+                type leafref {
+                    path '../tp-dummy';
+                }
+                description "none";
+                reference "none";
+            }
+            leaf tp-dummy {
+               type string;
+            }
+            uses current-data-ref;
+            description "none";
+            reference "none";
+        }
+        grouping current-data-ref {
+            leaf current-data-granularity-period {
+                type leafref {
+                    path '../cd-dummy';
+                }
+                description "none";
+                reference "none";
+            }
+            leaf cd-dummy {
+               type string;
+            }
+            description "none";
+            reference "ITU-T Recommendation Q.822 1994-04: 4.3.1.1";
+        }
+        grouping dual-ended-current-data-ref {
+            leaf dual-ended-current-data-granularity-period {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:measurement-job/itut-eth-oam:pro-active-dual-ended/itut-eth-oam:target/itut-eth-oam:current-data/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping dual-ended-history-data-ref {
+            leaf dual-ended-history-data-period-end-time {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:measurement-job/itut-eth-oam:pro-active-dual-ended/itut-eth-oam:target/itut-eth-oam:current-data/itut-eth-oam:history-data/itut-eth-oam:period-end-time';
+                }
+                description "none";
+                reference "none";
+            }
+            uses dual-ended-current-data-ref;
+            description "none";
+            reference "none";
+        }
+        grouping single-ended-current-data-ref {
+            leaf single-ended-current-data-granularity-period {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:measurement-job/itut-eth-oam:pro-active-single-ended/itut-eth-oam:control/itut-eth-oam:current-data/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping single-ended-history-data-ref {
+            leaf single-ended-history-data-period-end-time {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:measurement-job/itut-eth-oam:pro-active-single-ended/itut-eth-oam:control/itut-eth-oam:current-data/itut-eth-oam:history-data/itut-eth-oam:period-end-time';
+                }
+                description "none";
+                reference "none";
+            }
+            uses single-ended-current-data-ref;
+            description "none";
+            reference "none";
+        }
+        grouping history-data-ref {
+            leaf history-data-period-end-time {
+                type leafref {
+                    path '/itut-eth-oam:history-data/itut-eth-oam:period-end-time';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.1.12.";
+        }
+        grouping mip-ref {
+            leaf mip-name {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-domain/itut-eth-oam:mip/itut-eth-oam:name';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "ITU-T G.8013 v5.3 (08/2019): clauses 3.2.9 and 6.";
+        }
+        grouping eth-mea-job-pac-ref {
+            leaf eth-mea-job-pac-measurement-job-id {
+                type leafref {
+                    path '/dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep/itut-eth-oam:measurement-job/itut-eth-oam:measurement-job-id';
+                }
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping alarm-severity-assignment-ref {
+            leaf alarm-severity-assignment-problem {
+                type leafref {
+                    path '/itut-eth-oam:alarm-severity-assignment/itut-eth-oam:problem';
+                }
+                description "none";
+                reference "none";
+            }
+            uses alarm-severity-assignment-profile-ref;
+            description "none";
+            reference "none";
+        }
+        grouping one-dm-threshold-values-ref {
+            leaf one-dm-threshold-values-granularity-period {
+                type leafref {
+                    path '/itut-eth-oam:one-dm-threshold-values/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            uses threshold-profile-ref;
+            description "none";
+            reference "none";
+        }
+        grouping one-lm-threshold-values-ref {
+            leaf one-lm-threshold-values-granularity-period {
+                type leafref {
+                    path '/itut-eth-oam:one-lm-threshold-values/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            uses threshold-profile-ref;
+            description "none";
+            reference "none";
+        }
+        grouping dm-threshold-values-ref {
+            leaf dm-threshold-values-granularity-period {
+                type leafref {
+                    path '/itut-eth-oam:dm-threshold-values/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            uses threshold-profile-ref;
+            description "none";
+            reference "none";
+        }
+        grouping lm-threshold-values-ref {
+            leaf lm-threshold-values-granularity-period {
+                type leafref {
+                    path '/itut-eth-oam:lm-threshold-values/itut-eth-oam:granularity-period';
+                }
+                description "none";
+                reference "none";
+            }
+            uses threshold-profile-ref;
+            description "none";
+            reference "none";
+        }
+
+    /****************************************
+    * grouping statements for object classes
+    **************************************/ 
+        grouping alarm-severity-assignment-profile {
+            leaf asap-id {
+                type string;
+                description "An identifier of the AlarmSeverityAssignmentProfile object.";
+                reference "none";
+            }
+            list alarm-severity-assignment {
+                key 'problem';
+                uses alarm-severity-assignment;
+                description "A list of all abnormal conditions that may exist in instances of an object class, 
+                    and provides the assigned alarm severity information (minor, major, etc.) for each condition.";
+                reference "none";
+            }
+            description "The alarm severity assignment profile object class is a class of management support object that specifies the alarm severity assignment for managed objects. 
+                ";
+            reference "none";
+        }
+        grouping threshold-profile {
+            list dm-threshold-list {
+                key 'granularity-period';
+                uses dm-threshold-values;
+                description "This attribute contains the threshold settings for the delay measurements (2-way) in the current registers. 
+                    This attribute is defined as a list because it may contain lists for different granularity periods (e.g., 24hr, 15min, ...).";
+                reference "none";
+            }
+            list one-dm-threshold-list {
+                key 'granularity-period';
+                uses one-dm-threshold-values;
+                description "This attribute contains the threshold settings for the delay measurements (1-way) in the current registers. 
+                    This attribute is defined as a list because it may contain lists for different granularity periods (e.g., 24hr, 15min, ...).";
+                reference "none";
+            }
+            list lm-threshold-list {
+                key 'granularity-period';
+                uses lm-threshold-values;
+                description "This attribute contains the threshold settings for the frame loss measurements (2-way) in the current registers. 
+                    This attribute is defined as a list because it may contain lists for different granularity periods (e.g., 24hr, 15min, ...).";
+                reference "none";
+            }
+            list one-lm-threshold-list {
+                key 'granularity-period';
+                uses one-lm-threshold-values;
+                description "This attribute contains the threshold settings for the frame loss measurements (1-way) in the current registers. 
+                    This attribute is defined as a list because it may contain lists for different granularity periods (e.g., 24hr, 15min, ...).";
+                reference "none";
+            }
+            leaf threshold-profile-id {
+                type string;
+                config false;
+                description "The identifier of the threshold profile object.";
+                reference "none";
+            }
+            description "This object class defines the PM threshold settings in the network element.
+                Multiple ThresholdProfile instances may be created to support, e.g., different grade of services.
+                These profiles are associated to the Current Data object instances modelling the current registers via a pointer from the Current Data instances.
+                Basic attribute: _associatedCurrentDataList
+                1DM threshold related attribute: 1DmThresholdList
+                1LM threshold related attribute: 1LmThresholdList
+                DM threshold related attribute: dmThresholdList
+                LM threshold related attribute: lmThresholdList";
+            reference "none";
+        }
+        grouping current-data {
+            list associated-threshold-profile {
+                key 'threshold-profile-threshold-profile-id';
+                uses threshold-profile-ref;
+                description "This attribute points to the associated ThresholdProfile intances that are used by the CurrentData for thresholding.";
+                reference "none";
+            }
+            leaf suspect-interval-flag {
+                type boolean;
+                config false;
+                description "The suspect interval flag.";
+                reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.14.";
+            }
+            container elapsed-time {
+                config false;
+                uses time-interval;
+                description "The difference between the current time and the start time of this current data.";
+                reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.2.";
+            }
+            leaf granularity-period {
+                type granularity-period;
+                description "The granularity period (e.g., 15min/24h) of the Current Data. ";
+                reference "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2";
+            }
+            leaf start-time {
+                type generalized-time;
+                config false;
+                description "The interval start time. 
+                    The value is bound to the quarter of an hour in case of a 15 minute interval and bound to the hour in case of a 24 hour interval.";
+                reference "none";
+            }
+            description "The common attributes used by the performance monitoring Current Data.";
+            reference "ITU-T Recommendation Q.822 1994-04: 4.3.1.1";
+        }
+        grouping dual-ended-current-data {
+            container dm-data {
+                if-feature when-the-oamtype-is-1dm;
+                config false;
+                uses pro-active-dual-ended-dm-data;
+                description "The current pro-active delay measurement PM data.";
+                reference "none";
+            }
+            list history-data {
+                key 'period-end-time';
+                uses dual-ended-history-data;
+                description "The list of PM history data of a current data collected by a pro-active dual-ended measurement job.";
+                reference "none";
+            }
+            container lm-data {
+                if-feature when-the-oamtype-is-1sl-or-lm_ccm;
+                config false;
+                uses pro-active-dual-ended-lm-data;
+                description "The current pro-active loss measurement PM data.";
+                reference "none";
+            }
+            uses current-data;
+            description "The PM current data collected by a pro-active dual-ended measurement job.";
+            reference "none";
+        }
+        grouping dual-ended-history-data {
+            container dm-data {
+                if-feature when-the-oamtype-is-1dm;
+                config false;
+                uses pro-active-dual-ended-dm-data;
+                description "The history pro-active dual-ended delay measurement PM data.";
+                reference "none";
+            }
+            container lm-data {
+                if-feature when-the-oamtype-is-1sl-or-lm_ccm;
+                config false;
+                uses pro-active-dual-ended-lm-data;
+                description "The history pro-active dual-ended loss measurement PM data.";
+                reference "none";
+            }
+            uses history-data;
+            description "The PM history data of a current data collected by a pro-active dual-ended measurement job.";
+            reference "none";
+        }
+        grouping single-ended-current-data {
+            container lm-data {
+                config false;
+                uses pro-active-single-ended-lm-data;
+                description "This attribute contains the pro-active loss measurement PM data.";
+                reference "none";
+            }
+            list history-data {
+                key 'period-end-time';
+                uses single-ended-history-data;
+                description "The list of PM history data of a current data collected by a pro-active single-ended measurement job.";
+                reference "none";
+            }
+            container dm-data {
+                if-feature when-the-oamtype-is-dmm-dmr;
+                config false;
+                uses pro-active-single-ended-dm-data;
+                description "The current pro-active delay measurement PM data.";
+                reference "none";
+            }
+            uses current-data;
+            description "The PM current data collected by a pro-active single-ended measurement job.";
+            reference "none";
+        }
+        grouping single-ended-history-data {
+            container lm-data {
+                config false;
+                uses pro-active-single-ended-lm-data;
+                description "This attribute contains the near and far end pro-active PM data.";
+                reference "none";
+            }
+            container dm-data {
+                if-feature when-the-oamtype-is-dmm-dmr;
+                config false;
+                uses pro-active-single-ended-dm-data;
+                description "The history pro-active single-ended delay measurement PM data.";
+                reference "none";
+            }
+            uses history-data;
+            description "The PM history data of a current data collected by a pro-active single-ended measurement job.";
+            reference "none";
+        }
+        grouping history-data {
+            leaf period-end-time {
+                type generalized-time;
+                description "This attribute contains the time at the end of the interval.";
+                reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.12.";
+            }
+            leaf granularity-period {
+                type granularity-period;
+                config false;
+                description "The granularity period (e.g., 15min/24h) of the History Data.";
+                reference "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.";
+            }
+            leaf suspect-interval-flag {
+                type boolean;
+                config false;
+                description "The suspected interval flag.";
+                reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.3.14.";
+            }
+            description "The common attributes used by the performance monitoring History Data.";
+            reference "ITU-T Q.822 v1.1 (03/2003): clause 4.3.1.12.";
+        }
+        grouping on-demand-dual-ended-mea-job {
+            container target {
+                uses on-demand-dual-ended-mea-job-control-target;
+                description "none";
+                reference "none";
+            }
+            container initiator {
+                uses on-demand-dual-ended-mea-job-control-initiator;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping on-demand-single-ended-mea-job {
+            container control {
+                uses on-demand-single-ended-mea-job-control;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping pro-active-dual-ended-mea-job {
+            container target {
+                uses pro-active-dual-ended-mea-job-control-target;
+                description "A pro-active dual-ended measurement job control within a receiving MEP.";
+                reference "none";
+            }
+            container initiator {
+                uses pro-active-dual-ended-mea-job-control-initiator;
+                description "A pro-active dual-ended measurement job control within an initiating MEP.";
+                reference "none";
+            }
+            description "It contains the attributes of a pro-active dual-ended measurement job.
+                ";
+            reference "none";
+        }
+        grouping pro-active-single-ended-mea-job {
+            container control {
+                uses pro-active-single-ended-mea-job-control;
+                description "A pro-active single-ended measurement job control within an initiating MEP.";
+                reference "none";
+            }
+            description "It contains the attributes of a pro-active single-ended measurement job.";
+            reference "none";
+        }
+        grouping on-demand-dual-ended-mea-job-control-target {
+            leaf start-time {
+                type generalized-time;
+                config false;
+                description "Start time of the on-demand measurement job.";
+                reference "none";
+            }
+            leaf stop-time {
+                type generalized-time;
+                config false;
+                description "Stop time of the on-demand measurement job.
+                    If the stop time is not reached yet, the OAM PM process is running: the received OAM messages are processed, and the PM data are collected and reported. 
+                    If the stop time is reached, the OAM PM process is stopped: the OAM PM process resources are still allocated but the received OAM messages are ignored, and the PM data collected at the time the OAM PM process is stopped are still reported.";
+                reference "none";
+            }
+            leaf source-address {
+                type mac-address;
+                config false;
+                description "This attribute contains the MAC address of the peer MEP. See G.8013 for details.";
+                reference "none";
+            }
+            leaf oam-type {
+                type dual-ended-oam-type;
+                config false;
+                description "This attribute contains the type of the 1-way measurement.";
+                reference "none";
+            }
+            leaf test-identifier {
+                if-feature mandatory-1sl-optional-1dm-;
+                type int64 {
+                    range "0..4294967295";
+                }
+                config false;
+                description "This attribute is used to distinguish each measurement session if multiple measurement sessions are simultaneously activated towards a peer MEP including concurrent on-demand and proactive tests. It must be unique at least within the context of any measurement type for the MEG and initiating MEP.";
+                reference "none";
+            }
+            container on-demand-performance-data {
+                config false;
+                uses on-demand-sink-performance-data;
+                description "This attribute provides the final (at the end of the measurement interval) PM data report. The management system receives the final PM data report via the attributeValueChangeNotification of this attribute.";
+                reference "none";
+            }
+            leaf priority {
+                type string {
+                }
+                config false;
+                description "The priority value of the OAM messages generated by the MEP for this measurement job. 
+                    The default value is the same as the CCM priority.";
+                reference "none";
+            }
+            description "It is created as a result of an establishOnDemandDualEndedMeasurementJobSink() operation. It is deleted either automatically after the measurement job has completed (stop time reached) and the performance data AVC notification has been sent, or by an explicit abortOnDemandMeasurementJob() operation when the measurement job is running.
+                It contains the attributes of an on-demand dual-ended measurement job control within a receiving MEP.
+                Basic attributes: oamType, priority, sourceAddress, startTime, stopTime, testIdentifier
+                Performance data related attribute: onDemandPerformanceData
+                Performance data related operation: getIntermediateReport";
+            reference "none";
+        }
+        grouping on-demand-dual-ended-mea-job-control-initiator {
+            leaf oam-type {
+                type dual-ended-oam-type;
+                config false;
+                description "This attribute contains the type of the 1-way measurement.";
+                reference "none";
+            }
+            container dm {
+                uses oam-dm-config;
+                description "none";
+                reference "none";
+            }
+            container sl {
+                uses oam-sl-config;
+                description "none";
+                reference "none";
+            }
+            uses on-demand-measurement-job-control;
+            description "It contains the attributes of an on-demand dual-ended measurement job control within an initiating MEP.
+                The description of the inherited stopTime attribute is redefined as:
+                If the stop time is not reached yet, the OAM PM process is running: the OAM messages are generated. 
+                If the stop time is reached, the OAM PM process is stopped: the OAM PM process resources are still allocated but OAM messages are not generated.";
+            reference "none";
+        }
+        grouping on-demand-measurement-job-control {
+            leaf start-time {
+                type generalized-time;
+                description "Start time of the on-demand measurement job.";
+                reference "none";
+            }
+            leaf stop-time {
+                type generalized-time;
+                description "Stop time of the on-demand measurement job.";
+                reference "none";
+            }
+            leaf destination-address {
+                type mac-address;
+                config false;
+                description "This attribute contains the MAC address of the peer MEP. See G.8013 for details.";
+                reference "none";
+            }
+            leaf oam-pdu-generation-type {
+                type oam-pdu-generation-type;
+                config false;
+                description "This attribute contains the pattern that is used for the generation of OAM PDUs.";
+                reference "none";
+            }
+            leaf measurement-interval {
+                type int64;
+                description "This attribute contains the discrete non overlapping periods of time (in seconds) during which measurements are performed (i.e., OAM messages are generated) and reports are gathered at the end of the measurement intervals. 
+                    Note that the value 0 means a degenerated measurement interval with a single OAM message and the report is sent as immediately as possible.";
+                reference "none";
+            }
+            leaf repetition-period {
+                type repetition-period;
+                description "This attribute contains the time between the start of two measurement intervals. This IS applicable for the repetitive instance type and MAY be applicable for the repetitive series type. 
+                    Note that a value of 0 means not applicable (NA), which is for the cases of single instance, single series, or repetitive series without extra gap in between the measurement intervals (i.e., also as known as continuous series).";
+                reference "none";
+            }
+            leaf priority {
+                type string {
+                }
+                config false;
+                description "The priority value of the OAM messages generated by the MEP for this measurement job. 
+                    The default value is the same as the CCM priority.";
+                reference "none";
+            }
+            description "This object class contains the common attributes representing the configuration of an on-demand measurement job.
+                Basic attributes: destinationAddress, priority
+                Measurement configuration related attributes: oamPduGenerationType, startTime, stopTime, messagePeriod, repetitionPeriod, measurementInterval
+                Optional attributes: dataTlvLength, testIdentifier";
+            reference "none";
+        }
+        grouping on-demand-single-ended-mea-job-control {
+            leaf oam-type {
+                type single-ended-oam-type;
+                config false;
+                description "This attribute contains the type of the 2-way measurement.";
+                reference "none";
+            }
+            container on-demand-performance-data {
+                config false;
+                uses on-demand-performance-data;
+                description "This attribute provides the final (at the end of the measurement interval) PM data report. The OS receives the final PM data report via the attributeValueChangeNotification of this attribute.";
+                reference "none";
+            }
+            container dm {
+                uses oam-dm-config;
+                description "none";
+                reference "none";
+            }
+            container sl {
+                uses oam-sl-config;
+                description "none";
+                reference "none";
+            }
+            container lm {
+                uses oam-lm-config;
+                description "none";
+                reference "none";
+            }
+            uses on-demand-measurement-job-control;
+            description "It contains the attributes of an on-demand single-ended measurement job control within an initiating MEP.
+                The description of the inherited stopTime attribute is redefined as:
+                If the stop time is not reached yet, the OAM PM process is running: the OAM messages are generated; the received OAM messages are processed, and the PM data are collected and reported. 
+                If the stop time is reached, the OAM PM process is stopped: the OAM PM process resources are still allocated but OAM messages are not generated; the received OAM messages are ignored, and the PM data collected at the time the measurement job has been stopped are still reported.";
+            reference "none";
+        }
+        grouping pro-active-dual-ended-mea-job-control-target {
+            leaf enabled {
+                type boolean;
+                default "true";
+                description "Enables the pro-active measurement job.
+                    If set to True, the OAM PM process is running: the received OAM messages are processed and the PM data are collected and reported. 
+                    If set to False, the OAM PM process is stopped: the OAM PM process resources are still allocated but the received OAM messages are ignored and the PM data collected at the time the measurement job has been disabled are still reported; the current data suspect interval flag is set.  ";
+                reference "none";
+            }
+            leaf source-address {
+                if-feature oamtype-is-1dm-or-1sl;
+                type string;
+                description "This attribute contains the MAC address of the peer MEP. 
+                    ";
+                reference "ITU-T G.8013 v5.3 (08/2019): clause 10.";
+            }
+            leaf test-identifier {
+                if-feature mandatory-1sl-optional-1dm-not-supported-lm_ccm;
+                type uint32;
+                description "This attribute is used to distinguish each measurement session if multiple measurement sessions are simultaneously activated towards a peer MEP including concurrent on-demand and proactive tests. It must be unique at least within the context of any measurement type for the MEG and initiating MEP.";
+                reference "ITU-T G.8013 v5.3 (08/2019): clauses 9.14 and 9.24; ITU-T G.8021 v7.1 (08/2019): clauses 8.1.11 and 8.1.15; ITU-T G.8051 v6.0 (AAP): Table 8-2; ";
+            }
+            leaf oam-type {
+                type dual-ended-oam-type;
+                description "The type of the dual-ended OAM protocol.";
+                reference "ITU-T G.8013 v5.3 (08/2019): clause 3.2.1.";
+            }
+            list current-data {
+                key 'granularity-period';
+                min-elements 1;
+                uses dual-ended-current-data;
+                description "The list of PM current data (one per granularity period) collected by a pro-active dual-ended measurement job.
+                    ";
+                reference "none";
+            }
+            leaf priority {
+                if-feature this-attribute-applies-only-when-oamtype-1dm-or-1sl;
+                type string;
+                description "The priority value on which the MEP performs the measurement.
+                    The default value is the same as the CCM priority.";
+                reference "none";
+            }
+            description "It contains the attributes of a pro-active dual-ended measurement job control within a receiving MEP.
+                ";
+            reference "none";
+        }
+        grouping pro-active-dual-ended-mea-job-control-initiator {
+            container dm {
+                uses oam-dm-config;
+                description "Dual-ended 1DM OAM protocol configuration.";
+                reference "none";
+            }
+            container sl {
+                uses oam-sl-config;
+                description "Dual-ended 1SL OAM protocol configuration.";
+                reference "none";
+            }
+            uses pro-active-measurement-job-control;
+            description "It contains the attributes of a pro-active dual-ended measurement job control within an initiating MEP.
+                The description of the enabled attribute is redefined as:
+                If set to True, the OAM PM process is running: the OAM messages are generated. 
+                If set to False, the OAM PM process is stopped: the OAM PM process resources are still allocated but OAM messages are not generated.";
+            reference "none";
+        }
+        grouping pro-active-measurement-job-control {
+            leaf enabled {
+                type boolean;
+                default "true";
+                description "Enables the pro-active measurement job.";
+                reference "none";
+            }
+            leaf destination-address {
+                if-feature when-the-oamtype-is-not-ccm;
+                type mac-address;
+                description "The Unicast MAC address of the target MEP.";
+                reference "ITU-T G.8013 v5.3 (08/2019): clause 10.";
+            }
+            leaf priority {
+                type string {
+                }
+                description "The priority value of the OAM messages generated by the MEP for this measurement job. 
+                    The default value is the same as the CCM priority.";
+                reference "none";
+            }
+            container oam-type {
+                uses oam-type;
+                description "The type of the OAM protocol.";
+                reference "none";
+            }
+            description "The common attributes of a pro-active measurement job control.
+                ";
+            reference "none";
+        }
+        grouping pro-active-single-ended-mea-job-control {
+            list current-data {
+                key 'granularity-period';
+                min-elements 1;
+                uses single-ended-current-data;
+                description "The list of PM current data (one per granularity period) collected by a pro-active single-ended measurement job.";
+                reference "none";
+            }
+            container deg-detection {
+                uses deg-detection;
+                description "This attribute provides the configuration parameters for detecting 'degraded signal' (DEG). 
+                    It is applicable only if the OAM Type is set to LM CCM.
+                    In G.8052.1 v0.12, this attribure is created to refactor/replace the _proActiveCcmSinkAttributeList attribute (which points to the DegradedDetection class) in G,8052 v3.0.";
+                reference "none";
+            }
+            container dm {
+                uses oam-dm-config;
+                description "Single-ended DMM/DMR OAM protocol configuration.";
+                reference "none";
+            }
+            container sl {
+                uses oam-sl-config;
+                description "Single-ended SLM/SLR OAM protocol configuration.";
+                reference "none";
+            }
+            container lm {
+                uses oam-lm-config;
+                description "Single-ended LMM/LMR OAM protocol configuration.";
+                reference "none";
+            }
+            uses pro-active-measurement-job-control;
+            description "It contains the attributes of a pro-active single-ended measurement job control within an initiating MEP.
+                The description of the enabled attribute is redefined as:
+                If set to True, the OAM PM process is running: the OAM messages are generated; the received OAM messages are processed and the PM data are collected and reported. 
+                If set to False, the OAM PM process is stopped: the OAM PM process resources are still allocated but OAM messages are not generated; the received OAM messages are ignored and the PM data collected at the time the measurement job has been disabled are still reported; the current data suspect interval flag is set.";
+            reference "none";
+        }
+        grouping eth-mip-spec {
+            list mip {
+                key 'name';
+                uses mip;
+                description "The list of MIPs.";
+                reference "none";
+            }
+            description "Augment the Maintenance Domain.";
+            reference "none";
+        }
+        grouping mip {
+            leaf mip-mac {
+                type mac-address;
+                config false;
+                description "This attribute contains the MAC address of the MIP instance.";
+                reference "none";
+            }
+            leaf is-full-mip {
+                type boolean;
+                default "true";
+                config false;
+                description "This attribute indicates whether the MIP is a full MIP (true) or a down-half MIP (false).";
+                reference "none";
+            }
+            leaf name {
+                type string;
+                description "An identifier of the MIP.";
+                reference "none";
+            }
+            description "This object class models the MIP Sink and MIP Source functions. Only the bidirectional MIP is defined in the model.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clauses 3.2.9 and 6.";
+        }
+        grouping eth-mea-job-pac {
+            container pro-active-dual-ended {
+                uses pro-active-dual-ended-mea-job;
+                description "A pro-active dual-ended measurement job.";
+                reference "none";
+            }
+            container on-demand-dual-ended-mea-job {
+                uses on-demand-dual-ended-mea-job;
+                description "none";
+                reference "none";
+            }
+            container pro-active-single-ended {
+                uses pro-active-single-ended-mea-job;
+                description "A pro-active single-ended measurement job.";
+                reference "none";
+            }
+            container on-demand-single-ended-mea-job {
+                uses on-demand-single-ended-mea-job;
+                description "none";
+                reference "none";
+            }
+            leaf measurement-job-id {
+                type string;
+                description "The identifier of a measurement job instance.";
+                reference "none";
+            }
+            description "The Measurement Job that is being performed by the MEP.";
+            reference "none";
+        }
+        container eth-mep-oam-spec {
+            uses eth-mep-oam-spec;
+            description "none";
+            reference "none";
+        }
+        grouping eth-mep-oam-spec {
+            container eth-ais {
+                if-feature when-the-mep-is-a-tcm-mep;
+                uses eth-ais-lck-common;
+                description "Configuration of AIS generation.";
+                reference "ITU-T G.8021 v7.1 (08/2019): clause 8.1.2.";
+            }
+            container eth-lck {
+                if-feature when-the-mep-is-a-tcm-mep;
+                uses eth-ais-lck-common;
+                description "Configuration of LCK generation.";
+                reference "ITU-T G.8021 v7.1 (08/2019): clause 8.1.2.";
+            }
+            container eth-csf {
+                uses eth-csf;
+                description "This attribute specifies for configuring the parameters of the CSF Source process and CSF Sink process.";
+                reference "none";
+            }
+            leaf eth-aps {
+                type eth-aps;
+                description "This attribute specifies for configuring the parameters of the APS process.";
+                reference "none";
+            }
+            container eth-bw {
+                uses eth-bw;
+                description "This attribute specifies for configuring the parameters of the BW process.";
+                reference "none";
+            }
+            leaf-list eth-alarm {
+                type eth-mep-alarm;
+                description "This attribute indicates the active alarm of the subject Mep instance.";
+                reference "none";
+            }
+            container asap {
+                uses alarm-severity-assignment-profile;
+                description "none";
+                reference "none";
+            }
+            list measurement-job {
+                key 'measurement-job-id';
+                uses eth-mea-job-pac;
+                description "The list of Measurement Jobs that are being performed by the MEP.";
+                reference "none";
+            }
+            leaf tcm-mep {
+                type boolean;
+                description "It indicates whether the MEP is TCM or NCM.
+                    If it is not present, it is not specified whether the MEP is TCM or NCM.";
+                reference "ITU-T G.8052 v3.0 (12/2018): clause 5.2.1.";
+            }
+            leaf client-mel {
+                if-feature when-the-mep-is-a-tcm-mep;
+                type string;
+                description "The Maintenance Domain level (MEG level) at which the most immediate client sub-layer MIPs and MEPs exist.";
+                reference "ITU-T G.8013 v5.3 (08/2019): clause 7.14.";
+            }
+            description "Augment the MEP.";
+            reference "none";
+        }
+        feature when-the-oamtype-is-1dm {
+            description "none";
+        }
+        feature when-the-oamtype-is-1sl-or-lm_ccm {
+            description "none";
+        }
+        feature when-the-oamtype-is-dmm-dmr {
+            description "none";
+        }
+        feature mandatory-1sl-optional-1dm- {
+            description "none";
+        }
+        feature oamtype-is-1dm-or-1sl {
+            description "none";
+        }
+        feature mandatory-1sl-optional-1dm-not-supported-lm_ccm {
+            description "none";
+        }
+        feature this-attribute-applies-only-when-oamtype-1dm-or-1sl {
+            description "none";
+        }
+        feature the-oamtype-is-dual-ended {
+            description "none";
+        }
+        feature when-the-oamtype-is-not-ccm {
+            description "none";
+        }
+        feature when-the-oamtype-is-single-ended {
+            description "none";
+        }
+        feature when-the-mep-is-a-tcm-mep {
+            description "none";
+        }
+
+/****************************************
+* typedef statements
+**************************************/ 
+        typedef probable-cause {
+            type identityref {
+                base PROBABLE_CAUSE;
+            }
+            description "This ProbableCause enumeration list models the failure (fXXX) defined in ITU-T Recommendation G.8051 Table 7-1.";
+            reference "none";
+        }
+        typedef alarm-severity-code {
+            type enumeration {
+                enum CRITICAL {
+                    description "none";
+                    reference "none";
+                }
+                enum MAJOR {
+                    description "none";
+                    reference "none";
+                }
+                enum MINOR {
+                    description "none";
+                    reference "none";
+                }
+                enum WARNING {
+                    description "none";
+                    reference "none";
+                }
+                enum NON_ALARMED {
+                    description "none";
+                    reference "none";
+                }
+            }
+            description "none";
+            reference "none";
+        }
+        typedef oam-period {
+            type enumeration {
+                enum 3.33MS {
+                    description "Default for protection.";
+                    reference "none";
+                }
+                enum 10MS {
+                    description "none";
+                    reference "none";
+                }
+                enum 100MS {
+                    description "none";
+                    reference "none";
+                }
+                enum 1S {
+                    description "none";
+                    reference "none";
+                }
+                enum 10S {
+                    description "none";
+                    reference "none";
+                }
+                enum 1MIN {
+                    description "none";
+                    reference "none";
+                }
+                enum 10MIN {
+                    description "none";
+                    reference "none";
+                }
+            }
+            description "Provides the frequency for the OAM PDU insertion.";
+            reference "none";
+        }
+        typedef csf-config {
+            type enumeration {
+                enum DISABLED {
+                    description "This literal covers the following states of the CSF related MI informations:
+                        - MI_CSF_Enable is false
+                        - MI_CSFrdifdi_Enable is false
+                        - MI_CSFdci_Enable is false.";
+                    reference "none";
+                }
+                enum ENABLED {
+                    description "This literal covers the following states of the CSF related MI informations:
+                        - MI_CSF_Enable is true
+                        - MI_CSFrdifdi_Enable is false
+                        - MI_CSFdci_Enable is false.";
+                    reference "none";
+                }
+                enum ENABLED_WITH_RDI_FDI {
+                    description "This literal covers the following states of the CSF related MI informations:
+                        - MI_CSF_Enable is true
+                        - MI_CSFrdifdi_Enable is true
+                        - MI_CSFdci_Enable is false.";
+                    reference "none";
+                }
+                enum ENABLED_WITH_RDI_FDI_DCI {
+                    description "This literal covers the following states of the CSF related MI informations:
+                        - MI_CSF_Enable is true
+                        - MI_CSFrdifdi_Enable is true
+                        - MI_CSFdci_Enable is true.";
+                    reference "none";
+                }
+                enum ENABLED_WITH_DCI {
+                    description "This literal covers the following states of the CSF related MI informations:
+                        - MI_CSF_Enable is true
+                        - MI_CSFrdifdi_Enable is false
+                        - MI_CSFdci_Enable is true.";
+                    reference "none";
+                }
+            }
+            description "none";
+            reference "none";
+        }
+        typedef eth-aps {
+            type int64;
+            description "none";
+            reference "none";
+        }
+        typedef eth-mep-alarm {
+            type identityref {
+                base ETH_MEP_ALARM;
+            }
+            description "none";
+            reference "none";
+        }
+        typedef mac-address {
+            type string;
+            description "This primitive data type contains an Ethernet MAC address defined by IEEE 802a. The format of the address consists of 12 hexadecimal characters, grouped in pairs and separated by '-' (e.g., 03-27-AC-75-3E-1D).";
+            reference "none";
+        }
+        typedef message-period {
+            type identityref {
+                base MESSAGE_PERIOD;
+            }
+            description "This enumeration defines the allowed values for the message period in on-demand measurements.
+                Notes:
+                The value 10ms is only used in synthetic loss measurements.
+                The value 0 means that the value is not relevant.";
+            reference "none";
+        }
+        typedef repetition-period {
+            type identityref {
+                base REPETITION_PERIOD;
+            }
+            description "This enumeration defines the allowed values for the repetition period in on-demand measurements.
+                Note: The value 0 means that the value is not relevant.";
+            reference "none";
+        }
+        typedef dual-ended-oam-type {
+            type identityref {
+                base DUAL_ENDED_OAM_TYPE;
+            }
+            description "The type of the dual-ended OAM protocol.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clause 3.2.1.";
+        }
+        typedef single-ended-oam-type {
+            type identityref {
+                base SINGLE_ENDED_OAM_TYPE;
+            }
+            description "The type of the single-ended OAM protocol.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clause 3.2.19.";
+        }
+        typedef oam-pdu-generation-type {
+            type enumeration {
+                enum SINGLE_INSTANCE {
+                    description "none";
+                    reference "none";
+                }
+                enum REPETITIVE_INSTANCE {
+                    description "none";
+                    reference "none";
+                }
+                enum SINGLE_SERIES {
+                    description "none";
+                    reference "none";
+                }
+                enum REPETITIVE_SERIES {
+                    description "none";
+                    reference "none";
+                }
+            }
+            description "This enumeration defines the generation pattern of the on-demand OAM PDUs (messages). ";
+            reference "none";
+        }
+        typedef time-unit {
+            type identityref {
+                base TIME_UNIT;
+            }
+            description "none";
+            reference "none";
+        }
+        typedef generalized-time {
+            type string;
+            description "none";
+            reference "none";
+        }
+        typedef time-period {
+            type string;
+            description "This primitive Type is imported from X.739.";
+            reference "none";
+        }
+        typedef real {
+            type string;
+            description "Real is a primitive type representing the mathematical concept of real.";
+            reference "none";
+        }
+        typedef granularity-period {
+            type identityref {
+                base GRANULARITY_PERIOD;
+            }
+            description "The Current Data and History Data Granularity Period  (e.g., 15min/24h).";
+            reference "ITU-T X.739 v1.2 (06/1998): clause 8.1.1.2.  ";
+        }
+        typedef ais-lck-period {
+            type enumeration {
+                enum 1SEC {
+                    description "AIS/LCK OAM packets are generated every second.";
+                    reference "none";
+                }
+                enum 1MIN {
+                    description "AIS/LCK OAM packets are generated every minute.";
+                    reference "none";
+                }
+            }
+            description "The periodicity of the AIS/LCK OAM messages.";
+            reference "ITU-T G.8013 v5.3 (08/2019): table 9-4.";
+        }
+        typedef dm-period {
+            type identityref {
+                base DM_PERIOD;
+            }
+            description "The periodicity of the DM (1DM or DMM/DMR) OAM messages.";
+            reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+        }
+        typedef sl-period {
+            type identityref {
+                base SL_PERIOD;
+            }
+            description "The periodicity of the SL (1SL or SLM/SLR) OAM messages.";
+            reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+        }
+        typedef lm-period {
+            type identityref {
+                base LM_PERIOD;
+            }
+            description "The periodicity of the LM (LMM/LMR) OAM messages.";
+            reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+        }
+
+/*********************************************
+* grouping statements for complex data types
+*******************************************/ 
+        identity PROBABLE_CAUSE {
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_CCM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_CSF {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_DEG {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_EXM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_FOP_PM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_FOP_TO {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_GIDM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LCK {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LFD {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LOC {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LOF {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LOL {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_LOM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_MMG {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_PLL {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_PLM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_PMM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_RDI {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_SSF {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_UNL {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_UNM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_UNP {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_UNPRI {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity PROBABLE_CAUSE_UPM {
+            base PROBABLE_CAUSE;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM {
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_FOP_PM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_FOP_TO {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_SSF {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LCK {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LOC {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_MMG {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_UNM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_UNP {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_UNPRI {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_UNL {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_DEG {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_RDI {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_CSF {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_PLL {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_PLM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LFD {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_UPM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_EXM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LOF {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LOM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_LOL {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_PMM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_GIDM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity ETH_MEP_ALARM_CCM {
+            base ETH_MEP_ALARM;
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD_10MS {
+            base MESSAGE_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD_100MS {
+            base MESSAGE_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD_1S {
+            base MESSAGE_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD_10S {
+            base MESSAGE_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity MESSAGE_PERIOD_0 {
+            base MESSAGE_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity REPETITION_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity REPETITION_PERIOD_1MIN {
+            base REPETITION_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity REPETITION_PERIOD_1S {
+            base REPETITION_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity REPETITION_PERIOD_10S {
+            base REPETITION_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity REPETITION_PERIOD_0 {
+            base REPETITION_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity DUAL_ENDED_OAM_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity DUAL_ENDED_OAM_TYPE_LM_CCM {
+            base DUAL_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity DUAL_ENDED_OAM_TYPE_1DM {
+            base DUAL_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity DUAL_ENDED_OAM_TYPE_1SL {
+            base DUAL_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity SINGLE_ENDED_OAM_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity SINGLE_ENDED_OAM_TYPE_LM_LMM {
+            base SINGLE_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity SINGLE_ENDED_OAM_TYPE_DM {
+            base SINGLE_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity SINGLE_ENDED_OAM_TYPE_SL {
+            base SINGLE_ENDED_OAM_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT {
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_DAYS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_HOURS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_MINUTES {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_SECONDS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_MILLI_SECONDS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_MICRO_SECONDS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_NANO_SECONDS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity TIME_UNIT_PICO_SECONDS {
+            base TIME_UNIT;
+            description "none";
+            reference "none";
+        }
+        identity GRANULARITY_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity GRANULARITY_PERIOD_24H {
+            base GRANULARITY_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity GRANULARITY_PERIOD_15MIN {
+            base GRANULARITY_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity DM_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity DM_PERIOD_100MS {
+            base DM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity DM_PERIOD_1S {
+            base DM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity DM_PERIOD_10S {
+            base DM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity SL_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity SL_PERIOD_10MS {
+            base SL_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity SL_PERIOD_100MS {
+            base SL_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity SL_PERIOD_1S {
+            base SL_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity SL_PERIOD_10S {
+            base SL_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity LM_PERIOD {
+            description "none";
+            reference "none";
+        }
+        identity LM_PERIOD_100MS {
+            base LM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity LM_PERIOD_1S {
+            base LM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        identity LM_PERIOD_10S {
+            base LM_PERIOD;
+            description "none";
+            reference "none";
+        }
+        grouping alarm-severity-assignment {
+            leaf problem {
+                type probable-cause;
+                description "none";
+                reference "none";
+            }
+            leaf severity-assigned-service-affecting {
+                type alarm-severity-code;
+                description "none";
+                reference "none";
+            }
+            leaf severity-assigned-non-service-affecting {
+                type alarm-severity-code;
+                description "none";
+                reference "none";
+            }
+            leaf severity-assigned-service-independent {
+                type alarm-severity-code;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping eth-ais-lck-common {
+            leaf period {
+                type ais-lck-period;
+                default "1SEC";
+                description "The AIS/LCK PDU generation period.";
+                reference "ITU-T G.8013 v5.3 (08/2019): Table 9-4.";
+            }
+            leaf priority {
+                type string;
+                description "The AIS/LCK priority assigned to the frames. By default, it is the same as the CCM priority.";
+                reference "none";
+            }
+            description "It defines the common attributes for configuring AIS/LCK generation.";
+            reference "none";
+        }
+        grouping eth-csf-sink {
+            leaf is-csf-rdi-fdi-enabled {
+                type boolean;
+                default "true";
+                description "This attribute models the MI_CSFrdifdiEnable signal defined in G.8021 and configured as specified in G8051.";
+                reference "none";
+            }
+            leaf is-csf-reported {
+                type boolean;
+                default "true";
+                description "This attribute models the MI_CSF_Reported signal defined in G.8021 and configured as specified in G8051. It configures whether the secondary failure CSF should be reported or not.";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping eth-csf-source {
+            leaf csf-config {
+                type csf-config;
+                default "ENABLED_WITH_RDI_FDI_DCI";
+                description "This attribute models the combination of all CSF related MI signals (MI_CSF_Enable, MI_CSFrdifdi_Enable, MI_CSFdci_Enable) as defined in G.8021.";
+                reference "none";
+            }
+            leaf csf-period {
+                type oam-period;
+                default "1S";
+                description "This attribute models the MI_CSF_Period signal defined in G.8021 and configured as specified in G8051. It is the frequency at which the CSF messages should be sent.
+                    Value range is 1MIN or 1S.";
+                reference "none";
+            }
+            leaf csf-priority {
+                type int64 {
+                    range "0..7";
+                }
+                default "7";
+                description "This attribute models the MI_CSF_Pri signal defined in G.8021 and configured as specified in G8051. It is the priority at which the CSF messages should be sent.";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping one-dm-threshold-values {
+            leaf granularity-period {
+                type granularity-period;
+                description "This attribute defines the granularity period of the current registers to which the thresholds are assigned.";
+                reference "none";
+            }
+            container near-end-cross-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the near end cross threshold values of the delay measurements.";
+                reference "none";
+            }
+            container near-end-clear-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the near end clear threshold values of the delay measurements.";
+                reference "none";
+            }
+            description "This data type contains the threshold values for frame delay related 1-way measurements.";
+            reference "none";
+        }
+        grouping one-lm-threshold-values {
+            leaf granularity-period {
+                type granularity-period;
+                description "This attribute defines the granularity period of the current registers to which the thresholds are assigned.";
+                reference "none";
+            }
+            container near-end-cross-threshold {
+                uses lm-performance-data;
+                description "This attribute contains the near end cross threshold values of the loss measurements.";
+                reference "none";
+            }
+            container near-end-clear-threshold {
+                uses lm-performance-data;
+                description "This attribute is only valid for frame loss ratio parameters and counter type parameters working in the 'standing condition method' (see G.7710, section 10.1.7.2: Threshold reporting) and contains the near end clear threshold values of the loss measurements.";
+                reference "none";
+            }
+            description "This data type contains the threshold values for frame loss related 1-way measurements.";
+            reference "none";
+        }
+        grouping dm-threshold-values {
+            leaf granularity-period {
+                type granularity-period;
+                description "This attribute defines the granularity period of the current registers to which the thresholds are assigned.";
+                reference "none";
+            }
+            container near-end-cross-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the near end cross threshold values of the delay measurements.";
+                reference "none";
+            }
+            container near-end-clear-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the near end clear threshold values of the delay measurements.";
+                reference "none";
+            }
+            container far-end-cross-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the far end cross threshold values of the delay measurements.";
+                reference "none";
+            }
+            container far-end-clear-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the far end clear threshold values of the delay measurements.";
+                reference "none";
+            }
+            container bidirectional-cross-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the bidirectional cross threshold values of the delay measurements.";
+                reference "none";
+            }
+            container bidirectional-clear-threshold {
+                uses dm-performance-data;
+                description "This attribute contains the bidirectional clear threshold values of the delay measurements.";
+                reference "none";
+            }
+            description "This data type contains the threshold values for frame delay related 2-way measurements.";
+            reference "none";
+        }
+        grouping lm-threshold-values {
+            leaf granularity-period {
+                type granularity-period;
+                description "This attribute defines the granularity period of the current registers to which the thresholds are assigned.";
+                reference "none";
+            }
+            container near-end-cross-threshold {
+                uses lm-performance-data;
+                description "This attribute contains the near end cross threshold values of the loss measurements.";
+                reference "none";
+            }
+            container near-end-clear-threshold {
+                uses lm-performance-data;
+                description "This attribute is only valid for frame loss ratio parameters and counter type parameters working in the 'standing condition method' (see G.7710, section 10.1.7.2: Threshold reporting) and contains the near end clear threshold values of the loss measurements.";
+                reference "none";
+            }
+            container far-end-cross-threshold {
+                uses lm-performance-data;
+                description "This attribute contains the far end cross threshold values of the loss measurements.";
+                reference "none";
+            }
+            container far-end-clear-threshold {
+                uses lm-performance-data;
+                description "This attribute is only valid for frame loss ratio parameters and counter type parameters working in the 'standing condition method' (see G.7710, section 10.1.7.2: Threshold reporting) and contains the far end clear threshold values of the loss measurements.";
+                reference "none";
+            }
+            leaf bidirectional-uas-cross-threshold {
+                type int64;
+                description "This attribute contains the bidirectional cross threshold value of the UAS loss measurement.";
+                reference "none";
+            }
+            leaf bidirectional-uas-clear-threshold {
+                type int64;
+                description "This attribute is only valid for the UAS parameter working in the 'standing condition method' (see G.7710, section 10.1.7.2: Threshold reporting) and contains the bidirectional clear threshold value of the UAS loss measurement.";
+                reference "none";
+            }
+            description "This data type contains the threshold values for frame loss related 2-way measurements.";
+            reference "none";
+        }
+        grouping lm-performance-data {
+            leaf minimum-frame-loss-ratio {
+                type real;
+                description "This attribute contains the minimum frame loss ratio calculated over a period of time.
+                    The accuracy of the value is for further study.";
+                reference "none";
+            }
+            leaf average-frame-loss-ratio {
+                type real;
+                description "This attribute contains the average frame loss observed over the monitored period. ";
+                reference "none";
+            }
+            leaf maximum-frame-loss-ratio {
+                type real;
+                description "This attribute contains the maximum frame loss ratio calculated over a period of time.
+                    The accuracy of the value is for further study.";
+                reference "none";
+            }
+            leaf ses {
+                type int64 {
+                    range "0..86400";
+                }
+                config false;
+                description "This attribute reports the number of SES (Severely Errored Seconds) detected in the monitoring interval.";
+                reference "ITU-T G.7710 v5.0 (AAP): clause 10.2.";
+            }
+            leaf uas {
+                type int64 {
+                    range "0..86400";
+                }
+                description "This attribute reports the number of UAS (Unavailable Seconds) detected in the monitoring interval.";
+                reference "ITU-T G.7710 v5.0 (AAP): clause 10.2.";
+            }
+            description "It contains the loss measurement performance data.";
+            reference "ITU-T G.8051 v6.0 (AAP): clause 10.2, item17";
+        }
+        grouping dm-performance-data {
+            leaf minimum-frame-delay {
+                type int64;
+                description "This attribute contains the minimum frame delay observed over the monitored period.";
+                reference "none";
+            }
+            leaf average-frame-delay {
+                type int64;
+                description "This attribute contains the average frame delay observed over the monitored period. ";
+                reference "none";
+            }
+            leaf maximum-frame-delay {
+                type int64;
+                description "This attribute contains the maximum frame delay observed over the monitored period.";
+                reference "none";
+            }
+            leaf minimum-frame-delay-variation {
+                type int64;
+                description "This attribute contains the minimum frame delay variation observed over the monitored period. ";
+                reference "none";
+            }
+            leaf average-frame-delay-variation {
+                type int64;
+                description "This attribute contains the average frame delay variation observed over the monitored period. ";
+                reference "none";
+            }
+            leaf maximum-frame-delay-variation {
+                type int64;
+                description "This attribute contains the maximum frame delay variation observed over the monitored period. ";
+                reference "none";
+            }
+            description "It contains the delay measurement performance data.";
+            reference "ITU-T G.8051 v6.0 (AAP): clause 10.2, item19";
+        }
+        grouping time-interval {
+            leaf day {
+                type int64;
+                description "The number of days in the time interval.";
+                reference "none";
+            }
+            leaf hour {
+                type int64 {
+                    range "0..23";
+                }
+                description "The number of hours in the time interval.";
+                reference "none";
+            }
+            leaf minute {
+                type int64 {
+                    range "0..59";
+                }
+                description "The number of minutes in the time interval.";
+                reference "none";
+            }
+            leaf second {
+                type int64 {
+                    range "0..59";
+                }
+                description "The number of seconds in the time interval.";
+                reference "none";
+            }
+            leaf msec {
+                type int64 {
+                    range "0..999";
+                }
+                description "The number of milliseconds in the time interval.";
+                reference "none";
+            }
+            description "The attributes (e.g., hours, minutes) defining a time interval with millisecond accuracy.";
+            reference "none";
+        }
+        grouping pro-active-single-ended-dm-data {
+            container near-end-dm-data {
+                if-feature when-the-oamtype-is-dmm-dmr;
+                uses dm-performance-data;
+                description "The pro-active near-end delay measurement PM data.";
+                reference "none";
+            }
+            container far-end-dm-data {
+                if-feature when-the-oamtype-is-dmm-dmr;
+                uses dm-performance-data;
+                description "The pro-active far-end delay measurement PM data.";
+                reference "none";
+            }
+            container bidirectional-dm-data {
+                if-feature when-the-oamtype-is-dmm-dmr;
+                uses dm-performance-data;
+                description "The pro-active bidirectional delay measurement PM data.";
+                reference "none";
+            }
+            description "The pro-active single-ended delay measurement PM data.";
+            reference "none";
+        }
+        grouping pro-active-dual-ended-dm-data {
+            container near-end-dm-data {
+                if-feature when-oamtype-is-1dm;
+                uses dm-performance-data;
+                description "The pro-active near-end delay measurement PM data.";
+                reference "none";
+            }
+            description "The pro-active dual-ended delay measurement PM data.";
+            reference "none";
+        }
+        grouping pro-active-dual-ended-lm-data {
+            container near-end-lm-data {
+                if-feature when-the-oamtype-is-1sl-or-lm_ccm;
+                uses lm-performance-data;
+                description "The current pro-active near-end loss measurement PM data.";
+                reference "none";
+            }
+            description "This data type contains the near end pro-active PM data.
+                This is experimental because it needs to be enhanced to cover also for CCM-LM.";
+            reference "none";
+        }
+        grouping pro-active-single-ended-lm-data {
+            container statistical-near-end-frame-loss-performance-data {
+                uses lm-performance-data;
+                description "This attribute contains the statistical near end performnace parameters.";
+                reference "none";
+            }
+            container statistical-far-end-frame-loss-performance-data {
+                uses lm-performance-data;
+                description "This attribute contains the statistical far end performnace parameters.";
+                reference "none";
+            }
+            leaf bidirectional-uas {
+                type int64 {
+                    range "0..86400";
+                }
+                description "This attribute contains the bidirectional UAS (unavailable seconds) detected in the monitoring interval.
+                    0..900 for 15min interval or 0..86400 for 24 hr interval.";
+                reference "none";
+            }
+            description "This data type contains the near and far end pro-active loss measurement PM data.";
+            reference "none";
+        }
+        grouping on-demand-sink-performance-data {
+            container on-demand1-sl-performance-data {
+                uses on-demand1-sl-performance-data;
+                description "none";
+                reference "none";
+            }
+            container on-demand1-dm-performance-data {
+                uses on-demand1-dm-performance-data;
+                description "none";
+                reference "none";
+            }
+            description "This data type choice is used as the generic data type for all kinds of 1 way on-demand PM data.";
+            reference "none";
+        }
+        grouping deg-detection {
+            leaf lm-degm {
+                type int64;
+                default "10";
+                description "This attribute defines the number of consecutive bad seconds necessary for the 'degraded' detection. See also section 'Degraded signal defect (dDEG)' in G.8021.";
+                reference "none";
+            }
+            leaf lm-deg-thr {
+                type int64;
+                default "30";
+                description "This attribute defines the threshold for declaring a 'bad second'. See also section 'Degraded signal defect (dDEG)' in G.8021.";
+                reference "none";
+            }
+            leaf lm-tf-min {
+                type int64;
+                description "This attribute defines the necessary number of transmitted frames to enable the detection of 'bad seconds'. See also section 'Degraded signal defect (dDEG)' in G.8021.";
+                reference "none";
+            }
+            leaf lm-m {
+                type int64;
+                default "10";
+                description "This attribute defines the number of consecutive good seconds necessary for the clearing of 'degraded'. See also section 'Degraded signal defect (dDEG)' in G.8021.";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping eth-csf {
+            container eth-csf-source {
+                uses eth-csf-source;
+                description "none";
+                reference "none";
+            }
+            container eth-csf-sink {
+                uses eth-csf-sink;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping eth-bw {
+            container bandwidth-report {
+                config false;
+                uses bandwidth-report;
+                description "This attribute models the content of the bandwidth report received by the MEP Sink from the peer MEP Source.";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping bandwidth-report {
+            leaf source-mac-address {
+                type mac-address;
+                description "The sourceMacAddress is the address from the far end.";
+                reference "none";
+            }
+            leaf port-id {
+                type int64;
+                description "This attribute returns the far end port identifier.";
+                reference "none";
+            }
+            leaf nominal-bandwidth {
+                type int64;
+                description "This attribute returns the configured bandwidth";
+                reference "none";
+            }
+            leaf current-bandwidth {
+                type int64;
+                description "This attribute returns the current bandwidth.";
+                reference "none";
+            }
+            description "Data type for the bandwidth report.";
+            reference "none";
+        }
+        grouping link-trace-result {
+            leaf source-address {
+                type mac-address;
+                description "This attribute contains the source MAC Address of an individual LTR frame result.";
+                reference "none";
+            }
+            leaf time-to-live-value {
+                type int64;
+                description "This attribute contains the Time To Live (TTL) value of an individual LTR frame result.";
+                reference "none";
+            }
+            leaf data-tlv-length {
+                type int64;
+                description "This attribute contains the length (in number of octets) of the Data TLV of an individual LTR frame result.";
+                reference "none";
+            }
+            description "This data type contains the result from an individual LTR frame.";
+            reference "none";
+        }
+        grouping on-demand-performance-data {
+            container on-demand-frame-delay-performance-data {
+                uses on-demand-frame-delay-performance-data;
+                description "none";
+                reference "none";
+            }
+            container on-demand-frame-loss-performance-data {
+                uses on-demand-frame-loss-performance-data;
+                description "none";
+                reference "none";
+            }
+            description "This data type choice is used as the generic data type for all kinds of 1 way on-demand PM data.";
+            reference "none";
+        }
+        grouping on-demand-frame-delay-performance-data {
+            container near-end-frame-delay-performance-parameters {
+                uses on-demand-frame-delay-performance-parameters;
+                description "This attribute contains the results of an on-demand frame delay measurement job in the ingress direction.";
+                reference "none";
+            }
+            container far-end-frame-delay-performance-parameters {
+                uses on-demand-frame-delay-performance-parameters;
+                description "This attribute contains the results of an on-demand frame delay measurement job in the ingress direction.";
+                reference "none";
+            }
+            description "This data type contains the near end on-demand frame delay PM data.";
+            reference "none";
+        }
+        grouping on-demand-frame-loss-performance-data {
+            container near-end-frame-loss-performance-parameters {
+                uses on-demand-frame-loss-performance-parameters;
+                description "This attribute contains the results of an on-demand synthetic loss measurement job in the ingress direction.";
+                reference "none";
+            }
+            container far-end-frame-loss-performance-parameters {
+                uses on-demand-frame-loss-performance-parameters;
+                description "This attribute contains the results of an on-demand synthetic loss measurement job in the egress direction.";
+                reference "none";
+            }
+            description "This data type contains the near and far end on-demand frame loss PM data.";
+            reference "none";
+        }
+        grouping on-demand-frame-delay-performance-parameters {
+            leaf number-of-samples {
+                type int64;
+                description "This attribute contains the number of received DM frames (successful samples) used for this frame delay measurement.";
+                reference "none";
+            }
+            leaf-list frame-delay-list {
+                type int64;
+                description "This attribute contains the frame delays measured in ns (nano second, 1x10e-9 seconds). The multiplicity is defined by the numberOfSamples attribute.";
+                reference "none";
+            }
+            leaf-list frame-delay-variation-list {
+                type int64;
+                description "This attribute contains the frame delay variations measured in ns (nano second).  The multiplicity is defined by (numberOfSamples - 1, for numberOfSamples > 0).";
+                reference "none";
+            }
+            description "This data type contains the results of an on-demand delay measurement job.";
+            reference "none";
+        }
+        grouping on-demand-frame-loss-performance-parameters {
+            leaf total-transmitted-frames {
+                type int64;
+                description "This attribute contains the total number of frames transmitted.";
+                reference "none";
+            }
+            leaf total-lost-frames {
+                type int64;
+                description "This attribute contains the total number of frames lost.";
+                reference "none";
+            }
+            leaf total-frame-loss-ratio {
+                type real;
+                description "This attribute contains the frame loss ratio (number of lost frames divided by the number of total frames (N_LF / N_TF)).
+                    The accuracy of the value is for further study.";
+                reference "none";
+            }
+            description "This data type contains the results of an on-demand loss measurement job.";
+            reference "none";
+        }
+        grouping on-demand1-dm-performance-data {
+            container near-end-frame-delay-performance-parameters {
+                uses on-demand-frame-delay-performance-parameters;
+                description "This attribute contains the results of an on-demand frame delay measurement job in the ingress direction.";
+                reference "none";
+            }
+            description "This data type contains the near end on-demand frame delay PM data.";
+            reference "none";
+        }
+        grouping on-demand1-sl-performance-data {
+            container near-end-frame-loss-performance-parameters {
+                uses on-demand-frame-loss-performance-parameters;
+                description "This attribute contains the results of an on-demand synthetic loss measurement job in the ingress direction.";
+                reference "none";
+            }
+            description "This data type contains the near end on-demand synthetic frame loss PM data.";
+            reference "none";
+        }
+        grouping granularity-period-enhanced {
+            leaf value {
+                type int64;
+                description "none";
+                reference "none";
+            }
+            leaf unit {
+                type time-unit;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping ma-name-itu {
+            leaf carrier-code {
+                type string;
+                description "The ITU-T Carrier Code (ICC).
+                    The ITU Carrier Code (ICC) is a string of 1-6 alphabetic, (i.e., A-Z) and or numeric (i.e., 0-9) characters.";
+                reference "none";
+            }
+            leaf country-code {
+                type string;
+                description "The Country Code (CC).
+                    It is present when the CC and ICC-based global MEG ID format is used and not present when the ICC-based MEG ID format is used.
+                    The country code (CC) is a string of 2 alphabetic characters represented by uppercase letters (i.e., A-Z).";
+                reference "none";
+            }
+            leaf meg-id-code {
+                type string;
+                description "The Unique MEG ID code (UMC), excluding the trailing NULLs.
+                    When the MEG ID is using the CC and ICC-based MEG ID format and the ICC is less than 6 characters, the leading '/' character (see Table A.5) is also excluded.
+                    When defining an ICC-based MEG ID, the combined lenght of the ITU Carrier Code (ICC) and of the Unique MEG ID Code (UMC) subfields does not exceed 13 characters.
+                    When defining a CC and ICC-based MEG ID, with an ITU Carrier Code (ICC) that is less than 6 characters, the combined length of the ICC and of the Unique MEG ID Code (UMC) subfields, excluding UMC leading '/' character, does not exceed 12 characters.
+                    When defining an CC and ICC-based MEG ID, with an ITU Carrier Code (ICC) that is 6 characters long, the length of the Unique MEG ID Code (UMC) subfield does not exceed 7 characters";
+                reference "none";
+            }
+            description "It defines the common attributes for the ITU-T MEG ID format.";
+            reference "ITU-T G.8013 v5.3 (08/2019): annex A.";
+        }
+        grouping oam-type {
+            leaf-list oam-type-dual-ended {
+                type dual-ended-oam-type;
+                min-elements 1;
+                description "none";
+                reference "none";
+            }
+            leaf oam-type-single-ended {
+                type single-ended-oam-type;
+                description "none";
+                reference "none";
+            }
+            description "The type of the OAM protocol.";
+            reference "none";
+        }
+        grouping oam-dm-config {
+            leaf period {
+                type dm-period;
+                default "DM_PERIOD_100MS";
+                description "The periodicity of the DM (1DM or DMM/DMR) OAM messages.";
+                reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+            }
+            leaf test-identifier {
+                type uint32;
+                description "The value of the Test ID field within the optional Test ID TLV.
+                    If not specified, the Test ID TLV is not included in the OAM messages.";
+                reference "none";
+            }
+            leaf data-tlv-length {
+                type uint16;
+                description "The Length of the optional Data TLV to be inserted in the OAM PDU.
+                    When configuring this value, care must be taken to avoid exceeding the maximum frame size limitations.
+                    If not specified, the Data TLV is not included in the OAM messages.";
+                reference "none";
+            }
+            description "Delay Measurement OAM protocol (1DM or DMM/DMR) configuration.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clauses 9.14, 9.15 and 9.16.";
+        }
+        grouping oam-sl-config {
+            leaf period {
+                type sl-period;
+                default "SL_PERIOD_100MS";
+                description "The periodicity of the SL (1SL or SLM/SLR) OAM messages.";
+                reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+            }
+            leaf test-identifier {
+                type uint32;
+                description "The value of the Test ID field.";
+                reference "none";
+            }
+            leaf data-tlv-length {
+                type uint16;
+                description "The Length of the optional Data TLV to be inserted in the OAM PDU.
+                    When configuring this value, care must be taken to avoid exceeding the maximum frame size limitations.
+                    If not specified, the Data TLV is not included in the OAM messages.";
+                reference "none";
+            }
+            description "Synthetic Loss Measurement OAM protocol (1SL or SLM/SLR) configuration.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clauses 9.22, 9.23 and 9.24.";
+        }
+        grouping oam-lm-config {
+            leaf period {
+                type lm-period;
+                default "LM_PERIOD_100MS";
+                description "The periodicity of the LM (LMM/LMR) OAM messages.";
+                reference "ITU-T G.8051 v6.0 (AAP): Table 8-2.";
+            }
+            description "Loss Measurement OAM protocol (LMM/LMR) configuration.";
+            reference "ITU-T G.8013 v5.3 (08/2019): clauses 9.12 and 9.13.";
+        }
+        feature when-oamtype-is-1dm {
+            description "none";
+        }
+
+    /****************************************
+    * package interfaces
+    **************************************/ 
+
+}
