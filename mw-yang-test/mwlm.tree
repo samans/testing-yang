@@ -1,6 +1,0 @@
-module: mwl-mode-option
-
-  augment /if:interfaces/if:interface:
-    +--rw mode-option
-       +--rw num-bonded-carriers?       uint32
-       +--rw num-protecting-carriers?   uint32

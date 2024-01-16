@@ -4,7 +4,9 @@ spawn /usr/local/bin/yanglint
 expect ">"
 send "load minerals\r"
 expect ">"
-send "data -t config -f json minerals.xml\r"
+send "load minerals-augment\r"
+expect ">"
+send "data -t config -f xml minerals.json\r"
 expect ">"
 send "quit\r"
 expect eof

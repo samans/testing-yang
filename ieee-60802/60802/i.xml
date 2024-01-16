@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?> 
-<!-- this is an example of a instance-data-set for an 608020 IA-Station --> 
-<instance-data-set xmlns="urn:ietf:params:xml:ns:yang:ietf-yang-instance-data"> 
-    <name>60802-PLC_Example</name> 
-</instance-data-set> 
