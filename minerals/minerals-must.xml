@@ -1,0 +1,30 @@
+<!--A simple example in Yanglint -->
+<mineral-db
+	xmlns="urn:test:minerals"
+	xmlns:ma="urn:test:minerals-augment">
+    <mineral>
+       <mineral-name>Talc</mineral-name>
+       <physical-properties>White, Green, Gray, or Black. Greasy</physical-properties>
+       <hardness>1.0</hardness>
+    </mineral>
+    <mineral>
+       <mineral-name>Gypsum</mineral-name>
+       <physical-properties>Colorless or White. Glassy</physical-properties>
+       <hardness>2.0</hardness>
+    </mineral>
+    <mineral>
+       <mineral-name>Diamond</mineral-name>
+       <physical-properties>Colorless or White. Glassy</physical-properties>
+       <hardness>10.0</hardness>
+       <ma:diamondSerialNumber>1234</ma:diamondSerialNumber>
+    </mineral>
+</mineral-db>
+<samples
+  xmlns="urn:test:minerals">
+    <sample>
+       <sample-id>X001</sample-id>
+       <streak>White</streak>
+       <cleavage>one good</cleavage>
+       <mineral-ref>Gypsum</mineral-ref>
+    </sample>
+</samples>

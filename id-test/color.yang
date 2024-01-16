@@ -1,0 +1,89 @@
+module color {
+  yang-version "1.1";
+  namespace urn:test:color;
+  prefix h;
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Multi-base Identity example";
+  revision 2023-07-14 {
+    description
+      "Initial revision.";
+    reference
+      "color";
+  }
+  identity color-base {
+  }
+
+  identity all-colors {
+    base color-base;
+  }
+
+  identity red {
+    base all-colors;
+  }
+  identity orange {
+    base all-colors;
+  }
+  identity yellow {
+    base all-colors;
+  }
+  identity green {
+    base all-colors;
+  }
+  identity blue {
+    base all-colors;
+  }
+  identity indigo {
+    base all-colors;
+  }
+  identity violet {
+    base all-colors;
+  }
+  identity white {
+    base all-colors;
+  }
+  identity black {
+    base all-colors;
+  }
+
+  identity grey {
+    base white;
+    base black;
+  }
+
+  identity grey10percent {
+    base grey;
+  }
+
+  identity pink {
+    base red;
+  }
+  identity rose {
+    base red;
+  }
+
+  container color-db {
+    description
+      "color database";
+    list colors {
+      key "color-id";
+      leaf color-id {
+        type int8;
+      }
+      leaf my-fav-color-using-base {
+        type identityref {
+          base color-base;
+        }
+      }
+      leaf my-fav-color-all-colors {
+        type identityref {
+          base all-colors;
+        }
+      }
+    }
+  }
+}
+

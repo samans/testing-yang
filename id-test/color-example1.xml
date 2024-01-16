@@ -1,0 +1,13 @@
+<!--A simple example in Yanglint -->
+<color-db xmlns="urn:test:color">
+	<colors>
+	<color-id>0</color-id>
+	<my-fav-color-using-base>blue</my-fav-color-using-base>
+	<my-fav-color-all-colors>blue</my-fav-color-all-colors>
+	</colors>
+	<colors>
+	<color-id>1</color-id>
+	<my-fav-color-using-base>all-colors</my-fav-color-using-base>
+	<my-fav-color-all-colors>pink</my-fav-color-all-colors>
+	</colors>
+</color-db>

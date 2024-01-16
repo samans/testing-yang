@@ -1,0 +1,16 @@
+module: acm-profile-test
+  +--rw interface
+     +--rw interface-id?   string
+     +--rw capabilities
+        +--rw min-tx-frequency?   uint32
+        +--rw max-tx-frequency?   uint32
+        +--rw acm-profile-list* [profile-id profile-name]
+           +--rw profile-id           string
+           +--rw profile-name         string
+           +--rw max-thing?           uint8
+           +--rw lower-profile-ptr
+           |  +--rw profile-id-ref?     -> ../../../acm-profile-list/profile-id
+           |  +--rw profile-name-ref?   -> ../../../acm-profile-list[profile-id=current()/../profile-id-ref]/profile-name
+           +--rw upper-profile-ptr
+              +--rw profile-id-ref?     -> ../../../acm-profile-list/profile-id
+              +--rw profile-name-ref?   -> ../../../acm-profile-list[profile-id=current()/../profile-id-ref]/profile-name

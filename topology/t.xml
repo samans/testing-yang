@@ -1,0 +1,2369 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<config xmlns="urn:ietf:params:xml:ns:netconf:base:1.0">
+  <networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+    <network>
+      <!-- # keys: network-id-->
+      <!-- # entries: 0.. -->
+      <network-id>
+        <!-- type: network-id -->
+      </network-id>
+      <network-types>
+        <te-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <!-- presence: Indicates a TE topology -->
+        </te-topology>
+      </network-types>
+      <supporting-network>
+        <!-- # keys: network-ref-->
+        <!-- # entries: 0.. -->
+        <network-ref>
+          <!-- type: leafref -->
+        </network-ref>
+      </supporting-network>
+      <node>
+        <!-- # keys: node-id-->
+        <!-- # entries: 0.. -->
+        <node-id>
+          <!-- type: node-id -->
+        </node-id>
+        <supporting-node>
+          <!-- # keys: network-ref,node-ref-->
+          <!-- # entries: 0.. -->
+          <network-ref>
+            <!-- type: leafref -->
+          </network-ref>
+          <node-ref>
+            <!-- type: leafref -->
+          </node-ref>
+        </supporting-node>
+        <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+          <!-- # keys: tp-id-->
+          <!-- # entries: 0.. -->
+          <tp-id>
+            <!-- type: tp-id -->
+          </tp-id>
+          <supporting-termination-point>
+            <!-- # keys: network-ref,node-ref,tp-ref-->
+            <!-- # entries: 0.. -->
+            <network-ref>
+              <!-- type: leafref -->
+            </network-ref>
+            <node-ref>
+              <!-- type: leafref -->
+            </node-ref>
+            <tp-ref>
+              <!-- type: leafref -->
+            </tp-ref>
+          </supporting-termination-point>
+          <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+            <!-- type: te-types:te-tp-id -->
+          </te-tp-id>
+          <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+            <!-- presence: TE support -->
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <name>
+              <!-- type: string -->
+            </name>
+            <interface-switching-capability>
+              <!-- # keys: switching-capability,encoding-->
+              <!-- # entries: 0.. -->
+              <switching-capability>
+                <!-- type: identityref -->
+              </switching-capability>
+              <encoding>
+                <!-- type: identityref -->
+              </encoding>
+              <max-lsp-bandwidth>
+                <!-- # keys: priority-->
+                <!-- # entries: 0..8 -->
+                <priority>
+                  <!-- type: uint8 -->
+                </priority>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+              </max-lsp-bandwidth>
+            </interface-switching-capability>
+            <inter-domain-plug-id>
+              <!-- type: binary -->
+            </inter-domain-plug-id>
+            <inter-layer-lock-id>
+              <!-- # entries: 0.. -->
+            </inter-layer-lock-id>
+          </te>
+        </termination-point>
+        <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <!-- type: te-types:te-node-id -->
+        </te-node-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <!-- presence: TE support -->
+          <te-node-template>
+            <!-- # entries: 0.. -->
+          </te-node-template>
+          <te-node-attributes>
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <connectivity-matrices>
+              <number-of-entries>
+                <!-- type: uint16 -->
+              </number-of-entries>
+              <label-restrictions>
+                <label-restriction>
+                  <!-- # keys: index-->
+                  <!-- # entries: 0.. -->
+                  <index>
+                    <!-- type: uint32 -->
+                  </index>
+                  <restriction>inclusive</restriction>
+                  <label-start>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-start>
+                  <label-end>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-end>
+                  <label-step>
+                    <generic>1</generic>
+                  </label-step>
+                  <range-bitmap>
+                    <!-- type: yang:hex-string -->
+                  </range-bitmap>
+                </label-restriction>
+              </label-restrictions>
+              <is-allowed>
+                <!-- type: boolean -->
+              </is-allowed>
+              <underlay>
+                <enabled>
+                  <!-- type: boolean -->
+                </enabled>
+                <primary-path>
+                  <network-ref>
+                    <!-- type: leafref -->
+                  </network-ref>
+                  <path-element>
+                    <!-- # keys: path-element-id-->
+                    <!-- # entries: 0.. -->
+                    <path-element-id>
+                      <!-- type: uint32 -->
+                    </path-element-id>
+                    <numbered-node-hop>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                    </numbered-node-hop>
+                    <numbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </numbered-link-hop>
+                    <unnumbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </unnumbered-link-hop>
+                    <as-number-hop>
+                      <as-number>
+                        <!-- type: inet:as-number -->
+                      </as-number>
+                      <hop-type>strict</hop-type>
+                    </as-number-hop>
+                    <label-hop>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-hop>
+                  </path-element>
+                </primary-path>
+                <backup-path>
+                  <!-- # keys: index-->
+                  <!-- # entries: 0.. -->
+                  <index>
+                    <!-- type: uint32 -->
+                  </index>
+                  <network-ref>
+                    <!-- type: leafref -->
+                  </network-ref>
+                  <path-element>
+                    <!-- # keys: path-element-id-->
+                    <!-- # entries: 0.. -->
+                    <path-element-id>
+                      <!-- type: uint32 -->
+                    </path-element-id>
+                    <numbered-node-hop>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                    </numbered-node-hop>
+                    <numbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </numbered-link-hop>
+                    <unnumbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </unnumbered-link-hop>
+                    <as-number-hop>
+                      <as-number>
+                        <!-- type: inet:as-number -->
+                      </as-number>
+                      <hop-type>strict</hop-type>
+                    </as-number-hop>
+                    <label-hop>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-hop>
+                  </path-element>
+                </backup-path>
+                <protection-type>
+                  <!-- type: identityref -->
+                </protection-type>
+                <tunnel-termination-points>
+                  <source>
+                    <!-- type: binary -->
+                  </source>
+                  <destination>
+                    <!-- type: binary -->
+                  </destination>
+                </tunnel-termination-points>
+                <tunnels>
+                  <sharing>true</sharing>
+                  <tunnel>
+                    <!-- # keys: tunnel-name-->
+                    <!-- # entries: 0.. -->
+                    <tunnel-name>
+                      <!-- type: string -->
+                    </tunnel-name>
+                    <sharing>
+                      <!-- type: boolean -->
+                    </sharing>
+                  </tunnel>
+                </tunnels>
+              </underlay>
+              <path-constraints>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+                <link-protection>te-types:link-protection-unprotected</link-protection>
+                <setup-priority>7</setup-priority>
+                <hold-priority>7</hold-priority>
+                <signaling-type>te-types:path-setup-rsvp</signaling-type>
+                <path-metric-bounds>
+                  <path-metric-bound>
+                    <!-- # keys: metric-type-->
+                    <!-- # entries: 0.. -->
+                    <metric-type>
+                      <!-- type: identityref -->
+                    </metric-type>
+                    <upper-bound>0</upper-bound>
+                  </path-metric-bound>
+                </path-metric-bounds>
+                <path-affinities-values>
+                  <path-affinities-value>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <value></value>
+                  </path-affinities-value>
+                </path-affinities-values>
+                <path-affinity-names>
+                  <path-affinity-name>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <affinity-name>
+                      <!-- # keys: name-->
+                      <!-- # entries: 0.. -->
+                      <name>
+                        <!-- type: string -->
+                      </name>
+                    </affinity-name>
+                  </path-affinity-name>
+                </path-affinity-names>
+                <path-srlgs-lists>
+                  <path-srlgs-list>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <values>
+                      <!-- # entries: 0.. -->
+                    </values>
+                  </path-srlgs-list>
+                </path-srlgs-lists>
+                <path-srlgs-names>
+                  <path-srlgs-name>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <names>
+                      <!-- # entries: 0.. -->
+                    </names>
+                  </path-srlgs-name>
+                </path-srlgs-names>
+                <disjointness>
+                  <!-- type: te-path-disjointness -->
+                </disjointness>
+              </path-constraints>
+              <optimizations>
+                <optimization-metric>
+                  <!-- # keys: metric-type-->
+                  <!-- # entries: 0.. -->
+                  <metric-type>
+                    <!-- type: identityref -->
+                  </metric-type>
+                  <weight>1</weight>
+                  <explicit-route-exclude-objects>
+                    <route-object-exclude-object>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                      <srlg>
+                        <srlg>
+                          <!-- type: uint32 -->
+                        </srlg>
+                      </srlg>
+                    </route-object-exclude-object>
+                  </explicit-route-exclude-objects>
+                  <explicit-route-include-objects>
+                    <route-object-include-object>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </route-object-include-object>
+                  </explicit-route-include-objects>
+                </optimization-metric>
+                <tiebreakers>
+                  <tiebreaker>
+                    <!-- # keys: tiebreaker-type-->
+                    <!-- # entries: 0.. -->
+                    <tiebreaker-type>
+                      <!-- type: identityref -->
+                    </tiebreaker-type>
+                  </tiebreaker>
+                </tiebreakers>
+                <objective-function>
+                  <objective-function-type>te-types:of-minimize-cost-path</objective-function-type>
+                </objective-function>
+              </optimizations>
+              <connectivity-matrix>
+                <!-- # keys: id-->
+                <!-- # entries: 0.. -->
+                <id>
+                  <!-- type: uint32 -->
+                </id>
+                <from>
+                  <tp-ref>
+                    <!-- type: leafref -->
+                  </tp-ref>
+                  <label-restrictions>
+                    <label-restriction>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <restriction>inclusive</restriction>
+                      <label-start>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-start>
+                      <label-end>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-end>
+                      <label-step>
+                        <generic>1</generic>
+                      </label-step>
+                      <range-bitmap>
+                        <!-- type: yang:hex-string -->
+                      </range-bitmap>
+                    </label-restriction>
+                  </label-restrictions>
+                </from>
+                <to>
+                  <tp-ref>
+                    <!-- type: leafref -->
+                  </tp-ref>
+                  <label-restrictions>
+                    <label-restriction>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <restriction>inclusive</restriction>
+                      <label-start>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-start>
+                      <label-end>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-end>
+                      <label-step>
+                        <generic>1</generic>
+                      </label-step>
+                      <range-bitmap>
+                        <!-- type: yang:hex-string -->
+                      </range-bitmap>
+                    </label-restriction>
+                  </label-restrictions>
+                </to>
+                <is-allowed>
+                  <!-- type: boolean -->
+                </is-allowed>
+                <underlay>
+                  <enabled>
+                    <!-- type: boolean -->
+                  </enabled>
+                  <primary-path>
+                    <network-ref>
+                      <!-- type: leafref -->
+                    </network-ref>
+                    <path-element>
+                      <!-- # keys: path-element-id-->
+                      <!-- # entries: 0.. -->
+                      <path-element-id>
+                        <!-- type: uint32 -->
+                      </path-element-id>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </path-element>
+                  </primary-path>
+                  <backup-path>
+                    <!-- # keys: index-->
+                    <!-- # entries: 0.. -->
+                    <index>
+                      <!-- type: uint32 -->
+                    </index>
+                    <network-ref>
+                      <!-- type: leafref -->
+                    </network-ref>
+                    <path-element>
+                      <!-- # keys: path-element-id-->
+                      <!-- # entries: 0.. -->
+                      <path-element-id>
+                        <!-- type: uint32 -->
+                      </path-element-id>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </path-element>
+                  </backup-path>
+                  <protection-type>
+                    <!-- type: identityref -->
+                  </protection-type>
+                  <tunnel-termination-points>
+                    <source>
+                      <!-- type: binary -->
+                    </source>
+                    <destination>
+                      <!-- type: binary -->
+                    </destination>
+                  </tunnel-termination-points>
+                  <tunnels>
+                    <sharing>true</sharing>
+                    <tunnel>
+                      <!-- # keys: tunnel-name-->
+                      <!-- # entries: 0.. -->
+                      <tunnel-name>
+                        <!-- type: string -->
+                      </tunnel-name>
+                      <sharing>
+                        <!-- type: boolean -->
+                      </sharing>
+                    </tunnel>
+                  </tunnels>
+                </underlay>
+                <path-constraints>
+                  <te-bandwidth>
+                    <generic>
+                      <!-- type: te-bandwidth -->
+                    </generic>
+                  </te-bandwidth>
+                  <link-protection>te-types:link-protection-unprotected</link-protection>
+                  <setup-priority>7</setup-priority>
+                  <hold-priority>7</hold-priority>
+                  <signaling-type>te-types:path-setup-rsvp</signaling-type>
+                  <path-metric-bounds>
+                    <path-metric-bound>
+                      <!-- # keys: metric-type-->
+                      <!-- # entries: 0.. -->
+                      <metric-type>
+                        <!-- type: identityref -->
+                      </metric-type>
+                      <upper-bound>0</upper-bound>
+                    </path-metric-bound>
+                  </path-metric-bounds>
+                  <path-affinities-values>
+                    <path-affinities-value>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <value></value>
+                    </path-affinities-value>
+                  </path-affinities-values>
+                  <path-affinity-names>
+                    <path-affinity-name>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <affinity-name>
+                        <!-- # keys: name-->
+                        <!-- # entries: 0.. -->
+                        <name>
+                          <!-- type: string -->
+                        </name>
+                      </affinity-name>
+                    </path-affinity-name>
+                  </path-affinity-names>
+                  <path-srlgs-lists>
+                    <path-srlgs-list>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <values>
+                        <!-- # entries: 0.. -->
+                      </values>
+                    </path-srlgs-list>
+                  </path-srlgs-lists>
+                  <path-srlgs-names>
+                    <path-srlgs-name>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <names>
+                        <!-- # entries: 0.. -->
+                      </names>
+                    </path-srlgs-name>
+                  </path-srlgs-names>
+                  <disjointness>
+                    <!-- type: te-path-disjointness -->
+                  </disjointness>
+                </path-constraints>
+                <optimizations>
+                  <optimization-metric>
+                    <!-- # keys: metric-type-->
+                    <!-- # entries: 0.. -->
+                    <metric-type>
+                      <!-- type: identityref -->
+                    </metric-type>
+                    <weight>1</weight>
+                    <explicit-route-exclude-objects>
+                      <route-object-exclude-object>
+                        <!-- # keys: index-->
+                        <!-- # entries: 0.. -->
+                        <index>
+                          <!-- type: uint32 -->
+                        </index>
+                        <numbered-node-hop>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                        </numbered-node-hop>
+                        <numbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </numbered-link-hop>
+                        <unnumbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </unnumbered-link-hop>
+                        <as-number-hop>
+                          <as-number>
+                            <!-- type: inet:as-number -->
+                          </as-number>
+                          <hop-type>strict</hop-type>
+                        </as-number-hop>
+                        <label-hop>
+                          <te-label>
+                            <generic>
+                              <!-- type: rt-types:generalized-label -->
+                            </generic>
+                            <direction>forward</direction>
+                          </te-label>
+                        </label-hop>
+                        <srlg>
+                          <srlg>
+                            <!-- type: uint32 -->
+                          </srlg>
+                        </srlg>
+                      </route-object-exclude-object>
+                    </explicit-route-exclude-objects>
+                    <explicit-route-include-objects>
+                      <route-object-include-object>
+                        <!-- # keys: index-->
+                        <!-- # entries: 0.. -->
+                        <index>
+                          <!-- type: uint32 -->
+                        </index>
+                        <numbered-node-hop>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                        </numbered-node-hop>
+                        <numbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </numbered-link-hop>
+                        <unnumbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </unnumbered-link-hop>
+                        <as-number-hop>
+                          <as-number>
+                            <!-- type: inet:as-number -->
+                          </as-number>
+                          <hop-type>strict</hop-type>
+                        </as-number-hop>
+                        <label-hop>
+                          <te-label>
+                            <generic>
+                              <!-- type: rt-types:generalized-label -->
+                            </generic>
+                            <direction>forward</direction>
+                          </te-label>
+                        </label-hop>
+                      </route-object-include-object>
+                    </explicit-route-include-objects>
+                  </optimization-metric>
+                  <tiebreakers>
+                    <tiebreaker>
+                      <!-- # keys: tiebreaker-type-->
+                      <!-- # entries: 0.. -->
+                      <tiebreaker-type>
+                        <!-- type: identityref -->
+                      </tiebreaker-type>
+                    </tiebreaker>
+                  </tiebreakers>
+                  <objective-function>
+                    <objective-function-type>te-types:of-minimize-cost-path</objective-function-type>
+                  </objective-function>
+                </optimizations>
+              </connectivity-matrix>
+            </connectivity-matrices>
+            <domain-id>
+              <!-- type: uint32 -->
+            </domain-id>
+            <is-abstract>
+              <!-- type: empty -->
+            </is-abstract>
+            <name>
+              <!-- type: string -->
+            </name>
+            <signaling-address>
+              <!-- # entries: 0.. -->
+            </signaling-address>
+            <underlay-topology>
+              <network-ref>
+                <!-- type: leafref -->
+              </network-ref>
+            </underlay-topology>
+          </te-node-attributes>
+          <tunnel-termination-point>
+            <!-- # keys: tunnel-tp-id-->
+            <!-- # entries: 0.. -->
+            <tunnel-tp-id>
+              <!-- type: binary -->
+            </tunnel-tp-id>
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <name>
+              <!-- type: string -->
+            </name>
+            <switching-capability>
+              <!-- type: identityref -->
+            </switching-capability>
+            <encoding>
+              <!-- type: identityref -->
+            </encoding>
+            <inter-layer-lock-id>
+              <!-- # entries: 0.. -->
+            </inter-layer-lock-id>
+            <protection-type>
+              <!-- type: identityref -->
+            </protection-type>
+            <client-layer-adaptation>
+              <switching-capability>
+                <!-- # keys: switching-capability,encoding-->
+                <!-- # entries: 0.. -->
+                <switching-capability>
+                  <!-- type: identityref -->
+                </switching-capability>
+                <encoding>
+                  <!-- type: identityref -->
+                </encoding>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+              </switching-capability>
+            </client-layer-adaptation>
+            <local-link-connectivities>
+              <number-of-entries>
+                <!-- type: uint16 -->
+              </number-of-entries>
+              <label-restrictions>
+                <label-restriction>
+                  <!-- # keys: index-->
+                  <!-- # entries: 0.. -->
+                  <index>
+                    <!-- type: uint32 -->
+                  </index>
+                  <restriction>inclusive</restriction>
+                  <label-start>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-start>
+                  <label-end>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-end>
+                  <label-step>
+                    <generic>1</generic>
+                  </label-step>
+                  <range-bitmap>
+                    <!-- type: yang:hex-string -->
+                  </range-bitmap>
+                </label-restriction>
+              </label-restrictions>
+              <is-allowed>
+                <!-- type: boolean -->
+              </is-allowed>
+              <underlay>
+                <enabled>
+                  <!-- type: boolean -->
+                </enabled>
+                <primary-path>
+                  <network-ref>
+                    <!-- type: leafref -->
+                  </network-ref>
+                  <path-element>
+                    <!-- # keys: path-element-id-->
+                    <!-- # entries: 0.. -->
+                    <path-element-id>
+                      <!-- type: uint32 -->
+                    </path-element-id>
+                    <numbered-node-hop>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                    </numbered-node-hop>
+                    <numbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </numbered-link-hop>
+                    <unnumbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </unnumbered-link-hop>
+                    <as-number-hop>
+                      <as-number>
+                        <!-- type: inet:as-number -->
+                      </as-number>
+                      <hop-type>strict</hop-type>
+                    </as-number-hop>
+                    <label-hop>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-hop>
+                  </path-element>
+                </primary-path>
+                <backup-path>
+                  <!-- # keys: index-->
+                  <!-- # entries: 0.. -->
+                  <index>
+                    <!-- type: uint32 -->
+                  </index>
+                  <network-ref>
+                    <!-- type: leafref -->
+                  </network-ref>
+                  <path-element>
+                    <!-- # keys: path-element-id-->
+                    <!-- # entries: 0.. -->
+                    <path-element-id>
+                      <!-- type: uint32 -->
+                    </path-element-id>
+                    <numbered-node-hop>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                    </numbered-node-hop>
+                    <numbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </numbered-link-hop>
+                    <unnumbered-link-hop>
+                      <link-tp-id>
+                        <!-- type: te-tp-id -->
+                      </link-tp-id>
+                      <node-id>
+                        <!-- type: te-node-id -->
+                      </node-id>
+                      <hop-type>strict</hop-type>
+                      <direction>outgoing</direction>
+                    </unnumbered-link-hop>
+                    <as-number-hop>
+                      <as-number>
+                        <!-- type: inet:as-number -->
+                      </as-number>
+                      <hop-type>strict</hop-type>
+                    </as-number-hop>
+                    <label-hop>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-hop>
+                  </path-element>
+                </backup-path>
+                <protection-type>
+                  <!-- type: identityref -->
+                </protection-type>
+                <tunnel-termination-points>
+                  <source>
+                    <!-- type: binary -->
+                  </source>
+                  <destination>
+                    <!-- type: binary -->
+                  </destination>
+                </tunnel-termination-points>
+                <tunnels>
+                  <sharing>true</sharing>
+                  <tunnel>
+                    <!-- # keys: tunnel-name-->
+                    <!-- # entries: 0.. -->
+                    <tunnel-name>
+                      <!-- type: string -->
+                    </tunnel-name>
+                    <sharing>
+                      <!-- type: boolean -->
+                    </sharing>
+                  </tunnel>
+                </tunnels>
+              </underlay>
+              <path-constraints>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+                <link-protection>te-types:link-protection-unprotected</link-protection>
+                <setup-priority>7</setup-priority>
+                <hold-priority>7</hold-priority>
+                <signaling-type>te-types:path-setup-rsvp</signaling-type>
+                <path-metric-bounds>
+                  <path-metric-bound>
+                    <!-- # keys: metric-type-->
+                    <!-- # entries: 0.. -->
+                    <metric-type>
+                      <!-- type: identityref -->
+                    </metric-type>
+                    <upper-bound>0</upper-bound>
+                  </path-metric-bound>
+                </path-metric-bounds>
+                <path-affinities-values>
+                  <path-affinities-value>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <value></value>
+                  </path-affinities-value>
+                </path-affinities-values>
+                <path-affinity-names>
+                  <path-affinity-name>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <affinity-name>
+                      <!-- # keys: name-->
+                      <!-- # entries: 0.. -->
+                      <name>
+                        <!-- type: string -->
+                      </name>
+                    </affinity-name>
+                  </path-affinity-name>
+                </path-affinity-names>
+                <path-srlgs-lists>
+                  <path-srlgs-list>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <values>
+                      <!-- # entries: 0.. -->
+                    </values>
+                  </path-srlgs-list>
+                </path-srlgs-lists>
+                <path-srlgs-names>
+                  <path-srlgs-name>
+                    <!-- # keys: usage-->
+                    <!-- # entries: 0.. -->
+                    <usage>
+                      <!-- type: identityref -->
+                    </usage>
+                    <names>
+                      <!-- # entries: 0.. -->
+                    </names>
+                  </path-srlgs-name>
+                </path-srlgs-names>
+                <disjointness>
+                  <!-- type: te-path-disjointness -->
+                </disjointness>
+              </path-constraints>
+              <optimizations>
+                <optimization-metric>
+                  <!-- # keys: metric-type-->
+                  <!-- # entries: 0.. -->
+                  <metric-type>
+                    <!-- type: identityref -->
+                  </metric-type>
+                  <weight>1</weight>
+                  <explicit-route-exclude-objects>
+                    <route-object-exclude-object>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                      <srlg>
+                        <srlg>
+                          <!-- type: uint32 -->
+                        </srlg>
+                      </srlg>
+                    </route-object-exclude-object>
+                  </explicit-route-exclude-objects>
+                  <explicit-route-include-objects>
+                    <route-object-include-object>
+                      <!-- # keys: index-->
+                      <!-- # entries: 0.. -->
+                      <index>
+                        <!-- type: uint32 -->
+                      </index>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </route-object-include-object>
+                  </explicit-route-include-objects>
+                </optimization-metric>
+                <tiebreakers>
+                  <tiebreaker>
+                    <!-- # keys: tiebreaker-type-->
+                    <!-- # entries: 0.. -->
+                    <tiebreaker-type>
+                      <!-- type: identityref -->
+                    </tiebreaker-type>
+                  </tiebreaker>
+                </tiebreakers>
+                <objective-function>
+                  <objective-function-type>te-types:of-minimize-cost-path</objective-function-type>
+                </objective-function>
+              </optimizations>
+              <local-link-connectivity>
+                <!-- # keys: link-tp-ref-->
+                <!-- # entries: 0.. -->
+                <link-tp-ref>
+                  <!-- type: leafref -->
+                </link-tp-ref>
+                <label-restrictions>
+                  <label-restriction>
+                    <!-- # keys: index-->
+                    <!-- # entries: 0.. -->
+                    <index>
+                      <!-- type: uint32 -->
+                    </index>
+                    <restriction>inclusive</restriction>
+                    <label-start>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-start>
+                    <label-end>
+                      <te-label>
+                        <generic>
+                          <!-- type: rt-types:generalized-label -->
+                        </generic>
+                        <direction>forward</direction>
+                      </te-label>
+                    </label-end>
+                    <label-step>
+                      <generic>1</generic>
+                    </label-step>
+                    <range-bitmap>
+                      <!-- type: yang:hex-string -->
+                    </range-bitmap>
+                  </label-restriction>
+                </label-restrictions>
+                <is-allowed>
+                  <!-- type: boolean -->
+                </is-allowed>
+                <underlay>
+                  <enabled>
+                    <!-- type: boolean -->
+                  </enabled>
+                  <primary-path>
+                    <network-ref>
+                      <!-- type: leafref -->
+                    </network-ref>
+                    <path-element>
+                      <!-- # keys: path-element-id-->
+                      <!-- # entries: 0.. -->
+                      <path-element-id>
+                        <!-- type: uint32 -->
+                      </path-element-id>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </path-element>
+                  </primary-path>
+                  <backup-path>
+                    <!-- # keys: index-->
+                    <!-- # entries: 0.. -->
+                    <index>
+                      <!-- type: uint32 -->
+                    </index>
+                    <network-ref>
+                      <!-- type: leafref -->
+                    </network-ref>
+                    <path-element>
+                      <!-- # keys: path-element-id-->
+                      <!-- # entries: 0.. -->
+                      <path-element-id>
+                        <!-- type: uint32 -->
+                      </path-element-id>
+                      <numbered-node-hop>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                      </numbered-node-hop>
+                      <numbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </numbered-link-hop>
+                      <unnumbered-link-hop>
+                        <link-tp-id>
+                          <!-- type: te-tp-id -->
+                        </link-tp-id>
+                        <node-id>
+                          <!-- type: te-node-id -->
+                        </node-id>
+                        <hop-type>strict</hop-type>
+                        <direction>outgoing</direction>
+                      </unnumbered-link-hop>
+                      <as-number-hop>
+                        <as-number>
+                          <!-- type: inet:as-number -->
+                        </as-number>
+                        <hop-type>strict</hop-type>
+                      </as-number-hop>
+                      <label-hop>
+                        <te-label>
+                          <generic>
+                            <!-- type: rt-types:generalized-label -->
+                          </generic>
+                          <direction>forward</direction>
+                        </te-label>
+                      </label-hop>
+                    </path-element>
+                  </backup-path>
+                  <protection-type>
+                    <!-- type: identityref -->
+                  </protection-type>
+                  <tunnel-termination-points>
+                    <source>
+                      <!-- type: binary -->
+                    </source>
+                    <destination>
+                      <!-- type: binary -->
+                    </destination>
+                  </tunnel-termination-points>
+                  <tunnels>
+                    <sharing>true</sharing>
+                    <tunnel>
+                      <!-- # keys: tunnel-name-->
+                      <!-- # entries: 0.. -->
+                      <tunnel-name>
+                        <!-- type: string -->
+                      </tunnel-name>
+                      <sharing>
+                        <!-- type: boolean -->
+                      </sharing>
+                    </tunnel>
+                  </tunnels>
+                </underlay>
+                <path-constraints>
+                  <te-bandwidth>
+                    <generic>
+                      <!-- type: te-bandwidth -->
+                    </generic>
+                  </te-bandwidth>
+                  <link-protection>te-types:link-protection-unprotected</link-protection>
+                  <setup-priority>7</setup-priority>
+                  <hold-priority>7</hold-priority>
+                  <signaling-type>te-types:path-setup-rsvp</signaling-type>
+                  <path-metric-bounds>
+                    <path-metric-bound>
+                      <!-- # keys: metric-type-->
+                      <!-- # entries: 0.. -->
+                      <metric-type>
+                        <!-- type: identityref -->
+                      </metric-type>
+                      <upper-bound>0</upper-bound>
+                    </path-metric-bound>
+                  </path-metric-bounds>
+                  <path-affinities-values>
+                    <path-affinities-value>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <value></value>
+                    </path-affinities-value>
+                  </path-affinities-values>
+                  <path-affinity-names>
+                    <path-affinity-name>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <affinity-name>
+                        <!-- # keys: name-->
+                        <!-- # entries: 0.. -->
+                        <name>
+                          <!-- type: string -->
+                        </name>
+                      </affinity-name>
+                    </path-affinity-name>
+                  </path-affinity-names>
+                  <path-srlgs-lists>
+                    <path-srlgs-list>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <values>
+                        <!-- # entries: 0.. -->
+                      </values>
+                    </path-srlgs-list>
+                  </path-srlgs-lists>
+                  <path-srlgs-names>
+                    <path-srlgs-name>
+                      <!-- # keys: usage-->
+                      <!-- # entries: 0.. -->
+                      <usage>
+                        <!-- type: identityref -->
+                      </usage>
+                      <names>
+                        <!-- # entries: 0.. -->
+                      </names>
+                    </path-srlgs-name>
+                  </path-srlgs-names>
+                  <disjointness>
+                    <!-- type: te-path-disjointness -->
+                  </disjointness>
+                </path-constraints>
+                <optimizations>
+                  <optimization-metric>
+                    <!-- # keys: metric-type-->
+                    <!-- # entries: 0.. -->
+                    <metric-type>
+                      <!-- type: identityref -->
+                    </metric-type>
+                    <weight>1</weight>
+                    <explicit-route-exclude-objects>
+                      <route-object-exclude-object>
+                        <!-- # keys: index-->
+                        <!-- # entries: 0.. -->
+                        <index>
+                          <!-- type: uint32 -->
+                        </index>
+                        <numbered-node-hop>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                        </numbered-node-hop>
+                        <numbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </numbered-link-hop>
+                        <unnumbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </unnumbered-link-hop>
+                        <as-number-hop>
+                          <as-number>
+                            <!-- type: inet:as-number -->
+                          </as-number>
+                          <hop-type>strict</hop-type>
+                        </as-number-hop>
+                        <label-hop>
+                          <te-label>
+                            <generic>
+                              <!-- type: rt-types:generalized-label -->
+                            </generic>
+                            <direction>forward</direction>
+                          </te-label>
+                        </label-hop>
+                        <srlg>
+                          <srlg>
+                            <!-- type: uint32 -->
+                          </srlg>
+                        </srlg>
+                      </route-object-exclude-object>
+                    </explicit-route-exclude-objects>
+                    <explicit-route-include-objects>
+                      <route-object-include-object>
+                        <!-- # keys: index-->
+                        <!-- # entries: 0.. -->
+                        <index>
+                          <!-- type: uint32 -->
+                        </index>
+                        <numbered-node-hop>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                        </numbered-node-hop>
+                        <numbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </numbered-link-hop>
+                        <unnumbered-link-hop>
+                          <link-tp-id>
+                            <!-- type: te-tp-id -->
+                          </link-tp-id>
+                          <node-id>
+                            <!-- type: te-node-id -->
+                          </node-id>
+                          <hop-type>strict</hop-type>
+                          <direction>outgoing</direction>
+                        </unnumbered-link-hop>
+                        <as-number-hop>
+                          <as-number>
+                            <!-- type: inet:as-number -->
+                          </as-number>
+                          <hop-type>strict</hop-type>
+                        </as-number-hop>
+                        <label-hop>
+                          <te-label>
+                            <generic>
+                              <!-- type: rt-types:generalized-label -->
+                            </generic>
+                            <direction>forward</direction>
+                          </te-label>
+                        </label-hop>
+                      </route-object-include-object>
+                    </explicit-route-include-objects>
+                  </optimization-metric>
+                  <tiebreakers>
+                    <tiebreaker>
+                      <!-- # keys: tiebreaker-type-->
+                      <!-- # entries: 0.. -->
+                      <tiebreaker-type>
+                        <!-- type: identityref -->
+                      </tiebreaker-type>
+                    </tiebreaker>
+                  </tiebreakers>
+                  <objective-function>
+                    <objective-function-type>te-types:of-minimize-cost-path</objective-function-type>
+                  </objective-function>
+                </optimizations>
+              </local-link-connectivity>
+            </local-link-connectivities>
+            <supporting-tunnel-termination-point>
+              <!-- # keys: node-ref,tunnel-tp-ref-->
+              <!-- # entries: 0.. -->
+              <node-ref>
+                <!-- type: inet:uri -->
+              </node-ref>
+              <tunnel-tp-ref>
+                <!-- type: binary -->
+              </tunnel-tp-ref>
+            </supporting-tunnel-termination-point>
+          </tunnel-termination-point>
+        </te>
+      </node>
+      <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <!-- # keys: link-id-->
+        <!-- # entries: 0.. -->
+        <link-id>
+          <!-- type: link-id -->
+        </link-id>
+        <source>
+          <source-node>
+            <!-- type: leafref -->
+          </source-node>
+          <source-tp>
+            <!-- type: leafref -->
+          </source-tp>
+        </source>
+        <destination>
+          <dest-node>
+            <!-- type: leafref -->
+          </dest-node>
+          <dest-tp>
+            <!-- type: leafref -->
+          </dest-tp>
+        </destination>
+        <supporting-link>
+          <!-- # keys: network-ref,link-ref-->
+          <!-- # entries: 0.. -->
+          <network-ref>
+            <!-- type: leafref -->
+          </network-ref>
+          <link-ref>
+            <!-- type: leafref -->
+          </link-ref>
+        </supporting-link>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <!-- presence: TE support -->
+          <bundled-links>
+            <bundled-link>
+              <!-- # keys: sequence-->
+              <!-- # entries: 0.. -->
+              <sequence>
+                <!-- type: uint32 -->
+              </sequence>
+              <src-tp-ref>
+                <!-- type: leafref -->
+              </src-tp-ref>
+              <des-tp-ref>
+                <!-- type: leafref -->
+              </des-tp-ref>
+            </bundled-link>
+          </bundled-links>
+          <component-links>
+            <component-link>
+              <!-- # keys: sequence-->
+              <!-- # entries: 0.. -->
+              <sequence>
+                <!-- type: uint32 -->
+              </sequence>
+              <src-interface-ref>
+                <!-- type: string -->
+              </src-interface-ref>
+              <des-interface-ref>
+                <!-- type: string -->
+              </des-interface-ref>
+            </component-link>
+          </component-links>
+          <te-link-template>
+            <!-- # entries: 0.. -->
+          </te-link-template>
+          <te-link-attributes>
+            <access-type>
+              <!-- type: te-types:te-link-access-type -->
+            </access-type>
+            <external-domain>
+              <network-ref>
+                <!-- type: leafref -->
+              </network-ref>
+              <remote-te-node-id>
+                <!-- type: te-types:te-node-id -->
+              </remote-te-node-id>
+              <remote-te-link-tp-id>
+                <!-- type: te-types:te-tp-id -->
+              </remote-te-link-tp-id>
+            </external-domain>
+            <is-abstract>
+              <!-- type: empty -->
+            </is-abstract>
+            <name>
+              <!-- type: string -->
+            </name>
+            <underlay>
+              <enabled>
+                <!-- type: boolean -->
+              </enabled>
+              <primary-path>
+                <network-ref>
+                  <!-- type: leafref -->
+                </network-ref>
+                <path-element>
+                  <!-- # keys: path-element-id-->
+                  <!-- # entries: 0.. -->
+                  <path-element-id>
+                    <!-- type: uint32 -->
+                  </path-element-id>
+                  <numbered-node-hop>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                  </numbered-node-hop>
+                  <numbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </numbered-link-hop>
+                  <unnumbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </unnumbered-link-hop>
+                  <as-number-hop>
+                    <as-number>
+                      <!-- type: inet:as-number -->
+                    </as-number>
+                    <hop-type>strict</hop-type>
+                  </as-number-hop>
+                  <label-hop>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-hop>
+                </path-element>
+              </primary-path>
+              <backup-path>
+                <!-- # keys: index-->
+                <!-- # entries: 0.. -->
+                <index>
+                  <!-- type: uint32 -->
+                </index>
+                <network-ref>
+                  <!-- type: leafref -->
+                </network-ref>
+                <path-element>
+                  <!-- # keys: path-element-id-->
+                  <!-- # entries: 0.. -->
+                  <path-element-id>
+                    <!-- type: uint32 -->
+                  </path-element-id>
+                  <numbered-node-hop>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                  </numbered-node-hop>
+                  <numbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </numbered-link-hop>
+                  <unnumbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </unnumbered-link-hop>
+                  <as-number-hop>
+                    <as-number>
+                      <!-- type: inet:as-number -->
+                    </as-number>
+                    <hop-type>strict</hop-type>
+                  </as-number-hop>
+                  <label-hop>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-hop>
+                </path-element>
+              </backup-path>
+              <protection-type>
+                <!-- type: identityref -->
+              </protection-type>
+              <tunnel-termination-points>
+                <source>
+                  <!-- type: binary -->
+                </source>
+                <destination>
+                  <!-- type: binary -->
+                </destination>
+              </tunnel-termination-points>
+              <tunnels>
+                <sharing>true</sharing>
+                <tunnel>
+                  <!-- # keys: tunnel-name-->
+                  <!-- # entries: 0.. -->
+                  <tunnel-name>
+                    <!-- type: string -->
+                  </tunnel-name>
+                  <sharing>
+                    <!-- type: boolean -->
+                  </sharing>
+                </tunnel>
+              </tunnels>
+            </underlay>
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <link-index>
+              <!-- type: uint64 -->
+            </link-index>
+            <administrative-group>
+              <!-- type: te-types:admin-groups -->
+            </administrative-group>
+            <interface-switching-capability>
+              <!-- # keys: switching-capability,encoding-->
+              <!-- # entries: 0.. -->
+              <switching-capability>
+                <!-- type: identityref -->
+              </switching-capability>
+              <encoding>
+                <!-- type: identityref -->
+              </encoding>
+              <max-lsp-bandwidth>
+                <!-- # keys: priority-->
+                <!-- # entries: 0..8 -->
+                <priority>
+                  <!-- type: uint8 -->
+                </priority>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+              </max-lsp-bandwidth>
+            </interface-switching-capability>
+            <label-restrictions>
+              <label-restriction>
+                <!-- # keys: index-->
+                <!-- # entries: 0.. -->
+                <index>
+                  <!-- type: uint32 -->
+                </index>
+                <restriction>inclusive</restriction>
+                <label-start>
+                  <te-label>
+                    <generic>
+                      <!-- type: rt-types:generalized-label -->
+                    </generic>
+                    <direction>forward</direction>
+                  </te-label>
+                </label-start>
+                <label-end>
+                  <te-label>
+                    <generic>
+                      <!-- type: rt-types:generalized-label -->
+                    </generic>
+                    <direction>forward</direction>
+                  </te-label>
+                </label-end>
+                <label-step>
+                  <generic>1</generic>
+                </label-step>
+                <range-bitmap>
+                  <!-- type: yang:hex-string -->
+                </range-bitmap>
+              </label-restriction>
+            </label-restrictions>
+            <link-protection-type>
+              <!-- type: identityref -->
+            </link-protection-type>
+            <max-link-bandwidth>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </max-link-bandwidth>
+            <max-resv-link-bandwidth>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </max-resv-link-bandwidth>
+            <unreserved-bandwidth>
+              <!-- # keys: priority-->
+              <!-- # entries: 0..8 -->
+              <priority>
+                <!-- type: uint8 -->
+              </priority>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </unreserved-bandwidth>
+            <te-default-metric>
+              <!-- type: uint32 -->
+            </te-default-metric>
+            <te-delay-metric>
+              <!-- type: uint32 -->
+            </te-delay-metric>
+            <te-igp-metric>
+              <!-- type: uint32 -->
+            </te-igp-metric>
+            <te-srlgs>
+              <value>
+                <!-- # entries: 0.. -->
+              </value>
+            </te-srlgs>
+            <te-nsrlgs>
+              <id>
+                <!-- # entries: 0.. -->
+              </id>
+            </te-nsrlgs>
+          </te-link-attributes>
+        </te>
+      </link>
+      <te-topology-identifier xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <provider-id>0</provider-id>
+        <client-id>0</client-id>
+        <topology-id></topology-id>
+      </te-topology-identifier>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <!-- presence: TE support -->
+        <name>
+          <!-- type: string -->
+        </name>
+        <preference>
+          <!-- type: uint8 -->
+        </preference>
+        <optimization-criterion>
+          <!-- type: identityref -->
+        </optimization-criterion>
+        <nsrlg>
+          <!-- # keys: id-->
+          <!-- # entries: 0.. -->
+          <id>
+            <!-- type: uint32 -->
+          </id>
+          <disjointness>
+            <!-- type: te-types:te-path-disjointness -->
+          </disjointness>
+        </nsrlg>
+      </te>
+    </network>
+    <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+      <!-- presence: TE support -->
+      <templates>
+        <node-template>
+          <!-- # keys: name-->
+          <!-- # entries: 0.. -->
+          <name>
+            <!-- type: te-types:te-template-name -->
+          </name>
+          <priority>
+            <!-- type: uint16 -->
+          </priority>
+          <reference-change-policy>
+            <!-- type: enumeration -->
+          </reference-change-policy>
+          <te-node-attributes>
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <domain-id>
+              <!-- type: uint32 -->
+            </domain-id>
+            <is-abstract>
+              <!-- type: empty -->
+            </is-abstract>
+            <name>
+              <!-- type: string -->
+            </name>
+            <signaling-address>
+              <!-- # entries: 0.. -->
+            </signaling-address>
+            <underlay-topology>
+              <network-ref>
+                <!-- type: leafref -->
+              </network-ref>
+            </underlay-topology>
+          </te-node-attributes>
+        </node-template>
+        <link-template>
+          <!-- # keys: name-->
+          <!-- # entries: 0.. -->
+          <name>
+            <!-- type: te-types:te-template-name -->
+          </name>
+          <priority>
+            <!-- type: uint16 -->
+          </priority>
+          <reference-change-policy>
+            <!-- type: enumeration -->
+          </reference-change-policy>
+          <te-link-attributes>
+            <access-type>
+              <!-- type: te-types:te-link-access-type -->
+            </access-type>
+            <external-domain>
+              <network-ref>
+                <!-- type: leafref -->
+              </network-ref>
+              <remote-te-node-id>
+                <!-- type: te-types:te-node-id -->
+              </remote-te-node-id>
+              <remote-te-link-tp-id>
+                <!-- type: te-types:te-tp-id -->
+              </remote-te-link-tp-id>
+            </external-domain>
+            <is-abstract>
+              <!-- type: empty -->
+            </is-abstract>
+            <name>
+              <!-- type: string -->
+            </name>
+            <underlay>
+              <enabled>
+                <!-- type: boolean -->
+              </enabled>
+              <primary-path>
+                <network-ref>
+                  <!-- type: leafref -->
+                </network-ref>
+                <path-element>
+                  <!-- # keys: path-element-id-->
+                  <!-- # entries: 0.. -->
+                  <path-element-id>
+                    <!-- type: uint32 -->
+                  </path-element-id>
+                  <numbered-node-hop>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                  </numbered-node-hop>
+                  <numbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </numbered-link-hop>
+                  <unnumbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </unnumbered-link-hop>
+                  <as-number-hop>
+                    <as-number>
+                      <!-- type: inet:as-number -->
+                    </as-number>
+                    <hop-type>strict</hop-type>
+                  </as-number-hop>
+                  <label-hop>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-hop>
+                </path-element>
+              </primary-path>
+              <backup-path>
+                <!-- # keys: index-->
+                <!-- # entries: 0.. -->
+                <index>
+                  <!-- type: uint32 -->
+                </index>
+                <network-ref>
+                  <!-- type: leafref -->
+                </network-ref>
+                <path-element>
+                  <!-- # keys: path-element-id-->
+                  <!-- # entries: 0.. -->
+                  <path-element-id>
+                    <!-- type: uint32 -->
+                  </path-element-id>
+                  <numbered-node-hop>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                  </numbered-node-hop>
+                  <numbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </numbered-link-hop>
+                  <unnumbered-link-hop>
+                    <link-tp-id>
+                      <!-- type: te-tp-id -->
+                    </link-tp-id>
+                    <node-id>
+                      <!-- type: te-node-id -->
+                    </node-id>
+                    <hop-type>strict</hop-type>
+                    <direction>outgoing</direction>
+                  </unnumbered-link-hop>
+                  <as-number-hop>
+                    <as-number>
+                      <!-- type: inet:as-number -->
+                    </as-number>
+                    <hop-type>strict</hop-type>
+                  </as-number-hop>
+                  <label-hop>
+                    <te-label>
+                      <generic>
+                        <!-- type: rt-types:generalized-label -->
+                      </generic>
+                      <direction>forward</direction>
+                    </te-label>
+                  </label-hop>
+                </path-element>
+              </backup-path>
+              <protection-type>
+                <!-- type: identityref -->
+              </protection-type>
+              <tunnel-termination-points>
+                <source>
+                  <!-- type: binary -->
+                </source>
+                <destination>
+                  <!-- type: binary -->
+                </destination>
+              </tunnel-termination-points>
+              <tunnels>
+                <sharing>true</sharing>
+                <tunnel>
+                  <!-- # keys: tunnel-name-->
+                  <!-- # entries: 0.. -->
+                  <tunnel-name>
+                    <!-- type: string -->
+                  </tunnel-name>
+                  <sharing>
+                    <!-- type: boolean -->
+                  </sharing>
+                </tunnel>
+              </tunnels>
+            </underlay>
+            <admin-status>
+              <!-- type: te-types:te-admin-status -->
+            </admin-status>
+            <link-index>
+              <!-- type: uint64 -->
+            </link-index>
+            <administrative-group>
+              <!-- type: te-types:admin-groups -->
+            </administrative-group>
+            <interface-switching-capability>
+              <!-- # keys: switching-capability,encoding-->
+              <!-- # entries: 0.. -->
+              <switching-capability>
+                <!-- type: identityref -->
+              </switching-capability>
+              <encoding>
+                <!-- type: identityref -->
+              </encoding>
+              <max-lsp-bandwidth>
+                <!-- # keys: priority-->
+                <!-- # entries: 0..8 -->
+                <priority>
+                  <!-- type: uint8 -->
+                </priority>
+                <te-bandwidth>
+                  <generic>
+                    <!-- type: te-bandwidth -->
+                  </generic>
+                </te-bandwidth>
+              </max-lsp-bandwidth>
+            </interface-switching-capability>
+            <label-restrictions>
+              <label-restriction>
+                <!-- # keys: index-->
+                <!-- # entries: 0.. -->
+                <index>
+                  <!-- type: uint32 -->
+                </index>
+                <restriction>inclusive</restriction>
+                <label-start>
+                  <te-label>
+                    <generic>
+                      <!-- type: rt-types:generalized-label -->
+                    </generic>
+                    <direction>forward</direction>
+                  </te-label>
+                </label-start>
+                <label-end>
+                  <te-label>
+                    <generic>
+                      <!-- type: rt-types:generalized-label -->
+                    </generic>
+                    <direction>forward</direction>
+                  </te-label>
+                </label-end>
+                <label-step>
+                  <generic>1</generic>
+                </label-step>
+                <range-bitmap>
+                  <!-- type: yang:hex-string -->
+                </range-bitmap>
+              </label-restriction>
+            </label-restrictions>
+            <link-protection-type>
+              <!-- type: identityref -->
+            </link-protection-type>
+            <max-link-bandwidth>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </max-link-bandwidth>
+            <max-resv-link-bandwidth>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </max-resv-link-bandwidth>
+            <unreserved-bandwidth>
+              <!-- # keys: priority-->
+              <!-- # entries: 0..8 -->
+              <priority>
+                <!-- type: uint8 -->
+              </priority>
+              <te-bandwidth>
+                <generic>
+                  <!-- type: te-bandwidth -->
+                </generic>
+              </te-bandwidth>
+            </unreserved-bandwidth>
+            <te-default-metric>
+              <!-- type: uint32 -->
+            </te-default-metric>
+            <te-delay-metric>
+              <!-- type: uint32 -->
+            </te-delay-metric>
+            <te-igp-metric>
+              <!-- type: uint32 -->
+            </te-igp-metric>
+            <te-srlgs>
+              <value>
+                <!-- # entries: 0.. -->
+              </value>
+            </te-srlgs>
+            <te-nsrlgs>
+              <id>
+                <!-- # entries: 0.. -->
+              </id>
+            </te-nsrlgs>
+          </te-link-attributes>
+        </link-template>
+      </templates>
+    </te>
+  </networks>
+</config>

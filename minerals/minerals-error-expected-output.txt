@@ -1,0 +1,7 @@
+spawn /usr/local/bin/yanglint
+> load minerals
+> data -t config -f json minerals-error.xml
+libyang[0]: Must condition "hardness >= 0.0 and hardness <= 10.0" not satisfied. (path: Data location "/minerals:mineral-db/mineral[mineral-name='Calcite']".)
+YANGLINT[E]: Failed to parse input data file "minerals-error.xml".
+quit
+> 

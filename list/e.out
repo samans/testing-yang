@@ -1,0 +1,45 @@
+spawn /usr/local/bin/yanglint
+> load acm-profile-test
+> data -t data -f json acm-profile-test.xml
+{
+  "acm-profile-test:interface": {
+    "capabilities": {
+      "min-tx-frequency": 1,
+      "max-tx-frequency": 11,
+      "acm-profile-list": [
+        {
+          "profile-id": "acm0-id",
+          "profile-name": "acm0-name",
+          "max-thing": 0,
+          "upper-profile-ptr": {
+            "profile-id-ref": "acm1-id",
+            "profile-name-ref": "acm1-name"
+          }
+        },
+        {
+          "profile-id": "acm1-id",
+          "profile-name": "acm1-name",
+          "max-thing": 10,
+          "lower-profile-ptr": {
+            "profile-id-ref": "acm0-id",
+            "profile-name-ref": "acm0-name"
+          },
+          "upper-profile-ptr": {
+            "profile-id-ref": "acm2-id",
+            "profile-name-ref": "acm2-name"
+          }
+        },
+        {
+          "profile-id": "acm2-id",
+          "profile-name": "acm2-name",
+          "max-thing": 20,
+          "lower-profile-ptr": {
+            "profile-id-ref": "acm1-id",
+            "profile-name-ref": "acm1-name"
+          }
+        }
+      ]
+    }
+  }
+}
+> quit

@@ -1,0 +1,17 @@
+<!--A simple example in Yanglint -->
+<cm-db xmlns="urn:test:hue">
+	<cm-list>
+	<cm-name>4qam</cm-name>
+	</cm-list>
+	<cm-list>
+	<cm-name>16qam</cm-name>
+	</cm-list>
+	<cm-list>
+	<cm-name>32qam</cm-name>
+	</cm-list>
+	<cm-list>
+	<cm-name>64qam</cm-name>
+        </cm-list>
+
+	<mytest-cm>16qam</mytest-cm>
+</cm-db>

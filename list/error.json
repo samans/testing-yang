@@ -1,0 +1,80 @@
+{
+	"acm-profile-test:interface": {
+		"capabilities": {
+			"min-tx-frequency": 1,
+			"max-tx-frequency": 11,
+			"acm-profile-list": [
+				{
+					"profile-id": "acm00-id",
+					"profile-name": "acm00-name",
+					"max-thing": 0,
+					"upper-profile-ptr": {
+						"profile-id-ref": "acm00-id",
+						"profile-name-ref": "acm01-name"
+					}
+				},
+				{
+					"profile-id": "acm00-id",
+					"profile-name": "acm01-name",
+					"max-thing": 10,
+					"lower-profile-ptr": {
+						"profile-id-ref": "acm00-id",
+						"profile-name-ref": "acm100-name"
+					},
+					"upper-profile-ptr": {
+						"profile-id-ref": "acm10-id",
+						"profile-name-ref": "acm10-name"
+					}
+				},
+				{
+					"profile-id": "acm10-id",
+					"profile-name": "acm10-name",
+					"max-thing": 20,
+					"lower-profile-ptr": {
+						"profile-id-ref": "acm00-id",
+						"profile-name-ref": "acm01-name"
+					},
+					"upper-profile-ptr": {
+						"profile-id-ref": "acm10-id",
+						"profile-name-ref": "acm11-name"
+					}
+				},
+				{
+					"profile-id": "acm10-id",
+					"profile-name": "acm11-name",
+					"max-thing": 20,
+					"lower-profile-ptr": {
+						"profile-id-ref": "acm10-id",
+						"profile-name-ref": "acm10-name"
+					},
+					"upper-profile-ptr": {
+						"profile-id-ref": "acm20-id",
+						"profile-name-ref": "acm20-name"
+					}
+				},
+				{
+					"profile-id": "acm20-id",
+					"profile-name": "acm20-name",
+					"max-thing": 20,
+					"lower-profile-ptr": {
+						"profile-id-ref": "acm10-id",
+						"profile-name-ref": "acm11-name"
+					},
+					"upper-profile-ptr": {
+						"profile-id-ref": "acm20-id",
+						"profile-name-ref": "acm21-name"
+					}
+				},
+				{
+					"profile-id": "acm20-id",
+					"profile-name": "acm21-name",
+					"max-thing": 20,
+					"lower-profile-ptr": {
+						"profile-id-ref": "acm20-id",
+						"profile-name-ref": "acm20-name"
+					}
+				}
+			]
+		}
+	}
+}

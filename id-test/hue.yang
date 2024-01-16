@@ -1,0 +1,123 @@
+module hue {
+  yang-version "1.1";
+  namespace urn:test:hue;
+  prefix h;
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Multi-base Identity example";
+  revision 2023-07-14 {
+    description
+      "Initial revision.";
+    reference
+      "hue";
+  }
+  identity hue-base {
+  }
+  identity color1-base {
+    base hue-base;
+  }
+  identity color2-base {
+    base hue-base;
+  }
+  identity color3-base {
+    base hue-base;
+  }
+  identity hue-extension-1 {
+    base hue-base;
+  }
+  identity color1-he1 {
+    base hue-extension-1;
+  }
+  identity color2-he1 {
+    base hue-extension-1;
+  }
+  identity color3-he1 {
+    base hue-extension-1;
+  }
+  identity hue-extension-2 {
+    base hue-base;
+  }
+  identity color1-he2 {
+    base hue-extension-2;
+  }
+  identity color2-he2 {
+    base hue-extension-2;
+  }
+  identity color3-he2 {
+    base hue-extension-2;
+  }
+  identity hue-extension-3 {
+    base hue-base;
+  }
+  identity color1-he3 {
+    base hue-extension-3;
+  }
+  identity color2-he3 {
+    base hue-extension-3;
+  }
+  identity color3-he3 {
+    base hue-extension-3;
+  }
+  identity hue-extension-31 {
+    base hue-extension-3;
+  }
+  identity color1-he31 {
+    base hue-extension-31;
+  }
+  identity color2-he31 {
+    base hue-extension-31;
+  }
+  identity color3-he31 {
+    base hue-extension-31;
+  }
+  identity color2-refine-1 {
+    base color2-base;
+  }
+  identity color2-refine-2 {
+    base color2-base;
+  }
+  container hue-db {
+    description
+      "hue database";
+    list hues {
+      key "hue-id";
+      leaf hue-id {
+        type int8;
+      }
+      leaf my-fav-hue-using-base {
+        type identityref {
+          base hue-base;
+        }
+      }
+      leaf my-fav-hue-using-extension1 {
+        type identityref {
+          base hue-extension-1;
+        }
+      }
+      leaf my-fav-hue-using-extension3 {
+        type identityref {
+          base hue-extension-3;
+        }
+      }
+    }
+  }
+  container cm-db {
+    description
+      "coding modulation database";
+    list cm-list {
+      key "cm-name";
+      leaf cm-name {
+        type string;
+      }
+    }
+
+    leaf mytest-cm {
+       type leafref {
+          path "../cm-list/cm-name";
+       }
+    }
+  }
+}

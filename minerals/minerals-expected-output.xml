@@ -1,0 +1,30 @@
+spawn /usr/local/bin/yanglint
+> load minerals
+> load minerals-augment
+> data -t config -f xml minerals.json
+<mineral-db xmlns="urn:test:minerals">
+  <mineral>
+    <mineral-name>Talc</mineral-name>
+    <physical-properties>White, Green, Gray, or Black. Greasy</physical-properties>
+    <hardness>1.0</hardness>
+  </mineral>
+  <mineral>
+    <mineral-name>Gypsum</mineral-name>
+    <physical-properties>Colorless or White. Glassy</physical-properties>
+    <hardness>2.0</hardness>
+  </mineral>
+  <mineral>
+    <mineral-name>Diamond</mineral-name>
+    <physical-properties>Glassy</physical-properties>
+    <hardness>10.0</hardness>
+  </mineral>
+</mineral-db>
+<samples xmlns="urn:test:minerals">
+  <sample>
+    <sample-id>X001</sample-id>
+    <streak>White</streak>
+    <cleavage>one good</cleavage>
+    <mineral-ref>Gypsum</mineral-ref>
+  </sample>
+</samples>
+> quit

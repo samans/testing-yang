@@ -1,0 +1,36 @@
+module types {
+  yang-version 1.1;
+  namespace "urn:experimental:types";
+  prefix t;
+
+  organization "experiment";
+
+  contact
+    "experiment";
+
+  description
+    "type experiment";
+
+  revision 2023-12-12 {
+    description "version: 0.0.1";
+  }
+
+  typedef type-status {
+    type enumeration {
+      enum one {
+      }
+      enum two {
+      }
+      enum three {
+      }
+    }
+    description
+      "type status test";
+  }
+
+  container my-container {
+    leaf status {
+      type t:type-status;
+    }
+  }
+}

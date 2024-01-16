@@ -1,0 +1,18 @@
+<!--A simple example in Yanglint -->
+<hue-db xmlns="urn:test:hue">
+	<hues>
+	<hue-id>0</hue-id>
+	<my-fav-hue-using-base>color1-base</my-fav-hue-using-base>
+	<my-fav-hue-using-extension1>color1-he1</my-fav-hue-using-extension1>
+	</hues>
+	<hues>
+	<hue-id>1</hue-id>
+	<my-fav-hue-using-base>color1-he1</my-fav-hue-using-base>
+	<my-fav-hue-using-extension1>color2-he1</my-fav-hue-using-extension1>
+	</hues>
+	<hues>
+	<hue-id>2</hue-id>
+	<my-fav-hue-using-base>color1-he31</my-fav-hue-using-base>
+	<my-fav-hue-using-extension3>color2-he31</my-fav-hue-using-extension3>
+	</hues>
+</hue-db>

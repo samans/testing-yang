@@ -1,0 +1,126 @@
+module _3gpp-5gs-detnet-node {
+  yang-version 1.1;
+  namespace "urn:3gpp:node:detnet:_3gpp-5gs-detnet-node";
+  prefix _5gs3gppdnet;
+
+  import ietf-detnet {
+    prefix dnet;
+    reference
+      "draft-ietf-detnet-yang-187";
+  }
+
+  organization "3GPP CT3 Working Group";
+
+  contact
+    "CT3 WG Web:  <https://www.3gpp.org/3gpp-groups/core-network-terminals-ct/ct-wg3>";
+
+  description
+    "3gpp-5gs-detnet-node module contains an extension of ietf-detnet YANG module with 
+    additional parameters defined for interworking with 3GPP 5GS.
+
+    © 2023, 3GPP Organizational Partners (ARIB, ATIS, CCSA, ETSI, TSDSI, TTA, TTC).
+    All rights reserved.
+
+    This version of this YANG module is specified in:
+    3GPP TS 29.565 V18.41.0; 5G System;
+      Time Sensitive Communication and Time Synchronization Function Services.
+    url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.565/";
+
+reference
+  "Additional information to this YANG module is specified in:
+
+    3GPP TS 23.501, System architecture for the 5G System (5GS);
+    url: https://www.3gpp.org/ftp/Specs/archive/23_series/23.501/
+
+    3GPP TS 23.503, Policy and charging control framework (5GS)
+    url: https://www.3gpp.org/ftp/Specs/archive/23_series/23.503/
+
+    3GPP TS 29.513, Policy and Charging Control signalling flows and QoS parameter mapping
+    url: https://www.3gpp.org/ftp/Specs/archive/29_series/29.513/";
+
+  revision 2023-12-12 {
+    description "version: v1.0.0-alpha.2";
+  }
+
+  revision 2023-06-13 {
+    description "version: v1.0.0-alpha.1";
+  }
+
+  typedef _3gpp-5gs-node-configuration-status {
+    type enumeration {
+      enum _3gpp-5gs-node-resource-allocation-success {
+        description
+          "Successful configuration request.
+           Successful resource allocation within 5GS for the requested configuration";
+      }
+      enum _3gpp-5gs-node-resource-allocation-failure {
+        description
+          "Unsuccessful configuration request.
+           Failed resource allocation within 5GS for the requested configuration";
+      }
+      enum _3gpp-5gs-node-port-release {
+        description
+          "Port release due to the termination of PDU session with the requested 
+           5GS configuration";
+      }
+    }
+    description
+      "_3gpp-5gs-node-configuration-status type identifies the 3GPP specific configuration
+       status that may be reported by the 3GPP 5GS node.";
+  }
+
+  container _3gpp-5gs-node-requirements {
+    description
+      "This container defines the maximum delay and/or the maximum loss the 5GS needs to satisfy";
+    leaf forwarding-sub-layer {
+      type dnet:forwarding-sub-layer-ref;
+      description
+        "Reference to the forwarding sub-layer that the maximum delay and/or the maximum loss
+        applies to";
+    }
+    leaf _3gpp-5gs-node-max-latency {
+      type uint32;
+      units "nanoseconds";
+      description
+        "Maximum latency from 5GS node ingress to 5GS node egress(es) for a single packet of the
+        DetNet flow. It is specified as an integer number of nanoseconds";
+    }
+    leaf _3gpp-5gs-node-max-loss {
+      type uint32;
+      description
+        "Maximum Packet Loss Ration (PLR) parameter for the DetNet service between the 5GS node
+        ingress and 5GS node egress(es)";
+    }
+  }
+
+  container _3gpp-5gs-node-configuration-outcome {
+    description
+      "This container defines the additional outcome the 5GS may provide to a configuration
+      request";
+    leaf forwarding-sub-layer {
+      type dnet:forwarding-sub-layer-ref;
+      description
+        "Reference to the forwarding sub-layer the outcome to a configuration request applies to";
+    }
+    leaf _3gpp-5gs-node-configuration-status {
+      type _3gpp-5gs-node-configuration-status;
+      description "Changes on configuration status reported by the 3GPP 5GS node";
+    }
+  }
+
+  container _3gpp-5gs-node-identity {
+    description
+      "This container defines the 5GS Node identity the 5GS provides to the DetNet controller";
+    leaf forwarding-sub-layer {
+      type dnet:forwarding-sub-layer-ref;
+      description
+        "Reference to the forwarding sub-layer that the 5GS node Id applies to";
+    }
+    leaf _3gpp-5gs-node-id {
+      type string;
+      description
+        "5GS node identity. It is the user-plane node Id handling the traffic of the indicated
+         DetNet flows";
+    }
+  }
+}

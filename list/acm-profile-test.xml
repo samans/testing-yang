@@ -1,0 +1,39 @@
+<!--A simple example in Yanglint -->
+<interface
+  xmlns="urn:test:acm-profile-test">
+    <capabilities>
+       <min-tx-frequency>1</min-tx-frequency>
+       <max-tx-frequency>11</max-tx-frequency>
+       <acm-profile-list>
+          <profile-id>qpsk</profile-id>
+          <profile-name>acm0-name</profile-name>
+          <max-thing>0</max-thing>
+          <upper-profile-ptr>
+             <profile-id-ref>qpsk</profile-id-ref>
+             <profile-name-ref>acm1-name</profile-name-ref>
+          </upper-profile-ptr>
+       </acm-profile-list>
+       <acm-profile-list>
+          <profile-id>qpsk</profile-id>
+          <profile-name>acm1-name</profile-name>
+          <max-thing>10</max-thing>
+          <lower-profile-ptr>
+             <profile-id-ref>qpsk</profile-id-ref>
+             <profile-name-ref>acm0-name</profile-name-ref>
+          </lower-profile-ptr>
+          <upper-profile-ptr>
+             <profile-id-ref>qpsk</profile-id-ref>
+             <profile-name-ref>acm2-name</profile-name-ref>
+          </upper-profile-ptr>
+       </acm-profile-list>
+       <acm-profile-list>
+          <profile-id>qpsk</profile-id>
+          <profile-name>acm2-name</profile-name>
+          <max-thing>20</max-thing>
+          <lower-profile-ptr>
+             <profile-id-ref>qpsk</profile-id-ref>
+             <profile-name-ref>acm1-name</profile-name-ref>
+          </lower-profile-ptr>
+       </acm-profile-list>
+    </capabilities>
+</interface>

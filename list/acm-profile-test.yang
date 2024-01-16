@@ -1,0 +1,89 @@
+module acm-profile-test {
+  yang-version 1.1;
+  namespace "urn:test:acm-profile-test";
+  prefix apt;
+
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "acm-profile Example";
+
+  revision 2021-09-22 {
+    description
+      "Initial revision.";
+    reference
+      "acm-profile";
+  }
+
+  identity coding-modulation;
+
+  identity qpsk {
+    base coding-modulation;
+  }
+
+  identity qam-4 {
+    base coding-modulation;
+  }
+
+  container interface {
+    leaf interface-id {
+      type string;
+    }
+    container capabilities {
+      description
+        "capabilities";
+      leaf min-tx-frequency {
+        type uint32;
+      }
+      leaf max-tx-frequency {
+        type uint32;
+      }
+      list acm-profile-list {
+        key "profile-id profile-name";
+        leaf profile-id {
+          type identityref {
+            base coding-modulation;
+          }
+        }
+        leaf profile-name {
+          type string;
+        }
+        uses acm-profile;
+        container lower-profile-ptr {
+          leaf profile-id-ref {
+            type leafref {
+              path "../../../acm-profile-list/profile-id";
+            }
+          }
+          leaf profile-name-ref {
+            type leafref {
+              path "../../../acm-profile-list[profile-id=current()/../profile-id-ref]/profile-name";
+            }
+          }
+        }
+        container upper-profile-ptr {
+          leaf profile-id-ref {
+            type leafref {
+              path "../../../acm-profile-list/profile-id";
+            }
+          }
+          leaf profile-name-ref {
+            type leafref {
+              path "../../../acm-profile-list[profile-id=current()/../profile-id-ref]/profile-name";
+            }
+          }
+        }
+      }
+    }
+  }
+
+  grouping acm-profile {
+    description
+      "acm-profile";
+    leaf max-thing {
+      type uint8;
+    }
+  }
+}

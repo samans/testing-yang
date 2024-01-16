@@ -1,0 +1,48 @@
+module acm-profile-test {
+  yang-version "1.1";
+  namespace urn:test:acm-profile-test;
+  prefix apt;
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "acm-profile Example";
+  revision 2021-09-22 {
+    description
+      "Initial revision.";
+    reference
+      "acm-profile";
+  }
+
+  container interface {
+     leaf interface-id {
+        type string;
+     }
+     container capabilities {
+       description
+         "capabilities";
+       leaf min-tx-frequency {
+          type uint32;
+       }
+       leaf max-tx-frequency {
+          type uint32;
+       }
+       list acm-profile-list {
+         key "profile-id";
+         uses acm-profile;
+       }
+     }
+  }
+
+  grouping acm-profile {
+    description
+      "acm-profile";
+    leaf profile-id {
+        type string;
+    }
+    leaf profile-name {
+        type string;
+    }
+  }
+}
