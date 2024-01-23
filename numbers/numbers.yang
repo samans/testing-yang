@@ -1,0 +1,54 @@
+module numbers {
+  yang-version 1.1;
+  namespace "urn:test:numbers";
+  prefix n;
+
+  import ieee1906-dot1-function {
+     prefix "ieee1906-dot1-function";
+  }
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Numbers Example";
+
+  revision 2024-01-22 {
+    description
+      "Various Number Formats";
+    reference
+      "ietf-routing-types";
+  }
+
+   container number-container {
+      description
+         "Container for numbers";
+
+      list number-list {
+         key "number-list-id";
+
+         leaf "number-list-id" {
+            type uint8;
+            description
+               "unique id";
+         }
+         leaf Integer32 {
+            type int32;
+            description
+               "32-bit Integer";
+         }
+         leaf Decimal64 {
+            type decimal64 {
+               fraction-digits 2;
+            }
+            description
+               "32-bit Decimal";
+         }
+         leaf Number32 {
+            type ieee1906-dot1-function:number;
+            description
+               "32-bit Number";
+         }
+      }
+   }
+}

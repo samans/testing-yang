@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<number-container xmlns="urn:test:numbers">
+   <number-list>
+      <number-list-id>1</number-list-id>
+      <Integer32>42</Integer32>
+      <Decimal64>42.42</Decimal64>
+      <Number32>42.42</Number32>
+   </number-list>
+   <number-list>
+      <number-list-id>2</number-list-id>
+      <Integer32>42</Integer32>
+      <Decimal64>42.42</Decimal64>
+      <Number32>4242e-2</Number32>
+   </number-list>
+   <number-list>
+      <number-list-id>3</number-list-id>
+      <Integer32>42</Integer32>
+      <Decimal64>42.42</Decimal64>
+      <Number32>42.42</Number32>
+   </number-list>
+   <number-list>
+      <number-list-id>4</number-list-id>
+      <Integer32>42</Integer32>
+      <Decimal64>42.42</Decimal64>
+      <Number32>42420e-3</Number32>
+   </number-list>
+</number-container>
