@@ -1,0 +1,44 @@
+module minerals {
+  yang-version 1.1;
+  namespace "urn:test:minerals";
+  prefix m;
+
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+
+  revision 2024-02-15 {
+    description
+      "Initial revision.";
+    reference
+      "minerals with augment example";
+  }
+
+  container mineral-db {
+    description
+      "minerals";
+    list mineral {
+      must 'hardness >= 0.0 and hardness <= 10.0';
+      key "mineral-name";
+      leaf mineral-name {
+        type string;
+        description
+          "Name of Mineral";
+      }
+      leaf physical-properties {
+        type string;
+        description
+          "Physical properties of mineral";
+      }
+      leaf hardness {
+        type decimal64 {
+          fraction-digits 1;
+        }
+        units "mohs";
+      }
+    }
+  }
+}

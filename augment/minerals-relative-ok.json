@@ -1,0 +1,35 @@
+{
+  "minerals:mineral-db": {
+    "mineral": [
+      {
+        "mineral-name": "Talc",
+        "physical-properties": "White, Green, Gray, or Black. Greasy",
+        "hardness": "1.0"
+      },
+      {
+        "mineral-name": "Gypsum",
+        "physical-properties": "Colorless or White. Glassy",
+        "hardness": "2.0"
+      },
+      {
+        "mineral-name": "Corundum-red",
+        "physical-properties": "Red",
+        "hardness": "9.0",
+	"minerals-augment:gems": {},
+	"minerals-augment:gem-name-relative": "Ruby"
+      },
+      {
+        "mineral-name": "Corundum-green",
+        "physical-properties": "Green",
+        "hardness": "9.0",
+	"minerals-augment:gems": {},
+	"minerals-augment:gem-name-relative": "Emerald"
+      },
+      {
+        "mineral-name": "Diamond",
+        "physical-properties": "Glassy",
+        "hardness": "10.0"
+      }
+    ]
+  }
+}

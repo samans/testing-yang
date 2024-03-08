@@ -1,0 +1,38 @@
+module minerals-augment {
+  yang-version "1.1";
+  namespace urn:test:minerals-augment;
+  prefix ma;
+  import minerals {
+    prefix m;
+  }
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+  revision 2022-09-19 {
+    description
+      "Initial revision.";
+    reference
+      "minerals augment";
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    container gems  {
+       presence "If this container exists, the mineral is a gem.";
+       description "Gem container";
+    }
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    when "/m:mineral-db/m:mineral/ma:gems" {
+       description "Only valid when the mineral is a gem";
+    }
+    leaf gem-name {
+       type string;
+       description
+          "Gem Name";
+       }
+  }
+}
