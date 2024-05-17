@@ -1,0 +1,11 @@
+{
+  "config-mandatory:cm-db": {
+    "mineral": [
+      {
+        "mineral-name": "Talc",
+	"cfmt": "cfmt 1",
+	"ctmt": "ctmt 1"
+      }
+    ]
+  }
+}

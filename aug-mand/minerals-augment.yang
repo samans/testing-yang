@@ -1,0 +1,65 @@
+module minerals-augment {
+  yang-version "1.1";
+  namespace urn:test:minerals-augment;
+  prefix ma;
+  import minerals {
+    prefix m;
+  }
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+  revision 2022-09-19 {
+    description
+      "Initial revision.";
+    reference
+      "minerals augment";
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    container gems  {
+       presence "If this container exists, the mineral is a gem.";
+       description "Gem container";
+    }
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    leaf gem-name-absolute {
+       type string;
+       description
+          "Gem Name";
+       }
+    leaf-list gem-alt-name-mandatory {
+       type string;
+       config false;
+       max-elements 4;
+       description
+          "Alternative Name List";
+       }
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    when "/m:mineral-db/m:mineral[m:mineral-name=current()/m:mineral-name]/ma:gems"
+    {
+       description "Only valid when the specific instance of mineral is a gem";
+    }
+    leaf gem-name-absolute-current {
+       type string;
+       description
+          "Gem Name";
+       }
+  }
+
+  augment "/m:mineral-db/m:mineral" {
+    when "ma:gems" {
+       description "Only valid when the specific instance of mineral is a gem";
+    }
+    leaf gem-name-relative {
+       type string;
+       description
+          "Gem Name";
+       }
+  }
+}

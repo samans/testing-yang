@@ -1,0 +1,26 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn /usr/local/bin/yanglint
+expect ">"
+send "searchpath /home/scott/yang/yang/experimental/ietf-extracted-YANG-modules /home/scott/yang/yang/standard/ietf/RFC \r"
+expect ">"
+send "load ietf-inet-types\r"
+expect ">"
+send "load iana-if-type\r"
+expect ">"
+send "load ietf-yang-types\r"
+expect ">"
+send "load ietf-interfaces\r"
+expect ">"
+send "load ietf-interface-protection\r"
+expect ">"
+send "load ietf-microwave-types\r"
+expect ">"
+send "load ietf-microwave-radio-link\r"
+expect ">"
+send "load ietf-microwave-topology\r"
+expect ">"
+send "data -t config -f json mw.xml\r"
+expect ">"
+send "quit\r"
+expect eof

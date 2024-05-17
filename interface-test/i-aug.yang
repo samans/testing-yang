@@ -1,0 +1,39 @@
+module i-aug {
+  yang-version "1.1";
+  namespace urn:test:i-aug;
+  prefix ia;
+  import i-test {
+    prefix i;
+  }
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "i-test augment example";
+  revision 2024-04-24 {
+    description
+      "Initial revision.";
+    reference
+      "i-test augment";
+  }
+
+  augment "/i:i-tests/i:i-test" {
+    container i-aug  {
+       presence "If this container exists, then the augmentation is valid";
+       description "i-aug container";
+    }
+  }
+
+  augment "/i:i-tests/i:i-test" {
+    when "/i:i-tests/i:i-test[i:i-test-name=current()/i:i-test-name]/ia:i-aug"
+    {
+       description "Only valid when the specific instance of i-test is a i-aug";
+    }
+    leaf i-test-absolute-current {
+       type string;
+       description
+          "i-test augment valid";
+       }
+  }
+}

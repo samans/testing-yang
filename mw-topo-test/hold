@@ -1,0 +1,3 @@
+
+send "searchpath /home/scott/yang/experimental/ietf-extracted-YANG-modules /home/scott/yang/standard/ietf/RFC /home/scott/yang/standard/ieee/published/802 /home/scott/yang/standard/ieee/published/802.1\r"
+expect ">"

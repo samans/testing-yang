@@ -1,0 +1,37 @@
+module i-test {
+  yang-version 1.1;
+  namespace "urn:test:i-test";
+  prefix i;
+
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+
+  revision 2024-04-24 {
+    description
+      "Initial revision.";
+    reference
+      "interface augment example";
+  }
+
+  container i-tests {
+    description
+      "i-tests";
+    list i-test {
+      key "i-test-name";
+      leaf i-test-name {
+        type string;
+        description
+          "Name of i-test";
+      }
+      leaf i-test-properties {
+        type string;
+        description
+          "i-test properties";
+      }
+    }
+  }
+}

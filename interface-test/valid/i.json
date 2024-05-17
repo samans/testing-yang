@@ -1,0 +1,16 @@
+{
+  "i-test:i-tests": {
+    "i-test": [
+      {
+        "i-test-name": "it1",
+        "i-test-properties": "property-1"
+      },
+      {
+        "i-test-name": "it2",
+        "i-test-properties": "property-2",
+	"i-aug:i-aug": {},
+	"i-aug:i-test-absolute-current": "The Augmentation is valid"
+      }
+    ]
+  }
+}

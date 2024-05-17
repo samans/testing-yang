@@ -1,0 +1,76 @@
+module config-mandatory {
+  yang-version 1.1;
+  namespace "urn:test:config-mandatory";
+  prefix cm;
+
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Config Mandatory Example";
+
+  revision 2024-03-27 {
+    description
+      "Initial revision.";
+    reference
+      "Config Mandatory";
+  }
+
+  container cm-db {
+    description
+      "cm";
+    list mineral {
+      key "mineral-name";
+      leaf mineral-name {
+        type string;
+        description
+          "Name of Mineral";
+      }
+      leaf cfmf {
+        type string;
+        config false;
+        mandatory false;
+        description
+          "config false, mandatory false";
+      }
+      leaf cfmt {
+        type string;
+        config false;
+        mandatory true;
+        description
+          "config false, mandatory true";
+      }
+      leaf ctmf {
+        type string;
+        config true;
+        mandatory false;
+        description
+          "config true, mandatory false";
+      }
+      leaf ctmt {
+        type string;
+        config true;
+        mandatory true;
+        description
+          "config true, mandatory true";
+      }
+      leaf cfmfwd {
+        type string;
+        config false;
+        mandatory false;
+        default "cfmfwd";
+        description
+          "config false, mandatory false with default";
+      }
+      leaf ctmfwd {
+        type string;
+        config true;
+        mandatory false;
+        default "ctmfwd";
+        description
+          "config true, mandatory false with default";
+      }
+    }
+  }
+}

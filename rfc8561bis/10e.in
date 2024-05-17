@@ -1,0 +1,24 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn /usr/local/bin/yanglint
+expect ">"
+send "load ietf-inet-types\r"
+expect ">"
+send "load iana-if-type\r"
+expect ">"
+send "load ietf-yang-types\r"
+expect ">"
+send "load ietf-interfaces\r"
+expect ">"
+send "load ietf-interface-protection\r"
+expect ">"
+send "load ietf-te-types\r"
+expect ">"
+send "load ietf-microwave-types\r"
+expect ">"
+send "load ietf-microwave-radio-link\r"
+expect ">"
+send "data -t config -f json 1+0-example.json\r"
+expect ">"
+send "quit\r"
+expect eof

@@ -1,0 +1,73 @@
+module multi {
+  yang-version "1.1";
+  namespace urn:test:multi;
+  prefix m;
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Multi-base Identity example";
+  revision 2023-07-14 {
+    description
+      "Initial revision.";
+    reference
+      "multi";
+  }
+
+  identity interface-identity-base {
+  }
+
+  identity ethernet {
+    base interface-identity-base;
+  }
+
+  identity microwave {
+    base interface-identity-base;
+  }
+
+  identity extensions {
+  }
+
+  identity loopback-capable {
+     base extensions;
+  }
+
+  container multi-db {
+    description
+      "multi database";
+    list object-ids {
+      key "object-id";
+      leaf object-id {
+        type int8;
+      }
+
+      leaf if-type-identity {
+        type identityref {
+          base interface-identity-base;
+        }
+      }
+
+      leaf loopback {
+         when "derived-from-or-self(../if-type-identity, 'ethernet')" {
+            description "loopback for ethernet";
+         }
+         type identityref {
+            base extensions;
+         }
+      }
+
+      leaf if-loop {
+        type identityref {
+          base extensions;
+        }
+      }
+
+      leaf rf-loop {
+        type identityref {
+          base extensions;
+        }
+      }
+    }
+  }
+}

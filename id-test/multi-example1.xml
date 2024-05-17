@@ -1,0 +1,10 @@
+<!--A simple example in Yanglint -->
+<multi-db xmlns="urn:test:multi">
+	<object-ids>
+	<object-id>0</object-id>
+	<if-type-identity>ethernet</if-type-identity>
+	<loopback>loopback-capable</loopback>
+	<if-loop>loopback-capable</if-loop>
+	<rf-loop>loopback-capable</rf-loop>
+	</object-ids>
+</multi-db>

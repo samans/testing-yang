@@ -1,0 +1,17 @@
+spawn /usr/local/bin/yanglint
+> load i-test
+> load i-aug
+> data -t data -f xml i.json
+<i-tests xmlns="urn:test:i-test">
+  <i-test>
+    <i-test-name>it1</i-test-name>
+    <i-test-properties>property-1</i-test-properties>
+  </i-test>
+  <i-test>
+    <i-test-name>it2</i-test-name>
+    <i-test-properties>property-2</i-test-properties>
+    <i-aug xmlns="urn:test:i-aug"/>
+    <i-test-absolute-current xmlns="urn:test:i-aug">The Augmentation is valid</i-test-absolute-current>
+  </i-test>
+</i-tests>
+> quit
