@@ -1,0 +1,86 @@
+{
+  "ietf-l2vpn-svc:l2vpn-svc": {
+    "vpn-services": {
+      "vpn-service": [
+        {
+          "vpn-id": "12456487",
+          "svc-topo": "ietf-l2vpn-svc:hub-spoke",
+          "ce-vlan-preservation": true,
+          "ce-vlan-cos-preservation": true
+        }
+      ]
+    },
+    "sites": {
+      "site": [
+        {
+          "site-id": "Spoke_Site1",
+          "management": {
+            "type": "ietf-l2vpn-svc:customer-managed"
+          },
+          "locations": {
+            "location": [
+              {
+                "location-id": "NY1",
+                "city": "NY",
+                "country-code": "US"
+              }
+            ]
+          },
+          "default-ce-vlan-id": 1,
+          "site-network-accesses": {
+            "site-network-access": [
+              {
+                "network-access-id": "Spoke_UNI-Site1",
+                "location-reference": "NY1",
+                "access-diversity": {
+                  "groups": {
+                    "group": [
+                      {
+                        "group-id": "20"
+                      }
+                    ]
+                  }
+                },
+                "connection": {
+                  "encapsulation-type": "ietf-l2vpn-svc:vlan",
+                  "tagged-interface": {
+                    "type": "ietf-l2vpn-svc:dot1q",
+                    "dot1q-vlan-tagged": {
+                      "cvlan-id": 17
+                    }
+                  },
+                  "l2cp-control": {
+                    "stp-rstp-mstp": "tunnel",
+                    "lldp": true
+                  }
+                },
+                "vpn-attachment": {
+                  "vpn-id": "12456487",
+                  "site-role": "ietf-l2vpn-svc:spoke-role"
+                },
+                "service": {
+                  "svc-bandwidth": {
+                    "bandwidth": [
+                      {
+                        "direction": "ietf-l2vpn-svc:input-bw",
+                        "type": "ietf-l2vpn-svc:bw-per-cos",
+                        "cir": "450000000",
+                        "cbs": "20000000",
+                        "eir": "1000000000",
+                        "ebs": "200000000"
+                      }
+                    ]
+                  },
+                  "svc-mtu": 1500,
+                  "carrierscarrier": {
+                    "signaling-type": "ietf-l2vpn-svc:bgp"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

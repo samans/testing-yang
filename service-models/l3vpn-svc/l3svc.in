@@ -1,0 +1,12 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn yanglint
+expect ">"
+send "searchpath ./includes\r"
+expect ">"
+send "load ietf-l3vpn-svc\r"
+expect ">"
+send "data -t data -f json l3svc.xml -o l3svc.json\r"
+expect ">"
+send "quit\r"
+expect eof
