@@ -1,0 +1,192 @@
+<ethernet-segments xmlns="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">
+  <ethernet-segment>
+    <name>esi1</name>
+    <ethernet-segment-identifier>00:11:11:11:11:11:11:11:11:11</ethernet-segment-identifier>
+    <esi-redundancy-mode xmlns:l2vpn-es="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">l2vpn-es:all-active</esi-redundancy-mode>
+  </ethernet-segment>
+  <ethernet-segment>
+    <name>esi2</name>
+    <ethernet-segment-identifier>00:22:22:22:22:22:22:22:22:22</ethernet-segment-identifier>
+    <esi-redundancy-mode xmlns:l2vpn-es="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">l2vpn-es:all-active</esi-redundancy-mode>
+  </ethernet-segment>
+</ethernet-segments>
+<l2vpn-ntw xmlns="urn:ietf:params:xml:ns:yang:ietf-l2vpn-ntw">
+  <vpn-services>
+    <vpn-service>
+      <vpn-id>vpws15432855</vpn-id>
+      <vpn-description>Sample VPWS-EVPN</vpn-description>
+      <customer-name>customer_15432855</customer-name>
+      <vpn-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:vpws-evpn</vpn-type>
+      <bgp-ad-enabled>true</bgp-ad-enabled>
+      <signaling-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:bgp-signaling</signaling-type>
+      <global-parameters-profiles>
+        <global-parameters-profile>
+          <profile-id>simple-profile</profile-id>
+          <rd-suffix>1</rd-suffix>
+          <vpn-target>
+            <id>1</id>
+            <route-targets>
+              <route-target>0:65535:1</route-target>
+            </route-targets>
+            <route-target-type>both</route-target-type>
+          </vpn-target>
+          <local-autonomous-system>65535</local-autonomous-system>
+        </global-parameters-profile>
+      </global-parameters-profiles>
+      <vpn-nodes>
+        <vpn-node>
+          <vpn-node-id>pe1</vpn-node-id>
+          <ne-id>198.51.100.1</ne-id>
+          <active-global-parameters-profiles>
+            <global-parameters-profile>
+              <profile-id>simple-profile</profile-id>
+            </global-parameters-profile>
+          </active-global-parameters-profiles>
+          <vpn-network-accesses>
+            <vpn-network-access>
+              <id>1/1/1.1</id>
+              <description>Interface to CE1</description>
+              <interface-id>1/1/1</interface-id>
+              <active-vpn-node-profile>simple-profile</active-vpn-node-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <encap-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</encap-type>
+                  <dot1q>
+                    <cvlan-id>1</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <vpws-service-instance>
+                <local-vpws-service-instance>1111</local-vpws-service-instance>
+                <remote-vpws-service-instance>1112</remote-vpws-service-instance>
+              </vpws-service-instance>
+              <group>
+                <group-id>gr1</group-id>
+                <ethernet-segment-identifier>esi1</ethernet-segment-identifier>
+              </group>
+            </vpn-network-access>
+          </vpn-network-accesses>
+        </vpn-node>
+        <vpn-node>
+          <vpn-node-id>pe2</vpn-node-id>
+          <ne-id>198.51.100.2</ne-id>
+          <active-global-parameters-profiles>
+            <global-parameters-profile>
+              <profile-id>simple-profile</profile-id>
+            </global-parameters-profile>
+          </active-global-parameters-profiles>
+          <vpn-network-accesses>
+            <vpn-network-access>
+              <id>1/1/1.1</id>
+              <description>Interface to CE1</description>
+              <interface-id>1/1/1</interface-id>
+              <active-vpn-node-profile>simple-profile</active-vpn-node-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <encap-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</encap-type>
+                  <dot1q>
+                    <cvlan-id>1</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <vpws-service-instance>
+                <local-vpws-service-instance>1111</local-vpws-service-instance>
+                <remote-vpws-service-instance>1112</remote-vpws-service-instance>
+              </vpws-service-instance>
+              <group>
+                <group-id>gr1</group-id>
+                <ethernet-segment-identifier>esi1</ethernet-segment-identifier>
+              </group>
+            </vpn-network-access>
+          </vpn-network-accesses>
+        </vpn-node>
+        <vpn-node>
+          <vpn-node-id>pe3</vpn-node-id>
+          <ne-id>198.51.100.3</ne-id>
+          <active-global-parameters-profiles>
+            <global-parameters-profile>
+              <profile-id>simple-profile</profile-id>
+            </global-parameters-profile>
+          </active-global-parameters-profiles>
+          <vpn-network-accesses>
+            <vpn-network-access>
+              <id>1/1/1.1</id>
+              <description>Interface to CE2</description>
+              <interface-id>1/1/1</interface-id>
+              <active-vpn-node-profile>simple-profile</active-vpn-node-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <encap-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</encap-type>
+                  <dot1q>
+                    <cvlan-id>1</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <vpws-service-instance>
+                <local-vpws-service-instance>1112</local-vpws-service-instance>
+                <remote-vpws-service-instance>1111</remote-vpws-service-instance>
+              </vpws-service-instance>
+              <group>
+                <group-id>gr1</group-id>
+                <ethernet-segment-identifier>esi2</ethernet-segment-identifier>
+              </group>
+            </vpn-network-access>
+          </vpn-network-accesses>
+        </vpn-node>
+        <vpn-node>
+          <vpn-node-id>pe4</vpn-node-id>
+          <ne-id>198.51.100.4</ne-id>
+          <active-global-parameters-profiles>
+            <global-parameters-profile>
+              <profile-id>simple-profile</profile-id>
+            </global-parameters-profile>
+          </active-global-parameters-profiles>
+          <vpn-network-accesses>
+            <vpn-network-access>
+              <id>1/1/1.1</id>
+              <description>Interface to CE2</description>
+              <interface-id>1/1/1</interface-id>
+              <active-vpn-node-profile>simple-profile</active-vpn-node-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <encap-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</encap-type>
+                  <dot1q>
+                    <cvlan-id>1</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <vpws-service-instance>
+                <local-vpws-service-instance>1112</local-vpws-service-instance>
+                <remote-vpws-service-instance>1111</remote-vpws-service-instance>
+              </vpws-service-instance>
+              <group>
+                <group-id>gr1</group-id>
+                <ethernet-segment-identifier>esi2</ethernet-segment-identifier>
+              </group>
+            </vpn-network-access>
+          </vpn-network-accesses>
+        </vpn-node>
+      </vpn-nodes>
+    </vpn-service>
+  </vpn-services>
+</l2vpn-ntw>

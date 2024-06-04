@@ -1,1 +1,1 @@
-pyang -p ./includes *.yang
+pyang -p ../includes *.yang

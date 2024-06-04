@@ -2,7 +2,7 @@
 #set timeout -1
 spawn yanglint
 expect ">"
-send "searchpath ./includes\r"
+send "searchpath ../includes\r"
 expect ">"
 send "load ietf-l2vpn-svc --features=ietf-l2vpn-svc:carrierscarrier,ethernet-oam,extranet-vpn,l2cp-control,input-bw,output-bw,uni-list,cloud-access,oam-3ah,micro-bfd,bfd,signaling-options,site-diversity,encryption,always-on,requested-type,bearer-reference,qos,qos-custom,lag-interface,vlan,dot1q,qinq,qinany,vxlan,lan-tag,target-sites,mac-loop-prevention,lacp,mac-addr-limit,acl,cfm,y-1731\r"
 expect ">"

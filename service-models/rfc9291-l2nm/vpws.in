@@ -1,0 +1,18 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn yanglint
+expect ">"
+send "searchpath ../includes\r"
+expect ">"
+send "load ieee802-dot1q-types \r"
+expect ">"
+send "load ietf-vpn-common \r"
+expect ">"
+send "load ietf-ethernet-segment \r"
+expect ">"
+send "load ietf-l2vpn-ntw \r"
+expect ">"
+send "data -m -t data -f xml eth-seg.json vpws-evpn.json -o vpws.xml\r"
+expect ">"
+send "quit\r"
+expect eof

@@ -2,7 +2,7 @@
 #set timeout -1
 spawn yanglint
 expect ">"
-send "searchpath ./includes\r"
+send "searchpath ../includes\r"
 expect ">"
 send "load ietf-l3vpn-svc\r"
 expect ">"

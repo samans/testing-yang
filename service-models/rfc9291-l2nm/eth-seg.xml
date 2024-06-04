@@ -1,0 +1,12 @@
+<ethernet-segments xmlns="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">
+  <ethernet-segment>
+    <name>esi1</name>
+    <ethernet-segment-identifier>00:11:11:11:11:11:11:11:11:11</ethernet-segment-identifier>
+    <esi-redundancy-mode xmlns:l2vpn-es="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">l2vpn-es:all-active</esi-redundancy-mode>
+  </ethernet-segment>
+  <ethernet-segment>
+    <name>esi2</name>
+    <ethernet-segment-identifier>00:22:22:22:22:22:22:22:22:22</ethernet-segment-identifier>
+    <esi-redundancy-mode xmlns:l2vpn-es="urn:ietf:params:xml:ns:yang:ietf-ethernet-segment">l2vpn-es:all-active</esi-redundancy-mode>
+  </ethernet-segment>
+</ethernet-segments>
