@@ -1,0 +1,128 @@
+<l3vpn-ntw xmlns="urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw">
+  <vpn-services>
+    <vpn-service>
+      <vpn-id>4G</vpn-id>
+      <vpn-description>VPN to deploy 4G services</vpn-description>
+      <customer-name>mycustomer</customer-name>
+      <vpn-service-topology xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:custom</vpn-service-topology>
+      <vpn-instance-profiles>
+        <vpn-instance-profile>
+          <profile-id>simple-profile</profile-id>
+          <local-as>65530</local-as>
+          <rd>0:65530:1</rd>
+          <address-family>
+            <address-family xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dual-stack</address-family>
+            <vpn-targets>
+              <vpn-target>
+                <id>1</id>
+                <route-targets>
+                  <route-target>0:65530:1</route-target>
+                </route-targets>
+                <route-target-type>both</route-target-type>
+              </vpn-target>
+            </vpn-targets>
+          </address-family>
+        </vpn-instance-profile>
+      </vpn-instance-profiles>
+      <vpn-nodes>
+        <vpn-node>
+          <vpn-node-id>44</vpn-node-id>
+          <ne-id>198.51.100.1</ne-id>
+          <active-vpn-instance-profiles>
+            <vpn-instance-profile>
+              <profile-id>simple-profile</profile-id>
+            </vpn-instance-profile>
+          </active-vpn-instance-profiles>
+          <vpn-network-accesses>
+            <vpn-network-access>
+              <id>1/1/1.1</id>
+              <interface-id>1/1/1</interface-id>
+              <description>Interface SYNC to eNODE-B</description>
+              <vpn-network-access-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:point-to-point</vpn-network-access-type>
+              <vpn-instance-profile>simple-profile</vpn-instance-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</type>
+                  <dot1q>
+                    <cvlan-id>1</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <ip-connection>
+                <ipv4>
+                  <local-address>192.0.2.1</local-address>
+                  <prefix-length>30</prefix-length>
+                  <address-allocation-type xmlns:l3nm="urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw">l3nm:static-address</address-allocation-type>
+                </ipv4>
+                <ipv6>
+                  <local-address>2001:db8::1</local-address>
+                  <prefix-length>64</prefix-length>
+                  <address-allocation-type xmlns:l3nm="urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw">l3nm:static-address</address-allocation-type>
+                  <primary-address>1</primary-address>
+                  <address>
+                    <address-id>1</address-id>
+                    <customer-address>2001:db8::2</customer-address>
+                  </address>
+                </ipv6>
+              </ip-connection>
+              <routing-protocols>
+                <routing-protocol>
+                  <id>1</id>
+                  <type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:direct-routing</type>
+                </routing-protocol>
+              </routing-protocols>
+            </vpn-network-access>
+            <vpn-network-access>
+              <id>1/1/1.2</id>
+              <interface-id>1/1/1</interface-id>
+              <description>Interface DATA to eNODE-B</description>
+              <vpn-network-access-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:point-to-point</vpn-network-access-type>
+              <vpn-instance-profile>simple-profile</vpn-instance-profile>
+              <status>
+                <admin-status>
+                  <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:admin-up</status>
+                </admin-status>
+              </status>
+              <connection>
+                <encapsulation>
+                  <type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:dot1q</type>
+                  <dot1q>
+                    <cvlan-id>2</cvlan-id>
+                  </dot1q>
+                </encapsulation>
+              </connection>
+              <ip-connection>
+                <ipv4>
+                  <local-address>192.0.2.1</local-address>
+                  <prefix-length>30</prefix-length>
+                  <address-allocation-type xmlns:l3nm="urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw">l3nm:static-address</address-allocation-type>
+                </ipv4>
+                <ipv6>
+                  <local-address>2001:db8::1</local-address>
+                  <prefix-length>64</prefix-length>
+                  <address-allocation-type xmlns:l3nm="urn:ietf:params:xml:ns:yang:ietf-l3vpn-ntw">l3nm:static-address</address-allocation-type>
+                  <primary-address>1</primary-address>
+                  <address>
+                    <address-id>1</address-id>
+                    <customer-address>2001:db8::2</customer-address>
+                  </address>
+                </ipv6>
+              </ip-connection>
+              <routing-protocols>
+                <routing-protocol>
+                  <id>1</id>
+                  <type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:direct-routing</type>
+                </routing-protocol>
+              </routing-protocols>
+            </vpn-network-access>
+          </vpn-network-accesses>
+        </vpn-node>
+      </vpn-nodes>
+    </vpn-service>
+  </vpn-services>
+</l3vpn-ntw>

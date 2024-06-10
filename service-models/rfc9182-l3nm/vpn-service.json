@@ -1,0 +1,154 @@
+{
+  "ietf-l3vpn-ntw:l3vpn-ntw": {
+    "vpn-services": {
+      "vpn-service": [
+        {
+          "vpn-id": "4G",
+          "vpn-description": "VPN to deploy 4G services",
+          "customer-name": "mycustomer",
+          "vpn-service-topology": "ietf-vpn-common:custom",
+          "vpn-instance-profiles": {
+            "vpn-instance-profile": [
+              {
+                "profile-id": "simple-profile",
+                "local-as": 65530,
+                "rd": "0:65530:1",
+                "address-family": [
+                  {
+                    "address-family": "ietf-vpn-common:dual-stack",
+                    "vpn-targets": {
+                      "vpn-target": [
+                        {
+                          "id": 1,
+                          "route-targets": [
+                            {
+                              "route-target": "0:65530:1"
+                            }
+                          ],
+                          "route-target-type": "both"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            ]
+          },
+          "vpn-nodes": {
+            "vpn-node": [
+              {
+                "vpn-node-id": "44",
+                "ne-id": "198.51.100.1",
+                "active-vpn-instance-profiles": {
+                  "vpn-instance-profile": [
+                    {
+                      "profile-id": "simple-profile"
+                    }
+                  ]
+                },
+                "vpn-network-accesses": {
+                  "vpn-network-access": [
+                    {
+                      "id": "1/1/1.1",
+                      "interface-id": "1/1/1",
+                      "description": "Interface SYNC to eNODE-B",
+                      "vpn-network-access-type": "ietf-vpn-common:point-to-point",
+                      "vpn-instance-profile": "simple-profile",
+                      "status": {
+                        "admin-status": {
+                          "status": "ietf-vpn-common:admin-up"
+                        }
+                      },
+                      "connection": {
+                        "encapsulation": {
+                          "type": "ietf-vpn-common:dot1q",
+                          "dot1q": {
+                            "cvlan-id": 1
+                          }
+                        }
+                      },
+                      "ip-connection": {
+                        "ipv4": {
+                          "local-address": "192.0.2.1",
+                          "prefix-length": 30,
+                          "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+                        },
+                        "ipv6": {
+                          "local-address": "2001:db8::1",
+                          "prefix-length": 64,
+                          "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+                          "primary-address": "1",
+                          "address": [
+                            {
+                              "address-id": "1",
+                              "customer-address": "2001:db8::2"
+                            }
+                          ]
+                        }
+                      },
+                      "routing-protocols": {
+                        "routing-protocol": [
+                          {
+                            "id": "1",
+                            "type": "ietf-vpn-common:direct-routing"
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "id": "1/1/1.2",
+                      "interface-id": "1/1/1",
+                      "description": "Interface DATA to eNODE-B",
+                      "vpn-network-access-type": "ietf-vpn-common:point-to-point",
+                      "vpn-instance-profile": "simple-profile",
+                      "status": {
+                        "admin-status": {
+                          "status": "ietf-vpn-common:admin-up"
+                        }
+                      },
+                      "connection": {
+                        "encapsulation": {
+                          "type": "ietf-vpn-common:dot1q",
+                          "dot1q": {
+                            "cvlan-id": 2
+                          }
+                        }
+                      },
+                      "ip-connection": {
+                        "ipv4": {
+                          "local-address": "192.0.2.1",
+                          "prefix-length": 30,
+                          "address-allocation-type": "ietf-l3vpn-ntw:static-address"
+                        },
+                        "ipv6": {
+                          "local-address": "2001:db8::1",
+                          "prefix-length": 64,
+                          "address-allocation-type": "ietf-l3vpn-ntw:static-address",
+                          "primary-address": "1",
+                          "address": [
+                            {
+                              "address-id": "1",
+                              "customer-address": "2001:db8::2"
+                            }
+                          ]
+                        }
+                      },
+                      "routing-protocols": {
+                        "routing-protocol": [
+                          {
+                            "id": "1",
+                            "type": "ietf-vpn-common:direct-routing"
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
