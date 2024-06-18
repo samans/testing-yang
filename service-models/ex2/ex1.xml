@@ -1,0 +1,117 @@
+<networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+  <network>
+    <network-id>network1</network-id>
+    <node>
+      <node-id>node1</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>tp1</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>node2</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>tp2</tp-id>
+      </termination-point>
+    </node>
+  </network>
+</networks>
+<network-slice-services xmlns="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">
+  <slo-sle-templates>
+    <slo-sle-template>
+      <id>high-BW-template</id>
+      <description>take the highest BW forwarding path</description>
+    </slo-sle-template>
+    <slo-sle-template>
+      <id>low-latency-template</id>
+      <description>lowest possible latency forwarding behavior</description>
+    </slo-sle-template>
+  </slo-sle-templates>
+  <slice-service>
+    <id>slice1</id>
+    <description>example slice1</description>
+    <service-tags>
+      <tag-type>
+        <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:service</tag-type>
+        <value>L3</value>
+      </tag-type>
+    </service-tags>
+    <slo-sle-template>low-latency-template</slo-sle-template>
+    <sdps>
+      <sdp>
+        <id>1</id>
+        <node-id>PE-A</node-id>
+        <tp-ref>tp1</tp-ref>
+        <service-match-criteria>
+          <match-criterion>
+            <index>1</index>
+            <match-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:any</match-type>
+            <target-connection-group-id>matrix1</target-connection-group-id>
+            <target-connectivity-construct-id>1</target-connectivity-construct-id>
+          </match-criterion>
+        </service-match-criteria>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>ac1</id>
+            <description>AC1 connected to device 1</description>
+            <ac-node-id>PE-A</ac-node-id>
+            <ac-tp-id>GigabitEthernet5/0/0/0.100</ac-tp-id>
+            <ac-ipv4-address>192.0.2.1</ac-ipv4-address>
+            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
+            <ac-tags>
+              <ac-tag>
+                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
+                <value>100</value>
+              </ac-tag>
+            </ac-tags>
+          </attachment-circuit>
+        </attachment-circuits>
+      </sdp>
+      <sdp>
+        <id>2</id>
+        <node-id>PE-B</node-id>
+        <service-match-criteria>
+          <match-criterion>
+            <index>1</index>
+            <match-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:any</match-type>
+            <target-connection-group-id>matrix1</target-connection-group-id>
+            <target-connectivity-construct-id>1</target-connectivity-construct-id>
+          </match-criterion>
+        </service-match-criteria>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>ac2</id>
+            <description>AC2 connected to device 2</description>
+            <ac-node-id>PE-B</ac-node-id>
+            <ac-tp-id>GigabitEthernet8/0/0/4.101</ac-tp-id>
+            <ac-ipv4-address>192.0.2.65</ac-ipv4-address>
+            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
+            <ac-tags>
+              <ac-tag>
+                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
+                <value>101</value>
+              </ac-tag>
+            </ac-tags>
+          </attachment-circuit>
+        </attachment-circuits>
+      </sdp>
+    </sdps>
+    <connection-groups>
+      <connection-group>
+        <id>matrix1</id>
+        <connectivity-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:any-to-any</connectivity-type>
+        <connectivity-construct>
+          <id>1</id>
+          <a2a-sdp>
+            <sdp-id>1</sdp-id>
+          </a2a-sdp>
+          <a2a-sdp>
+            <sdp-id>2</sdp-id>
+          </a2a-sdp>
+        </connectivity-construct>
+      </connection-group>
+    </connection-groups>
+    <custom-topology>
+      <network-ref>network1</network-ref>
+    </custom-topology>
+  </slice-service>
+</network-slice-services>

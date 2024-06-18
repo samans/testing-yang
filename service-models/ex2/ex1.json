@@ -1,0 +1,159 @@
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "network1",
+        "node": [
+          {
+            "node-id": "node1",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "tp1"
+              }
+            ]
+          },
+          {
+            "node-id": "node2",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "tp2"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-network-slice-service:network-slice-services": {
+    "slo-sle-templates": {
+      "slo-sle-template": [
+        {
+          "id": "high-BW-template",
+          "description": "take the highest BW forwarding path"
+        },
+        {
+          "id": "low-latency-template",
+          "description": "lowest possible latency forwarding behavior"
+        }
+      ]
+    },
+    "slice-service": [
+      {
+        "id": "slice1",
+        "description": "example slice1",
+        "service-tags": {
+          "tag-type": [
+            {
+              "tag-type": "ietf-network-slice-service:service",
+              "value": [
+                "L3"
+              ]
+            }
+          ]
+        },
+        "slo-sle-template": "low-latency-template",
+        "sdps": {
+          "sdp": [
+            {
+              "id": "1",
+              "node-id": "PE-A",
+              "tp-ref": "tp1",
+              "service-match-criteria": {
+                "match-criterion": [
+                  {
+                    "index": 1,
+                    "match-type": "ietf-network-slice-service:any",
+                    "target-connection-group-id": "matrix1",
+                    "target-connectivity-construct-id": "1"
+                  }
+                ]
+              },
+              "attachment-circuits": {
+                "attachment-circuit": [
+                  {
+                    "id": "ac1",
+                    "description": "AC1 connected to device 1",
+                    "ac-node-id": "PE-A",
+                    "ac-tp-id": "GigabitEthernet5/0/0/0.100",
+                    "ac-ipv4-address": "192.0.2.1",
+                    "ac-ipv4-prefix-length": 26,
+                    "ac-tags": {
+                      "ac-tag": [
+                        {
+                          "tag-type": "ietf-network-slice-service:vlan-id",
+                          "value": [
+                            "100"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": "2",
+              "node-id": "PE-B",
+              "service-match-criteria": {
+                "match-criterion": [
+                  {
+                    "index": 1,
+                    "match-type": "ietf-network-slice-service:any",
+                    "target-connection-group-id": "matrix1",
+                    "target-connectivity-construct-id": "1"
+                  }
+                ]
+              },
+              "attachment-circuits": {
+                "attachment-circuit": [
+                  {
+                    "id": "ac2",
+                    "description": "AC2 connected to device 2",
+                    "ac-node-id": "PE-B",
+                    "ac-tp-id": "GigabitEthernet8/0/0/4.101",
+                    "ac-ipv4-address": "192.0.2.65",
+                    "ac-ipv4-prefix-length": 26,
+                    "ac-tags": {
+                      "ac-tag": [
+                        {
+                          "tag-type": "ietf-network-slice-service:vlan-id",
+                          "value": [
+                            "101"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "connection-groups": {
+          "connection-group": [
+            {
+              "id": "matrix1",
+              "connectivity-type": "ietf-vpn-common:any-to-any",
+              "connectivity-construct": [
+                {
+                  "id": "1",
+                  "a2a-sdp": [
+                    {
+                      "sdp-id": "1"
+                    },
+                    {
+                      "sdp-id": "2"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        "custom-topology": {
+          "network-ref": "network1"
+        }
+      }
+    ]
+  }
+}

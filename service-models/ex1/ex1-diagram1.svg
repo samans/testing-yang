@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="320" width="552" viewBox="0 0 552 320" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,48 L 8,112" fill="none" stroke="black"/>
+<path d="M 48,64 L 48,96" fill="none" stroke="black"/>
+<path d="M 72,64 L 72,96" fill="none" stroke="black"/>
+<path d="M 104,48 L 104,112" fill="none" stroke="black"/>
+<path d="M 136,272 L 136,288" fill="none" stroke="black"/>
+<path d="M 152,80 L 152,144" fill="none" stroke="black"/>
+<path d="M 192,96 L 192,128" fill="none" stroke="black"/>
+<path d="M 216,96 L 216,128" fill="none" stroke="black"/>
+<path d="M 248,80 L 248,144" fill="none" stroke="black"/>
+<path d="M 296,80 L 296,144" fill="none" stroke="black"/>
+<path d="M 336,96 L 336,128" fill="none" stroke="black"/>
+<path d="M 360,96 L 360,128" fill="none" stroke="black"/>
+<path d="M 392,80 L 392,144" fill="none" stroke="black"/>
+<path d="M 408,272 L 408,288" fill="none" stroke="black"/>
+<path d="M 440,80 L 440,144" fill="none" stroke="black"/>
+<path d="M 488,96 L 488,128" fill="none" stroke="black"/>
+<path d="M 512,96 L 512,128" fill="none" stroke="black"/>
+<path d="M 544,80 L 544,144" fill="none" stroke="black"/>
+<path d="M 8,48 L 104,48" fill="none" stroke="black"/>
+<path d="M 48,64 L 72,64" fill="none" stroke="black"/>
+<path d="M 80,80 L 120,80" fill="none" stroke="black"/>
+<path d="M 152,80 L 248,80" fill="none" stroke="black"/>
+<path d="M 296,80 L 392,80" fill="none" stroke="black"/>
+<path d="M 440,80 L 544,80" fill="none" stroke="black"/>
+<path d="M 48,96 L 72,96" fill="none" stroke="black"/>
+<path d="M 192,96 L 216,96" fill="none" stroke="black"/>
+<path d="M 336,96 L 360,96" fill="none" stroke="black"/>
+<path d="M 488,96 L 512,96" fill="none" stroke="black"/>
+<path d="M 8,112 L 104,112" fill="none" stroke="black"/>
+<path d="M 136,112 L 184,112" fill="none" stroke="black"/>
+<path d="M 224,112 L 328,112" fill="none" stroke="black"/>
+<path d="M 368,112 L 480,112" fill="none" stroke="black"/>
+<path d="M 192,128 L 216,128" fill="none" stroke="black"/>
+<path d="M 336,128 L 360,128" fill="none" stroke="black"/>
+<path d="M 488,128 L 512,128" fill="none" stroke="black"/>
+<path d="M 152,144 L 248,144" fill="none" stroke="black"/>
+<path d="M 296,144 L 392,144" fill="none" stroke="black"/>
+<path d="M 440,144 L 544,144" fill="none" stroke="black"/>
+<path d="M 24,240 L 120,240" fill="none" stroke="black"/>
+<path d="M 152,240 L 248,240" fill="none" stroke="black"/>
+<path d="M 296,240 L 392,240" fill="none" stroke="black"/>
+<path d="M 424,240 L 520,240" fill="none" stroke="black"/>
+<path d="M 8,208 L 24,240" fill="none" stroke="black"/>
+<path d="M 120,240 L 136,272" fill="none" stroke="black"/>
+<path d="M 120,80 L 136,112" fill="none" stroke="black"/>
+<path d="M 280,208 L 296,240" fill="none" stroke="black"/>
+<path d="M 392,240 L 408,272" fill="none" stroke="black"/>
+<path d="M 136,272 L 152,240" fill="none" stroke="black"/>
+<path d="M 248,240 L 264,208" fill="none" stroke="black"/>
+<path d="M 408,272 L 424,240" fill="none" stroke="black"/>
+<path d="M 520,240 L 536,208" fill="none" stroke="black"/>
+<circle cx="72" cy="80" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="192" cy="112" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="216" cy="112" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="336" cy="112" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="360" cy="112" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="488" cy="112" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<g class="text">
+<text x="40" y="20">Network 1</text>
+<text x="24" y="68">BB1</text>
+<text x="168" y="100">TN2</text>
+<text x="312" y="100">TN3</text>
+<text x="460" y="100">RAU5</text>
+<text x="76" y="148">(11-1)</text>
+<text x="200" y="180">(21-4) (22-1)</text>
+<text x="344" y="180">(31-1) (32-1)</text>
+<text x="468" y="180">(51-1)</text>
+<text x="132" y="308">(Site A)</text>
+<text x="404" y="308">(Site B)</text>
+</g>
+</svg>
