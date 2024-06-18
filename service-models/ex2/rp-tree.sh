@@ -1,1 +1,1 @@
-pyang -f tree -o ex1.tree *.yang
+pyang -f tree -o ex2.tree *.yang

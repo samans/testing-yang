@@ -96,7 +96,7 @@
           "sdp": [
             {
               "id": "1",
-              "node-id": "TN2",
+              "node-id": "TN 2",
               "tp-ref": "21-1",
               "service-match-criteria": {
                 "match-criterion": [
@@ -113,7 +113,7 @@
                   {
                     "id": "ac1",
                     "description": "AC1 connected to CE - BB1",
-                    "ac-node-id": "TN2",
+                    "ac-node-id": "TN 2",
                     "ac-tp-id": "GigabitEthernet5/0/0/0.100",
                     "ac-ipv4-address": "192.0.2.1",
                     "ac-ipv4-prefix-length": 26,
@@ -133,7 +133,7 @@
             },
             {
               "id": "2",
-              "node-id": "TN3",
+              "node-id": "TN 3",
               "service-match-criteria": {
                 "match-criterion": [
                   {
@@ -149,7 +149,7 @@
                   {
                     "id": "ac2",
                     "description": "AC2 connected to CE - RAU5",
-                    "ac-node-id": "PE-B",
+                    "ac-node-id": "TN 3",
                     "ac-tp-id": "GigabitEthernet8/0/0/4.101",
                     "ac-ipv4-address": "192.0.2.65",
                     "ac-ipv4-prefix-length": 26,

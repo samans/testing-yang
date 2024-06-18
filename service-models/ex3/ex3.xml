@@ -8,39 +8,16 @@
       </termination-point>
     </node>
     <node>
-      <node-id>TN 2</node-id>
-      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>21-1</tp-id>
-      </termination-point>
-    </node>
-    <node>
-      <node-id>TN 3</node-id>
-      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>32-1</tp-id>
-      </termination-point>
-    </node>
-    <node>
       <node-id>RAU 5</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
         <tp-id>51-1</tp-id>
       </termination-point>
     </node>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>ce-bb1-pe-tn2</link-id>
+      <link-id>ce-bb1-ce-rau5</link-id>
       <source>
         <source-node>BB 1</source-node>
         <source-tp>11-1</source-tp>
-      </source>
-      <destination>
-        <dest-node>TN 2</dest-node>
-        <dest-tp>21-1</dest-tp>
-      </destination>
-    </link>
-    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>pe-tn3-ce-rau5</link-id>
-      <source>
-        <source-node>TN 3</source-node>
-        <source-tp>32-1</source-tp>
       </source>
       <destination>
         <dest-node>RAU 5</dest-node>
@@ -72,9 +49,10 @@
     <slo-sle-template>low-latency-template</slo-sle-template>
     <sdps>
       <sdp>
-        <id>1</id>
-        <node-id>TN 2</node-id>
-        <tp-ref>21-1</tp-ref>
+        <id>sdp1</id>
+        <node-id>BB 1</node-id>
+        <sdp-ip-address>2001:db8:0:1::1</sdp-ip-address>
+        <tp-ref>11-1</tp-ref>
         <service-match-criteria>
           <match-criterion>
             <index>1</index>
@@ -86,23 +64,18 @@
         <attachment-circuits>
           <attachment-circuit>
             <id>ac1</id>
-            <description>AC1 connected to CE - BB1</description>
-            <ac-node-id>TN 2</ac-node-id>
-            <ac-tp-id>GigabitEthernet5/0/0/0.100</ac-tp-id>
-            <ac-ipv4-address>192.0.2.1</ac-ipv4-address>
-            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
-            <ac-tags>
-              <ac-tag>
-                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
-                <value>100</value>
-              </ac-tag>
-            </ac-tags>
+            <description>ac1 connected to CE - BB 1</description>
+            <sdp-peering>
+              <peer-sap-id>ce.com-circuitID-12345</peer-sap-id>
+            </sdp-peering>
           </attachment-circuit>
         </attachment-circuits>
       </sdp>
       <sdp>
-        <id>2</id>
-        <node-id>TN 3</node-id>
+        <id>sdp2</id>
+        <node-id>RAU 5</node-id>
+        <sdp-ip-address>2001:db8:0:2::1</sdp-ip-address>
+        <tp-ref>51-1</tp-ref>
         <service-match-criteria>
           <match-criterion>
             <index>1</index>
@@ -114,17 +87,10 @@
         <attachment-circuits>
           <attachment-circuit>
             <id>ac2</id>
-            <description>AC2 connected to CE - RAU5</description>
-            <ac-node-id>TN 3</ac-node-id>
-            <ac-tp-id>GigabitEthernet8/0/0/4.101</ac-tp-id>
-            <ac-ipv4-address>192.0.2.65</ac-ipv4-address>
-            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
-            <ac-tags>
-              <ac-tag>
-                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
-                <value>101</value>
-              </ac-tag>
-            </ac-tags>
+            <description>ac2 connected to CE - RAU 5</description>
+            <sdp-peering>
+              <peer-sap-id>ce.com-circuitID-67890</peer-sap-id>
+            </sdp-peering>
           </attachment-circuit>
         </attachment-circuits>
       </sdp>
@@ -136,10 +102,10 @@
         <connectivity-construct>
           <id>1</id>
           <a2a-sdp>
-            <sdp-id>1</sdp-id>
+            <sdp-id>sdp1</sdp-id>
           </a2a-sdp>
           <a2a-sdp>
-            <sdp-id>2</sdp-id>
+            <sdp-id>sdp2</sdp-id>
           </a2a-sdp>
         </connectivity-construct>
       </connection-group>

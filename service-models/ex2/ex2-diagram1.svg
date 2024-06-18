@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="464" width="672" viewBox="0 0 672 464" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="584" viewBox="0 0 584 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 8,96 L 8,160" fill="none" stroke="black"/>
 <path d="M 48,112 L 48,144" fill="none" stroke="black"/>
 <path d="M 72,112 L 72,144" fill="none" stroke="black"/>
@@ -84,10 +84,5 @@
 <text x="468" y="228">(51-1)</text>
 <text x="132" y="356">(Site A)</text>
 <text x="428" y="356">(Site B)</text>
-<text x="112" y="388">PE-Based IETF Network Slice</text>
-<text x="108" y="404">CE is unknown to transport</text>
-<text x="284" y="420">The SDP has the knowledge of where the CE device is attached by using:</text>
-<text x="88" y="436">- ac-node-id (string)</text>
-<text x="336" y="452">- ac-ipv4-address and acpipv4-prefix-length and ac-tags (if a vlan over ip is used)</text>
 </g>
 </svg>
