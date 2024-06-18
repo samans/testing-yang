@@ -1,0 +1,28 @@
+Network 1 -- L2 Interface Scope with IETF Network Slice, PE-based
+
+                          (IETF Network Slice)
+          (SDP1) o<--------------------------------->o (SDP2) 
+CE               |               slice1              |
++------------+    \                                 / 
+|BB1 +--+    |     ' PE                         PE '               CE
+|    |  ◌----+--.   +-----------+     +-----------+     +------------+
+|    +--+    |   \  |TN2 +--+   |     |TN3 +--+   |     |     +--+   |
++------------+    '-+----◌  |   |     |    |  ◌---+-----+-----◌  |   +
+                AC  |    +--+   |     |    +--+   | AC  |RAU5 +--+   |
+      (11-1)        +-----------+     +-----------+     +------------+
+
+                  (21-1)                   (32-1)      (51-1)
+
+|                               |   |                                  |
+ \                             /     \                                /
+  '-----------.   .-----------'       '------------.   .-------------'
+               \ /                                  \ /
+                +                                    +
+                |                                    |
+            (Site A)                             (Site B)
+
+PE-Based IETF Network Slice
+CE is unknown to transport
+The SDP has the knowledge of where the CE device is attached by using:
+- ac-node-id (string)
+- ac-ipv4-address and acpipv4-prefix-length and ac-tags (if a vlan over ip is used)

@@ -2,17 +2,51 @@
   <network>
     <network-id>network1</network-id>
     <node>
-      <node-id>node1</node-id>
+      <node-id>BB 1</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>tp1</tp-id>
+        <tp-id>11-1</tp-id>
       </termination-point>
     </node>
     <node>
-      <node-id>node2</node-id>
+      <node-id>TN 2</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>tp2</tp-id>
+        <tp-id>21-1</tp-id>
       </termination-point>
     </node>
+    <node>
+      <node-id>TN 3</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>32-1</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>RAU 5</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>51-1</tp-id>
+      </termination-point>
+    </node>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-bb1-pe-tn2</link-id>
+      <source>
+        <source-node>BB 1</source-node>
+        <source-tp>11-1</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 2</dest-node>
+        <dest-tp>21-1</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn3-ce-rau5</link-id>
+      <source>
+        <source-node>TN 3</source-node>
+        <source-tp>32-1</source-tp>
+      </source>
+      <destination>
+        <dest-node>RAU 5</dest-node>
+        <dest-tp>51-1</dest-tp>
+      </destination>
+    </link>
   </network>
 </networks>
 <network-slice-services xmlns="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">
@@ -32,15 +66,15 @@
     <service-tags>
       <tag-type>
         <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:service</tag-type>
-        <value>L3</value>
+        <value>ietf slice</value>
       </tag-type>
     </service-tags>
     <slo-sle-template>low-latency-template</slo-sle-template>
     <sdps>
       <sdp>
         <id>1</id>
-        <node-id>PE-A</node-id>
-        <tp-ref>tp1</tp-ref>
+        <node-id>TN2</node-id>
+        <tp-ref>21-1</tp-ref>
         <service-match-criteria>
           <match-criterion>
             <index>1</index>
@@ -52,8 +86,8 @@
         <attachment-circuits>
           <attachment-circuit>
             <id>ac1</id>
-            <description>AC1 connected to device 1</description>
-            <ac-node-id>PE-A</ac-node-id>
+            <description>AC1 connected to CE - BB1</description>
+            <ac-node-id>TN2</ac-node-id>
             <ac-tp-id>GigabitEthernet5/0/0/0.100</ac-tp-id>
             <ac-ipv4-address>192.0.2.1</ac-ipv4-address>
             <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
@@ -68,7 +102,7 @@
       </sdp>
       <sdp>
         <id>2</id>
-        <node-id>PE-B</node-id>
+        <node-id>TN3</node-id>
         <service-match-criteria>
           <match-criterion>
             <index>1</index>
@@ -80,7 +114,7 @@
         <attachment-circuits>
           <attachment-circuit>
             <id>ac2</id>
-            <description>AC2 connected to device 2</description>
+            <description>AC2 connected to CE - RAU5</description>
             <ac-node-id>PE-B</ac-node-id>
             <ac-tp-id>GigabitEthernet8/0/0/4.101</ac-tp-id>
             <ac-ipv4-address>192.0.2.65</ac-ipv4-address>

@@ -5,20 +5,60 @@
         "network-id": "network1",
         "node": [
           {
-            "node-id": "node1",
+            "node-id": "BB 1",
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "tp1"
+                "tp-id": "11-1"
               }
             ]
           },
           {
-            "node-id": "node2",
+            "node-id": "TN 2",
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "tp2"
+                "tp-id": "21-1"
               }
             ]
+          },
+          {
+            "node-id": "TN 3",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "32-1"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 5",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "51-1"
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "ce-bb1-pe-tn2",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "11-1"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "21-1"
+            }
+          },
+          {
+            "link-id": "pe-tn3-ce-rau5",
+            "source": {
+              "source-node": "TN 3",
+              "source-tp": "32-1"
+            },
+            "destination": {
+              "dest-node": "RAU 5",
+              "dest-tp": "51-1"
+            }
           }
         ]
       }
@@ -46,7 +86,7 @@
             {
               "tag-type": "ietf-network-slice-service:service",
               "value": [
-                "L3"
+                "ietf slice"
               ]
             }
           ]
@@ -56,8 +96,8 @@
           "sdp": [
             {
               "id": "1",
-              "node-id": "PE-A",
-              "tp-ref": "tp1",
+              "node-id": "TN2",
+              "tp-ref": "21-1",
               "service-match-criteria": {
                 "match-criterion": [
                   {
@@ -72,8 +112,8 @@
                 "attachment-circuit": [
                   {
                     "id": "ac1",
-                    "description": "AC1 connected to device 1",
-                    "ac-node-id": "PE-A",
+                    "description": "AC1 connected to CE - BB1",
+                    "ac-node-id": "TN2",
                     "ac-tp-id": "GigabitEthernet5/0/0/0.100",
                     "ac-ipv4-address": "192.0.2.1",
                     "ac-ipv4-prefix-length": 26,
@@ -93,7 +133,7 @@
             },
             {
               "id": "2",
-              "node-id": "PE-B",
+              "node-id": "TN3",
               "service-match-criteria": {
                 "match-criterion": [
                   {
@@ -108,7 +148,7 @@
                 "attachment-circuit": [
                   {
                     "id": "ac2",
-                    "description": "AC2 connected to device 2",
+                    "description": "AC2 connected to CE - RAU5",
                     "ac-node-id": "PE-B",
                     "ac-tp-id": "GigabitEthernet8/0/0/4.101",
                     "ac-ipv4-address": "192.0.2.65",

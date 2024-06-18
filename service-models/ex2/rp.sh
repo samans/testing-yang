@@ -1,1 +1,1 @@
-pyang *.yang
+pyang -p ../yang ../yang/*.yang

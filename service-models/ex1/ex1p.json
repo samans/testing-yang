@@ -5,285 +5,79 @@
         "network-id": "network1",
         "node": [
           {
-            "node-id": "node1",
+            "node-id": "BB 1",
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "L2-N1-TP1"
+                "tp-id": "11-1"
               }
             ]
           },
           {
-            "node-id": "node2",
+            "node-id": "TN 2",
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "L2-N1-TP2"
+                "tp-id": "21-1"
+              },
+              {
+                "tp-id": "22-1"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 3",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "31-1"
+              },
+              {
+                "tp-id": "32-1"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 5",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "51-1"
               }
             ]
           }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "ce-bb1-pe-tn2",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "11-1"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "21-1"
+            }
+          },
+          {
+            "link-id": "pe-tn2-pe-tn3",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "22-1"
+            },
+            "destination": {
+              "dest-node": "TN 3",
+              "dest-tp": "31-1"
+            }
+          },
+          {
+            "link-id": "pe-tn3-ce-rau5",
+            "source": {
+              "source-node": "TN 3",
+              "source-tp": "32-1"
+            },
+            "destination": {
+              "dest-node": "RAU 5",
+              "dest-tp": "51-1"
+            }
+          }
         ]
-      }
-    ]
-  },
-  "ietf-network-slice-service:network-slice-services": {
-    "slo-sle-templates": {
-      "slo-sle-template": [
-        {
-          "id": "high-BW-template",
-          "description": "take the highest BW forwarding path"
-        },
-        {
-          "id": "low-latency-template",
-          "description": "lowest possible latency forwarding behavior"
-        }
-      ]
-    },
-    "slice-service": [
-      {
-        "id": "slice1",
-        "description": "example slice1",
-        "service-tags": {
-          "tag-type": [
-            {
-              "tag-type": "ietf-network-slice-service:service",
-              "value": [
-                "L3"
-              ]
-            }
-          ]
-        },
-        "slo-sle-template": "low-latency-template",
-        "sdps": {
-          "sdp": [
-            {
-              "id": "1",
-              "node-id": "PE-A",
-              "tp-ref": "L2-N1-TP1",
-              "service-match-criteria": {
-                "match-criterion": [
-                  {
-                    "index": 1,
-                    "match-type": "ietf-network-slice-service:any",
-                    "target-connection-group-id": "matrix1",
-                    "target-connectivity-construct-id": "1"
-                  }
-                ]
-              },
-              "attachment-circuits": {
-                "attachment-circuit": [
-                  {
-                    "id": "ac1",
-                    "description": "AC1 connected to device 1",
-                    "ac-node-id": "PE-A",
-                    "ac-tp-id": "GigabitEthernet5/0/0/0.100",
-                    "ac-ipv4-address": "192.0.2.1",
-                    "ac-ipv4-prefix-length": 26,
-                    "ac-tags": {
-                      "ac-tag": [
-                        {
-                          "tag-type": "ietf-network-slice-service:vlan-id",
-                          "value": [
-                            "100"
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "id": "3a",
-              "node-id": "PE-B",
-              "service-match-criteria": {
-                "match-criterion": [
-                  {
-                    "index": 1,
-                    "match-type": "ietf-network-slice-service:any",
-                    "target-connection-group-id": "matrix1",
-                    "target-connectivity-construct-id": "1"
-                  }
-                ]
-              },
-              "attachment-circuits": {
-                "attachment-circuit": [
-                  {
-                    "id": "ac3a",
-                    "description": "AC3a connected to device 3",
-                    "ac-node-id": "PE-B",
-                    "ac-tp-id": "GigabitEthernet8/0/0/4.101",
-                    "ac-ipv4-address": "192.0.2.65",
-                    "ac-ipv4-prefix-length": 26,
-                    "ac-tags": {
-                      "ac-tag": [
-                        {
-                          "tag-type": "ietf-network-slice-service:vlan-id",
-                          "value": [
-                            "101"
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "id": "4",
-              "node-id": "PE-C",
-              "service-match-criteria": {
-                "match-criterion": [
-                  {
-                    "index": 1,
-                    "match-type": "ietf-network-slice-service:any",
-                    "target-connection-group-id": "matrix1",
-                    "target-connectivity-construct-id": "1"
-                  }
-                ]
-              },
-              "attachment-circuits": {
-                "attachment-circuit": [
-                  {
-                    "id": "ac4",
-                    "description": "AC4 connected to device 4",
-                    "ac-node-id": "PE-C",
-                    "ac-tp-id": "GigabitEthernet4/0/0/3.100",
-                    "ac-ipv4-address": "192.0.2.129",
-                    "ac-ipv4-prefix-length": 26,
-                    "ac-tags": {
-                      "ac-tag": [
-                        {
-                          "tag-type": "ietf-network-slice-service:vlan-id",
-                          "value": [
-                            "100"
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "connection-groups": {
-          "connection-group": [
-            {
-              "id": "matrix1",
-              "connectivity-type": "ietf-vpn-common:any-to-any",
-              "connectivity-construct": [
-                {
-                  "id": "1",
-                  "a2a-sdp": [
-                    {
-                      "sdp-id": "1"
-                    },
-                    {
-                      "sdp-id": "3a"
-                    },
-                    {
-                      "sdp-id": "4"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        },
-        "custom-topology": {
-          "network-ref": "network1"
-        }
-      },
-      {
-        "id": "slice2",
-        "description": "example slice2",
-        "service-tags": {
-          "tag-type": [
-            {
-              "tag-type": "ietf-network-slice-service:service",
-              "value": [
-                "L3"
-              ]
-            }
-          ]
-        },
-        "slo-sle-template": "high-BW-template",
-        "sdps": {
-          "sdp": [
-            {
-              "id": "2",
-              "node-id": "PE-A",
-              "attachment-circuits": {
-                "attachment-circuit": [
-                  {
-                    "id": "ac2",
-                    "description": "AC2 connected to device 2",
-                    "ac-node-id": "PE-A",
-                    "ac-tp-id": "GigabitEthernet7/0/0/3.200",
-                    "ac-ipv4-address": "198.51.100.1",
-                    "ac-ipv4-prefix-length": 26,
-                    "ac-tags": {
-                      "ac-tag": [
-                        {
-                          "tag-type": "ietf-network-slice-service:vlan-id",
-                          "value": [
-                            "100"
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            },
-            {
-              "id": "3b",
-              "node-id": "PE-B",
-              "attachment-circuits": {
-                "attachment-circuit": [
-                  {
-                    "id": "ac3b",
-                    "description": "AC3b connected to device 3",
-                    "ac-node-id": "PE-B",
-                    "ac-tp-id": "GigabitEthernet8/0/0/4.201",
-                    "ac-ipv4-address": "198.51.100.65",
-                    "ac-ipv4-prefix-length": 26,
-                    "ac-tags": {
-                      "ac-tag": [
-                        {
-                          "tag-type": "ietf-network-slice-service:vlan-id",
-                          "value": [
-                            "201"
-                          ]
-                        }
-                      ]
-                    }
-                  }
-                ]
-              }
-            }
-          ]
-        },
-        "connection-groups": {
-          "connection-group": [
-            {
-              "id": "matrix2",
-              "connectivity-type": "ietf-vpn-common:any-to-any",
-              "connectivity-construct": [
-                {
-                  "id": "1",
-                  "a2a-sdp": [
-                    {
-                      "sdp-id": "2"
-                    },
-                    {
-                      "sdp-id": "3b"
-                    }
-                  ]
-                }
-              ]
-            }
-          ]
-        }
       }
     ]
   }

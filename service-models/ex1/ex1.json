@@ -17,9 +17,9 @@
             "ietf-network-topology:termination-point": [
               {
                 "tp-id": "21-1"
-	      },
-	      {
-		"tp-id": "22-1"
+              },
+              {
+                "tp-id": "22-1"
               }
             ]
           },
@@ -43,38 +43,38 @@
             ]
           }
         ],
-	"ietf-network-topology:link": [
+        "ietf-network-topology:link": [
           {
             "link-id": "ce-bb1-pe-tn2",
-	    "source": {
+            "source": {
               "source-node": "BB 1",
-	      "source-tp": "11-1"
-	    },
-	    "destination": {
+              "source-tp": "11-1"
+            },
+            "destination": {
               "dest-node": "TN 2",
-	      "dest-tp": "21-1"
+              "dest-tp": "21-1"
             }
           },
           {
             "link-id": "pe-tn2-pe-tn3",
-	    "source": {
+            "source": {
               "source-node": "TN 2",
-	      "source-tp": "22-1"
-	    },
-	    "destination": {
+              "source-tp": "22-1"
+            },
+            "destination": {
               "dest-node": "TN 3",
-	      "dest-tp": "31-1"
+              "dest-tp": "31-1"
             }
           },
           {
             "link-id": "pe-tn3-ce-rau5",
-	    "source": {
+            "source": {
               "source-node": "TN 3",
-	      "source-tp": "32-1"
-	    },
-	    "destination": {
+              "source-tp": "32-1"
+            },
+            "destination": {
               "dest-node": "RAU 5",
-	      "dest-tp": "51-1"
+              "dest-tp": "51-1"
             }
           }
         ]
