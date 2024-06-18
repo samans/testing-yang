@@ -6,5 +6,5 @@ The following example shows:
 
 ![ex1 Figure](https://github.com/samans/testing-yang/blob/main/service-models/ex1/ex1-diagram1.svg)
 
-{::include ./ex1.json}
+![ex1 json](https://github.com/samans/testing-yang/blob/main/service-models/ex1/ex1.json)
 
