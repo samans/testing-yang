@@ -1,4 +1,4 @@
-# Example 2 -- L2 Interface Scoep with IETF Network Slice
+# Example 2 -- L2 Interface Scope with IETF Network Slice (PE example)
 The following example shows:
 
 - ietf-network

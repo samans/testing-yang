@@ -1,4 +1,4 @@
-# Example 1
+# Example 1 - Topology Only
 The following example shows:
 
 - ietf-network
