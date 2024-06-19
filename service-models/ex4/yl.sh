@@ -1,0 +1,1 @@
+yanglint -m -t data -f xml -F ietf-ac-common:server-assigned-reference -p ../yang ../yang/ietf-ac-common@2023-11-13.yang ../yang/ietf-bearer-svc@2023-11-13.yang ../yang/ietf-ac-svc@2023-11-13.yang ex4.json -o ex4.xml

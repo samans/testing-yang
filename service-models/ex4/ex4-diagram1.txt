@@ -1,0 +1,13 @@
+ex4 Server assigned Bearer Example
+
+CE                                                        
++------------+
+|ce1 +--+    |                    PE
+|    |  ◌----+--.     +------------+
+|    +--+    |   \    |     +--+   |
++------------+    '---+-----◌  |   +
+Site 1         ac1    |TN2  +--+   |
+                      +------------+
+
+device-id: ce1-site1
+Server (PE) returns: bearer-reference: "bearer-123"

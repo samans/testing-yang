@@ -1,0 +1,14 @@
+<bearers xmlns="urn:ietf:params:xml:ns:yang:ietf-bearer-svc">
+  <bearer>
+    <name>client-assigned-name</name>
+    <description>client requested bearer</description>
+    <customer-point>
+      <identified-by xmlns:bearer-svc="urn:ietf:params:xml:ns:yang:ietf-bearer-svc">bearer-svc:device-id</identified-by>
+      <device>
+        <device-id>ce1-site1</device-id>
+      </device>
+    </customer-point>
+    <type xmlns:bearer-svc="urn:ietf:params:xml:ns:yang:ietf-bearer-svc">bearer-svc:ethernet</type>
+    <bearer-reference>bearer-123</bearer-reference>
+  </bearer>
+</bearers>

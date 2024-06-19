@@ -1,0 +1,18 @@
+{
+  "ietf-bearer-svc:bearers": {
+    "bearer": [
+      {
+        "name": "client-assigned-name",
+        "description": "client requested bearer",
+        "customer-point": {
+          "identified-by": "ietf-bearer-svc:device-id",
+          "device": {
+            "device-id": "ce1-site1"
+          }
+        },
+        "type": "ietf-bearer-svc:ethernet",
+        "bearer-reference": "bearer-123"
+      }
+    ]
+  }
+}

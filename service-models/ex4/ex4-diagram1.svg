@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="224" width="472" viewBox="0 0 472 224" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 8,64 L 8,128" fill="none" stroke="black"/>
+<path d="M 48,80 L 48,112" fill="none" stroke="black"/>
+<path d="M 72,80 L 72,112" fill="none" stroke="black"/>
+<path d="M 112,64 L 112,128" fill="none" stroke="black"/>
+<path d="M 184,96 L 184,160" fill="none" stroke="black"/>
+<path d="M 232,112 L 232,144" fill="none" stroke="black"/>
+<path d="M 256,112 L 256,144" fill="none" stroke="black"/>
+<path d="M 288,96 L 288,160" fill="none" stroke="black"/>
+<path d="M 8,64 L 112,64" fill="none" stroke="black"/>
+<path d="M 48,80 L 72,80" fill="none" stroke="black"/>
+<path d="M 80,96 L 136,96" fill="none" stroke="black"/>
+<path d="M 184,96 L 288,96" fill="none" stroke="black"/>
+<path d="M 48,112 L 72,112" fill="none" stroke="black"/>
+<path d="M 232,112 L 256,112" fill="none" stroke="black"/>
+<path d="M 8,128 L 112,128" fill="none" stroke="black"/>
+<path d="M 152,128 L 224,128" fill="none" stroke="black"/>
+<path d="M 232,144 L 256,144" fill="none" stroke="black"/>
+<path d="M 184,160 L 288,160" fill="none" stroke="black"/>
+<path d="M 136,96 L 152,128" fill="none" stroke="black"/>
+<circle cx="72" cy="96" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="128" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<g class="text">
+<text x="140" y="20">ex4 Server assigned Bearer Example</text>
+<text x="12" y="52">CE</text>
+<text x="24" y="84">ce1</text>
+<text x="284" y="84">PE</text>
+<text x="28" y="148">Site 1</text>
+<text x="136" y="148">ac1</text>
+<text x="200" y="148">TN2</text>
+<text x="84" y="196">device-id: ce1-site1</text>
+<text x="208" y="212">Server (PE) returns: bearer-reference: &quot;bearer-123&quot;</text>
+</g>
+</svg>
