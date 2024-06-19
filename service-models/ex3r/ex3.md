@@ -3,11 +3,11 @@ The following example shows:
 
 - ietf-network-slice-service
 
-![ex2 Figure](https://github.com/samans/testing-yang/blob/main/service-models/ex3/ex3-diagram1.svg)
+![ex3r Figure](https://github.com/samans/testing-yang/blob/main/service-models/ex3r/ex3-diagram1.svg)
 
 This example is a version of example3 with the network topology and tp references removed, since they aren't needed when the sdp peering leafs are used.
 
-https://github.com/samans/testing-yang/blob/main/service-models/ex3/ex3.json
+https://github.com/samans/testing-yang/blob/main/service-models/ex3r/ex3.json
 
 CE-Based IETF Network Slice
 Abstract Transport Network
