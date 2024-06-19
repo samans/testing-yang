@@ -1,4 +1,4 @@
-Network 1 -- L2 Interface Scope with IETF Network Slice, CE-based
+L2 Interface Scope with IETF Network Slice, CE-based
 
                           (IETF Network Slice)
      (sdp1) o<----------------------------------------->o (sdp2) 

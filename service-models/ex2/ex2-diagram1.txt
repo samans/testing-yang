@@ -8,10 +8,18 @@ CE               |               slice1              |
 |    |  ◌----+--.   +-----------+     +-----------+     +------------+
 |    +--+    |   \  |TN2 +--+   |     |TN3 +--+   |     |     +--+   |
 +------------+    '-+----◌  |   |     |    |  ◌---+-----+-----◌  |   +
-                AC  |    +--+   |     |    +--+   | AC  |RAU5 +--+   |
+               ac1  |    +--+   |     |    +--+   | ac2 |RAU5 +--+   |
       (11-1)        +-----------+     +-----------+     +------------+
 
                   (21-1)                   (32-1)      (51-1)
+
+ac1:                                   ac2:
+ac-node-id: "TN2"                      ac-node-id: "TN3"
+ac-tp-id:                              ac-tp-id:
+  "GigabitEthernet5/0/0/0.100"           "GigabitEthernet8/0/0/4.101"
+ac-ipv4-address: "192.0.2.1"           ac-ipv4-address: "192.0.2.65"
+ac-ipv4-prefix-length: 26              ac-ipv4-prefix-length: 26
+ac uses vlan tags, 100                 ac uses vlan tags, 100
 
 |                               |   |                                  |
  \                             /     \                                /

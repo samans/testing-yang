@@ -1,0 +1,84 @@
+<network-slice-services xmlns="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">
+  <slo-sle-templates>
+    <slo-sle-template>
+      <id>high-BW-template</id>
+      <description>take the highest BW forwarding path</description>
+    </slo-sle-template>
+    <slo-sle-template>
+      <id>low-latency-template</id>
+      <description>lowest possible latency forwarding behavior</description>
+    </slo-sle-template>
+  </slo-sle-templates>
+  <slice-service>
+    <id>slice1</id>
+    <description>example slice1</description>
+    <service-tags>
+      <tag-type>
+        <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:service</tag-type>
+        <value>ietf slice</value>
+      </tag-type>
+    </service-tags>
+    <slo-sle-template>low-latency-template</slo-sle-template>
+    <sdps>
+      <sdp>
+        <id>sdp1</id>
+        <node-id>BB 1</node-id>
+        <sdp-ip-address>2001:db8:0:1::1</sdp-ip-address>
+        <service-match-criteria>
+          <match-criterion>
+            <index>1</index>
+            <match-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:any</match-type>
+            <target-connection-group-id>matrix1</target-connection-group-id>
+            <target-connectivity-construct-id>1</target-connectivity-construct-id>
+          </match-criterion>
+        </service-match-criteria>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>ac1</id>
+            <description>ac1 connected to CE - BB 1</description>
+            <sdp-peering>
+              <peer-sap-id>ce.com-circuitID-12345</peer-sap-id>
+            </sdp-peering>
+          </attachment-circuit>
+        </attachment-circuits>
+      </sdp>
+      <sdp>
+        <id>sdp2</id>
+        <node-id>RAU 5</node-id>
+        <sdp-ip-address>2001:db8:0:2::1</sdp-ip-address>
+        <service-match-criteria>
+          <match-criterion>
+            <index>1</index>
+            <match-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:any</match-type>
+            <target-connection-group-id>matrix1</target-connection-group-id>
+            <target-connectivity-construct-id>1</target-connectivity-construct-id>
+          </match-criterion>
+        </service-match-criteria>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>ac2</id>
+            <description>ac2 connected to CE - RAU 5</description>
+            <sdp-peering>
+              <peer-sap-id>ce.com-circuitID-67890</peer-sap-id>
+            </sdp-peering>
+          </attachment-circuit>
+        </attachment-circuits>
+      </sdp>
+    </sdps>
+    <connection-groups>
+      <connection-group>
+        <id>matrix1</id>
+        <connectivity-type xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:any-to-any</connectivity-type>
+        <connectivity-construct>
+          <id>1</id>
+          <a2a-sdp>
+            <sdp-id>sdp1</sdp-id>
+          </a2a-sdp>
+          <a2a-sdp>
+            <sdp-id>sdp2</sdp-id>
+          </a2a-sdp>
+        </connectivity-construct>
+      </connection-group>
+    </connection-groups>
+  </slice-service>
+</network-slice-services>

@@ -32,17 +32,6 @@
               "dest-node": "RAU 5",
               "dest-tp": "51-1"
             }
-          },
-          {
-            "link-id": "ce-rau5-ce-bb1",
-            "source": {
-              "source-node": "RAU 5",
-              "source-tp": "51-1"
-            },
-            "destination": {
-              "dest-node": "BB 1",
-              "dest-tp": "11-1"
-            }
           }
         ]
       }

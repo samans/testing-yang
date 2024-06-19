@@ -37,6 +37,17 @@
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn2-ce-bb1</link-id>
+      <source>
+        <source-node>TN 2</source-node>
+        <source-tp>21-1</source-tp>
+      </source>
+      <destination>
+        <dest-node>BB 1</dest-node>
+        <dest-tp>11-1</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>pe-tn3-ce-rau5</link-id>
       <source>
         <source-node>TN 3</source-node>
@@ -45,6 +56,17 @@
       <destination>
         <dest-node>RAU 5</dest-node>
         <dest-tp>51-1</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-rau5-pe-tn3</link-id>
+      <source>
+        <source-node>RAU 5</source-node>
+        <source-tp>51-1</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 3</dest-node>
+        <dest-tp>32-1</dest-tp>
       </destination>
     </link>
   </network>
@@ -103,6 +125,7 @@
       <sdp>
         <id>2</id>
         <node-id>TN 3</node-id>
+        <tp-ref>32-1</tp-ref>
         <service-match-criteria>
           <match-criterion>
             <index>1</index>

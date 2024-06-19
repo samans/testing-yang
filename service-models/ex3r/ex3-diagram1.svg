@@ -40,7 +40,7 @@
 <circle cx="456" cy="64" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="504" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <g class="text">
-<text x="264" y="20">Network 1 -- L2 Interface Scope with IETF Network Slice, CE-based</text>
+<text x="212" y="20">L2 Interface Scope with IETF Network Slice, CE-based</text>
 <text x="292" y="52">(IETF Network Slice)</text>
 <text x="68" y="68">(sdp1)</text>
 <text x="492" y="68">(sdp2)</text>

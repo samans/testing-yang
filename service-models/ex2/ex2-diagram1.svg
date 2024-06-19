@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="368" width="584" viewBox="0 0 584 368" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="496" width="584" viewBox="0 0 584 496" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 8,96 L 8,160" fill="none" stroke="black"/>
 <path d="M 48,112 L 48,144" fill="none" stroke="black"/>
 <path d="M 72,112 L 72,144" fill="none" stroke="black"/>
 <path d="M 112,96 L 112,160" fill="none" stroke="black"/>
-<path d="M 136,320 L 136,336" fill="none" stroke="black"/>
+<path d="M 136,448 L 136,464" fill="none" stroke="black"/>
 <path d="M 144,64 L 144,80" fill="none" stroke="black"/>
 <path d="M 168,128 L 168,192" fill="none" stroke="black"/>
 <path d="M 208,144 L 208,176" fill="none" stroke="black"/>
@@ -14,7 +14,7 @@
 <path d="M 376,144 L 376,176" fill="none" stroke="black"/>
 <path d="M 408,128 L 408,192" fill="none" stroke="black"/>
 <path d="M 432,64 L 432,80" fill="none" stroke="black"/>
-<path d="M 432,320 L 432,336" fill="none" stroke="black"/>
+<path d="M 432,448 L 432,464" fill="none" stroke="black"/>
 <path d="M 456,128 L 456,192" fill="none" stroke="black"/>
 <path d="M 504,144 L 504,176" fill="none" stroke="black"/>
 <path d="M 528,144 L 528,176" fill="none" stroke="black"/>
@@ -39,21 +39,21 @@
 <path d="M 168,192 L 264,192" fill="none" stroke="black"/>
 <path d="M 312,192 L 408,192" fill="none" stroke="black"/>
 <path d="M 456,192 L 560,192" fill="none" stroke="black"/>
-<path d="M 24,288 L 120,288" fill="none" stroke="black"/>
-<path d="M 152,288 L 248,288" fill="none" stroke="black"/>
-<path d="M 312,288 L 416,288" fill="none" stroke="black"/>
-<path d="M 448,288 L 560,288" fill="none" stroke="black"/>
-<path d="M 8,256 L 24,288" fill="none" stroke="black"/>
-<path d="M 120,288 L 136,320" fill="none" stroke="black"/>
+<path d="M 24,416 L 120,416" fill="none" stroke="black"/>
+<path d="M 152,416 L 248,416" fill="none" stroke="black"/>
+<path d="M 312,416 L 416,416" fill="none" stroke="black"/>
+<path d="M 448,416 L 560,416" fill="none" stroke="black"/>
+<path d="M 8,384 L 24,416" fill="none" stroke="black"/>
+<path d="M 120,416 L 136,448" fill="none" stroke="black"/>
 <path d="M 136,128 L 152,160" fill="none" stroke="black"/>
 <path d="M 144,80 L 160,112" fill="none" stroke="black"/>
-<path d="M 296,256 L 312,288" fill="none" stroke="black"/>
-<path d="M 416,288 L 432,320" fill="none" stroke="black"/>
-<path d="M 136,320 L 152,288" fill="none" stroke="black"/>
-<path d="M 248,288 L 264,256" fill="none" stroke="black"/>
+<path d="M 296,384 L 312,416" fill="none" stroke="black"/>
+<path d="M 416,416 L 432,448" fill="none" stroke="black"/>
+<path d="M 136,448 L 152,416" fill="none" stroke="black"/>
+<path d="M 248,416 L 264,384" fill="none" stroke="black"/>
 <path d="M 416,112 L 432,80" fill="none" stroke="black"/>
-<path d="M 432,320 L 448,288" fill="none" stroke="black"/>
-<path d="M 560,288 L 576,256" fill="none" stroke="black"/>
+<path d="M 432,448 L 448,416" fill="none" stroke="black"/>
+<path d="M 560,416 L 576,384" fill="none" stroke="black"/>
 <polygon class="arrowhead" points="428,64 416,58.4 416,69.6" fill="black" transform="rotate(0,420,64)"/>
 <polygon class="arrowhead" points="164,64 152,58.4 152,69.6" fill="black" transform="rotate(180,156,64)"/>
 <circle cx="72" cy="128" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
@@ -75,14 +75,28 @@
 <text x="548" y="116">CE</text>
 <text x="184" y="148">TN2</text>
 <text x="328" y="148">TN3</text>
-<text x="140" y="180">AC</text>
-<text x="428" y="180">AC</text>
+<text x="136" y="180">ac1</text>
+<text x="432" y="180">ac2</text>
 <text x="476" y="180">RAU5</text>
 <text x="76" y="196">(11-1)</text>
 <text x="172" y="228">(21-1)</text>
 <text x="372" y="228">(32-1)</text>
 <text x="468" y="228">(51-1)</text>
-<text x="132" y="356">(Site A)</text>
-<text x="428" y="356">(Site B)</text>
+<text x="20" y="260">ac1:</text>
+<text x="332" y="260">ac2:</text>
+<text x="72" y="276">ac-node-id: &quot;TN2&quot;</text>
+<text x="384" y="276">ac-node-id: &quot;TN3&quot;</text>
+<text x="40" y="292">ac-tp-id:</text>
+<text x="352" y="292">ac-tp-id:</text>
+<text x="132" y="308">&quot;GigabitEthernet5/0/0/0.100&quot;</text>
+<text x="444" y="308">&quot;GigabitEthernet8/0/0/4.101&quot;</text>
+<text x="116" y="324">ac-ipv4-address: &quot;192.0.2.1&quot;</text>
+<text x="432" y="324">ac-ipv4-address: &quot;192.0.2.65&quot;</text>
+<text x="104" y="340">ac-ipv4-prefix-length: 26</text>
+<text x="416" y="340">ac-ipv4-prefix-length: 26</text>
+<text x="92" y="356">ac uses vlan tags, 100</text>
+<text x="404" y="356">ac uses vlan tags, 100</text>
+<text x="132" y="484">(Site A)</text>
+<text x="428" y="484">(Site B)</text>
 </g>
 </svg>

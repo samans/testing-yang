@@ -1,53 +1,4 @@
 {
-  "ietf-network:networks": {
-    "network": [
-      {
-        "network-id": "network1",
-        "node": [
-          {
-            "node-id": "BB 1",
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "11-1"
-              }
-            ]
-          },
-          {
-            "node-id": "RAU 5",
-            "ietf-network-topology:termination-point": [
-              {
-                "tp-id": "51-1"
-              }
-            ]
-          }
-        ],
-        "ietf-network-topology:link": [
-          {
-            "link-id": "ce-bb1-ce-rau5",
-            "source": {
-              "source-node": "BB 1",
-              "source-tp": "11-1"
-            },
-            "destination": {
-              "dest-node": "RAU 5",
-              "dest-tp": "51-1"
-            }
-          },
-          {
-            "link-id": "ce-rau5-ce-bb1",
-            "source": {
-              "source-node": "RAU 5",
-              "source-tp": "51-1"
-            },
-            "destination": {
-              "dest-node": "BB 1",
-              "dest-tp": "11-1"
-            }
-          }
-        ]
-      }
-    ]
-  },
   "ietf-network-slice-service:network-slice-services": {
     "slo-sle-templates": {
       "slo-sle-template": [
@@ -84,7 +35,6 @@
               "sdp-ip-address": [
                 "2001:db8:0:1::1"
               ],
-              "tp-ref": "11-1",
               "service-match-criteria": {
                 "match-criterion": [
                   {
@@ -113,7 +63,6 @@
               "sdp-ip-address": [
                 "2001:db8:0:2::1"
               ],
-              "tp-ref": "51-1",
               "service-match-criteria": {
                 "match-criterion": [
                   {
@@ -158,9 +107,6 @@
               ]
             }
           ]
-        },
-        "custom-topology": {
-          "network-ref": "network1"
         }
       }
     ]

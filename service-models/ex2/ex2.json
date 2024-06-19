@@ -50,6 +50,17 @@
             }
           },
           {
+            "link-id": "pe-tn2-ce-bb1",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "21-1"
+            },
+            "destination": {
+              "dest-node": "BB 1",
+              "dest-tp": "11-1"
+            }
+          },
+          {
             "link-id": "pe-tn3-ce-rau5",
             "source": {
               "source-node": "TN 3",
@@ -58,6 +69,17 @@
             "destination": {
               "dest-node": "RAU 5",
               "dest-tp": "51-1"
+            }
+          },
+          {
+            "link-id": "ce-rau5-pe-tn3",
+            "source": {
+              "source-node": "RAU 5",
+              "source-tp": "51-1"
+            },
+            "destination": {
+              "dest-node": "TN 3",
+              "dest-tp": "32-1"
             }
           }
         ]
@@ -134,6 +156,7 @@
             {
               "id": "2",
               "node-id": "TN 3",
+              "tp-ref": "32-1",
               "service-match-criteria": {
                 "match-criterion": [
                   {
