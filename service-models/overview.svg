@@ -1,0 +1,85 @@
+l<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="656" width="544" viewBox="0 0 544 656" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
+<path d="M 40,560 L 40,592" fill="none" stroke="black"/>
+<path d="M 80,560 L 80,592" fill="none" stroke="black"/>
+<path d="M 128,432 L 128,480" fill="none" stroke="black"/>
+<path d="M 136,320 L 136,368" fill="none" stroke="black"/>
+<path d="M 152,544 L 152,608" fill="none" stroke="black"/>
+<path d="M 168,368 L 168,432" fill="none" stroke="black"/>
+<path d="M 168,480 L 168,536" fill="none" stroke="black"/>
+<path d="M 208,288 L 208,320" fill="none" stroke="black"/>
+<path d="M 208,432 L 208,480" fill="none" stroke="black"/>
+<path d="M 240,32 L 240,64" fill="none" stroke="black"/>
+<path d="M 240,112 L 240,160" fill="none" stroke="black"/>
+<path d="M 240,208 L 240,256" fill="none" stroke="black"/>
+<path d="M 240,376 L 240,496" fill="none" stroke="black"/>
+<path d="M 264,320 L 264,368" fill="none" stroke="black"/>
+<path d="M 304,64 L 304,112" fill="none" stroke="black"/>
+<path d="M 304,160 L 304,208" fill="none" stroke="black"/>
+<path d="M 304,256 L 304,288" fill="none" stroke="black"/>
+<path d="M 328,320 L 328,368" fill="none" stroke="black"/>
+<path d="M 368,32 L 368,64" fill="none" stroke="black"/>
+<path d="M 368,112 L 368,160" fill="none" stroke="black"/>
+<path d="M 368,208 L 368,256" fill="none" stroke="black"/>
+<path d="M 400,288 L 400,320" fill="none" stroke="black"/>
+<path d="M 400,368 L 400,536" fill="none" stroke="black"/>
+<path d="M 416,544 L 416,608" fill="none" stroke="black"/>
+<path d="M 456,320 L 456,368" fill="none" stroke="black"/>
+<path d="M 488,560 L 488,592" fill="none" stroke="black"/>
+<path d="M 528,560 L 528,592" fill="none" stroke="black"/>
+<path d="M 240,32 L 368,32" fill="none" stroke="black"/>
+<path d="M 240,64 L 368,64" fill="none" stroke="black"/>
+<path d="M 240,112 L 368,112" fill="none" stroke="black"/>
+<path d="M 240,160 L 368,160" fill="none" stroke="black"/>
+<path d="M 240,208 L 368,208" fill="none" stroke="black"/>
+<path d="M 240,256 L 368,256" fill="none" stroke="black"/>
+<path d="M 208,288 L 400,288" fill="none" stroke="black"/>
+<path d="M 136,320 L 264,320" fill="none" stroke="black"/>
+<path d="M 328,320 L 456,320" fill="none" stroke="black"/>
+<path d="M 136,368 L 264,368" fill="none" stroke="black"/>
+<path d="M 328,368 L 456,368" fill="none" stroke="black"/>
+<path d="M 128,432 L 208,432" fill="none" stroke="black"/>
+<path d="M 128,480 L 208,480" fill="none" stroke="black"/>
+<path d="M 152,544 L 416,544" fill="none" stroke="black"/>
+<path d="M 40,560 L 80,560" fill="none" stroke="black"/>
+<path d="M 488,560 L 528,560" fill="none" stroke="black"/>
+<path d="M 80,576 L 152,576" fill="none" stroke="black"/>
+<path d="M 416,576 L 488,576" fill="none" stroke="black"/>
+<path d="M 40,592 L 80,592" fill="none" stroke="black"/>
+<path d="M 488,592 L 528,592" fill="none" stroke="black"/>
+<path d="M 152,608 L 416,608" fill="none" stroke="black"/>
+<g class="text">
+<text x="300" y="52">Customer</text>
+<text x="196" y="84">Customer Service Model</text>
+<text x="204" y="100">e.g., slice-svc, ac-svc,</text>
+<text x="372" y="100">and bearer-svc</text>
+<text x="304" y="132">Service</text>
+<text x="304" y="148">Orchestration</text>
+<text x="168" y="180">Network Model</text>
+<text x="148" y="196">e.g., l2vpn-ntw, l3vpn-ntw, sap, and</text>
+<text x="340" y="196">ac-ntw</text>
+<text x="296" y="228">Network</text>
+<text x="304" y="244">Orchestration</text>
+<text x="168" y="276">Network Configuration Model</text>
+<text x="196" y="340">Domain</text>
+<text x="396" y="340">Domain</text>
+<text x="200" y="356">Orchestration</text>
+<text x="392" y="356">Orchestration</text>
+<text x="68" y="388">Device</text>
+<text x="96" y="404">Configuration</text>
+<text x="64" y="420">Model</text>
+<text x="164" y="452">Config</text>
+<text x="168" y="468">Manager</text>
+<text x="288" y="516">NETCONF/CLI................</text>
+<text x="408" y="516">.</text>
+<text x="240" y="532">|</text>
+<text x="116" y="564">Bearer</text>
+<text x="452" y="564">Bearer</text>
+<text x="60" y="580">CE#1</text>
+<text x="280" y="580">Network</text>
+<text x="508" y="580">CE#2</text>
+<text x="116" y="596">AC</text>
+<text x="452" y="596">AC</text>
+<text x="68" y="628">Site A</text>
+<text x="516" y="628">Site B</text>
+</g>
+</svg>
