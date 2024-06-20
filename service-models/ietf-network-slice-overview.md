@@ -58,6 +58,6 @@ Other modules of interest are:
 
 ## Useful Overview Figures from Drafts & RFCs
 
-![Overview Figure](https://github.com/samans/testing-yang/blob/main/service-models/ex1/ex1-diagram1.svg) [^1]
+![Overview Figure](https://github.com/samans/testing-yang/blob/main/service-models/overview.svg) [^1]
 
 [^1]: [**Internet Draft** An Overview of Network Slicing Efforts in The IETF](https://datatracker.ietf.org/doc/draft-boucadair-teas-ietf-slicing-overview/)
