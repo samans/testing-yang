@@ -1,0 +1,20 @@
+#! /usr/bin/expect -f
+#set timeout -1
+spawn yanglint
+expect ">"
+send "searchpath /home/scott/yang/standard/ietf/RFC /home/scott/yang/standard/iana\r"
+expect ">"
+send "load iana-if-type\r"
+expect ">"
+send "load ietf-yang-types\r"
+expect ">"
+send "load ietf-interfaces\r"
+expect ">"
+send "load ietf-if-extensions\r"
+expect ">"
+send "add ietf-if-extensions -F ietf-if-extensions:*\r"
+expect ">"
+send "data -t data -f json ex1.xml -o ex1.json\r"
+expect ">"
+send "quit\r"
+expect eof

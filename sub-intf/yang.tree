@@ -1,0 +1,353 @@
+module: iana-if-type
+
+module: ietf-interfaces
+  +--rw interfaces
+  |  +--rw interface* [name]
+  |     +--rw name                           string
+  |     +--rw description?                   string
+  |     +--rw type                           identityref
+  |     +--rw enabled?                       boolean
+  |     +--rw link-up-down-trap-enable?      enumeration {if-mib}?
+  |     +--ro admin-status                   enumeration {if-mib}?
+  |     +--ro oper-status                    enumeration
+  |     +--ro last-change?                   yang:date-and-time
+  |     +--ro if-index                       int32 {if-mib}?
+  |     +--ro phys-address?                  yang:phys-address
+  |     +--ro higher-layer-if*               interface-ref
+  |     +--ro lower-layer-if*                interface-ref
+  |     +--ro speed?                         yang:gauge64
+  |     +--ro statistics
+  |     |  +--ro discontinuity-time                 yang:date-and-time
+  |     |  +--ro in-octets?                         yang:counter64
+  |     |  +--ro in-unicast-pkts?                   yang:counter64
+  |     |  +--ro in-broadcast-pkts?                 yang:counter64
+  |     |  +--ro in-multicast-pkts?                 yang:counter64
+  |     |  +--ro in-discards?                       yang:counter32
+  |     |  +--ro in-errors?                         yang:counter32
+  |     |  +--ro in-unknown-protos?                 yang:counter32
+  |     |  +--ro out-octets?                        yang:counter64
+  |     |  +--ro out-unicast-pkts?                  yang:counter64
+  |     |  +--ro out-broadcast-pkts?                yang:counter64
+  |     |  +--ro out-multicast-pkts?                yang:counter64
+  |     |  +--ro out-discards?                      yang:counter32
+  |     |  +--ro out-errors?                        yang:counter32
+  |     |  +--ro if-ext:in-discard-unknown-encaps?   yang:counter64
+  |     +--rw if-ext:link-flap-suppression {link-flap-suppression}?
+  |     |  +--rw if-ext:down?                  uint32
+  |     |  +--rw if-ext:up?                    uint32
+  |     |  +--ro if-ext:carrier-transitions?   yang:counter64
+  |     |  +--ro if-ext:timer-running?         enumeration
+  |     +--rw if-ext:dampening! {dampening}?
+  |     |  +--rw if-ext:half-life?           uint32
+  |     |  +--rw if-ext:reuse?               uint32
+  |     |  +--rw if-ext:suppress?            uint32
+  |     |  +--rw if-ext:max-suppress-time?   uint32
+  |     |  +--ro if-ext:penalty?             uint32
+  |     |  +--ro if-ext:suppressed?          boolean
+  |     |  +--ro if-ext:time-remaining?      uint32
+  |     +--rw if-ext:encapsulation
+  |     |  +--rw (if-ext:encaps-type)?
+  |     |     +--:(if-flex:flexible)
+  |     |     |  +--rw if-flex:flexible
+  |     |     |     +--rw if-flex:match
+  |     |     |     |  +--rw (if-flex:match-type)
+  |     |     |     |     +--:(if-flex:default)
+  |     |     |     |     |  +--rw if-flex:default?   empty
+  |     |     |     |     +--:(if-flex:untagged)
+  |     |     |     |     |  +--rw if-flex:untagged?   empty
+  |     |     |     |     +--:(if-flex:dot1q-priority-tagged)
+  |     |     |     |     |  +--rw if-flex:dot1q-priority-tagged
+  |     |     |     |     |     +--rw if-flex:tag-type    dot1q-types:dot1q-tag-type
+  |     |     |     |     +--:(if-flex:dot1q-vlan-tagged)
+  |     |     |     |        +--rw if-flex:dot1q-vlan-tagged
+  |     |     |     |           +--rw if-flex:outer-tag
+  |     |     |     |           |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |           |  +--rw if-flex:vlan-id     union
+  |     |     |     |           +--rw if-flex:second-tag!
+  |     |     |     |           |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |           |  +--rw if-flex:vlan-id     union
+  |     |     |     |           +--rw if-flex:match-exact-tags?   empty
+  |     |     |     +--rw if-flex:rewrite {flexible-rewrites}?
+  |     |     |     |  +--rw (if-flex:direction)?
+  |     |     |     |     +--:(if-flex:symmetrical)
+  |     |     |     |     |  +--rw if-flex:symmetrical
+  |     |     |     |     |     +--rw if-flex:dot1q-tag-rewrite {dot1q-tag-rewrites}?
+  |     |     |     |     |        +--rw if-flex:pop-tags?    uint8
+  |     |     |     |     |        +--rw if-flex:push-tags!
+  |     |     |     |     |           +--rw if-flex:outer-tag
+  |     |     |     |     |           |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |     |           |  +--rw if-flex:vlan-id     vlanid
+  |     |     |     |     |           +--rw if-flex:second-tag!
+  |     |     |     |     |              +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |     |              +--rw if-flex:vlan-id     vlanid
+  |     |     |     |     +--:(if-flex:asymmetrical) {asymmetric-rewrites}?
+  |     |     |     |        +--rw if-flex:ingress
+  |     |     |     |        |  +--rw if-flex:dot1q-tag-rewrite {dot1q-tag-rewrites}?
+  |     |     |     |        |     +--rw if-flex:pop-tags?    uint8
+  |     |     |     |        |     +--rw if-flex:push-tags!
+  |     |     |     |        |        +--rw if-flex:outer-tag
+  |     |     |     |        |        |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |        |        |  +--rw if-flex:vlan-id     vlanid
+  |     |     |     |        |        +--rw if-flex:second-tag!
+  |     |     |     |        |           +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |        |           +--rw if-flex:vlan-id     vlanid
+  |     |     |     |        +--rw if-flex:egress
+  |     |     |     |           +--rw if-flex:dot1q-tag-rewrite {dot1q-tag-rewrites}?
+  |     |     |     |              +--rw if-flex:pop-tags?    uint8
+  |     |     |     |              +--rw if-flex:push-tags!
+  |     |     |     |                 +--rw if-flex:outer-tag
+  |     |     |     |                 |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |                 |  +--rw if-flex:vlan-id     vlanid
+  |     |     |     |                 +--rw if-flex:second-tag!
+  |     |     |     |                    +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |     |                    +--rw if-flex:vlan-id     vlanid
+  |     |     |     +--rw if-flex:local-traffic-default-encaps!
+  |     |     |        +--rw if-flex:outer-tag
+  |     |     |        |  +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |        |  +--rw if-flex:vlan-id     vlanid
+  |     |     |        +--rw if-flex:second-tag!
+  |     |     |           +--rw if-flex:tag-type    dot1q-tag-type
+  |     |     |           +--rw if-flex:vlan-id     vlanid
+  |     |     +--:(if-vlan:dot1q-vlan)
+  |     |        +--rw if-vlan:dot1q-vlan
+  |     |           +--rw if-vlan:outer-tag
+  |     |           |  +--rw if-vlan:tag-type    dot1q-tag-type
+  |     |           |  +--rw if-vlan:vlan-id     vlanid
+  |     |           +--rw if-vlan:second-tag!
+  |     |              +--rw if-vlan:tag-type    dot1q-tag-type
+  |     |              +--rw if-vlan:vlan-id     vlanid
+  |     +--rw if-ext:loopback?                identityref {loopback}?
+  |     +--rw if-ext:max-frame-size?          uint32 {max-frame-size}?
+  |     +--ro if-ext:forwarding-mode?         identityref
+  |     +--rw if-ext:peer-interface?          if:interface-ref {peer-interface}?
+  |     +--rw if-ext:parent-interface         if:interface-ref
+  |     +--rw ip:ipv4!
+  |     |  +--rw ip:enabled?      boolean
+  |     |  +--rw ip:forwarding?   boolean
+  |     |  +--rw ip:mtu?          uint16
+  |     |  +--rw ip:address* [ip]
+  |     |  |  +--rw ip:ip          inet:ipv4-address-no-zone
+  |     |  |  +--rw (ip:subnet)
+  |     |  |  |  +--:(ip:prefix-length)
+  |     |  |  |  |  +--rw ip:prefix-length?   uint8
+  |     |  |  |  +--:(ip:netmask)
+  |     |  |  |     +--rw ip:netmask?   yang:dotted-quad {ipv4-non-contiguous-netmasks}?
+  |     |  |  +--ro ip:origin?     ip-address-origin
+  |     |  +--rw ip:neighbor* [ip]
+  |     |     +--rw ip:ip                    inet:ipv4-address-no-zone
+  |     |     +--rw ip:link-layer-address    yang:phys-address
+  |     |     +--ro ip:origin?               neighbor-origin
+  |     +--rw ip:ipv6!
+  |        +--rw ip:enabled?                     boolean
+  |        +--rw ip:forwarding?                  boolean
+  |        +--rw ip:mtu?                         uint32
+  |        +--rw ip:address* [ip]
+  |        |  +--rw ip:ip               inet:ipv6-address-no-zone
+  |        |  +--rw ip:prefix-length    uint8
+  |        |  +--ro ip:origin?          ip-address-origin
+  |        |  +--ro ip:status?          enumeration
+  |        +--rw ip:neighbor* [ip]
+  |        |  +--rw ip:ip                    inet:ipv6-address-no-zone
+  |        |  +--rw ip:link-layer-address    yang:phys-address
+  |        |  +--ro ip:origin?               neighbor-origin
+  |        |  +--ro ip:is-router?            empty
+  |        |  +--ro ip:state?                enumeration
+  |        +--rw ip:dup-addr-detect-transmits?   uint32
+  |        +--rw ip:autoconf
+  |           +--rw ip:create-global-addresses?        boolean
+  |           +--rw ip:create-temporary-addresses?     boolean {ipv6-privacy-autoconf}?
+  |           +--rw ip:temporary-valid-lifetime?       uint32 {ipv6-privacy-autoconf}?
+  |           +--rw ip:temporary-preferred-lifetime?   uint32 {ipv6-privacy-autoconf}?
+  x--ro interfaces-state
+     x--ro interface* [name]
+        x--ro name               string
+        x--ro type               identityref
+        x--ro admin-status       enumeration {if-mib}?
+        x--ro oper-status        enumeration
+        x--ro last-change?       yang:date-and-time
+        x--ro if-index           int32 {if-mib}?
+        x--ro phys-address?      yang:phys-address
+        x--ro higher-layer-if*   interface-state-ref
+        x--ro lower-layer-if*    interface-state-ref
+        x--ro speed?             yang:gauge64
+        x--ro statistics
+        |  x--ro discontinuity-time    yang:date-and-time
+        |  x--ro in-octets?            yang:counter64
+        |  x--ro in-unicast-pkts?      yang:counter64
+        |  x--ro in-broadcast-pkts?    yang:counter64
+        |  x--ro in-multicast-pkts?    yang:counter64
+        |  x--ro in-discards?          yang:counter32
+        |  x--ro in-errors?            yang:counter32
+        |  x--ro in-unknown-protos?    yang:counter32
+        |  x--ro out-octets?           yang:counter64
+        |  x--ro out-unicast-pkts?     yang:counter64
+        |  x--ro out-broadcast-pkts?   yang:counter64
+        |  x--ro out-multicast-pkts?   yang:counter64
+        |  x--ro out-discards?         yang:counter32
+        |  x--ro out-errors?           yang:counter32
+        x--ro ip:ipv4!
+        |  x--ro ip:forwarding?   boolean
+        |  x--ro ip:mtu?          uint16
+        |  x--ro ip:address* [ip]
+        |  |  x--ro ip:ip          inet:ipv4-address-no-zone
+        |  |  x--ro (ip:subnet)?
+        |  |  |  x--:(ip:prefix-length)
+        |  |  |  |  x--ro ip:prefix-length?   uint8
+        |  |  |  x--:(ip:netmask)
+        |  |  |     x--ro ip:netmask?   yang:dotted-quad {ipv4-non-contiguous-netmasks}?
+        |  |  x--ro ip:origin?     ip-address-origin
+        |  x--ro ip:neighbor* [ip]
+        |     x--ro ip:ip                    inet:ipv4-address-no-zone
+        |     x--ro ip:link-layer-address?   yang:phys-address
+        |     x--ro ip:origin?               neighbor-origin
+        x--ro ip:ipv6!
+           x--ro ip:forwarding?   boolean
+           x--ro ip:mtu?          uint32
+           x--ro ip:address* [ip]
+           |  x--ro ip:ip               inet:ipv6-address-no-zone
+           |  x--ro ip:prefix-length    uint8
+           |  x--ro ip:origin?          ip-address-origin
+           |  x--ro ip:status?          enumeration
+           x--ro ip:neighbor* [ip]
+              x--ro ip:ip                    inet:ipv6-address-no-zone
+              x--ro ip:link-layer-address?   yang:phys-address
+              x--ro ip:origin?               neighbor-origin
+              x--ro ip:is-router?            empty
+              x--ro ip:state?                enumeration
+
+module: ietf-yang-types
+
+module: ieee802-dot1q-types
+
+module: ietf-if-extensions
+
+  augment /if:interfaces/if:interface:
+    +--rw link-flap-suppression {link-flap-suppression}?
+    |  +--rw down?                  uint32
+    |  +--rw up?                    uint32
+    |  +--ro carrier-transitions?   yang:counter64
+    |  +--ro timer-running?         enumeration
+    +--rw dampening! {dampening}?
+    |  +--rw half-life?           uint32
+    |  +--rw reuse?               uint32
+    |  +--rw suppress?            uint32
+    |  +--rw max-suppress-time?   uint32
+    |  +--ro penalty?             uint32
+    |  +--ro suppressed?          boolean
+    |  +--ro time-remaining?      uint32
+    +--rw encapsulation
+    |  +--rw (encaps-type)?
+    +--rw loopback?                identityref {loopback}?
+    +--rw max-frame-size?          uint32 {max-frame-size}?
+    +--ro forwarding-mode?         identityref
+    +--rw peer-interface?          if:interface-ref {peer-interface}?
+  augment /if:interfaces/if:interface:
+    +--rw parent-interface    if:interface-ref
+  augment /if:interfaces/if:interface/if:statistics:
+    +--rw in-discard-unknown-encaps?   yang:counter64
+
+module: ietf-inet-types
+
+module: ietf-ip
+
+  augment /if:interfaces/if:interface:
+    +--rw ipv4!
+    |  +--rw enabled?      boolean
+    |  +--rw forwarding?   boolean
+    |  +--rw mtu?          uint16
+    |  +--rw address* [ip]
+    |  |  +--rw ip          inet:ipv4-address-no-zone
+    |  |  +--rw (subnet)
+    |  |  |  +--:(prefix-length)?
+    |  |  |  |  +--rw prefix-length?   uint8
+    |  |  |  +--:(netmask)?
+    |  |  |     +--rw netmask?         yang:dotted-quad {ipv4-non-contiguous-netmasks}?
+    |  |  +--ro origin?     ip-address-origin
+    |  +--rw neighbor* [ip]
+    |     +--rw ip                    inet:ipv4-address-no-zone
+    |     +--rw link-layer-address    yang:phys-address
+    |     +--ro origin?               neighbor-origin
+    +--rw ipv6!
+       +--rw enabled?                     boolean
+       +--rw forwarding?                  boolean
+       +--rw mtu?                         uint32
+       +--rw address* [ip]
+       |  +--rw ip               inet:ipv6-address-no-zone
+       |  +--rw prefix-length    uint8
+       |  +--ro origin?          ip-address-origin
+       |  +--ro status?          enumeration
+       +--rw neighbor* [ip]
+       |  +--rw ip                    inet:ipv6-address-no-zone
+       |  +--rw link-layer-address    yang:phys-address
+       |  +--ro origin?               neighbor-origin
+       |  +--ro is-router?            empty
+       |  +--ro state?                enumeration
+       +--rw dup-addr-detect-transmits?   uint32
+       +--rw autoconf
+          +--rw create-global-addresses?        boolean
+          +--rw create-temporary-addresses?     boolean {ipv6-privacy-autoconf}?
+          +--rw temporary-valid-lifetime?       uint32 {ipv6-privacy-autoconf}?
+          +--rw temporary-preferred-lifetime?   uint32 {ipv6-privacy-autoconf}?
+  augment /if:interfaces-state/if:interface:
+    x--ro ipv4!
+    |  x--ro forwarding?   boolean
+    |  x--ro mtu?          uint16
+    |  x--ro address* [ip]
+    |  |  x--ro ip          inet:ipv4-address-no-zone
+    |  |  x--ro (subnet)?
+    |  |  |  x--:(prefix-length)?
+    |  |  |  |  x--ro prefix-length?   uint8
+    |  |  |  x--:(netmask)?
+    |  |  |     x--ro netmask?         yang:dotted-quad {ipv4-non-contiguous-netmasks}?
+    |  |  x--ro origin?     ip-address-origin
+    |  x--ro neighbor* [ip]
+    |     x--ro ip                    inet:ipv4-address-no-zone
+    |     x--ro link-layer-address?   yang:phys-address
+    |     x--ro origin?               neighbor-origin
+    x--ro ipv6!
+       x--ro forwarding?   boolean
+       x--ro mtu?          uint32
+       x--ro address* [ip]
+       |  x--ro ip               inet:ipv6-address-no-zone
+       |  x--ro prefix-length    uint8
+       |  x--ro origin?          ip-address-origin
+       |  x--ro status?          enumeration
+       x--ro neighbor* [ip]
+          x--ro ip                    inet:ipv6-address-no-zone
+          x--ro link-layer-address?   yang:phys-address
+          x--ro origin?               neighbor-origin
+          x--ro is-router?            empty
+          x--ro state?                enumeration
+
+module: ietf-if-flexible-encapsulation
+
+  augment /if:interfaces/if:interface/if-ext:encapsulation/if-ext:encaps-type:
+    +--:(flexible)
+       +--rw flexible
+          +--rw match
+          |  +---u flexible-match
+          +--rw rewrite {flexible-rewrites}?
+          |  +--rw (direction)?
+          |     +--:(symmetrical)
+          |     |  +--rw symmetrical
+          |     |     +---u flexible-rewrite
+          |     +--:(asymmetrical) {asymmetric-rewrites}?
+          |        +--rw ingress
+          |        |  +---u flexible-rewrite
+          |        +--rw egress
+          |           +---u flexible-rewrite
+          +--rw local-traffic-default-encaps!
+             +--rw outer-tag
+             |  +---u dot1q-types:dot1q-tag-classifier-grouping
+             +--rw second-tag!
+                +---u dot1q-types:dot1q-tag-classifier-grouping
+
+module: ietf-if-vlan-encapsulation
+
+  augment /if:interfaces/if:interface/if-ext:encapsulation/if-ext:encaps-type:
+    +--:(dot1q-vlan)
+       +--rw dot1q-vlan
+          +--rw outer-tag
+          |  +---u dot1q-types:dot1q-tag-classifier-grouping
+          +--rw second-tag!
+             +---u dot1q-types:dot1q-tag-classifier-grouping

@@ -1,0 +1,14 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <link-flap-suppression xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
+      <down>0</down>
+      <up>50</up>
+    </link-flap-suppression>
+  </interface>
+</interfaces>

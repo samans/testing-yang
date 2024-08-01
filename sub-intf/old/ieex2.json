@@ -1,0 +1,39 @@
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "eth0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        }
+      },
+      {
+        "name": "eth0.3",
+        "type": "iana-if-type:l2vlan",
+        "oper-status": "up",
+        "statistics": {
+          "discontinuity-time": "2023-12-15T09:04:00-05:00"
+        },
+	"ietf-if-extensions:parent-interface": "eth0",
+	"ietf-if-extensions:encapsulation": {
+	  "ietf-if-flexible-encapsulation:flexible": {
+            "ietf-if-flexible-encapsulation:match": {
+	      "ietf-if-flexible-encapsulation:dot1q-vlan-tagged": {
+                "ietf-if-flexible-encapsulation:outer-tag": {
+	          "ietf-if-flexible-encapsulation:tag-type": "ieee802-dot1q-types:s-vlan",
+	          "ietf-if-flexible-encapsulation:vlan-id": "10"
+	        },
+                "ietf-if-flexible-encapsulation:second-tag": {
+	          "ietf-if-flexible-encapsulation:tag-type": "ieee802-dot1q-types:c-vlan",
+	          "ietf-if-flexible-encapsulation:vlan-id": "21"
+	        }
+	      }
+	    }
+	  }
+        }
+      }
+    ]
+  }
+}

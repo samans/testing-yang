@@ -1,0 +1,64 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth0.1</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <encapsulation xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
+      <dot1q-vlan xmlns="urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation">
+        <outer-tag>
+          <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:s-vlan</tag-type>
+          <vlan-id>10</vlan-id>
+        </outer-tag>
+        <second-tag>
+          <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:c-vlan</tag-type>
+          <vlan-id>20</vlan-id>
+        </second-tag>
+      </dot1q-vlan>
+    </encapsulation>
+    <parent-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">eth0</parent-interface>
+    <ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+      <enabled>true</enabled>
+      <forwarding>true</forwarding>
+      <address>
+        <ip>2001:db8:11::1</ip>
+        <prefix-length>48</prefix-length>
+      </address>
+    </ipv6>
+  </interface>
+  <interface>
+    <name>eth0.2</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <encapsulation xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
+      <dot1q-vlan xmlns="urn:ietf:params:xml:ns:yang:ietf-if-vlan-encapsulation">
+        <outer-tag>
+          <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:s-vlan</tag-type>
+          <vlan-id>11</vlan-id>
+        </outer-tag>
+      </dot1q-vlan>
+    </encapsulation>
+    <parent-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">eth0</parent-interface>
+    <ipv6 xmlns="urn:ietf:params:xml:ns:yang:ietf-ip">
+      <enabled>true</enabled>
+      <forwarding>true</forwarding>
+      <address>
+        <ip>2001:db8:11::1</ip>
+        <prefix-length>48</prefix-length>
+      </address>
+    </ipv6>
+  </interface>
+</interfaces>

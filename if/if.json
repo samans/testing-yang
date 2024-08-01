@@ -1,0 +1,36 @@
+{
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "0",
+        "type": "iana-if-type:ethernetCsmacd",
+        "admin-status": "up",
+        "oper-status": "up",
+        "if-index": 10,
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        }
+      },
+      {
+        "name": "1",
+        "type": "iana-if-type:ethernetCsmacd",
+        "admin-status": "up",
+        "oper-status": "up",
+        "if-index": 10,
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        }
+      },
+      {
+        "name": "2",
+        "type": "iana-if-type:ethernetCsmacd",
+        "admin-status": "up",
+        "oper-status": "up",
+        "if-index": 10,
+        "statistics": {
+          "discontinuity-time": "2022-03-23T05:00:00-04:00"
+        }
+      }
+    ]
+  }
+}

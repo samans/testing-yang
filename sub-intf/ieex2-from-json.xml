@@ -1,0 +1,70 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+  </interface>
+  <interface>
+    <name>eth0.3</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <encapsulation xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
+      <flexible xmlns="urn:ietf:params:xml:ns:yang:ietf-if-flexible-encapsulation">
+        <match>
+          <dot1q-vlan-tagged>
+            <outer-tag>
+              <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:s-vlan</tag-type>
+              <vlan-id>10</vlan-id>
+            </outer-tag>
+            <second-tag>
+              <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:c-vlan</tag-type>
+              <vlan-id>21</vlan-id>
+            </second-tag>
+          </dot1q-vlan-tagged>
+        </match>
+        <rewrite>
+          <symmetrical>
+            <dot1q-tag-rewrite>
+              <pop-tags>1</pop-tags>
+            </dot1q-tag-rewrite>
+          </symmetrical>
+        </rewrite>
+      </flexible>
+    </encapsulation>
+    <parent-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">eth0</parent-interface>
+  </interface>
+  <interface>
+    <name>eth1.0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:l2vlan</type>
+    <oper-status>up</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <encapsulation xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">
+      <flexible xmlns="urn:ietf:params:xml:ns:yang:ietf-if-flexible-encapsulation">
+        <match>
+          <dot1q-vlan-tagged>
+            <outer-tag>
+              <tag-type xmlns:dot1q-types="urn:ieee:std:802.1Q:yang:ieee802-dot1q-types">dot1q-types:c-vlan</tag-type>
+              <vlan-id>50</vlan-id>
+            </outer-tag>
+          </dot1q-vlan-tagged>
+        </match>
+        <rewrite>
+          <symmetrical>
+            <dot1q-tag-rewrite>
+              <pop-tags>1</pop-tags>
+            </dot1q-tag-rewrite>
+          </symmetrical>
+        </rewrite>
+      </flexible>
+    </encapsulation>
+    <parent-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">eth0</parent-interface>
+  </interface>
+</interfaces>

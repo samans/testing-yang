@@ -1,0 +1,20 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>veth1</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:propVirtual</type>
+    <oper-status>down</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <peer-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">veth2</peer-interface>
+  </interface>
+  <interface>
+    <name>veth2</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:propVirtual</type>
+    <oper-status>down</oper-status>
+    <statistics>
+      <discontinuity-time>2023-12-15T09:04:00-05:00</discontinuity-time>
+    </statistics>
+    <peer-interface xmlns="urn:ietf:params:xml:ns:yang:ietf-if-extensions">veth1</peer-interface>
+  </interface>
+</interfaces>

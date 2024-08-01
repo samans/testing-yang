@@ -1,0 +1,9 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>eth0</name>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+    <ethernet-like xmlns="urn:ietf:params:xml:ns:yang:ietf-if-ethernet-like">
+      <mac-address>00:00:5E:00:53:30</mac-address>
+    </ethernet-like>
+  </interface>
+</interfaces>
