@@ -1,0 +1,191 @@
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "network1",
+        "node": [
+          {
+            "node-id": "BB 1",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF10"
+              },
+              {
+                "tp-id": "IF11"
+              },
+              {
+                "tp-id": "IF12"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 2",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF21"
+              },
+              {
+                "tp-id": "IF23"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 3",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF32"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 5",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF51"
+              },
+              {
+                "tp-id": "IF52"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 4",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF42"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 6",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF61"
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "ce-bb1-pe-tn2-if11",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "IF11"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "IF21"
+            }
+          },
+          {
+            "link-id": "pe-tn2-ce-bb1-if11",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "IF21"
+            },
+            "destination": {
+              "dest-node": "BB 1",
+              "dest-tp": "IF11"
+            }
+          },
+          {
+            "link-id": "ce-bb1-pe-tn2-if12",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "IF12"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "IF23"
+            }
+          },
+          {
+            "link-id": "pe-tn2-ce-bb1-if12",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "IF23"
+            },
+            "destination": {
+              "dest-node": "BB 1",
+              "dest-tp": "IF12"
+            }
+          },
+          {
+            "link-id": "pe-tn3-ce-rau5",
+            "source": {
+              "source-node": "TN 3",
+              "source-tp": "IF32"
+            },
+            "destination": {
+              "dest-node": "RAU 5",
+              "dest-tp": "IF51"
+            }
+          },
+          {
+            "link-id": "ce-rau5-pe-tn3",
+            "source": {
+              "source-node": "RAU 5",
+              "source-tp": "IF51"
+            },
+            "destination": {
+              "dest-node": "TN 3",
+              "dest-tp": "IF32"
+            }
+          },
+          {
+            "link-id": "pe-tn4-ce-rau6",
+            "source": {
+              "source-node": "TN 4",
+              "source-tp": "IF42"
+            },
+            "destination": {
+              "dest-node": "RAU 6",
+              "dest-tp": "IF61"
+            }
+          },
+          {
+            "link-id": "ce-rau6-pe-tn4",
+            "source": {
+              "source-node": "RAU 6",
+              "source-tp": "IF61"
+            },
+            "destination": {
+              "dest-node": "TN 4",
+              "dest-tp": "IF42"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-network-slice-service:network-slice-services": {
+    "slo-sle-templates": {
+      "slo-sle-template": [
+        {
+          "id": "FH-Policy",
+          "description": "FH SLE/SLE characteristics",
+          "slo-policy": {
+             "metric-bound": [
+                {
+                   "metric-type": "ietf-network-slice-service:two-way-bandwidth",
+                   "metric-unit": "Gbps",
+                   "percentile-value": "100"
+                },
+                {
+                   "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
+                   "metric-unit": "microseconds",
+                   "percentile-value": "75"
+                }
+             ],
+             "availability": "ietf-network-slice-service:five-nines"
+          },
+          "sle-policy": {
+            "security": [
+              "ietf-network-slice-service:encryption"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}
