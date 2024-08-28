@@ -1,0 +1,284 @@
+{
+  "ietf-network:networks": {
+    "network": [
+      {
+        "network-id": "network1",
+        "node": [
+          {
+            "node-id": "BB 1",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF10"
+              },
+              {
+                "tp-id": "IF11"
+              },
+              {
+                "tp-id": "IF12"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 2",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF21"
+              },
+              {
+                "tp-id": "IF23"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 3",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF32"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 5",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF51"
+              },
+              {
+                "tp-id": "IF52"
+              }
+            ]
+          },
+          {
+            "node-id": "TN 4",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF42"
+              }
+            ]
+          },
+          {
+            "node-id": "RAU 6",
+            "ietf-network-topology:termination-point": [
+              {
+                "tp-id": "IF61"
+              }
+            ]
+          }
+        ],
+        "ietf-network-topology:link": [
+          {
+            "link-id": "ce-bb1-pe-tn2-if11",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "IF11"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "IF21"
+            }
+          },
+          {
+            "link-id": "pe-tn2-ce-bb1-if11",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "IF21"
+            },
+            "destination": {
+              "dest-node": "BB 1",
+              "dest-tp": "IF11"
+            }
+          },
+          {
+            "link-id": "ce-bb1-pe-tn2-if12",
+            "source": {
+              "source-node": "BB 1",
+              "source-tp": "IF12"
+            },
+            "destination": {
+              "dest-node": "TN 2",
+              "dest-tp": "IF23"
+            }
+          },
+          {
+            "link-id": "pe-tn2-ce-bb1-if12",
+            "source": {
+              "source-node": "TN 2",
+              "source-tp": "IF23"
+            },
+            "destination": {
+              "dest-node": "BB 1",
+              "dest-tp": "IF12"
+            }
+          },
+          {
+            "link-id": "pe-tn3-ce-rau5",
+            "source": {
+              "source-node": "TN 3",
+              "source-tp": "IF32"
+            },
+            "destination": {
+              "dest-node": "RAU 5",
+              "dest-tp": "IF51"
+            }
+          },
+          {
+            "link-id": "ce-rau5-pe-tn3",
+            "source": {
+              "source-node": "RAU 5",
+              "source-tp": "IF51"
+            },
+            "destination": {
+              "dest-node": "TN 3",
+              "dest-tp": "IF32"
+            }
+          },
+          {
+            "link-id": "pe-tn4-ce-rau6",
+            "source": {
+              "source-node": "TN 4",
+              "source-tp": "IF42"
+            },
+            "destination": {
+              "dest-node": "RAU 6",
+              "dest-tp": "IF61"
+            }
+          },
+          {
+            "link-id": "ce-rau6-pe-tn4",
+            "source": {
+              "source-node": "RAU 6",
+              "source-tp": "IF61"
+            },
+            "destination": {
+              "dest-node": "TN 4",
+              "dest-tp": "IF42"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "ietf-network-slice-service:network-slice-services": {
+    "slo-sle-templates": {
+      "slo-sle-template": [
+        {
+          "id": "FH-Policy",
+          "description": "FH SLE/SLE characteristics",
+          "slo-policy": {
+            "metric-bound": [
+              {
+                "metric-type": "ietf-network-slice-service:two-way-bandwidth",
+                "metric-unit": "Gbps",
+                "percentile-value": "100.0"
+              },
+              {
+                "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
+                "metric-unit": "microseconds",
+                "percentile-value": "75.0"
+              }
+            ],
+            "availability": "ietf-network-slice-service:five-nines"
+          },
+          "sle-policy": {
+            "security": [
+              "ietf-network-slice-service:encryption"
+            ]
+          }
+        }
+      ]
+    },
+    "slice-service": [
+      {
+        "id": "BB1-RAU5",
+        "description": "FH connection BB1 to RAU 5",
+        "service-tags": {
+          "tag-type": [
+            {
+              "tag-type": "ietf-network-slice-service:service",
+              "value": [
+                "L2"
+              ]
+            }
+          ]
+        },
+        "slo-sle-template": "FH-Policy",
+        "sdps": {
+          "sdp": [
+            {
+              "id": "BB1-IF11",
+              "node-id": "BB 1",
+              "attachment-circuits": {
+                "attachment-circuit": [
+                  {
+                    "id": "BB1-IF11/TN2-IF21",
+                    "description": "AC connected to TN 2",
+                    "ac-node-id": "BB 1",
+                    "ac-tp-id": "IF11",
+                    "ac-ipv4-address": "192.0.2.2",
+                    "ac-ipv4-prefix-length": 26,
+                    "ac-tags": {
+                      "ac-tag": [
+                        {
+                          "tag-type": "ietf-network-slice-service:vlan-id",
+                          "value": [
+                            "100"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "id": "RAU5-IF51",
+              "node-id": "RAU 5",
+              "attachment-circuits": {
+                "attachment-circuit": [
+                  {
+                    "id": "RAU5-IF51/TN3-IF32",
+                    "description": "AC connected to TN 3",
+                    "ac-node-id": "RAU 5",
+                    "ac-tp-id": "IF51",
+                    "ac-ipv4-address": "192.0.2.66",
+                    "ac-ipv4-prefix-length": 26,
+                    "ac-tags": {
+                      "ac-tag": [
+                        {
+                          "tag-type": "ietf-network-slice-service:vlan-id",
+                          "value": [
+                            "101"
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "connection-groups": {
+          "connection-group": [
+            {
+              "id": "BB1-RAU5",
+              "connectivity-type": "ietf-network-slice-service:point-to-point",
+              "connectivity-construct": [
+                {
+                  "id": "BB1-IF11/RAU5-IF5 1a",
+                  "p2p-sender-sdp": "BB1-IF11",
+                  "p2p-receiver-sdp": "RAU5-IF51"
+                },
+                {
+                  "id": "BB1-IF11/RAU5-IF5 1b",
+                  "p2p-sender-sdp": "RAU5-IF51",
+                  "p2p-receiver-sdp": "BB1-IF11"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}
