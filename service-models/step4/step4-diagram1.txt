@@ -1,5 +1,5 @@
-Physical Ethernet Topology - Exposed
-Deployment Example (Step 3)
+Transport Slice Service exposure (agreed templates)
+Deployment Example (Step 4)
 
 Network 1
 

@@ -1,5 +1,5 @@
-Physical Ethernet Topology - Exposed
-Deployment Example (Step 3)
+RAN Service Request
+Deployment Example (Step 5)
 
                                Network slice service:
       SDP: BB1-IF11            BB1-RAU5/SLA: FH-Policy           SDP: RAU5-IF51

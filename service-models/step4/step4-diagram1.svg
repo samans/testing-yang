@@ -60,13 +60,13 @@
 <circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
 <circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
 <g class="text">
-<text x="148" y="20">Physical Ethernet Topology - Exposed</text>
-<text x="112" y="36">Deployment Example (Step 3)</text>
+<text x="208" y="20">Transport Slice Service exposure (agreed templates)</text>
+<text x="112" y="36">Deployment Example (Step 4)</text>
 <text x="40" y="68">Network 1</text>
 <text x="48" y="116">BB1</text>
 <text x="208" y="116">TN2</text>
 <text x="368" y="116">TN3</text>
-<text x="532" y="116">RAU3</text>
+<text x="532" y="116">RAU5</text>
 <text x="116" y="148">IF11</text>
 <text x="212" y="148">IF21</text>
 <text x="436" y="148">IF32</text>
