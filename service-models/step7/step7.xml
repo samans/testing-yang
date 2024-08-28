@@ -1,0 +1,268 @@
+<networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+  <network>
+    <network-id>network1</network-id>
+    <node>
+      <node-id>BB 1</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF10</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF11</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF12</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 2</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF21</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF23</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 3</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF32</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>RAU 5</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF51</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF52</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 4</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF42</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>RAU 6</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF61</tp-id>
+      </termination-point>
+    </node>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-bb1-pe-tn2-if11</link-id>
+      <source>
+        <source-node>BB 1</source-node>
+        <source-tp>IF11</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 2</dest-node>
+        <dest-tp>IF21</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn2-ce-bb1-if11</link-id>
+      <source>
+        <source-node>TN 2</source-node>
+        <source-tp>IF21</source-tp>
+      </source>
+      <destination>
+        <dest-node>BB 1</dest-node>
+        <dest-tp>IF11</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-bb1-pe-tn2-if12</link-id>
+      <source>
+        <source-node>BB 1</source-node>
+        <source-tp>IF12</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 2</dest-node>
+        <dest-tp>IF23</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn2-ce-bb1-if12</link-id>
+      <source>
+        <source-node>TN 2</source-node>
+        <source-tp>IF23</source-tp>
+      </source>
+      <destination>
+        <dest-node>BB 1</dest-node>
+        <dest-tp>IF12</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn3-ce-rau5</link-id>
+      <source>
+        <source-node>TN 3</source-node>
+        <source-tp>IF32</source-tp>
+      </source>
+      <destination>
+        <dest-node>RAU 5</dest-node>
+        <dest-tp>IF51</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-rau5-pe-tn3</link-id>
+      <source>
+        <source-node>RAU 5</source-node>
+        <source-tp>IF51</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 3</dest-node>
+        <dest-tp>IF32</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn4-ce-rau6</link-id>
+      <source>
+        <source-node>TN 4</source-node>
+        <source-tp>IF42</source-tp>
+      </source>
+      <destination>
+        <dest-node>RAU 6</dest-node>
+        <dest-tp>IF61</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-rau6-pe-tn4</link-id>
+      <source>
+        <source-node>RAU 6</source-node>
+        <source-tp>IF61</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 4</dest-node>
+        <dest-tp>IF42</dest-tp>
+      </destination>
+    </link>
+  </network>
+</networks>
+<network-slice-services xmlns="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">
+  <slo-sle-templates>
+    <slo-sle-template>
+      <id>FH-Policy</id>
+      <description>FH SLE/SLE characteristics</description>
+      <slo-policy>
+        <metric-bound>
+          <metric-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:two-way-bandwidth</metric-type>
+          <metric-unit>Gbps</metric-unit>
+          <percentile-value>100.0</percentile-value>
+        </metric-bound>
+        <metric-bound>
+          <metric-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:one-way-delay-maximum</metric-type>
+          <metric-unit>microseconds</metric-unit>
+          <percentile-value>75.0</percentile-value>
+        </metric-bound>
+        <availability xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:five-nines</availability>
+      </slo-policy>
+      <sle-policy>
+        <security xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:encryption</security>
+      </sle-policy>
+    </slo-sle-template>
+  </slo-sle-templates>
+  <slice-service>
+    <id>BB1-RAU5</id>
+    <description>FH connection BB1 to RAU 5</description>
+    <service-tags>
+      <tag-type>
+        <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:service</tag-type>
+        <value>L2</value>
+      </tag-type>
+    </service-tags>
+    <slo-sle-template>FH-Policy</slo-sle-template>
+    <sdps>
+      <sdp>
+        <id>BB1-IF11</id>
+        <node-id>BB 1</node-id>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>BB1-IF11/TN2-IF21</id>
+            <description>AC connected to TN 2</description>
+            <ac-node-id>BB 1</ac-node-id>
+            <ac-tp-id>IF11</ac-tp-id>
+            <ac-ipv4-address>192.0.2.2</ac-ipv4-address>
+            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
+            <ac-tags>
+              <ac-tag>
+                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
+                <value>100</value>
+              </ac-tag>
+            </ac-tags>
+          </attachment-circuit>
+        </attachment-circuits>
+        <status>
+          <oper-status>
+            <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+          </oper-status>
+        </status>
+        <sdp-monitoring>
+          <incoming-bw-value>10000</incoming-bw-value>
+          <outgoing-bw-value>10000</outgoing-bw-value>
+        </sdp-monitoring>
+      </sdp>
+      <sdp>
+        <id>RAU5-IF51</id>
+        <node-id>RAU 5</node-id>
+        <attachment-circuits>
+          <attachment-circuit>
+            <id>RAU5-IF51/TN3-IF32</id>
+            <description>AC connected to TN 3</description>
+            <ac-node-id>RAU 5</ac-node-id>
+            <ac-tp-id>IF51</ac-tp-id>
+            <ac-ipv4-address>192.0.2.66</ac-ipv4-address>
+            <ac-ipv4-prefix-length>26</ac-ipv4-prefix-length>
+            <ac-tags>
+              <ac-tag>
+                <tag-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:vlan-id</tag-type>
+                <value>101</value>
+              </ac-tag>
+            </ac-tags>
+          </attachment-circuit>
+        </attachment-circuits>
+        <status>
+          <oper-status>
+            <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+          </oper-status>
+        </status>
+        <sdp-monitoring>
+          <incoming-bw-value>10000</incoming-bw-value>
+          <outgoing-bw-value>10000</outgoing-bw-value>
+        </sdp-monitoring>
+      </sdp>
+    </sdps>
+    <connection-groups>
+      <connection-group>
+        <id>BB1-RAU5</id>
+        <connectivity-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:point-to-point</connectivity-type>
+        <connectivity-construct>
+          <id>BB1-IF11/RAU5-IF5 1a</id>
+          <p2p-sender-sdp>BB1-IF11</p2p-sender-sdp>
+          <p2p-receiver-sdp>RAU5-IF51</p2p-receiver-sdp>
+          <status>
+            <oper-status>
+              <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+            </oper-status>
+          </status>
+          <connectivity-construct-monitoring>
+            <one-way-max-delay>50</one-way-max-delay>
+          </connectivity-construct-monitoring>
+        </connectivity-construct>
+        <connectivity-construct>
+          <id>BB1-IF11/RAU5-IF5 1b</id>
+          <p2p-sender-sdp>RAU5-IF51</p2p-sender-sdp>
+          <p2p-receiver-sdp>BB1-IF11</p2p-receiver-sdp>
+          <status>
+            <oper-status>
+              <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+            </oper-status>
+          </status>
+          <connectivity-construct-monitoring>
+            <one-way-max-delay>60</one-way-max-delay>
+          </connectivity-construct-monitoring>
+        </connectivity-construct>
+      </connection-group>
+    </connection-groups>
+  </slice-service>
+</network-slice-services>
