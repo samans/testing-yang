@@ -1,11 +1,24 @@
 Physical Ethernet Topology - Exposed
 Deployment Example (Step 3)
 
-Network 1
-
-   +------------+      +------------+      +------------+      +------------+
-   |BB1         |      |TN2         |      |TN3         |      |RAU5        |
-   |    +--+    |      |    +--+    |      |    +--+    |      |    +--+    |
+                               Network slice service:
+      SDP: BB1-IF11            BB1-RAU5/SLA: FH-Policy           SDP: RAU5-IF51
+         o<--------------------------------------------------------->o
+         |                                                           |
+         |                Connection group:BB1-RAU5                  |
+         |        Connectivity construct: BB1-IF11/RAU5-IF51 a & b   |
+         o<--------------------------------------------------------->o
+          \                                                         /
+           +                                                       +
+           | AC: BB1-IF11      Transport Network     AC: RAU5-IF51 |
+           |     TN2-IF21 o<----------------------->o    TN3-IF32  |
+           o<----------->o                           o<----------->o
+           |                                                       |
+Network 1   \                                                     /
+             +                                                   +
+   +---------+--+      +------------+      +------------+      +-+----------+
+   |BB1      |  |      |TN2         |      |TN3         |      | |      RAU5|
+   |    +--+ |  |      |    +--+    |      |    +--+    |      | |  +--+    |
    |    |  |IF11|      |IF21|  |    |      |    |  |IF32|      |IF51|  |    |
    |IF10◌  ◌----+------+----◌  |    |      |    |  ◌----+------+----◌  ◌IF52|
    |    |  |    |      |    |  |    |      |    |  |    |      |    |  |    |
