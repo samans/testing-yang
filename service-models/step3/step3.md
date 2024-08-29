@@ -1,4 +1,4 @@
-# Step 3 - Physical Etherent Toplogy - Exposed Deployment Example
+# Step 3 - Physical Etherent Topology - Exposed Deployment Example
 The following example shows:
 
 - ietf-network
