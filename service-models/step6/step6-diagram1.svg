@@ -95,7 +95,7 @@
 <circle cx="560" cy="96" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="560" cy="160" r="6" class="opendot" fill="white" stroke="black"/>
 <g class="text">
-<text x="160" y="20">Transport Response on after the Request</text>
+<text x="148" y="20">Transport Response after the Request</text>
 <text x="112" y="36">Deployment Example (Step 6)</text>
 <text x="340" y="68">Network slice service:</text>
 <text x="104" y="84">SDP: BB1-IF11</text>

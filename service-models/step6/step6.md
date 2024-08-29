@@ -1,4 +1,4 @@
-# Step 6 - Transport Response on after the Request
+# Step 6 - Transport Response after the Request
 
 The following example shows:
 
@@ -14,3 +14,5 @@ Network 1 has three sites (A, B, and C)
 This example shows connectivity in each site
 The slo-sle-templates are added
 sdps added to show attachment-circuits
+
+Added an example of oper-status for the sdp instances.

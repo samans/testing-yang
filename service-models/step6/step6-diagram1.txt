@@ -1,4 +1,4 @@
-Transport Response on after the Request
+Transport Response after the Request
 Deployment Example (Step 6)
 
                                Network slice service:

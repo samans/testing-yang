@@ -165,19 +165,19 @@
           "id": "FH-Policy",
           "description": "FH SLE/SLE characteristics",
           "slo-policy": {
-             "metric-bound": [
-                {
-                   "metric-type": "ietf-network-slice-service:two-way-bandwidth",
-                   "metric-unit": "Gbps",
-                   "percentile-value": "100"
-                },
-                {
-                   "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
-                   "metric-unit": "microseconds",
-                   "percentile-value": "75"
-                }
-             ],
-             "availability": "ietf-network-slice-service:five-nines"
+            "metric-bound": [
+              {
+                "metric-type": "ietf-network-slice-service:two-way-bandwidth",
+                "metric-unit": "Gbps",
+                "bound": "100"
+              },
+              {
+                "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
+                "metric-unit": "microseconds",
+                "bound": "75"
+              }
+            ],
+            "availability": "ietf-network-slice-service:five-nines"
           },
           "sle-policy": {
             "security": [
@@ -207,16 +207,6 @@
             {
               "id": "BB1-IF11",
               "node-id": "BB 1",
-              "status": {
-                 "oper-status":
-                    {
-                       "status": "ietf-vpn-common:op-up"
-                    }
-              },
-              "sdp-monitoring": {
-                 "incoming-bw-value": "10000",
-                 "outgoing-bw-value": "10000"
-              },
               "attachment-circuits": {
                 "attachment-circuit": [
                   {
@@ -238,21 +228,20 @@
                     }
                   }
                 ]
+              },
+              "status": {
+                "oper-status": {
+                  "status": "ietf-vpn-common:op-up"
+                }
+              },
+              "sdp-monitoring": {
+                "incoming-bw-value": "10000",
+                "outgoing-bw-value": "10000"
               }
             },
             {
               "id": "RAU5-IF51",
               "node-id": "RAU 5",
-              "status": {
-                 "oper-status":
-                    {
-                       "status": "ietf-vpn-common:op-up"
-                    }
-              },
-              "sdp-monitoring": {
-                 "incoming-bw-value": "10000",
-                 "outgoing-bw-value": "10000"
-              },
               "attachment-circuits": {
                 "attachment-circuit": [
                   {
@@ -274,6 +263,15 @@
                     }
                   }
                 ]
+              },
+              "status": {
+                "oper-status": {
+                  "status": "ietf-vpn-common:op-up"
+                }
+              },
+              "sdp-monitoring": {
+                "incoming-bw-value": "10000",
+                "outgoing-bw-value": "10000"
               }
             }
           ]
@@ -282,7 +280,7 @@
           "connection-group": [
             {
               "id": "BB1-RAU5",
-              "connectivity-type": "point-to-point",
+              "connectivity-type": "ietf-network-slice-service:point-to-point",
               "connectivity-construct": [
                 {
                   "id": "BB1-IF11/RAU5-IF5 1a",
@@ -290,11 +288,11 @@
                   "p2p-receiver-sdp": "RAU5-IF51",
                   "status": {
                     "oper-status": {
-                       "status": "ietf-vpn-common:op-up"
+                      "status": "ietf-vpn-common:op-up"
                     }
                   },
                   "connectivity-construct-monitoring": {
-                     "one-way-max-delay": "50"
+                    "one-way-max-delay": "50"
                   }
                 },
                 {
@@ -303,11 +301,11 @@
                   "p2p-receiver-sdp": "BB1-IF11",
                   "status": {
                     "oper-status": {
-                       "status": "ietf-vpn-common:op-up"
+                      "status": "ietf-vpn-common:op-up"
                     }
                   },
                   "connectivity-construct-monitoring": {
-                     "one-way-max-delay": "60"
+                    "one-way-max-delay": "60"
                   }
                 }
               ]

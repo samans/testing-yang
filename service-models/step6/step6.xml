@@ -148,12 +148,12 @@
         <metric-bound>
           <metric-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:two-way-bandwidth</metric-type>
           <metric-unit>Gbps</metric-unit>
-          <percentile-value>100.0</percentile-value>
+          <bound>100</bound>
         </metric-bound>
         <metric-bound>
           <metric-type xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:one-way-delay-maximum</metric-type>
           <metric-unit>microseconds</metric-unit>
-          <percentile-value>75.0</percentile-value>
+          <bound>75</bound>
         </metric-bound>
         <availability xmlns:ietf-nss="urn:ietf:params:xml:ns:yang:ietf-network-slice-service">ietf-nss:five-nines</availability>
       </slo-policy>
@@ -192,6 +192,11 @@
             </ac-tags>
           </attachment-circuit>
         </attachment-circuits>
+        <status>
+          <oper-status>
+            <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+          </oper-status>
+        </status>
       </sdp>
       <sdp>
         <id>RAU5-IF51</id>
@@ -212,6 +217,11 @@
             </ac-tags>
           </attachment-circuit>
         </attachment-circuits>
+        <status>
+          <oper-status>
+            <status xmlns:vpn-common="urn:ietf:params:xml:ns:yang:ietf-vpn-common">vpn-common:op-up</status>
+          </oper-status>
+        </status>
       </sdp>
     </sdps>
     <connection-groups>

@@ -165,19 +165,19 @@
           "id": "FH-Policy",
           "description": "FH SLE/SLE characteristics",
           "slo-policy": {
-             "metric-bound": [
-                {
-                   "metric-type": "ietf-network-slice-service:two-way-bandwidth",
-                   "metric-unit": "Gbps",
-                   "percentile-value": "100"
-                },
-                {
-                   "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
-                   "metric-unit": "microseconds",
-                   "percentile-value": "75"
-                }
-             ],
-             "availability": "ietf-network-slice-service:five-nines"
+            "metric-bound": [
+              {
+                "metric-type": "ietf-network-slice-service:two-way-bandwidth",
+                "metric-unit": "Gbps",
+                "bound": "100"
+              },
+              {
+                "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
+                "metric-unit": "microseconds",
+                "bound": "75"
+              }
+            ],
+            "availability": "ietf-network-slice-service:five-nines"
           },
           "sle-policy": {
             "security": [
@@ -262,7 +262,7 @@
           "connection-group": [
             {
               "id": "BB1-RAU5",
-              "connectivity-type": "point-to-point",
+              "connectivity-type": "ietf-network-slice-service:point-to-point",
               "connectivity-construct": [
                 {
                   "id": "BB1-IF11/RAU5-IF5 1a",

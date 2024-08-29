@@ -169,12 +169,12 @@
               {
                 "metric-type": "ietf-network-slice-service:two-way-bandwidth",
                 "metric-unit": "Gbps",
-                "percentile-value": "100.0"
+                "bound": "100"
               },
               {
                 "metric-type": "ietf-network-slice-service:one-way-delay-maximum",
                 "metric-unit": "microseconds",
-                "percentile-value": "75.0"
+                "bound": "75"
               }
             ],
             "availability": "ietf-network-slice-service:five-nines"
