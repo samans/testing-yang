@@ -1,0 +1,138 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="640" viewBox="0 0 640 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<path d="M 32,304 L 32,448" fill="none" stroke="black"/>
+<path d="M 72,336 L 72,432" fill="none" stroke="black"/>
+<path d="M 80,96 L 80,160" fill="none" stroke="black"/>
+<path d="M 96,192 L 96,256" fill="none" stroke="black"/>
+<path d="M 96,336 L 96,432" fill="none" stroke="black"/>
+<path d="M 112,288 L 112,336" fill="none" stroke="black"/>
+<path d="M 136,304 L 136,448" fill="none" stroke="black"/>
+<path d="M 192,304 L 192,448" fill="none" stroke="black"/>
+<path d="M 232,336 L 232,432" fill="none" stroke="black"/>
+<path d="M 256,336 L 256,432" fill="none" stroke="black"/>
+<path d="M 296,304 L 296,448" fill="none" stroke="black"/>
+<path d="M 352,304 L 352,448" fill="none" stroke="black"/>
+<path d="M 352,528 L 352,672" fill="none" stroke="black"/>
+<path d="M 392,336 L 392,432" fill="none" stroke="black"/>
+<path d="M 392,560 L 392,656" fill="none" stroke="black"/>
+<path d="M 416,336 L 416,432" fill="none" stroke="black"/>
+<path d="M 416,560 L 416,656" fill="none" stroke="black"/>
+<path d="M 456,304 L 456,448" fill="none" stroke="black"/>
+<path d="M 456,528 L 456,672" fill="none" stroke="black"/>
+<path d="M 512,304 L 512,448" fill="none" stroke="black"/>
+<path d="M 512,528 L 512,672" fill="none" stroke="black"/>
+<path d="M 528,288 L 528,336" fill="none" stroke="black"/>
+<path d="M 544,192 L 544,256" fill="none" stroke="black"/>
+<path d="M 552,336 L 552,432" fill="none" stroke="black"/>
+<path d="M 552,560 L 552,656" fill="none" stroke="black"/>
+<path d="M 560,96 L 560,160" fill="none" stroke="black"/>
+<path d="M 576,336 L 576,432" fill="none" stroke="black"/>
+<path d="M 576,560 L 576,656" fill="none" stroke="black"/>
+<path d="M 616,304 L 616,448" fill="none" stroke="black"/>
+<path d="M 616,528 L 616,672" fill="none" stroke="black"/>
+<path d="M 88,96 L 552,96" fill="none" stroke="black"/>
+<path d="M 88,160 L 552,160" fill="none" stroke="black"/>
+<path d="M 224,224 L 416,224" fill="none" stroke="black"/>
+<path d="M 104,240 L 200,240" fill="none" stroke="black"/>
+<path d="M 440,240 L 536,240" fill="none" stroke="black"/>
+<path d="M 32,304 L 136,304" fill="none" stroke="black"/>
+<path d="M 192,304 L 296,304" fill="none" stroke="black"/>
+<path d="M 352,304 L 456,304" fill="none" stroke="black"/>
+<path d="M 512,304 L 616,304" fill="none" stroke="black"/>
+<path d="M 72,336 L 96,336" fill="none" stroke="black"/>
+<path d="M 232,336 L 256,336" fill="none" stroke="black"/>
+<path d="M 392,336 L 416,336" fill="none" stroke="black"/>
+<path d="M 552,336 L 576,336" fill="none" stroke="black"/>
+<path d="M 104,368 L 224,368" fill="none" stroke="black"/>
+<path d="M 424,368 L 544,368" fill="none" stroke="black"/>
+<path d="M 104,400 L 224,400" fill="none" stroke="black"/>
+<path d="M 72,432 L 96,432" fill="none" stroke="black"/>
+<path d="M 232,432 L 256,432" fill="none" stroke="black"/>
+<path d="M 392,432 L 416,432" fill="none" stroke="black"/>
+<path d="M 552,432 L 576,432" fill="none" stroke="black"/>
+<path d="M 32,448 L 136,448" fill="none" stroke="black"/>
+<path d="M 192,448 L 296,448" fill="none" stroke="black"/>
+<path d="M 352,448 L 456,448" fill="none" stroke="black"/>
+<path d="M 512,448 L 616,448" fill="none" stroke="black"/>
+<path d="M 352,528 L 456,528" fill="none" stroke="black"/>
+<path d="M 512,528 L 616,528" fill="none" stroke="black"/>
+<path d="M 392,560 L 416,560" fill="none" stroke="black"/>
+<path d="M 552,560 L 576,560" fill="none" stroke="black"/>
+<path d="M 424,592 L 544,592" fill="none" stroke="black"/>
+<path d="M 392,656 L 416,656" fill="none" stroke="black"/>
+<path d="M 552,656 L 576,656" fill="none" stroke="black"/>
+<path d="M 352,672 L 456,672" fill="none" stroke="black"/>
+<path d="M 512,672 L 616,672" fill="none" stroke="black"/>
+<path d="M 96,256 L 112,288" fill="none" stroke="black"/>
+<path d="M 80,160 L 96,192" fill="none" stroke="black"/>
+<path d="M 544,192 L 560,160" fill="none" stroke="black"/>
+<path d="M 528,288 L 544,256" fill="none" stroke="black"/>
+<polygon class="arrowhead" points="556,160 544,154.4 544,165.6 " fill="black" transform="rotate(0,548,160)"/>
+<polygon class="arrowhead" points="556,96 544,90.4 544,101.6 " fill="black" transform="rotate(0,548,96)"/>
+<polygon class="arrowhead" points="540,240 528,234.4 528,245.6 " fill="black" transform="rotate(0,532,240)"/>
+<polygon class="arrowhead" points="452,240 440,234.4 440,245.6 " fill="black" transform="rotate(180,444,240)"/>
+<polygon class="arrowhead" points="420,224 408,218.4 408,229.6 " fill="black" transform="rotate(0,412,224)"/>
+<polygon class="arrowhead" points="236,224 224,218.4 224,229.6 " fill="black" transform="rotate(180,228,224)"/>
+<polygon class="arrowhead" points="204,240 192,234.4 192,245.6 " fill="black" transform="rotate(0,196,240)"/>
+<polygon class="arrowhead" points="116,240 104,234.4 104,245.6 " fill="black" transform="rotate(180,108,240)"/>
+<polygon class="arrowhead" points="100,160 88,154.4 88,165.6 " fill="black" transform="rotate(180,92,160)"/>
+<polygon class="arrowhead" points="100,96 88,90.4 88,101.6 " fill="black" transform="rotate(180,92,96)"/>
+<circle cx="80" cy="96" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="80" cy="160" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="96" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="96" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="96" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="208" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="216" cy="224" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="232" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="232" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="416" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="416" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="424" cy="224" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="432" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="544" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="552" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="552" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="560" cy="96" r="6" class="opendot" fill="white" stroke="black"/>
+<circle cx="560" cy="160" r="6" class="opendot" fill="white" stroke="black"/>
+<g class="text">
+<text x="160" y="20">Transport Response on after the Request</text>
+<text x="112" y="36">Deployment Example (Step 6)</text>
+<text x="340" y="68">Network slice service:</text>
+<text x="104" y="84">SDP: BB1-IF11</text>
+<text x="344" y="84">BB1-RAU5/SLA: FH-Policy</text>
+<text x="580" y="84">SDP: RAU5-IF51</text>
+<text x="312" y="132">Connection group:BB1-RAU5</text>
+<text x="340" y="148">Connectivity construct: BB1-IF11/RAU5-IF51 a &amp; b</text>
+<text x="156" y="212">AC: BB1-IF11</text>
+<text x="320" y="212">Transport Network</text>
+<text x="480" y="212">AC: RAU5-IF51</text>
+<text x="172" y="228">TN2-IF21</text>
+<text x="492" y="228">TN3-IF32</text>
+<text x="40" y="276">Network 1</text>
+<text x="48" y="324">BB1</text>
+<text x="208" y="324">TN2</text>
+<text x="368" y="324">TN3</text>
+<text x="596" y="324">RAU5</text>
+<text x="116" y="356">IF11</text>
+<text x="212" y="356">IF21</text>
+<text x="436" y="356">IF32</text>
+<text x="532" y="356">IF51</text>
+<text x="52" y="372">IF10</text>
+<text x="596" y="372">IF52</text>
+<text x="116" y="420">IF12</text>
+<text x="212" y="420">IF22</text>
+<text x="44" y="436">CE</text>
+<text x="284" y="436">PE</text>
+<text x="444" y="436">PE</text>
+<text x="604" y="436">CE</text>
+<text x="52" y="484">Site A</text>
+<text x="372" y="484">Site B</text>
+<text x="368" y="548">TN4</text>
+<text x="532" y="548">RAU6</text>
+<text x="436" y="580">IF42</text>
+<text x="532" y="580">IF61</text>
+<text x="444" y="660">PE</text>
+<text x="604" y="660">CE</text>
+<text x="372" y="708">Site C</text>
+</g>
+</svg>
