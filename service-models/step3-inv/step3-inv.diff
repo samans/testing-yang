@@ -1,0 +1,46 @@
+6,8d5
+<         "network-types": {
+<           "ietf-network-inventory-topology:network-inventory-mapping": {}
+<         },
+12,15d8
+<             "ietf-network-inventory-topology:inventory-mapping-attributes": {
+<               "node-name": "BB 1",
+<               "ne-ref": "node1"
+<             },
+165,200d157
+<       }
+<     ]
+<   },
+<   "ietf-network-inventory:network-inventory": {
+<     "network-elements": {
+<       "network-element": [
+<         {
+<           "ne-id": "node1",
+<           "ne-type": "ietf-network-inventory:ne-physical",
+<           "components": {
+<             "component": [
+<               {
+<                 "component-id": "node1comp1",
+<                 "class": "iana-hardware:unknown"
+<               }
+<             ]
+<           },
+<           "ietf-ni-location:locations": {
+<             "location": [
+<               "site1"
+<             ]
+<           }
+<         }
+<       ]
+<     }
+<   },
+<   "ietf-ni-location:locations": {
+<     "location": [
+<       {
+<         "id": "site1",
+<         "physical-address": {
+<           "address": "Av. Gustave Eiffel",
+<           "postal-code": "75007",
+<           "city": "Paris",
+<           "country-code": "FR"
+<         }

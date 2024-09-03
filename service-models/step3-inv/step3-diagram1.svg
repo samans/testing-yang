@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="624" viewBox="0 0 624 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<path d="M 32,96 L 32,240" fill="none" stroke="black"/>
+<path d="M 72,128 L 72,224" fill="none" stroke="black"/>
+<path d="M 96,128 L 96,224" fill="none" stroke="black"/>
+<path d="M 136,96 L 136,240" fill="none" stroke="black"/>
+<path d="M 192,96 L 192,240" fill="none" stroke="black"/>
+<path d="M 232,128 L 232,224" fill="none" stroke="black"/>
+<path d="M 256,128 L 256,224" fill="none" stroke="black"/>
+<path d="M 296,96 L 296,240" fill="none" stroke="black"/>
+<path d="M 352,96 L 352,240" fill="none" stroke="black"/>
+<path d="M 352,320 L 352,464" fill="none" stroke="black"/>
+<path d="M 392,128 L 392,224" fill="none" stroke="black"/>
+<path d="M 392,352 L 392,448" fill="none" stroke="black"/>
+<path d="M 416,128 L 416,224" fill="none" stroke="black"/>
+<path d="M 416,352 L 416,448" fill="none" stroke="black"/>
+<path d="M 456,96 L 456,240" fill="none" stroke="black"/>
+<path d="M 456,320 L 456,464" fill="none" stroke="black"/>
+<path d="M 512,96 L 512,240" fill="none" stroke="black"/>
+<path d="M 512,320 L 512,464" fill="none" stroke="black"/>
+<path d="M 552,128 L 552,224" fill="none" stroke="black"/>
+<path d="M 552,352 L 552,448" fill="none" stroke="black"/>
+<path d="M 576,128 L 576,224" fill="none" stroke="black"/>
+<path d="M 576,352 L 576,448" fill="none" stroke="black"/>
+<path d="M 616,96 L 616,240" fill="none" stroke="black"/>
+<path d="M 616,320 L 616,464" fill="none" stroke="black"/>
+<path d="M 32,96 L 136,96" fill="none" stroke="black"/>
+<path d="M 192,96 L 296,96" fill="none" stroke="black"/>
+<path d="M 352,96 L 456,96" fill="none" stroke="black"/>
+<path d="M 512,96 L 616,96" fill="none" stroke="black"/>
+<path d="M 72,128 L 96,128" fill="none" stroke="black"/>
+<path d="M 232,128 L 256,128" fill="none" stroke="black"/>
+<path d="M 392,128 L 416,128" fill="none" stroke="black"/>
+<path d="M 552,128 L 576,128" fill="none" stroke="black"/>
+<path d="M 104,160 L 224,160" fill="none" stroke="black"/>
+<path d="M 424,160 L 544,160" fill="none" stroke="black"/>
+<path d="M 104,192 L 224,192" fill="none" stroke="black"/>
+<path d="M 72,224 L 96,224" fill="none" stroke="black"/>
+<path d="M 232,224 L 256,224" fill="none" stroke="black"/>
+<path d="M 392,224 L 416,224" fill="none" stroke="black"/>
+<path d="M 552,224 L 576,224" fill="none" stroke="black"/>
+<path d="M 32,240 L 136,240" fill="none" stroke="black"/>
+<path d="M 192,240 L 296,240" fill="none" stroke="black"/>
+<path d="M 352,240 L 456,240" fill="none" stroke="black"/>
+<path d="M 512,240 L 616,240" fill="none" stroke="black"/>
+<path d="M 352,320 L 456,320" fill="none" stroke="black"/>
+<path d="M 512,320 L 616,320" fill="none" stroke="black"/>
+<path d="M 392,352 L 416,352" fill="none" stroke="black"/>
+<path d="M 552,352 L 576,352" fill="none" stroke="black"/>
+<path d="M 424,384 L 544,384" fill="none" stroke="black"/>
+<path d="M 392,448 L 416,448" fill="none" stroke="black"/>
+<path d="M 552,448 L 576,448" fill="none" stroke="black"/>
+<path d="M 352,464 L 456,464" fill="none" stroke="black"/>
+<path d="M 512,464 L 616,464" fill="none" stroke="black"/>
+<circle cx="96" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="96" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="232" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="232" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="416" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="416" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<g class="text">
+<text x="148" y="20">Physical Ethernet Topology - Exposed</text>
+<text x="112" y="36">Deployment Example (Step 3)</text>
+<text x="40" y="68">Network 1</text>
+<text x="48" y="116">BB1</text>
+<text x="208" y="116">TN2</text>
+<text x="368" y="116">TN3</text>
+<text x="532" y="116">RAU3</text>
+<text x="116" y="148">IF11</text>
+<text x="212" y="148">IF21</text>
+<text x="436" y="148">IF32</text>
+<text x="532" y="148">IF51</text>
+<text x="52" y="164">IF10</text>
+<text x="596" y="164">IF52</text>
+<text x="116" y="212">IF12</text>
+<text x="212" y="212">IF22</text>
+<text x="44" y="228">CE</text>
+<text x="284" y="228">PE</text>
+<text x="444" y="228">PE</text>
+<text x="604" y="228">CE</text>
+<text x="52" y="276">Site A</text>
+<text x="372" y="276">Site B</text>
+<text x="368" y="340">TN4</text>
+<text x="532" y="340">RAU6</text>
+<text x="436" y="372">IF42</text>
+<text x="532" y="372">IF61</text>
+<text x="444" y="452">PE</text>
+<text x="604" y="452">CE</text>
+<text x="372" y="500">Site C</text>
+</g>
+</svg>

@@ -1,0 +1,176 @@
+<networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+  <network>
+    <network-id>network1</network-id>
+    <network-types>
+      <network-inventory-mapping xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology"/>
+    </network-types>
+    <node>
+      <node-id>BB 1</node-id>
+      <inventory-mapping-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology">
+        <node-name>BB 1</node-name>
+        <ne-ref>node1</ne-ref>
+      </inventory-mapping-attributes>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF10</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF11</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF12</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 2</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF21</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF23</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 3</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF32</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>RAU 5</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF51</tp-id>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF52</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>TN 4</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF42</tp-id>
+      </termination-point>
+    </node>
+    <node>
+      <node-id>RAU 6</node-id>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>IF61</tp-id>
+      </termination-point>
+    </node>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-bb1-pe-tn2-if11</link-id>
+      <source>
+        <source-node>BB 1</source-node>
+        <source-tp>IF11</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 2</dest-node>
+        <dest-tp>IF21</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn2-ce-bb1-if11</link-id>
+      <source>
+        <source-node>TN 2</source-node>
+        <source-tp>IF21</source-tp>
+      </source>
+      <destination>
+        <dest-node>BB 1</dest-node>
+        <dest-tp>IF11</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-bb1-pe-tn2-if12</link-id>
+      <source>
+        <source-node>BB 1</source-node>
+        <source-tp>IF12</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 2</dest-node>
+        <dest-tp>IF23</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn2-ce-bb1-if12</link-id>
+      <source>
+        <source-node>TN 2</source-node>
+        <source-tp>IF23</source-tp>
+      </source>
+      <destination>
+        <dest-node>BB 1</dest-node>
+        <dest-tp>IF12</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn3-ce-rau5</link-id>
+      <source>
+        <source-node>TN 3</source-node>
+        <source-tp>IF32</source-tp>
+      </source>
+      <destination>
+        <dest-node>RAU 5</dest-node>
+        <dest-tp>IF51</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-rau5-pe-tn3</link-id>
+      <source>
+        <source-node>RAU 5</source-node>
+        <source-tp>IF51</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 3</dest-node>
+        <dest-tp>IF32</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>pe-tn4-ce-rau6</link-id>
+      <source>
+        <source-node>TN 4</source-node>
+        <source-tp>IF42</source-tp>
+      </source>
+      <destination>
+        <dest-node>RAU 6</dest-node>
+        <dest-tp>IF61</dest-tp>
+      </destination>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>ce-rau6-pe-tn4</link-id>
+      <source>
+        <source-node>RAU 6</source-node>
+        <source-tp>IF61</source-tp>
+      </source>
+      <destination>
+        <dest-node>TN 4</dest-node>
+        <dest-tp>IF42</dest-tp>
+      </destination>
+    </link>
+  </network>
+</networks>
+<network-inventory xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory">
+  <network-elements>
+    <network-element>
+      <ne-id>node1</ne-id>
+      <ne-type xmlns:ni="urn:ietf:params:xml:ns:yang:ietf-network-inventory">ni:ne-physical</ne-type>
+      <components>
+        <component>
+          <component-id>node1comp1</component-id>
+          <class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:unknown</class>
+        </component>
+      </components>
+      <locations xmlns="urn:ietf:params:xml:ns:yang:ietf-ni-location">
+        <location>site1</location>
+      </locations>
+    </network-element>
+  </network-elements>
+</network-inventory>
+<locations xmlns="urn:ietf:params:xml:ns:yang:ietf-ni-location">
+  <location>
+    <id>site1</id>
+    <physical-address>
+      <address>Av. Gustave Eiffel</address>
+      <postal-code>75007</postal-code>
+      <city>Paris</city>
+      <country-code>FR</country-code>
+    </physical-address>
+  </location>
+</locations>
