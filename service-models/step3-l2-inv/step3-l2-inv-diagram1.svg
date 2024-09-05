@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="624" viewBox="0 0 624 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="624" width="728" viewBox="0 0 728 624" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 32,96 L 32,240" fill="none" stroke="black"/>
 <path d="M 72,128 L 72,224" fill="none" stroke="black"/>
 <path d="M 96,128 L 96,224" fill="none" stroke="black"/>
@@ -51,22 +51,22 @@
 <path d="M 552,448 L 576,448" fill="none" stroke="black"/>
 <path d="M 352,464 L 456,464" fill="none" stroke="black"/>
 <path d="M 512,464 L 616,464" fill="none" stroke="black"/>
-<circle cx="96" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="96" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="232" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="232" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="96" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="96" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <g class="text">
 <text x="148" y="20">Physical Ethernet Topology - Exposed</text>
-<text x="112" y="36">Deployment Example (Step 3)</text>
+<text x="156" y="36">Deployment Example (Step 3 - L2 - INV)</text>
 <text x="40" y="68">Network 1</text>
 <text x="48" y="116">BB1</text>
 <text x="208" y="116">TN2</text>
 <text x="368" y="116">TN3</text>
-<text x="532" y="116">RAU3</text>
+<text x="532" y="116">RAU5</text>
 <text x="116" y="148">IF11</text>
 <text x="212" y="148">IF21</text>
 <text x="436" y="148">IF32</text>
@@ -74,7 +74,7 @@
 <text x="52" y="164">IF10</text>
 <text x="596" y="164">IF52</text>
 <text x="116" y="212">IF12</text>
-<text x="212" y="212">IF22</text>
+<text x="212" y="212">IF23</text>
 <text x="44" y="228">CE</text>
 <text x="284" y="228">PE</text>
 <text x="444" y="228">PE</text>
@@ -88,5 +88,17 @@
 <text x="444" y="452">PE</text>
 <text x="604" y="452">CE</text>
 <text x="372" y="500">Site C</text>
+<text x="24" y="516">NOTE:</text>
+<text x="364" y="532">Due to space considerations, the following shows the value for the tp-id in the json file.</text>
+<text x="144" y="548">IF10 := &quot;Port1 - 0f:0f:72:32:h3:aa&quot;</text>
+<text x="488" y="548">IF32 := &quot;Port1 - 0a:0a:0a:0a:0a:0a&quot;</text>
+<text x="144" y="564">IF11 := &quot;Port2 - 0f:0f:72:32:h3:ab&quot;</text>
+<text x="488" y="564">IF51 := &quot;Port1 - 0c:0c:0c:0c:0c:0c&quot;</text>
+<text x="144" y="580">IF12 := &quot;Port3 - 0f:0f:72:32:h3:ac&quot;</text>
+<text x="488" y="580">IF52 := &quot;Port2 - 0c:0c:0d:0d:0d:0d&quot;</text>
+<text x="144" y="596">IF21 := &quot;Port1 - 0f:0f:77:32:h3:01&quot;</text>
+<text x="488" y="596">IF42 := &quot;Port1 - 0e:0e:0e:0e:0e:0e&quot;</text>
+<text x="144" y="612">IF23 := &quot;Port2 - 0f:0f:77:32:h3:02&quot;</text>
+<text x="488" y="612">IF61 := &quot;Port1 - 1e:1e:1e:1e:1e:1e&quot;</text>
 </g>
 </svg>

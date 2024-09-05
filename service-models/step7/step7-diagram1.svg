@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="640" viewBox="0 0 640 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="720" width="640" viewBox="0 0 640 720" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 32,304 L 32,448" fill="none" stroke="black"/>
 <path d="M 72,336 L 72,432" fill="none" stroke="black"/>
 <path d="M 80,96 L 80,160" fill="none" stroke="black"/>
@@ -66,32 +66,32 @@
 <path d="M 80,160 L 96,192" fill="none" stroke="black"/>
 <path d="M 544,192 L 560,160" fill="none" stroke="black"/>
 <path d="M 528,288 L 544,256" fill="none" stroke="black"/>
-<polygon class="arrowhead" points="556,160 544,154.4 544,165.6 " fill="black" transform="rotate(0,548,160)"/>
-<polygon class="arrowhead" points="556,96 544,90.4 544,101.6 " fill="black" transform="rotate(0,548,96)"/>
-<polygon class="arrowhead" points="540,240 528,234.4 528,245.6 " fill="black" transform="rotate(0,532,240)"/>
-<polygon class="arrowhead" points="452,240 440,234.4 440,245.6 " fill="black" transform="rotate(180,444,240)"/>
-<polygon class="arrowhead" points="420,224 408,218.4 408,229.6 " fill="black" transform="rotate(0,412,224)"/>
-<polygon class="arrowhead" points="236,224 224,218.4 224,229.6 " fill="black" transform="rotate(180,228,224)"/>
-<polygon class="arrowhead" points="204,240 192,234.4 192,245.6 " fill="black" transform="rotate(0,196,240)"/>
-<polygon class="arrowhead" points="116,240 104,234.4 104,245.6 " fill="black" transform="rotate(180,108,240)"/>
-<polygon class="arrowhead" points="100,160 88,154.4 88,165.6 " fill="black" transform="rotate(180,92,160)"/>
-<polygon class="arrowhead" points="100,96 88,90.4 88,101.6 " fill="black" transform="rotate(180,92,96)"/>
+<polygon class="arrowhead" points="556,160 544,154.4 544,165.6" fill="black" transform="rotate(0,548,160)"/>
+<polygon class="arrowhead" points="556,96 544,90.4 544,101.6" fill="black" transform="rotate(0,548,96)"/>
+<polygon class="arrowhead" points="540,240 528,234.4 528,245.6" fill="black" transform="rotate(0,532,240)"/>
+<polygon class="arrowhead" points="452,240 440,234.4 440,245.6" fill="black" transform="rotate(180,444,240)"/>
+<polygon class="arrowhead" points="420,224 408,218.4 408,229.6" fill="black" transform="rotate(0,412,224)"/>
+<polygon class="arrowhead" points="236,224 224,218.4 224,229.6" fill="black" transform="rotate(180,228,224)"/>
+<polygon class="arrowhead" points="204,240 192,234.4 192,245.6" fill="black" transform="rotate(0,196,240)"/>
+<polygon class="arrowhead" points="116,240 104,234.4 104,245.6" fill="black" transform="rotate(180,108,240)"/>
+<polygon class="arrowhead" points="100,160 88,154.4 88,165.6" fill="black" transform="rotate(180,92,160)"/>
+<polygon class="arrowhead" points="100,96 88,90.4 88,101.6" fill="black" transform="rotate(180,92,96)"/>
 <circle cx="80" cy="96" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="80" cy="160" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="96" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
-<circle cx="96" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="96" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="96" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="96" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <circle cx="208" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="216" cy="224" r="6" class="opendot" fill="white" stroke="black"/>
-<circle cx="232" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="232" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="232" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="400" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <circle cx="424" cy="224" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="432" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="544" cy="240" r="6" class="opendot" fill="white" stroke="black"/>
-<circle cx="552" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="552" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="552" cy="368" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="552" cy="592" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <circle cx="560" cy="96" r="6" class="opendot" fill="white" stroke="black"/>
 <circle cx="560" cy="160" r="6" class="opendot" fill="white" stroke="black"/>
 <g class="text">
@@ -120,7 +120,7 @@
 <text x="52" y="372">IF10</text>
 <text x="596" y="372">IF52</text>
 <text x="116" y="420">IF12</text>
-<text x="212" y="420">IF22</text>
+<text x="212" y="420">IF23</text>
 <text x="44" y="436">CE</text>
 <text x="284" y="436">PE</text>
 <text x="444" y="436">PE</text>

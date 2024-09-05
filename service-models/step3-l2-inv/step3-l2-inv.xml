@@ -6,15 +6,15 @@
       <network-inventory-mapping xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology"/>
     </network-types>
     <node>
-      <node-id>BB 1</node-id>
+      <node-id>BB6648 - 123456</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF10</tp-id>
+        <tp-id>Port1 - 0f:0f:72:32:h3:aa</tp-id>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF11</tp-id>
+        <tp-id>Port2 - 0f:0f:72:32:h3:ab</tp-id>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF12</tp-id>
+        <tp-id>Port3 - 0f:0f:72:32:h3:ac</tp-id>
       </termination-point>
     </node>
     <node>
@@ -23,129 +23,143 @@
         <name>TN 2 - L2</name>
       </l2-node-attributes>
       <inventory-mapping-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology">
-        <node-name>TN 2</node-name>
+        <node-name>TN2@SiteA</node-name>
         <ne-ref>TN2-node</ne-ref>
       </inventory-mapping-attributes>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF21</tp-id>
+        <tp-id>Port1 - 0f:0f:77:32:h3:01</tp-id>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF23</tp-id>
+        <tp-id>Port2 - 0f:0f:77:32:h3:02</tp-id>
       </termination-point>
     </node>
     <node>
       <node-id>TN 3</node-id>
+      <l2-node-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-l2-topology">
+        <name>TN 3 - L2</name>
+      </l2-node-attributes>
+      <inventory-mapping-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology">
+        <node-name>TN3@SiteB</node-name>
+        <ne-ref>TN3-node</ne-ref>
+      </inventory-mapping-attributes>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF32</tp-id>
+        <tp-id>Port1 - 0a:0a:0a:0a:0a:0a</tp-id>
       </termination-point>
     </node>
     <node>
       <node-id>RAU 5</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF51</tp-id>
+        <tp-id>Port1 - 0c:0c:0c:0c:0c:0c</tp-id>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF52</tp-id>
+        <tp-id>Port2 - 0c:0c:0d:0d:0d:0d</tp-id>
       </termination-point>
     </node>
     <node>
       <node-id>TN 4</node-id>
+      <l2-node-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-l2-topology">
+        <name>TN 4 - L2</name>
+      </l2-node-attributes>
+      <inventory-mapping-attributes xmlns="urn:ietf:params:xml:ns:yang:ietf-network-inventory-topology">
+        <node-name>TN4@SiteC</node-name>
+        <ne-ref>TN4-node</ne-ref>
+      </inventory-mapping-attributes>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF42</tp-id>
+        <tp-id>Port1 - 0e:0e:0e:0e:0e:0e</tp-id>
       </termination-point>
     </node>
     <node>
       <node-id>RAU 6</node-id>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>IF61</tp-id>
+        <tp-id>Port1 - 1e:1e:1e:1e:1e:1e</tp-id>
       </termination-point>
     </node>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>ce-bb1-pe-tn2-if11</link-id>
       <source>
         <source-node>BB 1</source-node>
-        <source-tp>IF11</source-tp>
+        <source-tp>Port2 - 0f:0f:72:32:h3:ab</source-tp>
       </source>
       <destination>
         <dest-node>TN 2</dest-node>
-        <dest-tp>IF21</dest-tp>
+        <dest-tp>Port1 - 0f:0f:77:32:h3:01</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>pe-tn2-ce-bb1-if11</link-id>
       <source>
         <source-node>TN 2</source-node>
-        <source-tp>IF21</source-tp>
+        <source-tp>Port1 - 0f:0f:77:32:h3:01</source-tp>
       </source>
       <destination>
         <dest-node>BB 1</dest-node>
-        <dest-tp>IF11</dest-tp>
+        <dest-tp>Port2 - 0f:0f:72:32:h3:ab</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>ce-bb1-pe-tn2-if12</link-id>
       <source>
         <source-node>BB 1</source-node>
-        <source-tp>IF12</source-tp>
+        <source-tp>Port3 - 0f:0f:72:32:h3:ac</source-tp>
       </source>
       <destination>
         <dest-node>TN 2</dest-node>
-        <dest-tp>IF23</dest-tp>
+        <dest-tp>Port2 - 0f:0f:77:32:h3:02</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>pe-tn2-ce-bb1-if12</link-id>
       <source>
         <source-node>TN 2</source-node>
-        <source-tp>IF23</source-tp>
+        <source-tp>Port2 - 0f:0f:77:32:h3:02</source-tp>
       </source>
       <destination>
         <dest-node>BB 1</dest-node>
-        <dest-tp>IF12</dest-tp>
+        <dest-tp>Port3 - 0f:0f:72:32:h3:ac</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>pe-tn3-ce-rau5</link-id>
       <source>
         <source-node>TN 3</source-node>
-        <source-tp>IF32</source-tp>
+        <source-tp>Port1 - 0a:0a:0a:0a:0a:0a</source-tp>
       </source>
       <destination>
         <dest-node>RAU 5</dest-node>
-        <dest-tp>IF51</dest-tp>
+        <dest-tp>Port1 - 0c:0c:0c:0c:0c:0c</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>ce-rau5-pe-tn3</link-id>
       <source>
         <source-node>RAU 5</source-node>
-        <source-tp>IF51</source-tp>
+        <source-tp>Port1 - 0c:0c:0c:0c:0c:0c</source-tp>
       </source>
       <destination>
         <dest-node>TN 3</dest-node>
-        <dest-tp>IF32</dest-tp>
+        <dest-tp>Port1 - 0a:0a:0a:0a:0a:0a</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>pe-tn4-ce-rau6</link-id>
       <source>
         <source-node>TN 4</source-node>
-        <source-tp>IF42</source-tp>
+        <source-tp>Port1 - 0e:0e:0e:0e:0e:0e</source-tp>
       </source>
       <destination>
         <dest-node>RAU 6</dest-node>
-        <dest-tp>IF61</dest-tp>
+        <dest-tp>Port1 - 1e:1e:1e:1e:1e:1e</dest-tp>
       </destination>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
       <link-id>ce-rau6-pe-tn4</link-id>
       <source>
         <source-node>RAU 6</source-node>
-        <source-tp>IF61</source-tp>
+        <source-tp>Port1 - 1e:1e:1e:1e:1e:1e</source-tp>
       </source>
       <destination>
         <dest-node>TN 4</dest-node>
-        <dest-tp>IF42</dest-tp>
+        <dest-tp>Port1 - 0e:0e:0e:0e:0e:0e</dest-tp>
       </destination>
     </link>
   </network>
@@ -165,6 +179,32 @@
         <location>Site A</location>
       </locations>
     </network-element>
+    <network-element>
+      <ne-id>TN3-node</ne-id>
+      <ne-type xmlns:ni="urn:ietf:params:xml:ns:yang:ietf-network-inventory">ni:ne-physical</ne-type>
+      <components>
+        <component>
+          <component-id>comp1</component-id>
+          <class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:unknown</class>
+        </component>
+      </components>
+      <locations xmlns="urn:ietf:params:xml:ns:yang:ietf-ni-location">
+        <location>Site B</location>
+      </locations>
+    </network-element>
+    <network-element>
+      <ne-id>TN4-node</ne-id>
+      <ne-type xmlns:ni="urn:ietf:params:xml:ns:yang:ietf-network-inventory">ni:ne-physical</ne-type>
+      <components>
+        <component>
+          <component-id>comp1</component-id>
+          <class xmlns:ianahw="urn:ietf:params:xml:ns:yang:iana-hardware">ianahw:unknown</class>
+        </component>
+      </components>
+      <locations xmlns="urn:ietf:params:xml:ns:yang:ietf-ni-location">
+        <location>Site C</location>
+      </locations>
+    </network-element>
   </network-elements>
 </network-inventory>
 <locations xmlns="urn:ietf:params:xml:ns:yang:ietf-ni-location">
@@ -173,6 +213,24 @@
     <physical-address>
       <address>Av. Gustave Eiffel</address>
       <postal-code>75007</postal-code>
+      <city>Paris</city>
+      <country-code>FR</country-code>
+    </physical-address>
+  </location>
+  <location>
+    <id>Site B</id>
+    <physical-address>
+      <address>Louvre Museum</address>
+      <postal-code>75001</postal-code>
+      <city>Paris</city>
+      <country-code>FR</country-code>
+    </physical-address>
+  </location>
+  <location>
+    <id>Site C</id>
+    <physical-address>
+      <address>201 Rue Saint-Honoré</address>
+      <postal-code>75001</postal-code>
       <city>Paris</city>
       <country-code>FR</country-code>
     </physical-address>

@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="624" viewBox="0 0 624 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="512" width="624" viewBox="0 0 624 512" class="diagram" text-anchor="middle" font-family="monospace" font-size="13px" stroke-linecap="round">
 <path d="M 32,96 L 32,240" fill="none" stroke="black"/>
 <path d="M 72,128 L 72,224" fill="none" stroke="black"/>
 <path d="M 96,128 L 96,224" fill="none" stroke="black"/>
@@ -51,14 +51,14 @@
 <path d="M 552,448 L 576,448" fill="none" stroke="black"/>
 <path d="M 352,464 L 456,464" fill="none" stroke="black"/>
 <path d="M 512,464 L 616,464" fill="none" stroke="black"/>
-<circle cx="96" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="96" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="232" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="232" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="416" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
-<circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="1,1"/>
+<circle cx="96" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="96" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="232" cy="192" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="416" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="552" cy="160" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
+<circle cx="552" cy="384" r="6" class="dotteddot" fill="white" stroke="black" stroke-dasharray="0,1.8"/>
 <g class="text">
 <text x="208" y="20">Transport Slice Service exposure (agreed templates)</text>
 <text x="112" y="36">Deployment Example (Step 4)</text>
@@ -74,7 +74,7 @@
 <text x="52" y="164">IF10</text>
 <text x="596" y="164">IF52</text>
 <text x="116" y="212">IF12</text>
-<text x="212" y="212">IF22</text>
+<text x="212" y="212">IF23</text>
 <text x="44" y="228">CE</text>
 <text x="284" y="228">PE</text>
 <text x="444" y="228">PE</text>

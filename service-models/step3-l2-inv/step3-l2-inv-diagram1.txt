@@ -10,7 +10,7 @@ Network 1
    |IF10◌  ◌----+------+----◌  |    |      |    |  ◌----+------+----◌  ◌IF52|
    |    |  |    |      |    |  |    |      |    |  |    |      |    |  |    |
    |    |  ◌----+------+----◌  |    |      |    |  |    |      |    |  |    |
-   |    |  |IF12|      |IF22|  |    |      |    |  |    |      |    |  |    |
+   |    |  |IF12|      |IF23|  |    |      |    |  |    |      |    |  |    |
    |CE  +--+    |      |    +--+  PE|      |    +--+  PE|      |    +--+  CE|
    +------------+      +------------+      +------------+      +------------+
 
@@ -29,3 +29,10 @@ Network 1
                                            +------------+      +------------+
 
                                            Site C
+NOTE:
+Due to space considerations, the following shows the value for the tp-id in the json file.
+IF10 := "Port1 - 0f:0f:72:32:h3:aa"        IF32 := "Port1 - 0a:0a:0a:0a:0a:0a"
+IF11 := "Port2 - 0f:0f:72:32:h3:ab"        IF51 := "Port1 - 0c:0c:0c:0c:0c:0c"
+IF12 := "Port3 - 0f:0f:72:32:h3:ac"        IF52 := "Port2 - 0c:0c:0d:0d:0d:0d"
+IF21 := "Port1 - 0f:0f:77:32:h3:01"        IF42 := "Port1 - 0e:0e:0e:0e:0e:0e"
+IF23 := "Port2 - 0f:0f:77:32:h3:02"        IF61 := "Port1 - 1e:1e:1e:1e:1e:1e"
