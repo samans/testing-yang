@@ -1,31 +1,207 @@
 6a7
 >           "ietf-l2-topology:l2-topology": {},
-12,15d12
+11,15c12
+<             "node-id": "BB 1",
 <             "ietf-network-inventory-topology:inventory-mapping-attributes": {
 <               "node-name": "BB 1",
 <               "ne-ref": "node1"
 <             },
+---
+>             "node-id": "BB6648 - 123456",
+18c15
+<                 "tp-id": "IF10"
+---
+>                 "tp-id": "Port1 - 0f:0f:72:32:h3:aa"
+21c18
+<                 "tp-id": "IF11"
+---
+>                 "tp-id": "Port2 - 0f:0f:72:32:h3:ab"
+24c21
+<                 "tp-id": "IF12"
+---
+>                 "tp-id": "Port3 - 0f:0f:72:32:h3:ac"
 29a27,33
 >             "ietf-l2-topology:l2-node-attributes": {
 >               "name": "TN 2 - L2"
 >             },
 >             "ietf-network-inventory-topology:inventory-mapping-attributes": {
->               "node-name": "TN 2",
+>               "node-name": "TN2@SiteA",
 >               "ne-ref": "TN2-node"
 >             },
-172c176
+32c36
+<                 "tp-id": "IF21"
+---
+>                 "tp-id": "Port1 - 0f:0f:77:32:h3:01"
+35c39
+<                 "tp-id": "IF23"
+---
+>                 "tp-id": "Port2 - 0f:0f:77:32:h3:02"
+40a45,51
+>             "ietf-l2-topology:l2-node-attributes": {
+>               "name": "TN 3 - L2"
+>             },
+>             "ietf-network-inventory-topology:inventory-mapping-attributes": {
+>               "node-name": "TN3@SiteB",
+>               "ne-ref": "TN3-node"
+>             },
+43c54
+<                 "tp-id": "IF32"
+---
+>                 "tp-id": "Port1 - 0a:0a:0a:0a:0a:0a"
+51c62
+<                 "tp-id": "IF51"
+---
+>                 "tp-id": "Port1 - 0c:0c:0c:0c:0c:0c"
+54c65
+<                 "tp-id": "IF52"
+---
+>                 "tp-id": "Port2 - 0c:0c:0d:0d:0d:0d"
+59a71,77
+>             "ietf-l2-topology:l2-node-attributes": {
+>               "name": "TN 4 - L2"
+>             },
+>             "ietf-network-inventory-topology:inventory-mapping-attributes": {
+>               "node-name": "TN4@SiteC",
+>               "ne-ref": "TN4-node"
+>             },
+62c80
+<                 "tp-id": "IF42"
+---
+>                 "tp-id": "Port1 - 0e:0e:0e:0e:0e:0e"
+70c88
+<                 "tp-id": "IF61"
+---
+>                 "tp-id": "Port1 - 1e:1e:1e:1e:1e:1e"
+80c98
+<               "source-tp": "IF11"
+---
+>               "source-tp": "Port2 - 0f:0f:72:32:h3:ab"
+84c102
+<               "dest-tp": "IF21"
+---
+>               "dest-tp": "Port1 - 0f:0f:77:32:h3:01"
+91c109
+<               "source-tp": "IF21"
+---
+>               "source-tp": "Port1 - 0f:0f:77:32:h3:01"
+95c113
+<               "dest-tp": "IF11"
+---
+>               "dest-tp": "Port2 - 0f:0f:72:32:h3:ab"
+102c120
+<               "source-tp": "IF12"
+---
+>               "source-tp": "Port3 - 0f:0f:72:32:h3:ac"
+106c124
+<               "dest-tp": "IF23"
+---
+>               "dest-tp": "Port2 - 0f:0f:77:32:h3:02"
+113c131
+<               "source-tp": "IF23"
+---
+>               "source-tp": "Port2 - 0f:0f:77:32:h3:02"
+117c135
+<               "dest-tp": "IF12"
+---
+>               "dest-tp": "Port3 - 0f:0f:72:32:h3:ac"
+124c142
+<               "source-tp": "IF32"
+---
+>               "source-tp": "Port1 - 0a:0a:0a:0a:0a:0a"
+128c146
+<               "dest-tp": "IF51"
+---
+>               "dest-tp": "Port1 - 0c:0c:0c:0c:0c:0c"
+135c153
+<               "source-tp": "IF51"
+---
+>               "source-tp": "Port1 - 0c:0c:0c:0c:0c:0c"
+139c157
+<               "dest-tp": "IF32"
+---
+>               "dest-tp": "Port1 - 0a:0a:0a:0a:0a:0a"
+146c164
+<               "source-tp": "IF42"
+---
+>               "source-tp": "Port1 - 0e:0e:0e:0e:0e:0e"
+150c168
+<               "dest-tp": "IF61"
+---
+>               "dest-tp": "Port1 - 1e:1e:1e:1e:1e:1e"
+157c175
+<               "source-tp": "IF61"
+---
+>               "source-tp": "Port1 - 1e:1e:1e:1e:1e:1e"
+161c179
+<               "dest-tp": "IF42"
+---
+>               "dest-tp": "Port1 - 0e:0e:0e:0e:0e:0e"
+172c190
 <           "ne-id": "node1",
 ---
 >           "ne-id": "TN2-node",
-177c181
+177c195
 <                 "component-id": "node1comp1",
 ---
 >                 "component-id": "comp1",
-184c188
+184c202,236
 <               "site1"
 ---
 >               "Site A"
-194c198
+>             ]
+>           }
+>         },
+>         {
+>           "ne-id": "TN3-node",
+>           "ne-type": "ietf-network-inventory:ne-physical",
+>           "components": {
+>             "component": [
+>               {
+>                 "component-id": "comp1",
+>                 "class": "iana-hardware:unknown"
+>               }
+>             ]
+>           },
+>           "ietf-ni-location:locations": {
+>             "location": [
+>               "Site B"
+>             ]
+>           }
+>         },
+>         {
+>           "ne-id": "TN4-node",
+>           "ne-type": "ietf-network-inventory:ne-physical",
+>           "components": {
+>             "component": [
+>               {
+>                 "component-id": "comp1",
+>                 "class": "iana-hardware:unknown"
+>               }
+>             ]
+>           },
+>           "ietf-ni-location:locations": {
+>             "location": [
+>               "Site C"
+194c246
 <         "id": "site1",
 ---
 >         "id": "Site A",
+197a250,267
+>           "city": "Paris",
+>           "country-code": "FR"
+>         }
+>       },
+>       {
+>         "id": "Site B",
+>         "physical-address": {
+>           "address": "Louvre Museum",
+>           "postal-code": "75001",
+>           "city": "Paris",
+>           "country-code": "FR"
+>         }
+>       },
+>       {
+>         "id": "Site C",
+>         "physical-address": {
+>           "address": "201 Rue Saint-Honoré",
+>           "postal-code": "75001",
