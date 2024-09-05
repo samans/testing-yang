@@ -20,4 +20,4 @@ This is a test example including the L2 inventory and location modules.
 - ietf-network-inventory-topology
 
 The diffs are found here:
-https://github.com/samans/testing-yang/blob/main/service-models/step3-inv/step3-l2-inv.diff
+https://github.com/samans/testing-yang/blob/main/service-models/step3-l2-inv/step3-l2-inv.diff
