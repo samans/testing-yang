@@ -1,0 +1,31 @@
+6a7
+>           "ietf-l2-topology:l2-topology": {},
+12,15d12
+<             "ietf-network-inventory-topology:inventory-mapping-attributes": {
+<               "node-name": "BB 1",
+<               "ne-ref": "node1"
+<             },
+29a27,33
+>             "ietf-l2-topology:l2-node-attributes": {
+>               "name": "TN 2 - L2"
+>             },
+>             "ietf-network-inventory-topology:inventory-mapping-attributes": {
+>               "node-name": "TN 2",
+>               "ne-ref": "TN2-node"
+>             },
+172c176
+<           "ne-id": "node1",
+---
+>           "ne-id": "TN2-node",
+177c181
+<                 "component-id": "node1comp1",
+---
+>                 "component-id": "comp1",
+184c188
+<               "site1"
+---
+>               "Site A"
+194c198
+<         "id": "site1",
+---
+>         "id": "Site A",

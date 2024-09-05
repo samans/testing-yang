@@ -1,0 +1,2 @@
+libyang err : Invalid union value "iana-hardware:unknown" - no matching subtype found. (Data location "/ietf-network-inventory:network-inventory/network-elements/network-element[ne-id='node1']/components/component[component-id='node1comp1']/class", line number 171.)
+YANGLINT[E]: Failed to parse input data file "step3-inv.json".
