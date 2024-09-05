@@ -4,7 +4,7 @@ The following example shows:
 - ietf-network
 - ietf-network-topology
 
-![step3-inv Figure](https://github.com/samans/testing-yang/blob/main/service-models/step3-inv/step3-inv-diagram1.svg)
+![step3-inv Figure](https://github.com/samans/testing-yang/blob/main/service-models/step3-inv/step3-l2-inv-diagram1.svg)
 
 https://github.com/samans/testing-yang/blob/main/service-models/step3-inv/step3-inv.json
 
