@@ -1,0 +1,45 @@
+module: itut-ptp-telecom-profile
+
+  augment /ietf-ptp:ptp/ietf-ptp:instance-list/ietf-ptp:port-ds-list:
+    +--rw ptp-telecom-profile
+       +--rw sync-receipt-timeout?         uint16 {feature-1}?
+       +--rw monitor-receiver?             boolean {feature-2}?
+       +--ro sf-lotm?                      boolean {feature-1}?
+       +--rw delay-resp-receipt-timeout?   uint16 {feature-1}?
+       +--ro sf-unusable?                  boolean {feature-1}?
+       +--rw monitor-sender?               boolean {feature-2}?
+       +--ro sf?                           boolean {feature-1}?
+       +--rw local-priority?               int8
+       +--rw not-time-transmitter?         boolean
+       +--ro sf-su?                        boolean {feature-1}?
+  augment /ietf-ptp:ptp/ietf-ptp:instance-list/ietf-ptp:default-ds:
+    +--rw ptp-telecom-profile
+       +--rw local-priority?   int8
+  augment /ietf-ptp:ptp/ietf-ptp:transparent-clock-default-ds:
+    +--rw ptp-telecom-profile
+       +--rw profile-version?   string
+
+module: itut-ptp-tt-telecom-profile
+
+  augment /ieee1588-ptp-tt:ptp/ieee1588-ptp-tt:instances/ieee1588-ptp-tt:instance/ieee1588-ptp-tt:default-ds:
+    +--rw ptp-telecom-profile
+       +--rw device-type
+       |  +--rw g.8275.1-device-type?   string
+       |  +--rw g.8275.2-device-type?   string
+       |  +--rw g.8265.1-device-type?   string
+       +--rw profile-identifier
+          +--rw type?         itut-ptp-telecom-profile-types:ptp-telecom-profile-type
+          +--rw version
+          |  +--rw primary-version?   int64
+          |  +--rw revision-number?   int64
+          +--ro identifier?   string
+  augment /ieee1588-ptp-tt:ptp/ieee1588-ptp-tt:instances/ieee1588-ptp-tt:instance/ieee1588-ptp-tt:ports/ieee1588-ptp-tt:port/ieee1588-ptp-tt:port-ds:
+    +--rw ptp-telecom-profile
+  augment /ieee1588-ptp-tt:ptp/ieee1588-ptp-tt:transparent-clock-default-ds:
+    +--rw ptp-telecom-profile
+       +--rw profile-identifier
+          +--rw type?         itut-ptp-telecom-profile-types:ptp-telecom-profile-type
+          +--rw version
+          |  +--rw primary-version?   int64
+          |  +--rw revision-number?   int64
+          +--ro identifier?   string

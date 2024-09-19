@@ -1,0 +1,318 @@
+module itut-ptp-telecom-profile {
+    namespace "urn:itu:t:rec:sync-ne:yang:itut-ptp-telecom-profile:itut-ptp-telecom-profile";
+    prefix itut-ptp-telecom-profile;
+    import ietf-ptp {
+        prefix ietf-ptp;
+    }
+    import itut-ptp-telecom-profile-types {
+        prefix itut-ptp-telecom-profile-types;
+    }
+    organization "International Telecommunication Union (ITU)";
+    contact "ITU-T Study Group 15 Question 14";
+    description "Proposed Version 0.0.05: proposed output of the AAP LC comments resolution  (snapshot @ 2020-04-03)
+        Version 0.0.4: output of the 2021-12 SG15 plenary meeting for consent
+        Version 0.0.3: output of the 2021-11-03 Q14/15 virtual meeting
+        Version 0.02: output of the 2021-09-29 Q14/15 virtual meeting";
+    revision 2024-05-29 {
+        description "G.7721.1_v1.1.04";
+        reference "Papyrus 2020-06";
+    }
+    augment "/ietf-ptp:ptp/ietf-ptp:instance-list/ietf-ptp:port-ds-list"{
+        uses ptp-tlp-port-ds-spec;
+        description "Augment the Port DS of a PTP Port.";
+    }
+    augment "/ietf-ptp:ptp/ietf-ptp:instance-list/ietf-ptp:default-ds"{
+        uses ptp-tlp-default-ds-spec;
+        description "Augment the Default DS of a PTP Instance.";
+    }
+    augment "/ietf-ptp:ptp/ietf-ptp:transparent-clock-default-ds"{
+        uses ptp-tlp-tc-default-ds-spec;
+        description "Augment the Transparent Clock Default DS.";
+    }
+    /****************************************
+    * grouping statements for object classes
+    **************************************/ 
+        grouping ptp-tlp-port-ds-spec {
+            container ptp-telecom-profile {
+                uses itut-ptp-telecom-profile-types:common-ptp-tlp-port-ds-pac;
+                description "none";
+                reference "none";
+            }
+            description "The attributes of a PTP telecom profile Port.";
+            reference "none";
+        }
+        grouping ptp-tlp-default-ds-spec {
+            container ptp-telecom-profile {
+                uses itut-ptp-telecom-profile-types:common-ptp-tlp-default-ds-pac;
+                description "none";
+                reference "none";
+            }
+            description "The attributes of a PTP telecom profile Instance.";
+            reference "none";
+        }
+        grouping ptp-tlp-tc-default-ds-spec {
+            container ptp-telecom-profile {
+                uses itut-ptp-telecom-profile-types:common-ptp-tlp-tc-default-ds-pac;
+                description "none";
+                reference "none";
+            }
+            description "The attributes of a PTP telecom profile TC.";
+            reference "none";
+        }
+        grouping ptp-tlp-tc-default-ds-pac {
+            container profile-version {
+                uses itut-ptp-telecom-profile-types:ptp-profile-version;
+                description "The major and minor version of the configured PTP telecom profile for the Transparent Clock.";
+                reference "none";
+            }
+            leaf profile-identifier {
+                type string;
+                config false;
+                description "The identifier of the PTP Telecom Profile, provided by the system based on the PTP Telecom Profile and version.
+                    It is a string representing 6-octets separated by '-' (e.g., 00-19-A7-01-02-06).";
+                reference "ITU-T G.8265.1 v4.0 (11/2022): annex A.1; ITU-T G.8275.1 v4.1 (01/2024): annex A.1; ITU-T G.8275.2 v3.1 (01/2024): annex A.1.";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping ptp-tlp-port-ds-pac {
+            leaf master-only {
+                type boolean;
+                description "When set to true, the port is never placed in the SLAVE
+                    state, and will always go to the MASTER state.";
+                reference "ITU-T G.8275.1 v3.0 (03/2020): clause 6.3.1, item a); ITU-T G.8275.2 v2.0 (03/2020): clause 6.7.1, item a).";
+            }
+            leaf time-transmitter-only {
+                type boolean;
+                description "When set to True, the PTP Port shall be in the timeTrasmitterOnly mode: the PTP Port can never enter the TIME_RECEIVER state.
+                    Setting both the timeTrasmitterOnly and the notTimeTransmitter to True is not allowed.";
+                reference "IEEE Std 1588-2019: clause 8.2.15.5.2.";
+            }
+            description "none";
+            reference "none";
+        }
+        grouping ptp-tlp-default-ds-pac {
+            leaf profile {
+                type itut-ptp-telecom-profile-types:ptp-telecom-profile-type;
+                description "The PTP Telecom Profile which applies to the PTP Instance.
+                    ";
+                reference "none";
+            }
+            container profile-version {
+                uses itut-ptp-telecom-profile-types:ptp-profile-version;
+                description "The major and minor version of the PTP Telecom Profile which applies to the PTP Instance.";
+                reference "none";
+            }
+            container clock-type {
+                if-feature feature-2;
+                uses ptp-tlp-clock-type;
+                description "The clock configuration for the PTP telecom profile Instance.
+                    The profile attribute qualifies whether the type is a
+                    G.8275.1-clock-type or G.8275.2-clock-type.
+                    ";
+                reference "none";
+            }
+            leaf instance-enable {
+                type boolean;
+                description "Indicates whether the PTP Instance is enabled (or not) for PTP operation.";
+                reference "IEEE Std 1588-2019: clause 8.2.1.5.2.";
+            }
+            leaf max-steps-removed {
+                type int8;
+                description "The value used by the PTP Instance to qualify (or not) received Announce messages in the operation of the Best TimeTransmitter Clock Algorithm (BTCA).";
+                reference "IEEE Std 1588-2019: clause 8.2.1.5.4.";
+            }
+            leaf profile-identifier {
+                type string;
+                config false;
+                description "The identifier of the PTP Telecom Profile, provided by the system based on the PTP Telecom Profile and version.
+                    It is a string representing 6-octets separated by '-' (e.g., 00-19-A7-01-02-06).";
+                reference "ITU-T G.8265.1 v4.0 (11/2022): annex A.1; ITU-T G.8275.1 v4.1 (01/2024): annex A.1; ITU-T G.8275.2 v3.1 (01/2024): annex A.1.";
+            }
+            description "none";
+            reference "none";
+        }
+        feature feature-1 {
+            description "Applies to the PTP Ports of a PTP telecom profile Instance";
+        }
+        feature feature-2 {
+            description "Applies only to G.8275.1 and G.8275.2 PTP telecom profile Instances";
+        }
+
+/****************************************
+* typedef statements
+**************************************/ 
+        typedef g.8275.1-clock-type {
+            type identityref {
+                base G.8275.1_CLOCK_TYPE;
+            }
+            description "The clock type of a G.8275.2 PTP Telecom Profile instance.
+                Note that the T-TC clock type is not defined because the PTP Transparent Clock
+                is not managed as a PTP Instance in RFC8575.";
+            reference "ITU-T G.8275.1 v3.0 (03/2020): Table 1; IETF RFC8575: section 2.1.";
+        }
+        typedef g.8275.2-clock-type {
+            type identityref {
+                base G.8275.2_CLOCK_TYPE;
+            }
+            description "The clock type of a G.8275.2 PTP Telecom Profile instance.";
+            reference "ITU-T G.8275.2 v2.0 (03/2020): Table 1; IETF RFC8575: section 2.1.";
+        }
+        typedef ptp-telecom-profile-type {
+            type enumeration {
+                enum G.8265.1 {
+                    description "The G.8265.1 PTP telecom profile.";
+                    reference "none";
+                }
+                enum G.8275.1 {
+                    description "The G.8275.1 PTP telecom profile.";
+                    reference "none";
+                }
+                enum G.8275.2 {
+                    description "The G.8275.2 PTP telecom profile.";
+                    reference "none";
+                }
+            }
+            description "The PTP telecom profile type for a PTP Instance.";
+            reference "none";
+        }
+        typedef g.8265.1-clock-type {
+            type identityref {
+                base G.8265.1_CLOCK_TYPE;
+            }
+            description "none";
+            reference "none";
+        }
+
+/*********************************************
+* grouping statements for complex data types
+*******************************************/ 
+        identity G.8275.1_CLOCK_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity G.8275.1_CLOCK_TYPE_t-gm {
+            base G.8275.1_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.1_CLOCK_TYPE_t-tsc {
+            base G.8275.1_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.1_CLOCK_TYPE_t-bc {
+            base G.8275.1_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE_t-gm {
+            base G.8275.2_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE_t-tsc-a {
+            base G.8275.2_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE_t-tsc-p {
+            base G.8275.2_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE_t-bc-a {
+            base G.8275.2_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8275.2_CLOCK_TYPE_t-bc-p {
+            base G.8275.2_CLOCK_TYPE;
+            description "none";
+            reference "none";
+        }
+        identity G.8265.1_CLOCK_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity G7721_G.8265.1_DEVICE_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity G7721_G.8275.1_DEVICE_TYPE {
+            description "none";
+            reference "none";
+        }
+        identity G7721_G.8275.2_DEVICE_TYPE {
+            description "none";
+            reference "none";
+        }
+        grouping ptp-profile-version-old {
+            leaf primary-version {
+                type uint8;
+                description "The primary version of the PTP telecom profile.";
+                reference "none";
+            }
+            leaf revision-number {
+                type uint8;
+                description "The revision number of the PTP telecom profile.";
+                reference "none";
+            }
+            description "The major and minor version of the configured PTP telecom profile.";
+            reference "IEEE Std 1588-2008: clause 19.3.";
+        }
+        grouping ptp-tlp-clock-type {
+            leaf g.8275.1-clock-type {
+                type g.8275.1-clock-type;
+                description "none";
+                reference "none";
+            }
+            leaf g.8275.2-clock-type {
+                type g.8275.2-clock-type;
+                description "none";
+                reference "none";
+            }
+            leaf g.8265.1-clock-type {
+                type g.8265.1-clock-type;
+                description "none";
+                reference "none";
+            }
+            description "none";
+            reference "none";
+        }
+
+    /****************************************
+    * package to-be-replaced
+    **************************************/ 
+        typedef G7721_PtpTlpDeviceType {
+            type string;
+            description "none";
+            reference "none";
+        }
+        typedef G7721_G.8265.1_DeviceType {
+            type identityref {
+                base G7721_G.8265.1_DEVICE_TYPE;
+            }
+            description "none";
+            reference "none";
+        }
+        typedef G7721_G.8275.1_DeviceType {
+            type identityref {
+                base G7721_G.8275.1_DEVICE_TYPE;
+            }
+            description "none";
+            reference "none";
+        }
+        typedef G7721_G.8275.2_DeviceType {
+            type identityref {
+                base G7721_G.8275.2_DEVICE_TYPE;
+            }
+            description "none";
+            reference "none";
+        }
+
+}

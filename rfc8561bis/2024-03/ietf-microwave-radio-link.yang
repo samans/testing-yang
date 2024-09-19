@@ -60,10 +60,9 @@ module ietf-microwave-radio-link {
   // replace the revision date with the module publication date
   // the format is (year-month-day)
 
-  revision 2024-09-11 {
+  revision 2024-03-03 {
     description
-      "Draft - Issue #35 (grouping common-microwave-properties
-               Issue #31 added minimum-nominal-power";
+      "pretty printing";
     reference
       "RFC XXX: A YANG Data Model for Microwave Radio Link";
   }
@@ -129,8 +128,8 @@ module ietf-microwave-radio-link {
       type uint8;
       description
         "It is the logarithm base two of the number of points in the
-         transmitted constellation.  E.G.:  value would be 2 for
-         4QAM, 10 fo 1024QAM, and 12 for 4096QAM.";
+         transmitted constellation.  E.G.:  value would be 2 for 4QAM,
+         10 fo 1024QAM, and 12 for 4096QAM.";
     }
     leaf nominal-tx-capacity {
       type uint32;
@@ -147,16 +146,16 @@ module ietf-microwave-radio-link {
     leaf max-tx-power {
       type power;
       description
-        "The maximum transmitted power when the carrier termination
-         is operating this acm-profile.  Used to configure
-         transmitted power.";
+        "The maximum transmitted power when the carrier termination is
+         operating this acm-profile.  Used to configure transmitted
+         power.";
     }
     leaf min-tx-power {
       type power;
       description
-        "The minimum transmitted power when the carrier termination
-         is operating this acm-profile.  Used to configure
-         transmitted power.";
+        "The minimum transmitted power when the carrier termination is
+         operating this acm-profile.  Used to configure transmitted
+         power.";
     }
   }
 
@@ -333,7 +332,56 @@ module ietf-microwave-radio-link {
       description
         "Shows the operative status of the transmitter.";
     }
-    uses mw-types common-microwave-properties;
+    leaf tx-frequency {
+      type uint32;
+      units "kHz";
+      mandatory true;
+      description
+        "Selected transmitter frequency.";
+    }
+    choice freq-or-distance {
+      mandatory true;
+      description
+        "A choice to configure rx-frequency directly or compute
+         it as duplex-distance subtracted from tx-frequency.";
+      leaf rx-frequency {
+        type uint32;
+        units "kHz";
+        description
+          "Selected receiver frequency.";
+      }
+      leaf duplex-distance {
+        type int32;
+        units "kHz";
+        description
+          "Distance between transmitter and receiver frequencies.";
+      }
+    }
+    leaf actual-rx-frequency {
+      type uint32;
+      units "kHz";
+      config false;
+      description
+        "Computed receiver frequency.";
+    }
+    leaf actual-duplex-distance {
+      type uint32;
+      units "kHz";
+      config false;
+      description
+        "Computed distance between Tx and Rx frequencies.";
+    }
+    leaf channel-separation {
+      type uint32;
+      units "kHz";
+      mandatory true;
+      description
+        "The amount of bandwidth allocated to a carrier.  The
+         distance between adjacent channels in a radio
+         frequency channels arrangement";
+      reference
+        "ETSI EN 302 217-1";
+    }
     leaf polarization {
       type enumeration {
         enum horizontal {
@@ -392,17 +440,6 @@ module ietf-microwave-radio-link {
           reference
             "ETSI EN 302 217-1";
         }
-        leaf minimum-nominal-power {
-          type power {
-            range "-99..99";
-          }
-          units "dBm";
-          mandatory true;
-          description
-            "Selected minimum output power.";
-          reference
-            "ETSI EN 302 217-1";
-        }
         leaf atpc-lower-threshold {
           type power {
             range "-99..-20";
@@ -429,6 +466,17 @@ module ietf-microwave-radio-link {
             "ETSI EN 302 217-1";
         }
       }
+    }
+    leaf actual-transmitted-level {
+      type power {
+        range "-99..99";
+      }
+      units "dBm";
+      config false;
+      description
+        "Actual transmitted power level (0.1 dBm resolution).";
+      reference
+        "ETSI EN 301 129";
     }
     leaf actual-received-level {
       type power {
@@ -486,6 +534,25 @@ module ietf-microwave-radio-link {
              above this value.";
         }
       }
+    }
+    leaf actual-tx-cm {
+      type identityref {
+        base mw-types:coding-modulation;
+      }
+      config false;
+      description
+        "Actual coding/modulation in transmitting direction.";
+    }
+    leaf actual-snir {
+      type decimal64 {
+        fraction-digits 1;
+        range "0..99";
+      }
+      units "dB";
+      config false;
+      description
+        "Actual signal to noise plus the interference ratio
+         (0.1 dB resolution).";
     }
     leaf actual-xpi {
       if-feature "xpic";
@@ -687,23 +754,22 @@ module ietf-microwave-radio-link {
            termination and defines the parameter's values of each
            transmission acm profile.
            Basically, the list contains all acm profiles supported by
-           the device.  Profiles are organized into profile chains
-           for each different channel separation value available. The
+           the device.  Profiles are organized into profile chains for
+           each different channel separation value available.  The
            chains are formed by the lower-acm-profile-ptr and
            upper-acm-profile-ptr pointers.  The sequence in the list
            reflects the sequence of profiles that are operated by the
-           device according to the fading conditions, from the clear
-           sky down to the persistent rain, and vice versa. The
-           channel-separation and selected-cm configuration
-           parameters (or the selected-min-acm/selected-max-acm
-           pair) must address one of the profiles in the list.";
+           device according to the fading conditions, from the clear sky
+           down to the persistent rain, and vice versa. The
+           channel-separation and selected-cm configuration parameters
+           (or the selected-min-acm/selected-max-acm pair) must address
+           one of the profiles in the list.";
         leaf profile-channel-separation-id {
           type uint32;
           description
             "Uniquely identifies the acm profile (together with
-             'profile-coding-modulation-id').  It could be used to
-             allow the configuration of the channel-separation
-             value.";
+             'profile-coding-modulation-id').  It could be used to allow
+             the configuration of the channel-separation value.";
         }
         leaf profile-coding-modulation-id {
           type identityref {
@@ -711,20 +777,19 @@ module ietf-microwave-radio-link {
           }
           description
             "Uniquely identifies the acm profile (together with
-             'profile-channel-separation-id').  It could be used to
-             allow the configuration of the selected-cm (single
-             mode) or selected-min-acm/selected-max-acm (adaptive
-             mode).";
+             'profile-channel-separation-id').  It could be used to allow
+             the configuration of the selected-cm (single mode) or
+             selected-min-acm/selected-max-acm (adaptive mode).";
         }
         uses acm-profile;
         container lower-acm-profile-ptr {
           description
             "Together with the upper-acm-profile-ptr parameters it
              creates a chain of acm profiles related to a specific
-             channel separation value.  Specifically it references
-             the next lower acm-profile, while upper-acm-profile-ptr
-             references the next higher profile.  The lowest profile
-             in the chain, shall not instantiate this container.  The
+             channel separation value.  Specifically it references the
+             next lower acm-profile, while upper-acm-profile-ptr
+             references the next higher profile.  The lowest profile in
+             the chain, shall not instantiate this container.  The
              acm-profile-list can contain multiple chains related to
              different channel separation values supported by the
              device.";
@@ -758,10 +823,10 @@ module ietf-microwave-radio-link {
           description
             "Together with the lower-acm-profile-ptr parameters it
              creates a chain of acm profiles related to a specific
-             channel separation value.  Specifically it references
-             the next higher acm-profile, while lower-acm-profile-ptr
-             references the next lower profile.  The highest profile
-             in the chain, shall not instantiate this container.  The
+             channel separation value.  Specifically it references the
+             next higher acm-profile, while lower-acm-profile-ptr
+             references the next lower profile.  The highest profile in
+             the chain, shall not instantiate this container.  The
              acm-profile-list can contain multiple chains related to
              different channel separation values supported by the
              device.";

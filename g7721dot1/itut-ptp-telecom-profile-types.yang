@@ -1,0 +1,195 @@
+module itut-ptp-telecom-profile-types {
+  namespace
+    "urn:itu:t:rec:sync-ne:yang:itut-ptp-telecom-profile:itut-ptp-telecom-profile-types";
+  prefix itut-ptp-telecom-profile-types;
+
+  organization
+    "International Telecommunication Union (ITU)";
+  contact
+    "ITU-T Study Group 15 Question 14";
+  description
+    "Version 1.1.04: Output of the Q14/15 virtual meeting on 8 May 2024";
+
+  revision 2024-05-29 {
+    description
+      "G.7721.1_v1.1.04";
+    reference
+      "Papyrus 2020-06";
+  }
+
+  feature feature-1 {
+    description
+      "When Packet Timing Signal Fail (PTSF) is implemented on the PTP Port.";
+  }
+
+  feature feature-2 {
+    description
+      "When the PTP Port belongs to a G.8275.1 PTP Telecom Profile Instance. When the monitoring of the alternate timeTransmitter time information provided by a peer PTP port Port is supported on the PTP Port.";
+  }
+
+  typedef ptp-telecom-profile-type {
+    type enumeration {
+      enum G.8265.1 {
+        description
+          "The G.8265.1 PTP Telecom Profile.";
+        reference
+          "none";
+      }
+      enum G.8275.1 {
+        description
+          "The G.8275.1 PTP Telecom Profile.";
+        reference
+          "none";
+      }
+      enum G.8275.2 {
+        description
+          "The G.8275.2 PTP Telecom Profile.";
+        reference
+          "none";
+      }
+    }
+    description
+      "The PTP Telecom Profile.";
+    reference
+      "none";
+  }
+
+  grouping common-ptp-tlp-tc-default-ds-pac {
+    description
+      "none";
+    reference
+      "none";
+    leaf profile-version {
+      type string;
+      description
+        "The major and minor version of the configured PTP telecom profile for the Transparent Clock.";
+      reference
+        "none";
+    }
+  }
+
+  grouping common-ptp-tlp-port-ds-pac {
+    description
+      "none";
+    reference
+      "none";
+    leaf sync-receipt-timeout {
+      if-feature "feature-1";
+      type uint16;
+      description
+        "The number of Sync message intervals that have to pass without receipt of a Sync or a Follow-up message before the triggering the Packet Timing Signal Fail lossOfTimingMessages (PTSF-LOTM).";
+      reference
+        "ITU-T G.8265.1 v4.0 (11/2022): clause 6.7.3.2; ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9; ITU-T G.8275.2 v3.1 (01/2024): clause 6.7.11.";
+    }
+    leaf monitor-receiver {
+      if-feature "feature-2";
+      type boolean;
+      description
+        "This attribute is used together with the monitorSender attribute in the peer PTP Port, to enable the monitoring of the alternate timeTransmitter time information provided by a peer PTP Port, as shown in Table G-1 of ITU-T G.8275.1.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): annex G.";
+    }
+    leaf sf-lotm {
+      if-feature "feature-1";
+      type boolean;
+      config false;
+      description
+        "Indicates whether the Packet Timing Signal Fail lossOfTimingMessages (PTSF-LOTM) condition is detected or cleared.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9.";
+    }
+    leaf delay-resp-receipt-timeout {
+      if-feature "feature-1";
+      type uint16;
+      description
+        "The number of Delay_Req message intervals that have to pass without receipt of a Delay_Resp message before triggering timeout period for reception of Delay_Resp messages used to trigger the Packet Timing Signal Fail lossOfTimingMessages (PTSF-LOTM).";
+      reference
+        "ITU-T G.8265.1 v4.0 (11/2022): clause 6.7.3.2; ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9; ITU-T G.8275.2 v3.1 (01/2024): clause 6.7.11.";
+    }
+    leaf sf-unusable {
+      if-feature "feature-1";
+      type boolean;
+      config false;
+      description
+        "Indicates whether the Packet Timing Signal Fail unusable (PTSF-unusable) condition is detected or cleared.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9.";
+    }
+    leaf monitor-sender {
+      if-feature "feature-2";
+      type boolean;
+      description
+        "This attribute is used together with the monitorReceiver attribute in the peer PTP Port, to enable the monitoring of the alternate timeTransmitter time information provided by a peer PTP Port, as shown in Table G-1 of ITU-T G.8275.1.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): annex G.";
+    }
+    leaf sf {
+      if-feature "feature-1";
+      type boolean;
+      config false;
+      description
+        "Indicates whether the clock generates (or not) a state decision event when the beginning or the end of a Packet Timing Signal Fail (PTSF) condition occurs at the PTP Port.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9; ITU-T G.8275.2 v3.1 (01/2024): clause 6.7.11.";
+    }
+    leaf local-priority {
+      type int8;
+      description
+        "The local priority assigned to the PTP Port and used by the Best TimeTransmitter Clock Algorithm (BTCA).";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.1, item d); ITU-T G.8275.2 v3.1 (01/2024): clause 6.7.1, item d).";
+    }
+    leaf not-time-transmitter {
+      type boolean;
+      description
+        "When set to True, the PTP Port can never enter the PRE_TIME_TRANSMITTER or the TIME_TRANSMITTER state, and, if the recommended state by the Alternate Best TimeTransmitter Clock Algorithm (BTCA) is BTC_ TIME_TRANSMITTER, then the PTP Port should instead be placed in the PASSIVE state.
+         Setting both the timeTrasmitterOnly and the notTimeTransmitter to True is not allowed.";
+      reference
+        "ITU-T G.8275 v4.0 (01/2024): annex E.";
+    }
+    leaf sf-su {
+      if-feature "feature-1";
+      type boolean;
+      config false;
+      description
+        "Indicates whether the packet Packet timing Timing signal Signal fail Fail synchronizationUncertain (PTSF-SU) condition is detected or cleared.";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.9.";
+    }
+  }
+
+  grouping common-ptp-tlp-default-ds-pac {
+    description
+      "none";
+    reference
+      "none";
+    leaf local-priority {
+      type int8;
+      description
+        "The local priority assigned to the PTP Instance and used by the Best TimeTransmitter Clock Algorithm (BTCA).";
+      reference
+        "ITU-T G.8275.1 v4.1 (01/2024): clause 6.3.1, item e); ITU-T G.8275.2 v3.1 (01/2024): clause 6.7.1, item e).";
+    }
+  }
+
+  grouping ptp-profile-version {
+    description
+      "The major and minor version of the PTP Telecom Profile.";
+    reference
+      "IEEE Std 1588-2019: clause 20.3.";
+    leaf primary-version {
+      type int64;
+      description
+        "The primary version of the PTP Telecom Profile.";
+      reference
+        "none";
+    }
+    leaf revision-number {
+      type int64;
+      description
+        "The revision number of the PTP Telecom Profile.";
+      reference
+        "none";
+    }
+  }
+}

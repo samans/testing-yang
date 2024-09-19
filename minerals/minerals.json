@@ -4,7 +4,9 @@
       {
         "mineral-name": "Talc",
         "physical-properties": "White, Green, Gray, or Black. Greasy",
-        "hardness": "1.0"
+        "hardness": "1.0",
+        "mybitstring": "mybit1",
+        "mybitstring-refined": "mybit2"
       },
       {
         "mineral-name": "Gypsum",
