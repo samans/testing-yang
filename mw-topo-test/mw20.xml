@@ -1,0 +1,364 @@
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>L2Interface1</name>
+    <description>'Ethernet Interface 1'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+  </interface>
+  <interface>
+    <name>L2Interface2</name>
+    <description>'Ethernet Interface 2'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+  </interface>
+  <interface>
+    <name>RLT-1</name>
+    <description>'Radio Link Terminal 1'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveRadioLinkTerminal</type>
+    <mode xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link" xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:two-plus-zero</mode>
+    <carrier-terminations xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">CT-1</carrier-terminations>
+    <carrier-terminations xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">CT-3</carrier-terminations>
+  </interface>
+  <interface>
+    <name>RLT-2</name>
+    <description>'Radio Link Terminal 2'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveRadioLinkTerminal</type>
+    <mode xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link" xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:two-plus-zero</mode>
+    <carrier-terminations xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">CT-2</carrier-terminations>
+    <carrier-terminations xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">CT-4</carrier-terminations>
+  </interface>
+  <interface>
+    <name>CT-1</name>
+    <description>'Carrier Termination 1'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveCarrierTermination</type>
+    <tx-frequency xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">10728000</tx-frequency>
+    <duplex-distance xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">113000</duplex-distance>
+    <channel-separation xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">28000</channel-separation>
+    <rtpc xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <maximum-nominal-power>20.0</maximum-nominal-power>
+    </rtpc>
+    <single xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <selected-cm xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:qam-512</selected-cm>
+    </single>
+  </interface>
+  <interface>
+    <name>CT-3</name>
+    <description>'Carrier Termination 3'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveCarrierTermination</type>
+    <tx-frequency xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">10528000</tx-frequency>
+    <duplex-distance xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">113000</duplex-distance>
+    <channel-separation xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">28000</channel-separation>
+    <rtpc xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <maximum-nominal-power>20.0</maximum-nominal-power>
+    </rtpc>
+    <single xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <selected-cm xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:qam-512</selected-cm>
+    </single>
+  </interface>
+  <interface>
+    <name>CT-2</name>
+    <description>'Carrier Termination 2'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveCarrierTermination</type>
+    <tx-frequency xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">10615000</tx-frequency>
+    <duplex-distance xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">113000</duplex-distance>
+    <channel-separation xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">28000</channel-separation>
+    <rtpc xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <maximum-nominal-power>20.0</maximum-nominal-power>
+    </rtpc>
+    <single xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <selected-cm xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:qam-512</selected-cm>
+    </single>
+  </interface>
+  <interface>
+    <name>CT-4</name>
+    <description>'Carrier Termination 4'</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:microwaveCarrierTermination</type>
+    <tx-frequency xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">10415000</tx-frequency>
+    <duplex-distance xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">113000</duplex-distance>
+    <channel-separation xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">28000</channel-separation>
+    <rtpc xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <maximum-nominal-power>20.0</maximum-nominal-power>
+    </rtpc>
+    <single xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-radio-link">
+      <selected-cm xmlns:mw-types="urn:ietf:params:xml:ns:yang:ietf-microwave-types">mw-types:qam-512</selected-cm>
+    </single>
+  </interface>
+</interfaces>
+<networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
+  <network>
+    <network-id>L2-network</network-id>
+    <network-types>
+      <te-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <eth-tran-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-eth-te-topology"/>
+      </te-topology>
+    </network-types>
+    <supporting-network>
+      <network-ref>mw-network</network-ref>
+    </supporting-network>
+    <node>
+      <node-id>L2-N1</node-id>
+      <supporting-node>
+        <network-ref>mw-network</network-ref>
+        <node-ref>mw-N1</node-ref>
+      </supporting-node>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>L2-N1-TP1</tp-id>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N1</node-ref>
+          <tp-ref>mw-N1-RLTP1</tp-ref>
+        </supporting-termination-point>
+      </termination-point>
+      <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.1</te-node-id>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-node-attributes>
+          <eth-node xmlns="urn:ietf:params:xml:ns:yang:ietf-eth-te-topology"/>
+        </te-node-attributes>
+      </te>
+    </node>
+    <node>
+      <node-id>L2-N2</node-id>
+      <supporting-node>
+        <network-ref>mw-network</network-ref>
+        <node-ref>mw-N2</node-ref>
+      </supporting-node>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>L2-N2-TP2</tp-id>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N2</node-ref>
+          <tp-ref>mw-N2-RLTP2</tp-ref>
+        </supporting-termination-point>
+      </termination-point>
+      <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.2</te-node-id>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-node-attributes>
+          <eth-node xmlns="urn:ietf:params:xml:ns:yang:ietf-eth-te-topology"/>
+        </te-node-attributes>
+      </te>
+    </node>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>L2-N1-N2</link-id>
+      <source>
+        <source-node>L2-N1</source-node>
+        <source-tp>L2-N1-TP1</source-tp>
+      </source>
+      <destination>
+        <dest-node>L2-N2</dest-node>
+        <dest-tp>L2-N2-TP2</dest-tp>
+      </destination>
+      <supporting-link>
+        <network-ref>mw-network</network-ref>
+        <link-ref>mwrl-N1-N2</link-ref>
+      </supporting-link>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-link-attributes>
+          <interface-switching-capability>
+            <switching-capability xmlns:te-types="urn:ietf:params:xml:ns:yang:ietf-te-types">te-types:switching-l2sc</switching-capability>
+            <encoding xmlns:te-types="urn:ietf:params:xml:ns:yang:ietf-te-types">te-types:lsp-encoding-ethernet</encoding>
+          </interface-switching-capability>
+        </te-link-attributes>
+      </te>
+    </link>
+  </network>
+  <network>
+    <network-id>mw-network</network-id>
+    <network-types>
+      <te-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <mw-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology"/>
+      </te-topology>
+    </network-types>
+    <supporting-network>
+      <network-ref>mw-network</network-ref>
+    </supporting-network>
+    <node>
+      <node-id>mw-N1</node-id>
+      <supporting-node>
+        <network-ref>mw-network</network-ref>
+        <node-ref>mw-N1</node-ref>
+      </supporting-node>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N1-RLTP1</tp-id>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N1</node-ref>
+          <tp-ref>mw-N1-CTP1</tp-ref>
+        </supporting-termination-point>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N1</node-ref>
+          <tp-ref>mw-N1-CTP3</tp-ref>
+        </supporting-termination-point>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.3</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-rltp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">RLT-1</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N1-CTP1</tp-id>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">1</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-ctp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">CT-1</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N1-CTP3</tp-id>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">2</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-ctp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">CT-3</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.1</te-node-id>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-node-attributes>
+          <mw-node xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology"/>
+        </te-node-attributes>
+      </te>
+    </node>
+    <node>
+      <node-id>mw-N2</node-id>
+      <supporting-node>
+        <network-ref>mw-network</network-ref>
+        <node-ref>mw-N2</node-ref>
+      </supporting-node>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N2-RLTP2</tp-id>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N2</node-ref>
+          <tp-ref>mw-N2-CTP2</tp-ref>
+        </supporting-termination-point>
+        <supporting-termination-point>
+          <network-ref>mw-network</network-ref>
+          <node-ref>mw-N2</node-ref>
+          <tp-ref>mw-N2-CTP4</tp-ref>
+        </supporting-termination-point>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.4</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-rltp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">RLT-2</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N2-CTP2</tp-id>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">1</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-ctp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">CT-2</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+        <tp-id>mw-N2-CTP4</tp-id>
+        <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">2</te-tp-id>
+        <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+          <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-ctp/>
+          </mw-tp>
+          <tp-to-interface-path xmlns="urn:ietf:params:xml:ns:yang:ietf-tp-interface-reference-topology">CT-4</tp-to-interface-path>
+        </te>
+      </termination-point>
+      <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.1</te-node-id>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-node-attributes>
+          <mw-node xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology"/>
+        </te-node-attributes>
+      </te>
+    </node>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>mwrl-N1-N2</link-id>
+      <source>
+        <source-node>mw-N1</source-node>
+        <source-tp>mw-N1-RLTP1</source-tp>
+      </source>
+      <destination>
+        <dest-node>mw-N2</dest-node>
+        <dest-tp>mw-N2-RLTP2</dest-tp>
+      </destination>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <bundled-links>
+          <bundled-link>
+            <sequence>1</sequence>
+            <src-tp-ref>mw-N1-CTP1</src-tp-ref>
+            <des-tp-ref>mw-N2-CTP2</des-tp-ref>
+          </bundled-link>
+          <bundled-link>
+            <sequence>2</sequence>
+            <src-tp-ref>mw-N1-CTP3</src-tp-ref>
+            <des-tp-ref>mw-N2-CTP4</des-tp-ref>
+          </bundled-link>
+        </bundled-links>
+        <te-link-attributes>
+          <mw-link xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-radio-link>
+              <rlt-mode>
+                <num-bonded-carriers>2</num-bonded-carriers>
+                <num-protecting-carriers>0</num-protecting-carriers>
+              </rlt-mode>
+            </microwave-radio-link>
+          </mw-link>
+        </te-link-attributes>
+      </te>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>mwc-N1-N2-A</link-id>
+      <source>
+        <source-node>mw-N1</source-node>
+        <source-tp>mw-N1-CTP1</source-tp>
+      </source>
+      <destination>
+        <dest-node>mw-N2</dest-node>
+        <dest-tp>mw-N2-CTP2</dest-tp>
+      </destination>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-link-attributes>
+          <link-availability xmlns="urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology">
+            <availability>0.99</availability>
+            <link-bandwidth>998423</link-bandwidth>
+          </link-availability>
+          <link-availability xmlns="urn:ietf:params:xml:ns:yang:ietf-bandwidth-availability-topology">
+            <availability>0.95</availability>
+            <link-bandwidth>1048576</link-bandwidth>
+          </link-availability>
+          <mw-link xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-carrier>
+              <tx-frequency>10728000</tx-frequency>
+              <channel-separation>28000</channel-separation>
+            </microwave-carrier>
+          </mw-link>
+        </te-link-attributes>
+      </te>
+    </link>
+    <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
+      <link-id>mwc-N1-N2-B</link-id>
+      <source>
+        <source-node>mw-N1</source-node>
+        <source-tp>mw-N1-CTP3</source-tp>
+      </source>
+      <destination>
+        <dest-node>mw-N2</dest-node>
+        <dest-tp>mw-N2-CTP4</dest-tp>
+      </destination>
+      <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
+        <te-link-attributes>
+          <mw-link xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
+            <microwave-carrier>
+              <tx-frequency>10528000</tx-frequency>
+              <channel-separation>28000</channel-separation>
+            </microwave-carrier>
+          </mw-link>
+        </te-link-attributes>
+      </te>
+    </link>
+  </network>
+</networks>

@@ -387,7 +387,6 @@
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
-                    "rx-frequency": 10615000,
                     "channel-separation": 28000
                   }
                 }
@@ -409,7 +408,6 @@
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10528000,
-                    "rx-frequency": 10415000,
                     "channel-separation": 28000
                   }
                 }

@@ -1,0 +1,542 @@
+module: ietf-interfaces
+  +--rw interfaces
+  |  +--rw interface* [name]
+  |     +--rw name                        string
+  |     +--rw description?                string
+  |     +--rw type                        identityref
+  |     +--rw enabled?                    boolean
+  |     +--rw link-up-down-trap-enable?   enumeration {if-mib}?
+  |     +--ro admin-status                enumeration {if-mib}?
+  |     +--ro oper-status                 enumeration
+  |     +--ro last-change?                yang:date-and-time
+  |     +--ro if-index                    int32 {if-mib}?
+  |     +--ro phys-address?               yang:phys-address
+  |     +--ro higher-layer-if*            interface-ref
+  |     +--ro lower-layer-if*             interface-ref
+  |     +--ro speed?                      yang:gauge64
+  |     +--ro statistics
+  |        +--ro discontinuity-time    yang:date-and-time
+  |        +--ro in-octets?            yang:counter64
+  |        +--ro in-unicast-pkts?      yang:counter64
+  |        +--ro in-broadcast-pkts?    yang:counter64
+  |        +--ro in-multicast-pkts?    yang:counter64
+  |        +--ro in-discards?          yang:counter32
+  |        +--ro in-errors?            yang:counter32
+  |        +--ro in-unknown-protos?    yang:counter32
+  |        +--ro out-octets?           yang:counter64
+  |        +--ro out-unicast-pkts?     yang:counter64
+  |        +--ro out-broadcast-pkts?   yang:counter64
+  |        +--ro out-multicast-pkts?   yang:counter64
+  |        +--ro out-discards?         yang:counter32
+  |        +--ro out-errors?           yang:counter32
+  x--ro interfaces-state
+     x--ro interface* [name]
+        x--ro name               string
+        x--ro type               identityref
+        x--ro admin-status       enumeration {if-mib}?
+        x--ro oper-status        enumeration
+        x--ro last-change?       yang:date-and-time
+        x--ro if-index           int32 {if-mib}?
+        x--ro phys-address?      yang:phys-address
+        x--ro higher-layer-if*   interface-state-ref
+        x--ro lower-layer-if*    interface-state-ref
+        x--ro speed?             yang:gauge64
+        x--ro statistics
+           x--ro discontinuity-time    yang:date-and-time
+           x--ro in-octets?            yang:counter64
+           x--ro in-unicast-pkts?      yang:counter64
+           x--ro in-broadcast-pkts?    yang:counter64
+           x--ro in-multicast-pkts?    yang:counter64
+           x--ro in-discards?          yang:counter32
+           x--ro in-errors?            yang:counter32
+           x--ro in-unknown-protos?    yang:counter32
+           x--ro out-octets?           yang:counter64
+           x--ro out-unicast-pkts?     yang:counter64
+           x--ro out-broadcast-pkts?   yang:counter64
+           x--ro out-multicast-pkts?   yang:counter64
+           x--ro out-discards?         yang:counter32
+           x--ro out-errors?           yang:counter32
+
+module: ieee1588-ptp-tt
+  +--rw ptp
+     +--rw instances
+     |  +--rw instance* [instance-index]
+     |     +--rw instance-index                    uint32
+     |     +--rw default-ds
+     |     |  x--ro two-step-flag?                          boolean
+     |     |  +--ro clock-identity?                         clock-identity
+     |     |  +--ro number-ports?                           uint16
+     |     |  +--rw clock-quality
+     |     |  |  +--rw clock-class?                  identityref
+     |     |  |  +--rw clock-accuracy?               identityref
+     |     |  |  +--rw offset-scaled-log-variance?   uint16
+     |     |  +--rw priority1?                              uint8
+     |     |  +--rw priority2?                              uint8
+     |     |  +--rw domain-number?                          uint8
+     |     |  +--rw time-receiver-only?                     boolean
+     |     |  +--rw sdo-id?                                 uint16
+     |     |  +--rw current-time
+     |     |  |  +--rw seconds-field?       uint64
+     |     |  |  +--rw nanoseconds-field?   uint32
+     |     |  +--rw instance-enable?                        boolean
+     |     |  +--rw external-port-config-enable?            boolean {external-port-config}?
+     |     |  +--rw max-steps-removed?                      uint8
+     |     |  +--rw instance-type?                          instance-type
+     |     |  +--ro dot1as-gptp:gm-capable?                 boolean
+     |     |  +--ro dot1as-gptp:current-utc-offset?         int16
+     |     |  +--ro dot1as-gptp:current-utc-offset-valid?   boolean
+     |     |  +--ro dot1as-gptp:leap59?                     boolean
+     |     |  +--ro dot1as-gptp:leap61?                     boolean
+     |     |  +--ro dot1as-gptp:time-traceable?             boolean
+     |     |  +--ro dot1as-gptp:frequency-traceable?        boolean
+     |     |  +--ro dot1as-gptp:ptp-timescale?              boolean
+     |     |  +--ro dot1as-gptp:time-source?                identityref
+     |     |  +--rw ptp-tlp:ptp-telecom-profile!
+     |     |     +--rw ptp-tlp:profile-identifier
+     |     |     |  +--rw ptp-tlp:type          ptp-tlp-types:ptp-telecom-profile-type
+     |     |     |  +--rw ptp-tlp:version
+     |     |     |  |  +--rw ptp-tlp:primary-version?   uint8
+     |     |     |  |  +--rw ptp-tlp:revision-number?   uint8
+     |     |     |  +--ro ptp-tlp:identifier?   string
+     |     |     +--rw ptp-tlp:device-type                              union
+     |     |     +--rw ptp-tlp:local-priority?                          uint8
+     |     |     +--rw ptp-tlp:holdover-in-spec-duration?               uint16
+     |     |     +--rw ptp-tlp:holdover-in-spec-time-error-threshold?   uint16
+     |     |     +--ro ptp-tlp:holdover-in-spec-capability?             enumeration
+     |     |     +--ro ptp-tlp:holdover-in-spec-remaining-duration?     uint16
+     |     |     +--rw ptp-tlp:wtr-time?                                uint8
+     |     |     +--ro ptp-tlp:clock-mode?                              clock-mode
+     |     |     +--ro ptp-tlp:node-class?                              union
+     |     +--rw current-ds
+     |     |  +--ro steps-removed?                           uint16
+     |     |  +--ro offset-from-time-transmitter?            time-interval
+     |     |  +--ro mean-delay?                              time-interval
+     |     |  x--ro mean-path-delay?                         time-interval
+     |     |  +--ro synchronization-uncertain?               boolean
+     |     |  +--ro dot1as-gptp:last-gm-phase-change?        scaled-ns
+     |     |  +--ro dot1as-gptp:last-gm-freq-change?         float64
+     |     |  +--ro dot1as-gptp:gm-timebase-indicator?       uint16
+     |     |  +--ro dot1as-gptp:gm-change-count?             yang:counter32
+     |     |  +--ro dot1as-gptp:time-of-last-gm-change?      yang:timestamp
+     |     |  +--ro dot1as-gptp:time-of-last-phase-change?   yang:timestamp
+     |     |  +--ro dot1as-gptp:time-of-last-freq-change?    yang:timestamp
+     |     +--rw parent-ds
+     |     |  +--ro parent-port-identity
+     |     |  |  +--ro clock-identity?   clock-identity
+     |     |  |  +--ro port-number?      uint16
+     |     |  +--ro parent-stats?                                 boolean
+     |     |  +--ro observed-parent-offset-scaled-log-variance?   uint16
+     |     |  +--ro observed-parent-clock-phase-change-rate?      int32
+     |     |  +--ro grandmaster-identity?                         clock-identity
+     |     |  +--ro grandmaster-clock-quality
+     |     |  |  +--ro clock-class?                  identityref
+     |     |  |  +--ro clock-accuracy?               identityref
+     |     |  |  +--ro offset-scaled-log-variance?   uint16
+     |     |  +--ro grandmaster-priority1?                        uint8
+     |     |  +--ro grandmaster-priority2?                        uint8
+     |     |  +--rw protocol-address
+     |     |  |  +--rw network-protocol?   identityref
+     |     |  |  +--rw address-length?     uint16
+     |     |  |  +--rw address-field?      string
+     |     |  +--ro synchronization-uncertain?                    boolean
+     |     |  +--ro dot1as-gptp:cumulative-rate-ratio?            int32
+     |     +--rw time-properties-ds
+     |     |  +--rw current-utc-offset?         int16
+     |     |  +--rw current-utc-offset-valid?   boolean
+     |     |  +--rw leap59?                     boolean
+     |     |  +--rw leap61?                     boolean
+     |     |  +--rw time-traceable?             boolean
+     |     |  +--rw frequency-traceable?        boolean
+     |     |  +--rw ptp-timescale?              boolean
+     |     |  +--rw time-source?                identityref
+     |     +--rw description-ds
+     |     |  +--ro manufacturer-identity?   string
+     |     |  +--ro product-description?     string
+     |     |  +--ro product-revision?        string
+     |     |  +--rw user-description?        string
+     |     +--ro fault-log-ds {fault-log}?
+     |     |  +--ro number-of-fault-records?   uint16
+     |     |  +--ro fault-record-list* []
+     |     |  |  +--ro time
+     |     |  |  |  +--ro seconds-field?       uint64
+     |     |  |  |  +--ro nanoseconds-field?   uint32
+     |     |  |  +--ro severity?      fault-severity
+     |     |  |  +--ro name?          string
+     |     |  |  +--ro value?         string
+     |     |  |  +--ro description?   string
+     |     |  +---x reset
+     |     +--rw path-trace-ds {path-trace}?
+     |     |  +--ro list*     clock-identity
+     |     |  +--rw enable?   boolean
+     |     +--rw alternate-timescale-ds {alternate-timescale}?
+     |     |  +--ro max-key?   uint8
+     |     |  +--rw list* [key-field]
+     |     |     +--rw key-field            uint8
+     |     |     +--rw enable?              boolean
+     |     |     +--rw current-offset?      int32
+     |     |     +--rw jump-seconds?        int32
+     |     |     +--rw time-of-next-jump?   uint64
+     |     |     +--rw display-name?        string
+     |     +--rw holdover-upgrade-ds {holdover-upgrade}?
+     |     |  +--rw enable?   boolean
+     |     +--rw grandmaster-cluster-ds {grandmaster-cluster}?
+     |     |  +--ro max-table-size?       uint8
+     |     |  +--rw log-query-interval?   int8
+     |     |  +--rw port-address* [index]
+     |     |     +--rw index               uint16
+     |     |     +--rw network-protocol?   identityref
+     |     |     +--rw address-length?     uint16
+     |     |     +--rw address-field?      string
+     |     +--rw acceptable-time-transmitter-ds {acceptable-time-transmitter}?
+     |     |  +--ro max-table-size?   uint16
+     |     |  +--rw list* [index]
+     |     |     +--rw index                       uint8
+     |     |     +--rw acceptable-port-identity
+     |     |     |  +--rw clock-identity?   clock-identity
+     |     |     |  +--rw port-number?      uint16
+     |     |     +--rw alternate-priority1?        uint8
+     |     +--rw performance-monitoring-ds {performance-monitoring}?
+     |     |  +--rw enable?        boolean
+     |     |  +--ro record-list* [index]
+     |     |     +--ro index                                           uint16
+     |     |     +--ro measurement-valid?                              boolean
+     |     |     +--ro period-complete?                                boolean
+     |     |     +--ro pm-time?                                        yang:timestamp
+     |     |     +--ro average-time-transmitter-time-receiver-delay?   time-interval
+     |     |     +--ro minimum-time-transmitter-time-receiver-delay?   time-interval
+     |     |     +--ro maximum-time-transmitter-time-receiver-delay?   time-interval
+     |     |     +--ro stddev-time-transmitter-time-receiver-delay?    time-interval
+     |     |     +--ro average-time-receiver-time-transmitter-delay?   time-interval
+     |     |     +--ro minimum-time-receiver-time-transmitter-delay?   time-interval
+     |     |     +--ro maximum-time-receiver-time-transmitter-delay?   time-interval
+     |     |     +--ro stddev-time-receiver-time-transmitter-delay?    time-interval
+     |     |     +--ro average-mean-path-delay?                        time-interval
+     |     |     +--ro minimum-mean-path-delay?                        time-interval
+     |     |     +--ro maximum-mean-path-delay?                        time-interval
+     |     |     +--ro stddev-mean-path-delay?                         time-interval
+     |     |     +--ro average-offset-from-time-transmitter?           time-interval
+     |     |     +--ro minimum-offset-from-time-transmitter?           time-interval
+     |     |     +--ro maximum-offset-from-time-transmitter?           time-interval
+     |     |     +--ro stddev-offset-from-time-transmitter?            time-interval
+     |     +--rw enhanced-metrics-ds {enhanced-metrics}?
+     |     |  +--rw enable?   boolean
+     |     +--rw ports
+     |        +--rw port* [port-index]
+     |           +--rw port-index                                   uint16
+     |           +--rw underlying-interface?                        if:interface-ref
+     |           +--rw port-ds
+     |           |  +--ro port-identity
+     |           |  |  +--ro clock-identity?   clock-identity
+     |           |  |  +--ro port-number?      uint16
+     |           |  +--ro port-state?                                        port-state
+     |           |  +--rw log-min-delay-req-interval?                        int8
+     |           |  +--ro mean-link-delay?                                   time-interval
+     |           |  x--ro peer-mean-path-delay?                              time-interval
+     |           |  +--rw log-announce-interval?                             int8
+     |           |  +--rw announce-receipt-timeout?                          uint8
+     |           |  +--rw log-sync-interval?                                 int8
+     |           |  +--rw delay-mechanism?                                   delay-mechanism
+     |           |  +--rw log-min-pdelay-req-interval?                       int8
+     |           |  +--rw version-number?                                    uint8
+     |           |  +--rw minor-version-number?                              uint8
+     |           |  +--rw delay-asymmetry?                                   time-interval
+     |           |  +--rw port-enable?                                       boolean
+     |           |  +--rw time-transmitter-only?                             boolean
+     |           |  +--ro dot1as-gptp:is-measuring-delay?                    boolean
+     |           |  +--ro dot1as-gptp:as-capable?                            boolean
+     |           |  +--rw dot1as-gptp:mean-link-delay-thresh?                ptp-tt:time-interval
+     |           |  +--ro dot1as-gptp:neighbor-rate-ratio?                   int32
+     |           |  +--rw dot1as-gptp:initial-log-announce-interval?         int8
+     |           |  +--ro dot1as-gptp:current-log-announce-interval?         int8
+     |           |  +--rw dot1as-gptp:use-mgt-log-announce-interval?         boolean
+     |           |  +--rw dot1as-gptp:initial-log-sync-interval?             int8
+     |           |  +--ro dot1as-gptp:current-log-sync-interval?             int8
+     |           |  +--rw dot1as-gptp:use-mgt-log-sync-interval?             boolean
+     |           |  +--rw dot1as-gptp:sync-receipt-timeout?                  uint8
+     |           |  +--ro dot1as-gptp:sync-receipt-timeout-interval?         uscaled-ns
+     |           |  +--rw dot1as-gptp:initial-log-pdelay-req-interval?       int8
+     |           |  +--ro dot1as-gptp:current-log-pdelay-req-interval?       int8
+     |           |  +--rw dot1as-gptp:use-mgt-log-pdelay-req-interval?       boolean
+     |           |  +--rw dot1as-gptp:mgt-log-pdelay-req-interval?           int8
+     |           |  +--rw dot1as-gptp:initial-log-gptp-cap-interval?         int8
+     |           |  +--ro dot1as-gptp:current-log-gptp-cap-interval?         int8
+     |           |  +--rw dot1as-gptp:use-mgt-log-gptp-cap-interval?         boolean
+     |           |  +--rw dot1as-gptp:mgt-log-gptp-cap-interval?             int8
+     |           |  +--rw dot1as-gptp:initial-compute-neighbor-rate-ratio?   boolean
+     |           |  +--ro dot1as-gptp:current-compute-neighbor-rate-ratio?   boolean
+     |           |  +--rw dot1as-gptp:use-mgt-compute-neighbor-rate-ratio?   boolean
+     |           |  +--rw dot1as-gptp:mgt-compute-neighbor-rate-ratio?       boolean
+     |           |  +--rw dot1as-gptp:initial-compute-mean-link-delay?       boolean
+     |           |  +--ro dot1as-gptp:current-compute-mean-link-delay?       boolean
+     |           |  +--rw dot1as-gptp:use-mgt-compute-mean-link-delay?       boolean
+     |           |  +--rw dot1as-gptp:mgt-compute-mean-link-delay?           boolean
+     |           |  +--rw dot1as-gptp:allowed-lost-responses?                uint8
+     |           |  +--rw dot1as-gptp:allowed-faults?                        uint8
+     |           |  +--rw dot1as-gptp:gptp-cap-receipt-timeout?              uint8
+     |           |  +--rw dot1as-gptp:nup?                                   float64
+     |           |  +--rw dot1as-gptp:ndown?                                 float64
+     |           |  +--ro dot1as-gptp:one-step-tx-oper?                      boolean
+     |           |  +--ro dot1as-gptp:one-step-receive?                      boolean
+     |           |  +--ro dot1as-gptp:one-step-transmit?                     boolean
+     |           |  +--rw dot1as-gptp:initial-one-step-tx-oper?              boolean
+     |           |  +--ro dot1as-gptp:current-one-step-tx-oper?              boolean
+     |           |  +--rw dot1as-gptp:use-mgt-one-step-tx-oper?              boolean
+     |           |  +--rw dot1as-gptp:mgt-one-step-tx-oper?                  boolean
+     |           |  +--ro dot1as-gptp:sync-locked?                           boolean
+     |           |  +--ro dot1as-gptp:pdelay-truncated-timestamps*           uinteger48
+     |           |  +--rw ptp-tlp:ptp-telecom-profile
+     |           |     +--rw ptp-tlp:local-priority?               uint8
+     |           |     +--ro ptp-tlp:two-step-flag?                boolean
+     |           |     +--rw ptp-tlp:sync-receipt-timeout?         uint16
+     |           |     +--rw ptp-tlp:delay-resp-receipt-timeout?   uint16
+     |           |     +--rw ptp-tlp:not-time-transmitter?         boolean
+     |           |     +--rw ptp-tlp:monitor-sender?               boolean
+     |           |     +--rw ptp-tlp:monitor-receiver?             boolean
+     |           |     +--ro ptp-tlp:sf?                           boolean
+     |           |     +--ro ptp-tlp:sf-lotm?                      boolean
+     |           |     +--ro ptp-tlp:sf-unusable?                  boolean
+     |           |     +--ro ptp-tlp:sf-su?                        boolean
+     |           |     +--ro ptp-tlp:wtr-state?                    boolean
+     |           +--rw timestamp-correction-port-ds {timestamp-correction}?
+     |           |  +--rw egress-latency?    time-interval
+     |           |  +--rw ingress-latency?   time-interval
+     |           +--rw asymmetry-correction-port-ds {asymmetry-correction}?
+     |           |  +--rw constant-asymmetry?         time-interval
+     |           |  +--rw scaled-delay-coefficient?   relative-difference
+     |           |  +--rw enable?                     boolean
+     |           +--rw description-port-ds
+     |           |  +--ro profile-identifier?   string
+     |           |  +--ro protocol-address
+     |           |     +--ro network-protocol?   identityref
+     |           |     +--ro address-length?     uint16
+     |           |     +--ro address-field?      string
+     |           +--rw unicast-negotiation-port-ds {unicast-negotiation}?
+     |           |  +--rw enable?   boolean
+     |           +--rw alternate-time-transmitter-port-ds {alternate-time-transmitter}?
+     |           |  +--rw number-of-alt-time-transmitters?   uint8
+     |           |  +--rw tx-alt-multicast-sync?             boolean
+     |           |  +--rw log-alt-multicast-sync-interval?   int8
+     |           +--rw unicast-discovery-port-ds {unicast-discovery}?
+     |           |  +--ro max-table-size?       uint16
+     |           |  +--rw log-query-interval?   int8
+     |           |  +--rw port-address* [index]
+     |           |     +--rw index               uint16
+     |           |     +--rw network-protocol?   identityref
+     |           |     +--rw address-length?     uint16
+     |           |     +--rw address-field?      string
+     |           +--rw acceptable-time-transmitter-port-ds {acceptable-time-transmitter}?
+     |           |  +--rw enable?   boolean
+     |           +--rw l1-sync-basic-port-ds {l1-sync}?
+     |           |  +--rw enabled?                        boolean
+     |           |  +--rw tx-coherent-is-required?        boolean
+     |           |  +--rw rx-coherent-is-required?        boolean
+     |           |  +--rw congruent-is-required?          boolean
+     |           |  +--rw opt-params-enabled?             boolean
+     |           |  +--rw log-l1sync-interval?            int8
+     |           |  +--rw l1sync-receipt-timeout?         uint8
+     |           |  +--ro link-alive?                     boolean
+     |           |  +--ro is-tx-coherent?                 boolean
+     |           |  +--ro is-rx-coherent?                 boolean
+     |           |  +--ro is-congruent?                   boolean
+     |           |  +--ro l1sync-state?                   l1sync-state
+     |           |  +--ro peer-tx-coherent-is-required?   boolean
+     |           |  +--ro peer-rx-coherent-is-required?   boolean
+     |           |  +--ro peer-congruent-is-required?     boolean
+     |           |  +--ro peer-is-tx-coherent?            boolean
+     |           |  +--ro peer-is-rx-coherent?            boolean
+     |           |  +--ro peer-is-congruent?              boolean
+     |           +--rw l1-sync-opt-params-port-ds {l1-sync}?
+     |           |  +--rw timestamps-corrected-tx?         boolean
+     |           |  +--ro phase-offset-tx-valid?           boolean
+     |           |  +--ro phase-offset-tx?                 time-interval
+     |           |  +--ro phase-offset-tx-timestamp
+     |           |  |  +--ro seconds-field?       uint64
+     |           |  |  +--ro nanoseconds-field?   uint32
+     |           |  +--ro frequency-offset-tx-valid?       boolean
+     |           |  +--ro frequency-offset-tx?             time-interval
+     |           |  +--ro frequency-offset-tx-timestamp
+     |           |     +--ro seconds-field?       uint64
+     |           |     +--ro nanoseconds-field?   uint32
+     |           +--ro communication-cap-port-ds
+     |           |  +--ro sync
+     |           |  |  +--ro multicast-capable?              boolean
+     |           |  |  +--ro unicast-capable?                boolean
+     |           |  |  +--ro unicast-negotiation-capable?    boolean
+     |           |  |  +--ro unicast-negotiation-required?   boolean
+     |           |  +--ro delay-resp
+     |           |     +--ro multicast-capable?              boolean
+     |           |     +--ro unicast-capable?                boolean
+     |           |     +--ro unicast-negotiation-capable?    boolean
+     |           |     +--ro unicast-negotiation-required?   boolean
+     |           +--rw performance-monitoring-port-ds {performance-monitoring}?
+     |           |  +--ro record-list-peer-delay* [index]
+     |           |  |  +--ro index                      uint16
+     |           |  |  +--ro pm-time?                   yang:timestamp
+     |           |  |  +--ro average-mean-link-delay?   time-interval
+     |           |  |  +--ro min-mean-link-delay?       time-interval
+     |           |  |  +--ro max-mean-link-delay?       time-interval
+     |           |  |  +--ro stddev-mean-link-delay?    time-interval
+     |           |  +--ro record-list* [index]
+     |           |     +--ro index                       uint16
+     |           |     +--ro pm-time?                    yang:timestamp
+     |           |     +--ro announce-tx?                yang:zero-based-counter32
+     |           |     +--ro announce-rx?                yang:zero-based-counter32
+     |           |     +--ro announce-foreign-rx?        yang:zero-based-counter32
+     |           |     +--ro sync-tx?                    yang:zero-based-counter32
+     |           |     +--ro sync-rx?                    yang:zero-based-counter32
+     |           |     +--ro follow-up-tx?               yang:zero-based-counter32
+     |           |     +--ro follow-up-rx?               yang:zero-based-counter32
+     |           |     +--ro delay-req-tx?               yang:zero-based-counter32
+     |           |     +--ro delay-req-rx?               yang:zero-based-counter32
+     |           |     +--ro delay-resp-tx?              yang:zero-based-counter32
+     |           |     +--ro delay-resp-rx?              yang:zero-based-counter32
+     |           |     +--ro pdelay-req-tx?              yang:zero-based-counter32
+     |           |     +--ro pdelay-req-rx?              yang:zero-based-counter32
+     |           |     +--ro pdelay-resp-tx?             yang:zero-based-counter32
+     |           |     +--ro pdelay-resp-rx?             yang:zero-based-counter32
+     |           |     +--ro pdelay-resp-follow-up-tx?   yang:zero-based-counter32
+     |           |     +--ro pdelay-resp-follow-up-rx?   yang:zero-based-counter32
+     |           +--rw common-services-port-ds
+     |           |  +--ro cmlds-link-port-port-number?   uint16 {cmlds}?
+     |           +--rw external-port-config-port-ds {external-port-config}?
+     |           |  +--rw desired-state?   port-state
+     |           +--rw time-receiver-monitoring-port-ds {time-receiver-monitoring}?
+     |           |  +--rw enable?                            bits
+     |           |  +--rw events-per-rx-sync-timing-tlv?     uint8
+     |           |  +--rw events-per-rx-sync-computed-tlv?   uint8
+     |           |  +--rw events-per-tx-timestamps-tlv?      uint8
+     |           |  +--rw tx-event-type?                     uint8
+     |           |  +--rw rx-sync-timing-tlv-message-m?      uint8
+     |           |  +--rw rx-sync-computed-tlv-message-m?    uint8
+     |           |  +--rw tx-timestamps-tlv-message-m?       uint8
+     |           +--rw dot1as-gptp:port-statistics-ds
+     |           |  +--ro dot1as-gptp:rx-sync-count?                        yang:counter32
+     |           |  +--ro dot1as-gptp:rx-one-step-sync-count?               yang:counter32
+     |           |  +--ro dot1as-gptp:rx-follow-up-count?                   yang:counter32
+     |           |  +--ro dot1as-gptp:rx-pdelay-req-count?                  yang:counter32
+     |           |  +--ro dot1as-gptp:rx-pdelay-resp-count?                 yang:counter32
+     |           |  +--ro dot1as-gptp:rx-pdelay-resp-follow-up-count?       yang:counter32
+     |           |  +--ro dot1as-gptp:rx-announce-count?                    yang:counter32
+     |           |  +--ro dot1as-gptp:rx-packet-discard-count?              yang:counter32
+     |           |  +--ro dot1as-gptp:sync-receipt-timeout-count?           yang:counter32
+     |           |  +--ro dot1as-gptp:announce-receipt-timeout-count?       yang:counter32
+     |           |  +--ro dot1as-gptp:pdelay-allowed-lost-exceeded-count?   yang:counter32
+     |           |  +--ro dot1as-gptp:tx-sync-count?                        yang:counter32
+     |           |  +--ro dot1as-gptp:tx-one-step-sync-count?               yang:counter32
+     |           |  +--ro dot1as-gptp:tx-follow-up-count?                   yang:counter32
+     |           |  +--ro dot1as-gptp:tx-pdelay-req-count?                  yang:counter32
+     |           |  +--ro dot1as-gptp:tx-pdelay-resp-count?                 yang:counter32
+     |           |  +--ro dot1as-gptp:tx-pdelay-resp-follow-up-count?       yang:counter32
+     |           |  +--ro dot1as-gptp:tx-announce-count?                    yang:counter32
+     |           +--rw dot1as-gptp:asymmetry-measurement-mode-ds
+     |              +--rw dot1as-gptp:enabled?   boolean
+     x--rw transparent-clock-default-ds
+     |  x--ro clock-identity?                clock-identity
+     |  x--ro number-ports?                  uint16
+     |  x--rw delay-mechanism?               delay-mechanism
+     |  x--rw primary-domain?                uint8
+     |  x--rw ptp-tlp:ptp-telecom-profile!
+     |     x--rw ptp-tlp:profile-identifier
+     |        +--rw ptp-tlp:type          ptp-tlp-types:ptp-telecom-profile-type
+     |        +--rw ptp-tlp:version
+     |        |  +--rw ptp-tlp:primary-version?   uint8
+     |        |  +--rw ptp-tlp:revision-number?   uint8
+     |        +--ro ptp-tlp:identifier?   string
+     x--rw transparent-clock-ports
+     |  x--rw port* [port-index]
+     |     +--rw port-index              uint16
+     |     +--rw underlying-interface?   if:interface-ref
+     |     +--rw port-ds
+     |        x--ro port-identity
+     |        |  +--ro clock-identity?   clock-identity
+     |        |  +--ro port-number?      uint16
+     |        x--rw log-min-pdelay-req-interval?   int8
+     |        x--rw faulty-flag?                   boolean
+     |        x--ro peer-mean-path-delay?          time-interval
+     +--rw common-services
+        +--rw cmlds {cmlds}?
+           +--rw default-ds
+           |  +--ro clock-identity?      clock-identity
+           |  +--ro number-link-ports?   uint16
+           +--rw ports
+              +--rw port* [port-index]
+                 +--rw port-index                                   uint16
+                 +--rw underlying-interface?                        if:interface-ref
+                 +--rw link-port-ds
+                 |  +--ro port-identity
+                 |  |  +--ro clock-identity?   clock-identity
+                 |  |  +--ro port-number?      uint16
+                 |  +--ro domain-number?                                     uint8
+                 |  +--ro service-measurement-valid?                         boolean
+                 |  +--ro mean-link-delay?                                   time-interval
+                 |  +--ro scaled-neighbor-rate-ratio?                        int32
+                 |  +--rw log-min-pdelay-req-interval?                       int8
+                 |  +--rw version-number?                                    uint8
+                 |  +--rw minor-version-number?                              uint8
+                 |  +--rw delay-asymmetry?                                   time-interval
+                 |  +--ro dot1as-gptp:cmlds-link-port-enabled?               boolean
+                 |  +--ro dot1as-gptp:is-measuring-delay?                    boolean
+                 |  +--ro dot1as-gptp:as-capable-across-domains?             boolean
+                 |  +--rw dot1as-gptp:mean-link-delay-thresh?                ptp-tt:time-interval
+                 |  +--rw dot1as-gptp:initial-log-pdelay-req-interval?       int8
+                 |  +--ro dot1as-gptp:current-log-pdelay-req-interval?       int8
+                 |  +--rw dot1as-gptp:use-mgt-log-pdelay-req-interval?       boolean
+                 |  +--rw dot1as-gptp:mgt-log-pdelay-req-interval?           int8
+                 |  +--rw dot1as-gptp:initial-compute-neighbor-rate-ratio?   boolean
+                 |  +--ro dot1as-gptp:current-compute-neighbor-rate-ratio?   boolean
+                 |  +--rw dot1as-gptp:use-mgt-compute-neighbor-rate-ratio?   boolean
+                 |  +--rw dot1as-gptp:mgt-compute-neighbor-rate-ratio?       boolean
+                 |  +--rw dot1as-gptp:initial-compute-mean-link-delay?       boolean
+                 |  +--ro dot1as-gptp:current-compute-mean-link-delay?       boolean
+                 |  +--rw dot1as-gptp:use-mgt-compute-mean-link-delay?       boolean
+                 |  +--rw dot1as-gptp:mgt-compute-mean-link-delay?           boolean
+                 |  +--rw dot1as-gptp:allowed-lost-responses?                uint8
+                 |  +--rw dot1as-gptp:allowed-faults?                        uint8
+                 |  +--ro dot1as-gptp:pdelay-truncated-timestamps*           uinteger48
+                 +--rw timestamp-correction-port-ds {timestamp-correction}?
+                 |  +--rw egress-latency?    time-interval
+                 |  +--rw ingress-latency?   time-interval
+                 +--rw asymmetry-correction-port-ds {asymmetry-correction}?
+                 |  +--rw enable?                     boolean
+                 |  +--rw constant-asymmetry?         time-interval
+                 |  +--rw scaled-delay-coefficient?   relative-difference
+                 +--rw performance-monitoring-port-ds {performance-monitoring}?
+                 |  +--ro record-list-peer-delay* [index]
+                 |  |  +--ro index                      uint16
+                 |  |  +--ro pm-time?                   yang:timestamp
+                 |  |  +--ro average-mean-link-delay?   time-interval
+                 |  |  +--ro min-mean-link-delay?       time-interval
+                 |  |  +--ro max-mean-link-delay?       time-interval
+                 |  |  +--ro stddev-mean-link-delay?    time-interval
+                 |  +--ro record-list* [index]
+                 |     +--ro index                       uint16
+                 |     +--ro pm-time?                    yang:timestamp
+                 |     +--ro announce-tx?                yang:zero-based-counter32
+                 |     +--ro announce-rx?                yang:zero-based-counter32
+                 |     +--ro announce-foreign-rx?        yang:zero-based-counter32
+                 |     +--ro sync-tx?                    yang:zero-based-counter32
+                 |     +--ro sync-rx?                    yang:zero-based-counter32
+                 |     +--ro follow-up-tx?               yang:zero-based-counter32
+                 |     +--ro follow-up-rx?               yang:zero-based-counter32
+                 |     +--ro delay-req-tx?               yang:zero-based-counter32
+                 |     +--ro delay-req-rx?               yang:zero-based-counter32
+                 |     +--ro delay-resp-tx?              yang:zero-based-counter32
+                 |     +--ro delay-resp-rx?              yang:zero-based-counter32
+                 |     +--ro pdelay-req-tx?              yang:zero-based-counter32
+                 |     +--ro pdelay-req-rx?              yang:zero-based-counter32
+                 |     +--ro pdelay-resp-tx?             yang:zero-based-counter32
+                 |     +--ro pdelay-resp-rx?             yang:zero-based-counter32
+                 |     +--ro pdelay-resp-follow-up-tx?   yang:zero-based-counter32
+                 |     +--ro pdelay-resp-follow-up-rx?   yang:zero-based-counter32
+                 +--rw dot1as-gptp:port-statistics-ds
+                 |  +--ro dot1as-gptp:rx-pdelay-req-count?                  yang:counter32
+                 |  +--ro dot1as-gptp:rx-pdelay-resp-count?                 yang:counter32
+                 |  +--ro dot1as-gptp:rx-pdelay-resp-follow-up-count?       yang:counter32
+                 |  +--ro dot1as-gptp:rx-packet-discard-count?              yang:counter32
+                 |  +--ro dot1as-gptp:pdelay-allowed-lost-exceeded-count?   yang:counter32
+                 |  +--ro dot1as-gptp:tx-pdelay-req-count?                  yang:counter32
+                 |  +--ro dot1as-gptp:tx-pdelay-resp-count?                 yang:counter32
+                 |  +--ro dot1as-gptp:tx-pdelay-resp-follow-up-count?       yang:counter32
+                 +--rw dot1as-gptp:asymmetry-measurement-mode-ds
+                    +--rw dot1as-gptp:enabled?   boolean
+

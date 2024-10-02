@@ -219,8 +219,8 @@
                 "ietf-microwave-topology:mw-link": {
                   "microwave-radio-link": {
                     "rlt-mode": {
-                      "num-bonded-carriers": 2,
-                      "num-protecting-carriers": 0
+                      "num-bonded-carriers": 1,
+                      "num-protecting-carriers": 1
                     }
                   }
                 }
@@ -242,6 +242,7 @@
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
+                    "rx-frequency": 10615000,
                     "channel-separation": 28000
                   }
                 }
@@ -262,7 +263,8 @@
               "te-link-attributes": {
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
-                    "tx-frequency": 10528000,
+                    "tx-frequency": 10728000,
+                    "rx-frequency": 10615000,
                     "channel-separation": 28000
                   }
                 }

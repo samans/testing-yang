@@ -1,0 +1,64 @@
+<ptp xmlns="urn:ieee:std:1588:yang:ieee1588-ptp-tt">
+  <instances>
+    <instance>
+      <instance-index>1</instance-index>
+      <default-ds>
+        <time-receiver-only>false</time-receiver-only>
+        <instance-type>oc</instance-type>
+      </default-ds>
+      <ports>
+        <port>
+          <port-index>1</port-index>
+          <underlying-interface>GM01</underlying-interface>
+        </port>
+      </ports>
+    </instance>
+    <instance>
+      <instance-index>2</instance-index>
+      <default-ds>
+        <time-receiver-only>true</time-receiver-only>
+        <instance-type>oc</instance-type>
+      </default-ds>
+      <ports>
+        <port>
+          <port-index>1</port-index>
+          <underlying-interface>Time Receiver Port 1</underlying-interface>
+        </port>
+      </ports>
+    </instance>
+    <instance>
+      <instance-index>3</instance-index>
+      <default-ds>
+        <time-receiver-only>false</time-receiver-only>
+        <instance-type>bc</instance-type>
+      </default-ds>
+      <ports>
+        <port>
+          <port-index>1</port-index>
+          <underlying-interface>Time Transmitter Port 1</underlying-interface>
+        </port>
+        <port>
+          <port-index>2</port-index>
+          <underlying-interface>Time Receiver Port 1</underlying-interface>
+        </port>
+      </ports>
+    </instance>
+  </instances>
+</ptp>
+<interfaces xmlns="urn:ietf:params:xml:ns:yang:ietf-interfaces">
+  <interface>
+    <name>GM01</name>
+    <description>GrandMaster Interface 1</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+  </interface>
+  <interface>
+    <name>Time Receiver Port 1</name>
+    <description>TimeReceiver 1</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+  </interface>
+  <interface>
+    <name>Time Transmitter Port 1</name>
+    <description>TimeTransmitter 1</description>
+    <type xmlns:ianaift="urn:ietf:params:xml:ns:yang:iana-if-type">ianaift:ethernetCsmacd</type>
+  </interface>
+</interfaces>

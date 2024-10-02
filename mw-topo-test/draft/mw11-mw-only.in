@@ -2,7 +2,7 @@
 #set timeout -1
 spawn /usr/local/bin/yanglint
 expect ">"
-send "searchpath /home/scott/yang/yang/experimental/ietf-extracted-YANG-modules /home/scott/yang/yang/standard/ietf/RFC /home/scott/yang/yang/standard/ieee/published/802 /home/scott/yang/yang/standard/ieee/published/802.1\r"
+send "searchpath /home/scott/yang/experimental/ietf-extracted-YANG-modules /home/scott/yang/standard/ietf/RFC\r"
 expect ">"
 send "load ietf-inet-types\r"
 expect ">"
@@ -42,7 +42,7 @@ send "load ietf-l2-topology\r"
 expect ">"
 send "load ieee802-dot1q-types\r"
 expect ">"
-send "data -t config -f json example2plus0.json\r"
+send "data -t config -f json example1plus1-mw-only.json\r"
 expect ">"
 send "quit\r"
 expect eof

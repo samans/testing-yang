@@ -1,10 +1,104 @@
 {
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "L2Interface1",
+        "description": "'Ethernet Interface 1'",
+        "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+        "name": "L2Interface2",
+        "description": "'Ethernet Interface 2'",
+        "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+        "name": "RLT-1",
+        "description": "'Radio Link Terminal 1'",
+        "type": "iana-if-type:microwaveRadioLinkTerminal",
+        "ietf-microwave-radio-link:mode":
+          "ietf-microwave-types:two-plus-zero",
+        "ietf-microwave-radio-link:carrier-terminations": [
+          "CT-1",
+          "CT-3"
+        ]
+      },
+      {
+        "name": "RLT-2",
+        "description": "'Radio Link Terminal 2'",
+        "type": "iana-if-type:microwaveRadioLinkTerminal",
+        "ietf-microwave-radio-link:mode":
+          "ietf-microwave-types:two-plus-zero",
+        "ietf-microwave-radio-link:carrier-terminations": [
+          "CT-2",
+          "CT-4"
+        ]
+      },
+      {
+        "name": "CT-1",
+        "description": "'Carrier Termination 1'",
+        "type": "iana-if-type:microwaveCarrierTermination",
+        "ietf-microwave-radio-link:tx-frequency": 10728000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
+        "ietf-microwave-radio-link:channel-separation": 28000,
+        "ietf-microwave-radio-link:rtpc": {
+          "maximum-nominal-power": "20.0"
+        },
+        "ietf-microwave-radio-link:single": {
+          "selected-cm": "ietf-microwave-types:qam-512"
+        }
+      },
+      {
+        "name": "CT-3",
+        "description": "'Carrier Termination 3'",
+        "type": "iana-if-type:microwaveCarrierTermination",
+        "ietf-microwave-radio-link:tx-frequency": 10528000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
+        "ietf-microwave-radio-link:channel-separation": 28000,
+        "ietf-microwave-radio-link:rtpc": {
+          "maximum-nominal-power": "20.0"
+        },
+        "ietf-microwave-radio-link:single": {
+          "selected-cm": "ietf-microwave-types:qam-512"
+        }
+      },
+      {
+        "name": "CT-2",
+        "description": "'Carrier Termination 2'",
+        "type": "iana-if-type:microwaveCarrierTermination",
+        "ietf-microwave-radio-link:tx-frequency": 10615000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
+        "ietf-microwave-radio-link:channel-separation": 28000,
+        "ietf-microwave-radio-link:rtpc": {
+          "maximum-nominal-power": "20.0"
+        },
+        "ietf-microwave-radio-link:single": {
+          "selected-cm": "ietf-microwave-types:qam-512"
+        }
+      },
+      {
+        "name": "CT-4",
+        "description": "'Carrier Termination 4'",
+        "type": "iana-if-type:microwaveCarrierTermination",
+        "ietf-microwave-radio-link:tx-frequency": 10415000,
+        "ietf-microwave-radio-link:duplex-distance": 113000,
+        "ietf-microwave-radio-link:channel-separation": 28000,
+        "ietf-microwave-radio-link:rtpc": {
+          "maximum-nominal-power": "20.0"
+        },
+        "ietf-microwave-radio-link:single": {
+          "selected-cm": "ietf-microwave-types:qam-512"
+        }
+      }
+    ]
+  },
   "ietf-network:networks": {
     "network": [
       {
         "network-id": "L2-network",
         "network-types": {
-          "ietf-te-topology:te-topology": {}
+          "ietf-te-topology:te-topology": {
+            "ietf-eth-te-topology:eth-tran-topology": {}
+          }
         },
         "supporting-network": [
           {
@@ -31,7 +125,13 @@
                   }
                 ]
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-eth-te-topology:eth-node": {}
+              }
+            }
           },
           {
             "node-id": "L2-N2",
@@ -52,7 +152,13 @@
                   }
                 ]
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.2",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-eth-te-topology:eth-node": {}
+              }
+            }
           }
         ],
         "ietf-network-topology:link": [
@@ -71,7 +177,18 @@
                 "network-ref": "mw-network",
                 "link-ref": "mwrl-N1-N2"
               }
-            ]
+            ],
+            "ietf-te-topology:te": {
+              "te-link-attributes": {
+                "interface-switching-capability": [
+                  {
+                    "switching-capability":
+                      "ietf-te-types:switching-l2sc",
+                    "encoding": "ietf-te-types:lsp-encoding-ethernet"
+                  }
+                ]
+              }
+            }
           }
         ]
       },
@@ -115,7 +232,8 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-rltp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-1"
                 }
               },
               {
@@ -124,7 +242,8 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-1"
                 }
               },
               {
@@ -133,10 +252,17 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-3"
                 }
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-microwave-topology:mw-node": {}
+              }
+            }
           },
           {
             "node-id": "mw-N2",
@@ -165,7 +291,8 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-rltp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "RLT-2"
                 }
               },
               {
@@ -174,7 +301,8 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-2"
                 }
               },
               {
@@ -183,10 +311,17 @@
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
                     "microwave-ctp": {}
-                  }
+                  },
+"ietf-tp-interface-reference-topology:tp-to-interface-path": "CT-4"
                 }
               }
-            ]
+            ],
+            "ietf-te-topology:te-node-id": "192.0.2.1",
+            "ietf-te-topology:te": {
+              "te-node-attributes": {
+                "ietf-microwave-topology:mw-node": {}
+              }
+            }
           }
         ],
         "ietf-network-topology:link": [
@@ -239,9 +374,20 @@
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
+"ietf-bandwidth-availability-topology:link-availability": [
+                  {
+                    "availability": "0.99",
+                    "link-bandwidth": "998423"
+                  },
+                  {
+                    "availability": "0.95",
+                    "link-bandwidth": "1048576"
+                  }
+                ],
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10728000,
+                    "rx-frequency": 10615000,
                     "channel-separation": 28000
                   }
                 }
@@ -263,6 +409,7 @@
                 "ietf-microwave-topology:mw-link": {
                   "microwave-carrier": {
                     "tx-frequency": 10528000,
+                    "rx-frequency": 10415000,
                     "channel-separation": 28000
                   }
                 }

@@ -1,0 +1,76 @@
+{
+  "ieee1588-ptp-tt:ptp": {
+    "instances": {
+      "instance": [
+        {
+          "instance-index": 1,
+          "default-ds": {
+            "time-receiver-only": false,
+            "instance-type": "oc"
+          },
+          "ports": {
+            "port": [
+              {
+                "port-index": 1,
+                "underlying-interface": "GM01"
+              }
+            ]
+          }
+        },
+        {
+          "instance-index": 2,
+          "default-ds": {
+            "time-receiver-only": true,
+            "instance-type": "oc"
+          },
+          "ports": {
+            "port": [
+              {
+                "port-index": 1,
+                "underlying-interface": "Time Receiver Port 1"
+              }
+            ]
+          }
+        },
+        {
+          "instance-index": 3,
+          "default-ds": {
+            "time-receiver-only": false,
+            "instance-type": "bc"
+          },
+          "ports": {
+            "port": [
+              {
+                "port-index": 1,
+                "underlying-interface": "Time Transmitter Port 1"
+              },
+              {
+                "port-index": 2,
+                "underlying-interface": "Time Receiver Port 1"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "ietf-interfaces:interfaces": {
+    "interface": [
+      {
+        "name": "GM01",
+        "description": "GrandMaster Interface 1",
+        "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+        "name": "Time Receiver Port 1",
+        "description": "TimeReceiver 1",
+        "type": "iana-if-type:ethernetCsmacd"
+      },
+      {
+        "name": "Time Transmitter Port 1",
+        "description": "TimeTransmitter 1",
+        "type": "iana-if-type:ethernetCsmacd"
+      }
+    ]
+  }
+}
