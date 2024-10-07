@@ -2,53 +2,53 @@
   "ietf-network:networks": {
     "network": [
       {
-        "network-id": "L2-network",
+        "network-id": "example:L2-network",
         "network-types": {
           "ietf-te-topology:te-topology": {}
         },
         "supporting-network": [
           {
-            "network-ref": "mw-network"
+            "network-ref": "example:mw-network"
           }
         ],
         "node": [
           {
-            "node-id": "L2-N1",
+            "node-id": "example:L2-N1",
             "supporting-node": [
               {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N1"
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
               }
             ],
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "L2-N1-TP1",
+                "tp-id": "example:L2-N1-TP1",
                 "supporting-termination-point": [
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-RLTP1"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-RLTP1"
                   }
                 ]
               }
             ]
           },
           {
-            "node-id": "L2-N2",
+            "node-id": "example:L2-N2",
             "supporting-node": [
               {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N2"
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
               }
             ],
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "L2-N2-TP2",
+                "tp-id": "example:L2-N2-TP2",
                 "supporting-termination-point": [
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-RLTP2"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-RLTP2"
                   }
                 ]
               }
@@ -57,7 +57,7 @@
         ],
         "ietf-network-topology:link": [
           {
-            "link-id": "L2-N1-N2",
+            "link-id": "example:L2-N1-N2",
             "source": {
               "source-node": "L2-N1",
               "source-tp": "L2-N1-TP1"
@@ -68,15 +68,15 @@
             },
             "supporting-link": [
               {
-                "network-ref": "mw-network",
-                "link-ref": "mwrl-N1-N2"
+                "network-ref": "example:mw-network",
+                "link-ref": "example:mwrl-N1-N2"
               }
             ]
           }
         ]
       },
       {
-        "network-id": "mw-network",
+        "network-id": "example:mw-network",
         "network-types": {
           "ietf-te-topology:te-topology": {
             "ietf-microwave-topology:mw-topology": {}
@@ -84,31 +84,31 @@
         },
         "supporting-network": [
           {
-            "network-ref": "mw-network"
+            "network-ref": "example:mw-network"
           }
         ],
         "node": [
           {
-            "node-id": "mw-N1",
+            "node-id": "example:mw-N1",
             "supporting-node": [
               {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N1"
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N1"
               }
             ],
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "mw-N1-RLTP1",
+                "tp-id": "example:mw-N1-RLTP1",
                 "supporting-termination-point": [
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-CTP1"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP1"
                   },
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N1",
-                    "tp-ref": "mw-N1-CTP3"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N1",
+                    "tp-ref": "example:mw-N1-CTP3"
                   }
                 ],
                 "ietf-te-topology:te-tp-id": "192.0.2.3",
@@ -119,7 +119,7 @@
                 }
               },
               {
-                "tp-id": "mw-N1-CTP1",
+                "tp-id": "example:mw-N1-CTP1",
                 "ietf-te-topology:te-tp-id": 1,
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
@@ -128,7 +128,7 @@
                 }
               },
               {
-                "tp-id": "mw-N1-CTP3",
+                "tp-id": "example:mw-N1-CTP3",
                 "ietf-te-topology:te-tp-id": 2,
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
@@ -139,26 +139,26 @@
             ]
           },
           {
-            "node-id": "mw-N2",
+            "node-id": "example:mw-N2",
             "supporting-node": [
               {
-                "network-ref": "mw-network",
-                "node-ref": "mw-N2"
+                "network-ref": "example:mw-network",
+                "node-ref": "example:mw-N2"
               }
             ],
             "ietf-network-topology:termination-point": [
               {
-                "tp-id": "mw-N2-RLTP2",
+                "tp-id": "example:mw-N2-RLTP2",
                 "supporting-termination-point": [
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-CTP2"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP2"
                   },
                   {
-                    "network-ref": "mw-network",
-                    "node-ref": "mw-N2",
-                    "tp-ref": "mw-N2-CTP4"
+                    "network-ref": "example:mw-network",
+                    "node-ref": "example:mw-N2",
+                    "tp-ref": "example:mw-N2-CTP4"
                   }
                 ],
                 "ietf-te-topology:te-tp-id": "192.0.2.4",
@@ -169,7 +169,7 @@
                 }
               },
               {
-                "tp-id": "mw-N2-CTP2",
+                "tp-id": "example:mw-N2-CTP2",
                 "ietf-te-topology:te-tp-id": 1,
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
@@ -178,7 +178,7 @@
                 }
               },
               {
-                "tp-id": "mw-N2-CTP4",
+                "tp-id": "example:mw-N2-CTP4",
                 "ietf-te-topology:te-tp-id": 2,
                 "ietf-te-topology:te": {
                   "ietf-microwave-topology:mw-tp": {
@@ -191,27 +191,27 @@
         ],
         "ietf-network-topology:link": [
           {
-            "link-id": "mwrl-N1-N2",
+            "link-id": "example:mwrl-N1-N2",
             "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-RLTP1"
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-RLTP1"
             },
             "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-RLTP2"
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-RLTP2"
             },
             "ietf-te-topology:te": {
               "bundled-links": {
                 "bundled-link": [
                   {
                     "sequence": 1,
-                    "src-tp-ref": "mw-N1-CTP1",
-                    "des-tp-ref": "mw-N2-CTP2"
+                    "src-tp-ref": "example:mw-N1-CTP1",
+                    "des-tp-ref": "example:mw-N2-CTP2"
                   },
                   {
                     "sequence": 2,
-                    "src-tp-ref": "mw-N1-CTP3",
-                    "des-tp-ref": "mw-N2-CTP4"
+                    "src-tp-ref": "example:mw-N1-CTP3",
+                    "des-tp-ref": "example:mw-N2-CTP4"
                   }
                 ]
               },
@@ -228,14 +228,14 @@
             }
           },
           {
-            "link-id": "mwc-N1-N2-A",
+            "link-id": "example:mwc-N1-N2-A",
             "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-CTP1"
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP1"
             },
             "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-CTP2"
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP2"
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {
@@ -249,14 +249,14 @@
             }
           },
           {
-            "link-id": "mwc-N1-N2-B",
+            "link-id": "example:mwc-N1-N2-B",
             "source": {
-              "source-node": "mw-N1",
-              "source-tp": "mw-N1-CTP3"
+              "source-node": "example:mw-N1",
+              "source-tp": "example:mw-N1-CTP3"
             },
             "destination": {
-              "dest-node": "mw-N2",
-              "dest-tp": "mw-N2-CTP4"
+              "dest-node": "example:mw-N2",
+              "dest-tp": "example:mw-N2-CTP4"
             },
             "ietf-te-topology:te": {
               "te-link-attributes": {

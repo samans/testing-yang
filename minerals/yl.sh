@@ -1,4 +1,0 @@
-
-yanglint -F ietf-if-extensions:sub-interfaces -p ~/yang/standard/ietf/RFC -p ~/yang/standard/iana -t data -f xml ieex1.json -o ieex1-from-json.xml iana-if-type@2023-01-26.yang ietf-interfaces@2018-02-20.yang ietf-yang-types@2013-07-15.yang ieee802-dot1q-types.yang ietf-if-extensions@2024-07-31.yang ietf-inet-types.yang ietf-ip.yang ietf-if-flexible-encapsulation@2023-01-26.yang ietf-if-vlan-encapsulation@2023-01-26.yang
-
-yanglint -F ietf-if-extensions:sub-interfaces -F ietf-if-flexible-encapsulation:flexible-rewrites,dot1q-tag-rewrites -p ~/yang/standard/ietf/RFC -p ~/yang/standard/iana -t data -f xml ieex2.json -o ieex2-from-json.xml iana-if-type@2023-01-26.yang ietf-interfaces@2018-02-20.yang ietf-yang-types@2013-07-15.yang ieee802-dot1q-types.yang ietf-if-extensions@2024-07-31.yang ietf-inet-types.yang ietf-ip.yang ietf-if-flexible-encapsulation@2023-01-26.yang ietf-if-vlan-encapsulation@2023-01-26.yang

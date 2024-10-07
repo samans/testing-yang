@@ -1,0 +1,27 @@
+module minerals-augment {
+  yang-version "1.1";
+  namespace urn:test:minerals-augment;
+  prefix ma;
+  import minerals {
+    prefix m;
+  }
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+  revision 2022-09-19 {
+    description
+      "Initial revision.";
+    reference
+      "minerals augment";
+  }
+
+  augment /m:mineral-db/m:mineral {
+    when "m:hardness = 10.0";
+    leaf diamondSerialNumber {
+       type uint16;
+    }
+  }
+}

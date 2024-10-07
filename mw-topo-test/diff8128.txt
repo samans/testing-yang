@@ -1,0 +1,676 @@
+1299a1300
+> 
+1304c1305
+<         "network-id": "L2-network",
+---
+>         "network-id": "example:L2-network",
+1310c1311
+<             "network-ref": "mw-network"
+---
+>             "network-ref": "example:mw-network"
+1315c1316
+<             "node-id": "L2-N1",
+---
+>             "node-id": "example:L2-N1",
+1318,1319c1319,1320
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N1"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N1"
+1324c1325
+<                 "tp-id": "L2-N1-TP1",
+---
+>                 "tp-id": "example:L2-N1-TP1",
+1327,1329c1328,1330
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-RLTP1"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-RLTP1"
+1336c1337
+<             "node-id": "L2-N2",
+---
+>             "node-id": "example:L2-N2",
+1339,1340c1340,1341
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N2"
+1345c1346
+<                 "tp-id": "L2-N2-TP2",
+---
+>                 "tp-id": "example:L2-N2-TP2",
+1348,1350c1349,1351
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-RLTP2"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-RLTP2"
+1359c1360
+<             "link-id": "L2-N1-N2",
+---
+>             "link-id": "example:L2-N1-N2",
+1361,1362c1362,1363
+<               "source-node": "L2-N1",
+<               "source-tp": "L2-N1-TP1"
+---
+>               "source-node": "example:L2-N1",
+>               "source-tp": "example:L2-N1-TP1"
+1365,1366c1366,1367
+<               "dest-node": "L2-N2",
+<               "dest-tp": "L2-N2-TP2"
+---
+>               "dest-node": "example:L2-N2",
+>               "dest-tp": "example:L2-N2-TP2"
+1370,1371c1371,1372
+<                 "network-ref": "mw-network",
+<                 "link-ref": "mwrl-N1-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "link-ref": "example:mwrl-N1-N2"
+1378c1379
+<         "network-id": "mw-network",
+---
+>         "network-id": "example:mw-network",
+1386c1387
+<             "network-ref": "mw-network"
+---
+>             "network-ref": "example:mw-network"
+1391c1392
+<             "node-id": "mw-N1",
+---
+>             "node-id": "example:mw-N1",
+1394,1395c1395,1396
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N1"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N1"
+1400c1401
+<                 "tp-id": "mw-N1-RLTP1",
+---
+>                 "tp-id": "example:mw-N1-RLTP1",
+1403,1405c1404,1406
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-CTP1"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-CTP1"
+1408,1410c1409,1411
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-CTP3"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-CTP3"
+1421c1422
+<                 "tp-id": "mw-N1-CTP1",
+---
+>                 "tp-id": "example:mw-N1-CTP1",
+1430c1431
+<                 "tp-id": "mw-N1-CTP3",
+---
+>                 "tp-id": "example:mw-N1-CTP3",
+1441c1442
+<             "node-id": "mw-N2",
+---
+>             "node-id": "example:mw-N2",
+1444,1445c1445,1446
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N2"
+1450c1451
+<                 "tp-id": "mw-N2-RLTP2",
+---
+>                 "tp-id": "example:mw-N2-RLTP2",
+1453,1455c1454,1456
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-CTP2"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-CTP2"
+1458,1460c1459,1461
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-CTP4"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-CTP4"
+1471c1472
+<                 "tp-id": "mw-N2-CTP2",
+---
+>                 "tp-id": "example:mw-N2-CTP2",
+1480c1481
+<                 "tp-id": "mw-N2-CTP4",
+---
+>                 "tp-id": "example:mw-N2-CTP4",
+1493c1494
+<             "link-id": "mwrl-N1-N2",
+---
+>             "link-id": "example:mwrl-N1-N2",
+1495,1496c1496,1497
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-RLTP1"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-RLTP1"
+1499,1500c1500,1501
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-RLTP2"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-RLTP2"
+1507,1508c1508,1509
+<                     "src-tp-ref": "mw-N1-CTP1",
+<                     "des-tp-ref": "mw-N2-CTP2"
+---
+>                     "src-tp-ref": "example:mw-N1-CTP1",
+>                     "des-tp-ref": "example:mw-N2-CTP2"
+1512,1513c1513,1514
+<                     "src-tp-ref": "mw-N1-CTP3",
+<                     "des-tp-ref": "mw-N2-CTP4"
+---
+>                     "src-tp-ref": "example:mw-N1-CTP3",
+>                     "des-tp-ref": "example:mw-N2-CTP4"
+1530c1531
+<             "link-id": "mwc-N1-N2-A",
+---
+>             "link-id": "example:mwc-N1-N2-A",
+1532,1533c1533,1534
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-CTP1"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-CTP1"
+1536,1537c1537,1538
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-CTP2"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-CTP2"
+1551c1552
+<             "link-id": "mwc-N1-N2-B",
+---
+>             "link-id": "example:mwc-N1-N2-B",
+1553,1554c1554,1555
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-CTP3"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-CTP3"
+1557,1558c1558,1559
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-CTP4"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-CTP4"
+1581a1583
+> 
+1586c1588
+<         "network-id": "L2-network",
+---
+>         "network-id": "example:L2-network",
+1592c1594
+<             "network-ref": "mw-network"
+---
+>             "network-ref": "example:mw-network"
+1597c1599
+<             "node-id": "L2-N1",
+---
+>             "node-id": "example:L2-N1",
+1600,1601c1602,1603
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N1"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N1"
+1606c1608
+<                 "tp-id": "L2-N1-TP1",
+---
+>                 "tp-id": "example:L2-N1-TP1",
+1609,1611c1611,1613
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-RLTP1"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-RLTP1"
+1618c1620
+<             "node-id": "L2-N2",
+---
+>             "node-id": "example:L2-N2",
+1621,1622c1623,1624
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N2"
+1627c1629
+<                 "tp-id": "L2-N2-TP2",
+---
+>                 "tp-id": "example:L2-N2-TP2",
+1630,1632c1632,1634
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-RLTP2"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-RLTP2"
+1641c1643
+<             "link-id": "L2-N1-N2",
+---
+>             "link-id": "example:L2-N1-N2",
+1652,1653c1654,1655
+<                 "network-ref": "mw-network",
+<                 "link-ref": "mwrl-N1-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "link-ref": "example:mwrl-N1-N2"
+1660c1662
+<         "network-id": "mw-network",
+---
+>         "network-id": "example:mw-network",
+1668c1670
+<             "network-ref": "mw-network"
+---
+>             "network-ref": "example:mw-network"
+1673c1675
+<             "node-id": "mw-N1",
+---
+>             "node-id": "example:mw-N1",
+1676,1677c1678,1679
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N1"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N1"
+1682c1684
+<                 "tp-id": "mw-N1-RLTP1",
+---
+>                 "tp-id": "example:mw-N1-RLTP1",
+1685,1687c1687,1689
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-CTP1"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-CTP1"
+1690,1692c1692,1694
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N1",
+<                     "tp-ref": "mw-N1-CTP3"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N1",
+>                     "tp-ref": "example:mw-N1-CTP3"
+1703c1705
+<                 "tp-id": "mw-N1-CTP1",
+---
+>                 "tp-id": "example:mw-N1-CTP1",
+1712c1714
+<                 "tp-id": "mw-N1-CTP3",
+---
+>                 "tp-id": "example:mw-N1-CTP3",
+1723c1725
+<             "node-id": "mw-N2",
+---
+>             "node-id": "example:mw-N2",
+1726,1727c1728,1729
+<                 "network-ref": "mw-network",
+<                 "node-ref": "mw-N2"
+---
+>                 "network-ref": "example:mw-network",
+>                 "node-ref": "example:mw-N2"
+1732c1734
+<                 "tp-id": "mw-N2-RLTP2",
+---
+>                 "tp-id": "example:mw-N2-RLTP2",
+1735,1737c1737,1739
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-CTP2"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-CTP2"
+1740,1742c1742,1744
+<                     "network-ref": "mw-network",
+<                     "node-ref": "mw-N2",
+<                     "tp-ref": "mw-N2-CTP4"
+---
+>                     "network-ref": "example:mw-network",
+>                     "node-ref": "example:mw-N2",
+>                     "tp-ref": "example:mw-N2-CTP4"
+1753c1755
+<                 "tp-id": "mw-N2-CTP2",
+---
+>                 "tp-id": "example:mw-N2-CTP2",
+1762c1764
+<                 "tp-id": "mw-N2-CTP4",
+---
+>                 "tp-id": "example:mw-N2-CTP4",
+1775c1777
+<             "link-id": "mwrl-N1-N2",
+---
+>             "link-id": "example:mwrl-N1-N2",
+1777,1778c1779,1780
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-RLTP1"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-RLTP1"
+1781,1782c1783,1784
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-RLTP2"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-RLTP2"
+1789,1790c1791,1792
+<                     "src-tp-ref": "mw-N1-CTP1",
+<                     "des-tp-ref": "mw-N2-CTP2"
+---
+>                     "src-tp-ref": "example:mw-N1-CTP1",
+>                     "des-tp-ref": "example:mw-N2-CTP2"
+1794,1795c1796,1797
+<                     "src-tp-ref": "mw-N1-CTP3",
+<                     "des-tp-ref": "mw-N2-CTP4"
+---
+>                     "src-tp-ref": "example:mw-N1-CTP3",
+>                     "des-tp-ref": "example:mw-N2-CTP4"
+1812c1814
+<             "link-id": "mwc-N1-N2-A",
+---
+>             "link-id": "example:mwc-N1-N2-A",
+1814,1815c1816,1817
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-CTP1"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-CTP1"
+1818,1819c1820,1821
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-CTP2"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-CTP2"
+1833c1835
+<             "link-id": "mwc-N1-N2-B",
+---
+>             "link-id": "example:mwc-N1-N2-B",
+1835,1836c1837,1838
+<               "source-node": "mw-N1",
+<               "source-tp": "mw-N1-CTP3"
+---
+>               "source-node": "example:mw-N1",
+>               "source-tp": "example:mw-N1-CTP3"
+1839,1840c1841,1842
+<               "dest-node": "mw-N2",
+<               "dest-tp": "mw-N2-CTP4"
+---
+>               "dest-node": "example:mw-N2",
+>               "dest-tp": "example:mw-N2-CTP4"
+2171a2174
+> 
+2268c2271
+<     "network-id": "L2-network",
+---
+>     "network-id": "example:L2-network",
+2276c2279
+<       "network-ref": "mw-network"
+---
+>       "network-ref": "example:mw-network"
+2281c2284
+<       "node-id": "L2-N1",
+---
+>       "node-id": "example:L2-N1",
+2284,2285c2287,2288
+<         "network-ref": "mw-network",
+<         "node-ref": "mw-N1"
+---
+>         "network-ref": "example:mw-network",
+>         "node-ref": "example:mw-N1"
+2290c2293
+<         "tp-id": "L2-N1-TP1",
+---
+>         "tp-id": "example:L2-N1-TP1",
+2293,2295c2296,2298
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N1",
+<           "tp-ref": "mw-N1-RLTP1"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N1",
+>           "tp-ref": "example:mw-N1-RLTP1"
+2308c2311
+<       "node-id": "L2-N2",
+---
+>       "node-id": "example:L2-N2",
+2311,2312c2314,2315
+<         "network-ref": "mw-network",
+<         "node-ref": "mw-N2"
+---
+>         "network-ref": "example:mw-network",
+>         "node-ref": "example:mw-N2"
+2317c2320
+<         "tp-id": "L2-N2-TP2",
+---
+>         "tp-id": "example:L2-N2-TP2",
+2320,2322c2323,2325
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N2",
+<           "tp-ref": "mw-N2-RLTP2"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N2",
+>           "tp-ref": "example:mw-N2-RLTP2"
+2337c2340
+<       "link-id": "L2-N1-N2",
+---
+>       "link-id": "example:L2-N1-N2",
+2339,2340c2342,2343
+<        "source-node": "L2-N1",
+<        "source-tp": "L2-N1-TP1"
+---
+>        "source-node": "example:L2-N1",
+>        "source-tp": "example:L2-N1-TP1"
+2343,2344c2346,2347
+<        "dest-node": "L2-N2",
+<        "dest-tp": "L2-N2-TP2"
+---
+>        "dest-node": "example:L2-N2",
+>        "dest-tp": "example:L2-N2-TP2"
+2348,2349c2351,2352
+<         "network-ref": "mw-network",
+<         "link-ref": "mwrl-N1-N2"
+---
+>         "network-ref": "example:mw-network",
+>         "link-ref": "example:mwrl-N1-N2"
+2366c2369
+<     "network-id": "mw-network",
+---
+>     "network-id": "example:mw-network",
+2374c2377
+<       "network-ref": "mw-network"
+---
+>       "network-ref": "example:mw-network"
+2379c2382
+<       "node-id": "mw-N1",
+---
+>       "node-id": "example:mw-N1",
+2382,2383c2385,2386
+<         "network-ref": "mw-network",
+<         "node-ref": "mw-N1"
+---
+>         "network-ref": "example:mw-network",
+>         "node-ref": "example:mw-N1"
+2388c2391
+<         "tp-id": "mw-N1-RLTP1",
+---
+>         "tp-id": "example:mw-N1-RLTP1",
+2391,2393c2394,2396
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N1",
+<           "tp-ref": "mw-N1-CTP1"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N1",
+>           "tp-ref": "example:mw-N1-CTP1"
+2396,2398c2399,2401
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N1",
+<           "tp-ref": "mw-N1-CTP3"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N1",
+>           "tp-ref": "example:mw-N1-CTP3"
+2407c2410
+<          "RLT-1"
+---
+> 	 "RLT-1"
+2411c2414
+<         "tp-id": "mw-N1-CTP1",
+---
+>         "tp-id": "example:mw-N1-CTP1",
+2418c2421
+<          "CT-1"
+---
+> 	 "CT-1"
+2422c2425
+<         "tp-id": "mw-N1-CTP3",
+---
+>         "tp-id": "example:mw-N1-CTP3",
+2429c2432
+<          "CT-3"
+---
+> 	 "CT-3"
+2441c2444
+<       "node-id": "mw-N2",
+---
+>       "node-id": "example:mw-N2",
+2444,2445c2447,2448
+<         "network-ref": "mw-network",
+<         "node-ref": "mw-N2"
+---
+>         "network-ref": "example:mw-network",
+>         "node-ref": "example:mw-N2"
+2450c2453
+<         "tp-id": "mw-N2-RLTP2",
+---
+>         "tp-id": "example:mw-N2-RLTP2",
+2453,2455c2456,2458
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N2",
+<           "tp-ref": "mw-N2-CTP2"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N2",
+>           "tp-ref": "example:mw-N2-CTP2"
+2458,2460c2461,2463
+<           "network-ref": "mw-network",
+<           "node-ref": "mw-N2",
+<           "tp-ref": "mw-N2-CTP4"
+---
+>           "network-ref": "example:mw-network",
+>           "node-ref": "example:mw-N2",
+>           "tp-ref": "example:mw-N2-CTP4"
+2469c2472
+<          "RLT-2"
+---
+> 	 "RLT-2"
+2473c2476
+<         "tp-id": "mw-N2-CTP2",
+---
+>         "tp-id": "example:mw-N2-CTP2",
+2480c2483
+<          "CT-2"
+---
+> 	 "CT-2"
+2484c2487
+<         "tp-id": "mw-N2-CTP4",
+---
+>         "tp-id": "example:mw-N2-CTP4",
+2491c2494
+<          "CT-4"
+---
+> 	 "CT-4"
+2505c2508
+<       "link-id": "mwrl-N1-N2",
+---
+>       "link-id": "example:mwrl-N1-N2",
+2507,2508c2510,2511
+<        "source-node": "mw-N1",
+<        "source-tp": "mw-N1-RLTP1"
+---
+>        "source-node": "example:mw-N1",
+>        "source-tp": "example:mw-N1-RLTP1"
+2511,2512c2514,2515
+<        "dest-node": "mw-N2",
+<        "dest-tp": "mw-N2-RLTP2"
+---
+>        "dest-node": "example:mw-N2",
+>        "dest-tp": "example:mw-N2-RLTP2"
+2519,2520c2522,2523
+<           "src-tp-ref": "mw-N1-CTP1",
+<           "des-tp-ref": "mw-N2-CTP2"
+---
+>           "src-tp-ref": "example:mw-N1-CTP1",
+>           "des-tp-ref": "example:mw-N2-CTP2"
+2524,2525c2527,2528
+<           "src-tp-ref": "mw-N1-CTP3",
+<           "des-tp-ref": "mw-N2-CTP4"
+---
+>           "src-tp-ref": "example:mw-N1-CTP3",
+>           "des-tp-ref": "example:mw-N2-CTP4"
+2542c2545
+<       "link-id": "mwc-N1-N2-A",
+---
+>       "link-id": "example:mwc-N1-N2-A",
+2544,2545c2547,2548
+<        "source-node": "mw-N1",
+<        "source-tp": "mw-N1-CTP1"
+---
+>        "source-node": "example:mw-N1",
+>        "source-tp": "example:mw-N1-CTP1"
+2548,2549c2551,2552
+<        "dest-node": "mw-N2",
+<        "dest-tp": "mw-N2-CTP2"
+---
+>        "dest-node": "example:mw-N2",
+>        "dest-tp": "example:mw-N2-CTP2"
+2573c2576
+<       "link-id": "mwc-N1-N2-B",
+---
+>       "link-id": "example:mwc-N1-N2-B",
+2575,2576c2578,2579
+<        "source-node": "mw-N1",
+<        "source-tp": "mw-N1-CTP3"
+---
+>        "source-node": "example:mw-N1",
+>        "source-tp": "example:mw-N1-CTP3"
+2579,2580c2582,2583
+<        "dest-node": "mw-N2",
+<        "dest-tp": "mw-N2-CTP4"
+---
+>        "dest-node": "example:mw-N2",
+>        "dest-tp": "example:mw-N2-CTP4"
+2606c2609
+<          "node-id": "mw-N1",
+---
+>          "node-id": "example:mw-N1",

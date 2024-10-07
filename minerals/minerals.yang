@@ -17,17 +17,6 @@ module minerals {
       "minerals";
   }
 
-      typedef mybitstring-type {
-        type bits {
-          bit mybit1 {
-             position 1;
-          }
-          bit mybit2 {
-             position 2;
-          }
-        }
-      }
-
   container mineral-db {
     description
       "minerals";
@@ -49,16 +38,6 @@ module minerals {
           fraction-digits 1;
         }
         units "mohs";
-      }
-      leaf mybitstring {
-        type mybitstring-type;
-      }
-      leaf mybitstring-refined {
-        type mybitstring-type {
-          bit mybit2 {
-             position 2;
-          }
-        }
       }
     }
   }

@@ -84,27 +84,27 @@
 </interfaces>
 <networks xmlns="urn:ietf:params:xml:ns:yang:ietf-network">
   <network>
-    <network-id>L2-network</network-id>
+    <network-id>example:L2-network</network-id>
     <network-types>
       <te-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <eth-tran-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-eth-te-topology"/>
       </te-topology>
     </network-types>
     <supporting-network>
-      <network-ref>mw-network</network-ref>
+      <network-ref>example:mw-network</network-ref>
     </supporting-network>
     <node>
-      <node-id>L2-N1</node-id>
+      <node-id>example:L2-N1</node-id>
       <supporting-node>
-        <network-ref>mw-network</network-ref>
-        <node-ref>mw-N1</node-ref>
+        <network-ref>example:mw-network</network-ref>
+        <node-ref>example:mw-N1</node-ref>
       </supporting-node>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>L2-N1-TP1</tp-id>
+        <tp-id>example:L2-N1-TP1</tp-id>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N1</node-ref>
-          <tp-ref>mw-N1-RLTP1</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N1</node-ref>
+          <tp-ref>example:mw-N1-RLTP1</tp-ref>
         </supporting-termination-point>
       </termination-point>
       <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.1</te-node-id>
@@ -115,17 +115,17 @@
       </te>
     </node>
     <node>
-      <node-id>L2-N2</node-id>
+      <node-id>example:L2-N2</node-id>
       <supporting-node>
-        <network-ref>mw-network</network-ref>
-        <node-ref>mw-N2</node-ref>
+        <network-ref>example:mw-network</network-ref>
+        <node-ref>example:mw-N2</node-ref>
       </supporting-node>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>L2-N2-TP2</tp-id>
+        <tp-id>example:L2-N2-TP2</tp-id>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N2</node-ref>
-          <tp-ref>mw-N2-RLTP2</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N2</node-ref>
+          <tp-ref>example:mw-N2-RLTP2</tp-ref>
         </supporting-termination-point>
       </termination-point>
       <te-node-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.2</te-node-id>
@@ -136,18 +136,18 @@
       </te>
     </node>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>L2-N1-N2</link-id>
+      <link-id>example:L2-N1-N2</link-id>
       <source>
-        <source-node>L2-N1</source-node>
-        <source-tp>L2-N1-TP1</source-tp>
+        <source-node>example:L2-N1</source-node>
+        <source-tp>example:L2-N1-TP1</source-tp>
       </source>
       <destination>
-        <dest-node>L2-N2</dest-node>
-        <dest-tp>L2-N2-TP2</dest-tp>
+        <dest-node>example:L2-N2</dest-node>
+        <dest-tp>example:L2-N2-TP2</dest-tp>
       </destination>
       <supporting-link>
-        <network-ref>mw-network</network-ref>
-        <link-ref>mwrl-N1-N2</link-ref>
+        <network-ref>example:mw-network</network-ref>
+        <link-ref>example:mwrl-N1-N2</link-ref>
       </supporting-link>
       <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <te-link-attributes>
@@ -160,32 +160,32 @@
     </link>
   </network>
   <network>
-    <network-id>mw-network</network-id>
+    <network-id>example:mw-network</network-id>
     <network-types>
       <te-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <mw-topology xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology"/>
       </te-topology>
     </network-types>
     <supporting-network>
-      <network-ref>mw-network</network-ref>
+      <network-ref>example:mw-network</network-ref>
     </supporting-network>
     <node>
-      <node-id>mw-N1</node-id>
+      <node-id>example:mw-N1</node-id>
       <supporting-node>
-        <network-ref>mw-network</network-ref>
-        <node-ref>mw-N1</node-ref>
+        <network-ref>example:mw-network</network-ref>
+        <node-ref>example:mw-N1</node-ref>
       </supporting-node>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N1-RLTP1</tp-id>
+        <tp-id>example:mw-N1-RLTP1</tp-id>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N1</node-ref>
-          <tp-ref>mw-N1-CTP1</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N1</node-ref>
+          <tp-ref>example:mw-N1-CTP1</tp-ref>
         </supporting-termination-point>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N1</node-ref>
-          <tp-ref>mw-N1-CTP3</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N1</node-ref>
+          <tp-ref>example:mw-N1-CTP3</tp-ref>
         </supporting-termination-point>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.3</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
@@ -196,7 +196,7 @@
         </te>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N1-CTP1</tp-id>
+        <tp-id>example:mw-N1-CTP1</tp-id>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">1</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
           <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
@@ -206,7 +206,7 @@
         </te>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N1-CTP3</tp-id>
+        <tp-id>example:mw-N1-CTP3</tp-id>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">2</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
           <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
@@ -223,22 +223,22 @@
       </te>
     </node>
     <node>
-      <node-id>mw-N2</node-id>
+      <node-id>example:mw-N2</node-id>
       <supporting-node>
-        <network-ref>mw-network</network-ref>
-        <node-ref>mw-N2</node-ref>
+        <network-ref>example:mw-network</network-ref>
+        <node-ref>example:mw-N2</node-ref>
       </supporting-node>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N2-RLTP2</tp-id>
+        <tp-id>example:mw-N2-RLTP2</tp-id>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N2</node-ref>
-          <tp-ref>mw-N2-CTP2</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N2</node-ref>
+          <tp-ref>example:mw-N2-CTP2</tp-ref>
         </supporting-termination-point>
         <supporting-termination-point>
-          <network-ref>mw-network</network-ref>
-          <node-ref>mw-N2</node-ref>
-          <tp-ref>mw-N2-CTP4</tp-ref>
+          <network-ref>example:mw-network</network-ref>
+          <node-ref>example:mw-N2</node-ref>
+          <tp-ref>example:mw-N2-CTP4</tp-ref>
         </supporting-termination-point>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">192.0.2.4</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
@@ -249,7 +249,7 @@
         </te>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N2-CTP2</tp-id>
+        <tp-id>example:mw-N2-CTP2</tp-id>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">1</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
           <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
@@ -259,7 +259,7 @@
         </te>
       </termination-point>
       <termination-point xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-        <tp-id>mw-N2-CTP4</tp-id>
+        <tp-id>example:mw-N2-CTP4</tp-id>
         <te-tp-id xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">2</te-tp-id>
         <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
           <mw-tp xmlns="urn:ietf:params:xml:ns:yang:ietf-microwave-topology">
@@ -276,26 +276,26 @@
       </te>
     </node>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>mwrl-N1-N2</link-id>
+      <link-id>example:mwrl-N1-N2</link-id>
       <source>
-        <source-node>mw-N1</source-node>
-        <source-tp>mw-N1-RLTP1</source-tp>
+        <source-node>example:mw-N1</source-node>
+        <source-tp>example:mw-N1-RLTP1</source-tp>
       </source>
       <destination>
-        <dest-node>mw-N2</dest-node>
-        <dest-tp>mw-N2-RLTP2</dest-tp>
+        <dest-node>example:mw-N2</dest-node>
+        <dest-tp>example:mw-N2-RLTP2</dest-tp>
       </destination>
       <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <bundled-links>
           <bundled-link>
             <sequence>1</sequence>
-            <src-tp-ref>mw-N1-CTP1</src-tp-ref>
-            <des-tp-ref>mw-N2-CTP2</des-tp-ref>
+            <src-tp-ref>example:mw-N1-CTP1</src-tp-ref>
+            <des-tp-ref>example:mw-N2-CTP2</des-tp-ref>
           </bundled-link>
           <bundled-link>
             <sequence>2</sequence>
-            <src-tp-ref>mw-N1-CTP3</src-tp-ref>
-            <des-tp-ref>mw-N2-CTP4</des-tp-ref>
+            <src-tp-ref>example:mw-N1-CTP3</src-tp-ref>
+            <des-tp-ref>example:mw-N2-CTP4</des-tp-ref>
           </bundled-link>
         </bundled-links>
         <te-link-attributes>
@@ -311,14 +311,14 @@
       </te>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>mwc-N1-N2-A</link-id>
+      <link-id>example:mwc-N1-N2-A</link-id>
       <source>
-        <source-node>mw-N1</source-node>
-        <source-tp>mw-N1-CTP1</source-tp>
+        <source-node>example:mw-N1</source-node>
+        <source-tp>example:mw-N1-CTP1</source-tp>
       </source>
       <destination>
-        <dest-node>mw-N2</dest-node>
-        <dest-tp>mw-N2-CTP2</dest-tp>
+        <dest-node>example:mw-N2</dest-node>
+        <dest-tp>example:mw-N2-CTP2</dest-tp>
       </destination>
       <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <te-link-attributes>
@@ -340,14 +340,14 @@
       </te>
     </link>
     <link xmlns="urn:ietf:params:xml:ns:yang:ietf-network-topology">
-      <link-id>mwc-N1-N2-B</link-id>
+      <link-id>example:mwc-N1-N2-B</link-id>
       <source>
-        <source-node>mw-N1</source-node>
-        <source-tp>mw-N1-CTP3</source-tp>
+        <source-node>example:mw-N1</source-node>
+        <source-tp>example:mw-N1-CTP3</source-tp>
       </source>
       <destination>
-        <dest-node>mw-N2</dest-node>
-        <dest-tp>mw-N2-CTP4</dest-tp>
+        <dest-node>example:mw-N2</dest-node>
+        <dest-tp>example:mw-N2-CTP4</dest-tp>
       </destination>
       <te xmlns="urn:ietf:params:xml:ns:yang:ietf-te-topology">
         <te-link-attributes>

@@ -1,23 +1,38 @@
 module minerals {
-  yang-version "1.1";
-  namespace urn:test:minerals;
+  yang-version 1.1;
+  namespace "urn:test:minerals";
   prefix m;
+
   organization
     "Test";
   contact
     "Test contact";
   description
     "Mineral Example";
+
   revision 2021-09-22 {
     description
       "Initial revision.";
     reference
       "minerals";
   }
+
+      typedef mybitstring-type {
+        type bits {
+          bit mybit1 {
+             position 1;
+          }
+          bit mybit2 {
+             position 2;
+          }
+        }
+      }
+
   container mineral-db {
     description
       "minerals";
     list mineral {
+      must 'hardness >= 0.0 and hardness <= 10.0';
       key "mineral-name";
       leaf mineral-name {
         type string;
@@ -31,11 +46,20 @@ module minerals {
       }
       leaf hardness {
         type decimal64 {
-          fraction-digits "1";
+          fraction-digits 1;
         }
         units "mohs";
       }
-      must 'hardness >= 0.0 and hardness <= 10.0';
+      leaf mybitstring {
+        type mybitstring-type;
+      }
+      leaf mybitstring-refined {
+        type mybitstring-type {
+          bit mybit2 {
+             position 2;
+          }
+        }
+      }
     }
   }
   container samples {
@@ -60,7 +84,7 @@ module minerals {
       }
       leaf mineral-ref {
         type leafref {
-          path '/mineral-db/mineral/mineral-name';
+          path "/mineral-db/mineral/mineral-name";
         }
         description
           "Suggested mineral identification";
