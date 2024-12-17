@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>diff</title>
+<meta name="Generator" content="Vim/9.1">
+<meta name="plugin-version" content="vim9.0_v2">
+<meta name="settings" content="number_lines,whole_filler,use_css,no_foldcolumn,expand_tabs,line_ids,prevent_copy=,use_input_for_pc=none">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Folded { color: #0000c0; background-color: #a8a8a8; padding-bottom: 1px; }
+.LineNr { color: #af5f00; }
+.DiffText { background-color: #ff6060; padding-bottom: 1px; font-weight: bold; }
+.DiffAdd { background-color: #5fd7ff; padding-bottom: 1px; }
+.DiffChange { background-color: #ffd7ff; padding-bottom: 1px; }
+.DiffDelete { color: #8080ff; background-color: #afffff; padding-bottom: 1px; }
+-->
+<!--
+table { table-layout: fixed; }
+html, body, table, tbody { width: 100%; margin: 0; padding: 0; }
+table, td, th { border: 1px solid; }
+td { vertical-align: top; }
+th, td { width: 50.0%; }
+td div { overflow: auto; }
+-->
+</style>
+<script>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  if (lineNum.indexOf('W') == -1) {
+    lineNum = 'W1'+lineNum;
+  }
+  var lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body onload='JumpToLine();'>
+<table id='vimCodeElement'>
+<tr>
+<th>/tmp/git-blob-REWzXY/itut-eth-oam.yang</th>
+<th>itut-eth-oam.yang</th>
+</tr><tr>
+<td><div>
+<pre>
+<span id="W1L1" class="Folded">   1 </span><span class="Folded">+-- 21 lines: module itut-eth-oam {-------------------------------------------------------------------------------------------</span>
+<span id="W1L22" class="LineNr">  22 </span>  }
+<span id="W1L23" class="LineNr">  23 </span>
+<span id="W1L24" class="LineNr">  24 </span>  import ieee802-dot1q-cfm-types {
+<span id="W1L25" class="LineNr">  25 </span>    prefix cfm-types;
+<span id="W1L26" class="LineNr">  26 </span>    reference
+<span id="W1L27" class="LineNr">  27 </span>      &quot;IEEE Std 802.1Qcx-2020.&quot;;
+<span id="W1L28" class="LineNr">  28 </span>  }
+<span id="W1L29" class="LineNr">  29 </span>
+<span id="W1L30" class="LineNr">  30 </span>  import ieee802-dot1q-cfm {
+<span id="W1L31" class="LineNr">  31 </span>    prefix dot1q-cfm;
+<span id="W1L32" class="LineNr">  32 </span>    reference
+<span id="W1L33" class="LineNr">  33 </span>      &quot;IEEE Std 802.1Qcx-2020.&quot;;
+<span id="W1L34" class="LineNr">  34 </span>  }
+<span id="W1L35" class="LineNr">  35 </span>
+<span id="W1L36" class="LineNr">  36 </span>  organization
+<span id="W1L37" class="LineNr">  37 </span>    &quot;ITU-T Study Group 15 (SG15) Question 14 (Q14/15)&quot;;
+<span id="W1L38" class="LineNr">  38 </span>
+<span id="W1L39" class="LineNr">  39 </span>  contact
+<span id="W1L40" class="LineNr">  40 </span>    &quot;Q14/15 Web: &lt;<a href="https://www.itu.int/en/ITU-T/studygroups/">https://www.itu.int/en/ITU-T/studygroups/</a>
+<span id="W1L41" class="LineNr">  41 </span>                  2022-2024/15/Pages/q14.aspx&gt;
+<span id="W1L42" class="LineNr">  42 </span>
+<span id="W1L43" class="LineNr">  43 </span>    Q14/15 List: &lt;t22sg15q14@lists.itu.int&gt;
+<span id="W1L44" class="LineNr">  44 </span>
+<span id="W1L45" class="LineNr">  45 </span>    Editor:      Kam LAM
+<span id="W1L46" class="LineNr">  46 </span>                 &lt;mailto:kam.lam@fhusainc.com&gt;
+<span id="W1L47" class="LineNr">  47 </span>
+<span id="W1L48" class="LineNr">  48 </span>    Editor:      Xiang YUN
+<span id="W1L49" class="LineNr">  49 </span>                 &lt;mailto:yunxig@fiberhome.com&gt;
+<span id="W1L50" class="LineNr">  50 </span>
+<span id="W1L51" class="LineNr">  51 </span>    Editor:      Scott MANSFIELD
+<span id="W1L52" class="LineNr">  52 </span>                 &lt;mailto:scott.mansfield@ericsson.com&gt;
+<span id="W1L53" class="LineNr">  53 </span>
+<span id="W1L54" class="LineNr">  54 </span>    Editor:      Italo BUSI
+<span id="W1L55" class="LineNr">  55 </span>                 &lt;mailto:italo.busi@huawei.com&gt;&quot;;
+<span id="W1L56" class="LineNr">  56 </span>
+<span id="W1L57" class="LineNr">  57 </span>  description
+<span id="W1L58" class="LineNr">  58 </span>    &quot;This module defines a YANG data model for configuring the
+<span id="W1L59" class="LineNr">  59 </span>    Ethernet OAM capabilities defined in ITU-T G.8013 and
+<span id="W1L60" class="LineNr">  60 </span>    ITU-T G.8021, augmenting the IEEE Connectivity Fault Management
+<span id="W1L61" class="LineNr">  61 </span>    (CFM) YANG model.
+<span id="W1L62" class="LineNr">  62 </span>
+<span id="W1L63" class="LineNr">  63 </span>    Copyright (c) 2024 ITU.
+<span id="W1L64" class="LineNr">  64 </span>
+<span id="W1L65" class="LineNr">  65 </span>    All rights reserved. No part of this publication may be
+<span id="W1L66" class="LineNr">  66 </span>    reproduced, by any means whatsoever, without the prior written
+<span id="W1L67" class="LineNr">  67 </span>    permission of ITU.&quot;;
+<span id="W1L68" class="LineNr">  68 </span>  reference
+<span id="W1L69" class="LineNr">  69 </span>    &quot;ITU-T G.8013 v6.1 (01/2024);
+<span id="W1L70" class="LineNr">  70 </span>    ITU-T G.8021 v8.1 (01/2024).&quot;;
+<span id="W1L71" class="LineNr">  71 </span>
+<span id="W1L72" class="LineNr">  72 </span><span class="DiffChange">  revision 2024-1</span><span class="DiffText">1-22</span><span class="DiffChange"> {                                                                                                  </span>
+<span id="W1L73" class="LineNr">  73 </span>    description
+<span id="W1L74" class="LineNr">  74 </span>      &quot;TBA.&quot;;
+<span id="W1L75" class="LineNr">  75 </span>    reference
+<span id="W1L76" class="LineNr">  76 </span><span class="DiffChange">      &quot;G.8052.1 v1.2.0</span><span class="DiffText">3</span><span class="DiffChange"> (Draft).&quot;;                                                                                       </span>
+<span id="W1L77" class="LineNr">  77 </span>  }
+<span id="W1L78" class="LineNr">  78 </span>
+<span id="W1L79" class="LineNr">  79 </span>  revision 2024-03-08 {
+<span id="W1L80" class="LineNr">  80 </span>    description
+<span id="W1L81" class="LineNr">  81 </span>      &quot;Added support of PM threshold profiling, configuration of
+<span id="W1L82" class="LineNr">  82 </span>      degrade defect detection, bandwidth notification and CSF OAM
+<span id="W1L83" class="LineNr">  83 </span>      functions and clarified the behaviour of the measurement
+<span id="W1L84" class="LineNr">  84 </span>      jobs.&quot;;
+<span id="W1L85" class="LineNr">  85 </span>    reference
+<span id="W1L86" class="LineNr">  86 </span>      &quot;G.8052.1 v1.2 (03/2024).&quot;;
+<span id="W1L87" class="LineNr">  87 </span>  }
+<span id="W1L88" class="LineNr">  88 </span>  revision 2023-01-13 {
+<span id="W1L89" class="LineNr">  89 </span>    description
+<span id="W1L90" class="LineNr">  90 </span>      &quot;Added support of on-demand measurement and proactive
+<span id="W1L91" class="LineNr">  91 </span>      measurement.&quot;;
+<span id="W1L92" class="LineNr">  92 </span>    reference
+<span id="W1L93" class="LineNr">  93 </span>      &quot;ITU-T G.8052.1 v1.1 (01/2023).&quot;;
+<span id="W1L94" class="LineNr">  94 </span>  }
+<span id="W1L95" class="LineNr">  95 </span>  revision 2021-01-13 {
+<span id="W1L96" class="LineNr">  96 </span>    description
+<span id="W1L97" class="LineNr">  97 </span>      &quot;Initial Version.&quot;;
+<span id="W1L98" class="LineNr">  98 </span>    reference
+<span id="W1L99" class="LineNr">  99 </span>      &quot;ITU-T G.8052.1 v1.0 (01/2021).&quot;;
+<span id="W1L100" class="LineNr"> 100 </span>  }
+<span id="W1L101" class="LineNr"> 101 </span>
+<span id="W1L102" class="LineNr"> 102 </span>  /*
+<span id="W1L103" class="LineNr"> 103 </span>   * Identities
+<span id="W1L104" class="LineNr"> 104 </span>   */
+<span id="W1L105" class="LineNr"> 105 </span>
+<span id="W1L106" class="LineNr"> 106 </span>  identity oam-type {
+<span id="W1L107" class="LineNr"> 107 </span>    description
+<span id="W1L108" class="LineNr"> 108 </span>      &quot;Base identity for the type of the OAM protocol.&quot;;
+<span id="W1L109" class="LineNr"> 109 </span>  }
+<span id="W1L110" class="LineNr"> 110 </span>
+<span id="W1L111" class="LineNr"> 111 </span>    identity dual-ended-oam-type {
+<span id="W1L112" class="LineNr"> 112 </span>      base oam-type;
+<span id="W1L113" class="LineNr"> 113 </span>      description
+<span id="W1L114" class="LineNr"> 114 </span>        &quot;Base identity for the type of the dual-ended OAM protocol.&quot;;
+<span id="W1L115" class="LineNr"> 115 </span>      reference
+<span id="W1L116" class="LineNr"> 116 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 3.2.1.&quot;;
+<span id="W1L117" class="LineNr"> 117 </span>    }
+<span id="W1L118" class="LineNr"> 118 </span>
+<span id="W1L119" class="LineNr"> 119 </span>      identity oam-lm-ccm {
+<span id="W1L120" class="LineNr"> 120 </span>        base dual-ended-oam-type;
+<span id="W1L121" class="LineNr"> 121 </span>        description
+<span id="W1L122" class="LineNr"> 122 </span>          &quot;Dual-ended CCM OAM protocol supporting loss measurement.&quot;;
+<span id="W1L123" class="LineNr"> 123 </span>        reference
+<span id="W1L124" class="LineNr"> 124 </span>          &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.2.&quot;;
+<span id="W1L125" class="LineNr"> 125 </span>      }
+<span id="W1L126" class="LineNr"> 126 </span>
+<span id="W1L127" class="Folded"> 127 </span><span class="Folded">+--2416 lines: identity oam-1dm {---------------------------------------------------------------------------------------------</span>
+<span id="W1L2543" class="LineNr">2543 </span>        &quot;The overflow threshold values used to generate an out of
+<span id="W1L2544" class="LineNr">2544 </span>        range (OOR) report for bidirectional delay measurement.&quot;;
+<span id="W1L2545" class="LineNr">2545 </span>      uses dm-performance-data;
+<span id="W1L2546" class="LineNr">2546 </span>      reference
+<span id="W1L2547" class="LineNr">2547 </span>        &quot;ITU-T G.7710 v5.1 (11/2022): clause 10.1.7.2.&quot;;
+<span id="W1L2548" class="LineNr">2548 </span>    }
+<span id="W1L2549" class="LineNr">2549 </span>  }
+<span id="W1L2550" class="LineNr">2550 </span>
+<span id="W1L2551" class="LineNr">2551 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W1L2552" class="LineNr">2552 </span>  grouping loopback-series-input {
+<span id="W1L2553" class="LineNr">2553 </span>    description
+<span id="W1L2554" class="LineNr">2554 </span>      &quot;Additional input parameters to configure an OAM Loopback
+<span id="W1L2555" class="LineNr">2555 </span>      Series operation.&quot;;
+<span id="W1L2556" class="LineNr">2556 </span>    leaf period {
+<span id="W1L2557" class="LineNr">2557 </span>      type uint32;
+<span id="W1L2558" class="LineNr">2558 </span>      units milliseconds;
+<span id="W1L2559" class="LineNr">2559 </span>      description
+<span id="W1L2560" class="LineNr">2560 </span>        &quot;The periodicity of the LBM OAM messages.
+<span id="W1L2561" class="LineNr">2561 </span>
+<span id="W1L2562" class="LineNr">2562 </span>        The default value, the value range and the granularity
+<span id="W1L2563" class="LineNr">2563 </span>        of the values within the value range are implementation
+<span id="W1L2564" class="LineNr">2564 </span>        specific.&quot;;
+<span id="W1L2565" class="LineNr">2565 </span>    }
+<span id="W1L2566" class="LineNr">2566 </span>    leaf data-tlv-length {
+<span id="W1L2567" class="LineNr">2567 </span>      type uint16;
+<span id="W1L2568" class="LineNr">2568 </span>      units octets;
+<span id="W1L2569" class="LineNr">2569 </span>      description
+<span id="W1L2570" class="LineNr">2570 </span>        &quot;The Length of the Data TLV to be inserted within the
+<span id="W1L2571" class="LineNr">2571 </span>        LBM OAM messages.&quot;;
+<span id="W1L2572" class="LineNr">2572 </span>    }
+<span id="W1L2573" class="LineNr">2573 </span>    reference
+<span id="W1L2574" class="LineNr">2574 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.8.2&quot;;
+<span id="W1L2575" class="LineNr">2575 </span>  }
+<span id="W1L2576" class="LineNr">2576 </span>
+<span id="W1L2577" class="LineNr">2577 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W1L2578" class="LineNr">2578 </span>  grouping linktrace-input {
+<span id="W1L2579" class="LineNr">2579 </span>    description
+<span id="W1L2580" class="LineNr">2580 </span>      &quot;Additional input parameters to configure an OAM Linktrace
+<span id="W1L2581" class="LineNr">2581 </span>      operation.&quot;;
+<span id="W1L2582" class="LineNr">2582 </span>    leaf priority {
+<span id="W1L2583" class="LineNr">2583 </span>      type dot1q-types:priority-type;
+<span id="W1L2584" class="LineNr">2584 </span>      description
+<span id="W1L2585" class="LineNr">2585 </span>        &quot;The priority value of the Linktrace operation.
+<span id="W1L2586" class="LineNr">2586 </span>
+<span id="W1L2587" class="LineNr">2587 </span>        The default value is the same as the CCM priority.&quot;;
+<span id="W1L2588" class="LineNr">2588 </span>    }
+<span id="W1L2589" class="LineNr">2589 </span>    reference
+<span id="W1L2590" class="LineNr">2590 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.13.2&quot;;
+<span id="W1L2591" class="LineNr">2591 </span>  }
+<span id="W1L2592" class="LineNr">2592 </span>
+<span id="W1L2593" class="LineNr">2593 </span><span class="DiffChange">  // Editors' Note:</span><span class="DiffText"> Added in G.8052.1 v1.2.03 (CD14a-10r1)</span><span class="DiffChange">                                                               </span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W1L2594" class="LineNr">2594 </span>  grouping linktrace-output {
+<span id="W1L2595" class="LineNr">2595 </span>    description
+<span id="W1L2596" class="LineNr">2596 </span>      &quot;Additional output parameters to report the results of an OAM
+<span id="W1L2597" class="LineNr">2597 </span>      Linktrace operation.&quot;;
+<span id="W1L2598" class="LineNr">2598 </span>    leaf ltr-source-address {
+<span id="W1L2599" class="LineNr">2599 </span>      type ieee:mac-address;
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W1L2600" class="LineNr">2600 </span>      description
+<span id="W1L2601" class="LineNr">2601 </span>        &quot;The MAC Source Address (SA) of the returned Linktrace
+<span id="W1L2602" class="LineNr">2602 </span>        Reply (LTR) OAM message.&quot;;
+<span id="W1L2603" class="LineNr">2603 </span>    }
+<span id="W1L2604" class="LineNr">2604 </span>    reference
+<span id="W1L2605" class="LineNr">2605 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.13.2&quot;;
+<span id="W1L2606" class="LineNr">2606 </span>  }
+<span id="W1L2607" class="LineNr">2607 </span>
+<span id="W1L2608" class="LineNr">2608 </span><span class="DiffChange">  // </span><span class="DiffText">Contributors' Note: Proposed to be added in WD1214-XX</span><span class="DiffChange">                                                               </span>
+<span id="W1L2609" class="LineNr">2609 </span>  grouping linktrace-result {
+<span id="W1L2610" class="LineNr">2610 </span>    description
+<span id="W1L2611" class="LineNr">2611 </span>      &quot;This grouping contains the Linktrace (LT) attributes which are
+<span id="W1L2612" class="LineNr">2612 </span>      in common with those defined in IEEE CFM YANG model.
+<span id="W1L2613" class="LineNr">2613 </span>
+<span id="W1L2614" class="LineNr">2614 </span>      The data nodes names and types have been selected to enable
+<span id="W1L2615" class="LineNr">2615 </span>      replacing this grouping with a new grouping to be defined in
+<span id="W1L2616" class="LineNr">2616 </span>      a future version of IEEE CFM YANG model.
+<span id="W1L2617" class="LineNr">2617 </span>
+<span id="W1L2618" class="LineNr">2618 </span>      This grouping shall not be re-used outside of this module.&quot;;
+<span id="W1L2619" class="LineNr">2619 </span>    leaf ltr-ttl {
+<span id="W1L2620" class="LineNr">2620 </span>      type uint8 {
+<span id="W1L2621" class="LineNr">2621 </span>        range &quot;0..255&quot;;
+<span id="W1L2622" class="LineNr">2622 </span>      }
+<span id="W1L2623" class="LineNr">2623 </span>      mandatory true;
+<span id="W1L2624" class="LineNr">2624 </span>      description
+<span id="W1L2625" class="LineNr">2625 </span>        &quot;The value of the TTL field in the received LTR OAM
+<span id="W1L2626" class="LineNr">2626 </span>        Message.&quot;;
+<span id="W1L2627" class="LineNr">2627 </span>    }
+<span id="W1L2628" class="LineNr">2628 </span>    leaf ltr-forwarded {
+<span id="W1L2629" class="LineNr">2629 </span>      type boolean;
+<span id="W1L2630" class="LineNr">2630 </span>      description
+<span id="W1L2631" class="LineNr">2631 </span>        &quot;Indicates whether the modified LTM OAM Message has been
+<span id="W1L2632" class="LineNr">2632 </span>        relayed or not based on the FwdYes flag of received LTR OAM
+<span id="W1L2633" class="LineNr">2633 </span>        Message.
+<span id="W1L2634" class="LineNr">2634 </span>
+<span id="W1L2635" class="LineNr">2635 </span><span class="DiffChange">        </span><span class="DiffText">This attribute is not reported by equipment compliant with</span><span class="DiffChange">                                                       </span>
+<span id="W1L2636" class="LineNr">2636 </span><span class="DiffChange">        </span><span class="DiffText">the 2016 version of G.8013.&quot;;</span><span class="DiffChange">                                                                                    </span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W1L2637" class="LineNr">2637 </span>      reference
+<span id="W1L2638" class="LineNr">2638 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W1L2639" class="LineNr">2639 </span>    }
+<span id="W1L2640" class="LineNr">2640 </span>    leaf ltr-terminal-mep {
+<span id="W1L2641" class="LineNr">2641 </span>      type boolean;
+<span id="W1L2642" class="LineNr">2642 </span><span class="DiffAdd">      mandatory true;</span><span class="DiffAdd">                                                                                                    </span>
+<span id="W1L2643" class="LineNr">2643 </span>      description
+<span id="W1L2644" class="LineNr">2644 </span>        &quot;Indicates whether the Reply Egress TLV (or Reply Ingress
+<span id="W1L2645" class="LineNr">2645 </span>        TLV, if the Reply Egress TLV is not present) is a MEP or
+<span id="W1L2646" class="LineNr">2646 </span>        not.
+<span id="W1L2647" class="LineNr">2647 </span>
+<span id="W1L2648" class="LineNr">2648 </span><span class="DiffChange">        </span><span class="DiffText">This attribute is not reported by equipment compliant with</span><span class="DiffChange">                                                       </span>
+<span id="W1L2649" class="LineNr">2649 </span><span class="DiffChange">        </span><span class="DiffText">the 2016 version of G.8013.&quot;;</span><span class="DiffChange">                                                                                    </span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W1L2650" class="LineNr">2650 </span>      reference
+<span id="W1L2651" class="LineNr">2651 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W1L2652" class="LineNr">2652 </span>    }
+<span id="W1L2653" class="LineNr">2653 </span>    container ltr-last-egress-identifier {
+<span id="W1L2654" class="LineNr">2654 </span>      presence
+<span id="W1L2655" class="LineNr">2655 </span>        &quot;When present indicates that the LTR Egress Identifier TLV
+<span id="W1L2656" class="LineNr">2656 </span>        was present in the received LTR OAM Message.&quot;;
+<span id="W1L2657" class="LineNr">2657 </span>      description
+<span id="W1L2658" class="LineNr">2658 </span>        &quot;The information in the Last Egress Identifier field of LTR
+<span id="W1L2659" class="LineNr">2659 </span>        Egress Identifier TLV in the received LTR OAM Message.&quot;;
+<span id="W1L2660" class="LineNr">2660 </span>      uses dot1q-cfm:ltm-egress-identifier-grouping;
+<span id="W1L2661" class="LineNr">2661 </span>      reference
+<span id="W1L2662" class="LineNr">2662 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W1L2663" class="LineNr">2663 </span>    }
+<span id="W1L2664" class="LineNr">2664 </span>    container ltr-next-egress-identifier {
+<span id="W1L2665" class="LineNr">2665 </span>      presence
+<span id="W1L2666" class="LineNr">2666 </span>        &quot;When present indicates that the LTR Egress Identifier TLV
+<span id="W1L2667" class="LineNr">2667 </span>        was present in the received LTR OAM Message.&quot;;
+<span id="W1L2668" class="LineNr">2668 </span>      description
+<span id="W1L2669" class="LineNr">2669 </span>        &quot;The information in the Next Egress Identifier field of LTR
+<span id="W1L2670" class="LineNr">2670 </span>        Egress Identifier TLV in the received LTR OAM Message.&quot;;
+<span id="W1L2671" class="LineNr">2671 </span>      uses dot1q-cfm:ltm-egress-identifier-grouping;
+<span id="W1L2672" class="LineNr">2672 </span>      reference
+<span id="W1L2673" class="LineNr">2673 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W1L2674" class="LineNr">2674 </span>    }
+<span id="W1L2675" class="LineNr">2675 </span>    leaf ltr-relay {
+<span id="W1L2676" class="LineNr">2676 </span>      type cfm-types:relay-action-field-value-type;
+<span id="W1L2677" class="LineNr">2677 </span>      description
+<span id="W1L2678" class="LineNr">2678 </span>        &quot;The value of the Relay Action field in the received LTR OAM
+<span id="W1L2679" class="LineNr">2679 </span>        Message.&quot;;
+<span id="W1L2680" class="LineNr">2680 </span>      reference
+<span id="W1L2681" class="LineNr">2681 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2&quot;;
+<span id="W1L2682" class="LineNr">2682 </span>    }
+<span id="W1L2683" class="LineNr">2683 </span>    leaf ltr-ingress {
+<span id="W1L2684" class="LineNr">2684 </span>      type cfm-types:ingress-action-field-value-type;
+<span id="W1L2685" class="LineNr">2685 </span>      description
+<span id="W1L2686" class="LineNr">2686 </span>        &quot;The value of the Ingress Action field of the Reply Ingress
+<span id="W1L2687" class="LineNr">2687 </span>        TLV in the received LTR OAM Message.
+<span id="W1L2688" class="LineNr">2688 </span>
+<span id="W1L2689" class="LineNr">2689 </span>        This leaf is not present if the Reply Ingress TLV was not
+<span id="W1L2690" class="LineNr">2690 </span>        present in the received LTR OAM Message.&quot;;
+<span id="W1L2691" class="LineNr">2691 </span>      reference
+<span id="W1L2692" class="LineNr">2692 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2&quot;;
+<span id="W1L2693" class="LineNr">2693 </span>    }
+<span id="W1L2694" class="LineNr">2694 </span>    leaf ltr-ingress-mac {
+<span id="W1L2695" class="LineNr">2695 </span>      when &quot;../eth-oam:ltr-ingress&quot;;
+<span id="W1L2696" class="LineNr">2696 </span>      type ieee:mac-address;
+<span id="W1L2697" class="LineNr">2697 </span>      mandatory true;
+<span id="W1L2698" class="LineNr">2698 </span>      description
+<span id="W1L2699" class="LineNr">2699 </span>        &quot;The MAC address in the Ingress MAC Address field of the
+<span id="W1L2700" class="Folded">2700 </span><span class="Folded">+--508 lines: Reply Ingress TLV in the received LTR OAM Message.&quot;;------------------------------------------------------------</span>
+<span id="W1L3208" class="LineNr">3208 </span>        An G.8021 compliant implementation supports only OAM Loopback
+<span id="W1L3209" class="LineNr">3209 </span>        operation at the same time and on the same MEP. The request
+<span id="W1L3210" class="LineNr">3210 </span>        to perform an OAM Loopback operation will be rejected if
+<span id="W1L3211" class="LineNr">3211 </span>        there is already an on-going OAM Loopback operation on the
+<span id="W1L3212" class="LineNr">3212 </span>        same MEP.&quot;;
+<span id="W1L3213" class="LineNr">3213 </span>      container loopback-discovery {
+<span id="W1L3214" class="LineNr">3214 </span>        presence
+<span id="W1L3215" class="LineNr">3215 </span>          &quot;When present indicates a request for an OAM Loopback
+<span id="W1L3216" class="LineNr">3216 </span>          Discovery operation, as defined in ITU-T G.8021.&quot;;
+<span id="W1L3217" class="LineNr">3217 </span>        description
+<span id="W1L3218" class="LineNr">3218 </span>          &quot;An ITU-T G.8021 compliant implementation is not required
+<span id="W1L3219" class="LineNr">3219 </span>          to support the configuration of the
+<span id="W1L3220" class="LineNr">3220 </span>          lbm-dest-ucast-mac-address, lbm-dest-mep-id, lbm-messages,
+<span id="W1L3221" class="LineNr">3221 </span>          lbm-drop-eligible and lbm-data-tlv input attributeds for
+<span id="W1L3222" class="LineNr">3222 </span>          OAM Loopback Discovery operations and may reject the RPC
+<span id="W1L3223" class="LineNr">3223 </span>          request if some of these input attributes are configured.&quot;;
+<span id="W1L3224" class="LineNr">3224 </span>      }
+<span id="W1L3225" class="LineNr">3225 </span>      container loopback-series {
+<span id="W1L3226" class="LineNr">3226 </span>        presence
+<span id="W1L3227" class="LineNr">3227 </span>          &quot;When present indicates a request for an OAM Loopback
+<span id="W1L3228" class="LineNr">3228 </span>          Series operation, as defined in ITU-T G.8021.&quot;;
+<span id="W1L3229" class="LineNr">3229 </span>        description
+<span id="W1L3230" class="LineNr">3230 </span>          &quot;An ITU-T G.8021 compliant implementation is required to
+<span id="W1L3231" class="LineNr">3231 </span>          support the configuration of the data-tlv-length input
+<span id="W1L3232" class="LineNr">3232 </span>          attribute instead of the lbm-data-tlv for OAM Loopback
+<span id="W1L3233" class="LineNr">3233 </span>          Series operations and may reject the RPC request if the
+<span id="W1L3234" class="LineNr">3234 </span>          lbm-data-tlv input attribute is configured.&quot;;
+<span id="W1L3235" class="LineNr">3235 </span>        uses loopback-series-input {
+<span id="W1L3236" class="LineNr">3236 </span>          refine data-tlv-length {
+<span id="W1L3237" class="LineNr">3237 </span>            must &quot;not (. and ../../dot1q-cfm:lbm-data-tlv)&quot; {
+<span id="W1L3238" class="LineNr">3238 </span>              description
+<span id="W1L3239" class="LineNr">3239 </span>                &quot;The data-tlv-length and the lbm-data-tlv input
+<span id="W1L3240" class="LineNr">3240 </span>                attributes are mutually exclusive.&quot;;
+<span id="W1L3241" class="LineNr">3241 </span>            }
+<span id="W1L3242" class="LineNr">3242 </span>          }
+<span id="W1L3243" class="LineNr">3243 </span>        }
+<span id="W1L3244" class="LineNr">3244 </span>      }
+<span id="W1L3245" class="LineNr">3245 </span>      reference
+<span id="W1L3246" class="LineNr">3246 </span>        &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.8.&quot;;
+<span id="W1L3247" class="LineNr">3247 </span>    }
+<span id="W1L3248" class="LineNr">3248 </span>  } // Augment Transmit LB input
+<span id="W1L3249" class="LineNr">3249 </span>
+<span id="W1L3250" class="LineNr">3250 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W1L3251" class="LineNr">3251 </span>  augment &quot;/dot1q-cfm:cfm/dot1q-cfm:maintenance-group&quot;
+<span id="W1L3252" class="LineNr">3252 </span>        + &quot;/dot1q-cfm:mep/dot1q-cfm:transmit-linktrace&quot;
+<span id="W1L3253" class="LineNr">3253 </span>        + &quot;/dot1q-cfm:input&quot; {
+<span id="W1L3254" class="LineNr">3254 </span>    description
+<span id="W1L3255" class="LineNr">3255 </span>      &quot;Augment the input for Transmit Linktrace action.&quot;;
+<span id="W1L3256" class="LineNr">3256 </span>    uses linktrace-input;
+<span id="W1L3257" class="LineNr">3257 </span>  } // Augment Transmit LT input
+<span id="W1L3258" class="LineNr">3258 </span><span class="DiffAdd"> </span><span class="DiffAdd">                                                                                                                        </span>
+<span id="W1L3259" class="LineNr">3259 </span><span class="DiffAdd">  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)</span><span class="DiffAdd">                                                               </span>
+<span id="W1L3260" class="LineNr">3260 </span><span class="DiffAdd">  augment &quot;/dot1q-cfm:cfm/dot1q-cfm:maintenance-group&quot;</span><span class="DiffAdd">                                                                   </span>
+<span id="W1L3261" class="LineNr">3261 </span><span class="DiffAdd">        + &quot;/dot1q-cfm:mep/dot1q-cfm:transmit-linktrace&quot;</span><span class="DiffAdd">                                                                  </span>
+<span id="W1L3262" class="LineNr">3262 </span><span class="DiffAdd">        + &quot;/dot1q-cfm:output&quot; {</span><span class="DiffAdd">                                                                                          </span>
+<span id="W1L3263" class="LineNr">3263 </span><span class="DiffAdd">    description</span><span class="DiffAdd">                                                                                                          </span>
+<span id="W1L3264" class="LineNr">3264 </span><span class="DiffAdd">      &quot;Augment the output for Transmit Linktrace action.&quot;;</span><span class="DiffAdd">                                                               </span>
+<span id="W1L3265" class="LineNr">3265 </span><span class="DiffAdd">    uses linktrace-output;</span><span class="DiffAdd">                                                                                               </span>
+<span id="W1L3266" class="LineNr">3266 </span><span class="DiffAdd">  } // Augment Transmit LT output</span><span class="DiffAdd">                                                                                        </span>
+<span id="W1L3267" class="LineNr">3267 </span>}
+</pre>
+</div></td>
+<td><div>
+<pre>
+<span id="W2L1" class="Folded">   1 </span><span class="Folded">+-- 21 lines: module itut-eth-oam {-------------------------------------------------------------------------------------------</span>
+<span id="W2L22" class="LineNr">  22 </span>  }
+<span id="W2L23" class="LineNr">  23 </span>
+<span id="W2L24" class="LineNr">  24 </span>  import ieee802-dot1q-cfm-types {
+<span id="W2L25" class="LineNr">  25 </span>    prefix cfm-types;
+<span id="W2L26" class="LineNr">  26 </span>    reference
+<span id="W2L27" class="LineNr">  27 </span>      &quot;IEEE Std 802.1Qcx-2020.&quot;;
+<span id="W2L28" class="LineNr">  28 </span>  }
+<span id="W2L29" class="LineNr">  29 </span>
+<span id="W2L30" class="LineNr">  30 </span>  import ieee802-dot1q-cfm {
+<span id="W2L31" class="LineNr">  31 </span>    prefix dot1q-cfm;
+<span id="W2L32" class="LineNr">  32 </span>    reference
+<span id="W2L33" class="LineNr">  33 </span>      &quot;IEEE Std 802.1Qcx-2020.&quot;;
+<span id="W2L34" class="LineNr">  34 </span>  }
+<span id="W2L35" class="LineNr">  35 </span>
+<span id="W2L36" class="LineNr">  36 </span>  organization
+<span id="W2L37" class="LineNr">  37 </span>    &quot;ITU-T Study Group 15 (SG15) Question 14 (Q14/15)&quot;;
+<span id="W2L38" class="LineNr">  38 </span>
+<span id="W2L39" class="LineNr">  39 </span>  contact
+<span id="W2L40" class="LineNr">  40 </span>    &quot;Q14/15 Web: &lt;<a href="https://www.itu.int/en/ITU-T/studygroups/">https://www.itu.int/en/ITU-T/studygroups/</a>
+<span id="W2L41" class="LineNr">  41 </span>                  2022-2024/15/Pages/q14.aspx&gt;
+<span id="W2L42" class="LineNr">  42 </span>
+<span id="W2L43" class="LineNr">  43 </span>    Q14/15 List: &lt;t22sg15q14@lists.itu.int&gt;
+<span id="W2L44" class="LineNr">  44 </span>
+<span id="W2L45" class="LineNr">  45 </span>    Editor:      Kam LAM
+<span id="W2L46" class="LineNr">  46 </span>                 &lt;mailto:kam.lam@fhusainc.com&gt;
+<span id="W2L47" class="LineNr">  47 </span>
+<span id="W2L48" class="LineNr">  48 </span>    Editor:      Xiang YUN
+<span id="W2L49" class="LineNr">  49 </span>                 &lt;mailto:yunxig@fiberhome.com&gt;
+<span id="W2L50" class="LineNr">  50 </span>
+<span id="W2L51" class="LineNr">  51 </span>    Editor:      Scott MANSFIELD
+<span id="W2L52" class="LineNr">  52 </span>                 &lt;mailto:scott.mansfield@ericsson.com&gt;
+<span id="W2L53" class="LineNr">  53 </span>
+<span id="W2L54" class="LineNr">  54 </span>    Editor:      Italo BUSI
+<span id="W2L55" class="LineNr">  55 </span>                 &lt;mailto:italo.busi@huawei.com&gt;&quot;;
+<span id="W2L56" class="LineNr">  56 </span>
+<span id="W2L57" class="LineNr">  57 </span>  description
+<span id="W2L58" class="LineNr">  58 </span>    &quot;This module defines a YANG data model for configuring the
+<span id="W2L59" class="LineNr">  59 </span>    Ethernet OAM capabilities defined in ITU-T G.8013 and
+<span id="W2L60" class="LineNr">  60 </span>    ITU-T G.8021, augmenting the IEEE Connectivity Fault Management
+<span id="W2L61" class="LineNr">  61 </span>    (CFM) YANG model.
+<span id="W2L62" class="LineNr">  62 </span>
+<span id="W2L63" class="LineNr">  63 </span>    Copyright (c) 2024 ITU.
+<span id="W2L64" class="LineNr">  64 </span>
+<span id="W2L65" class="LineNr">  65 </span>    All rights reserved. No part of this publication may be
+<span id="W2L66" class="LineNr">  66 </span>    reproduced, by any means whatsoever, without the prior written
+<span id="W2L67" class="LineNr">  67 </span>    permission of ITU.&quot;;
+<span id="W2L68" class="LineNr">  68 </span>  reference
+<span id="W2L69" class="LineNr">  69 </span>    &quot;ITU-T G.8013 v6.1 (01/2024);
+<span id="W2L70" class="LineNr">  70 </span>    ITU-T G.8021 v8.1 (01/2024).&quot;;
+<span id="W2L71" class="LineNr">  71 </span>
+<span id="W2L72" class="LineNr">  72 </span><span class="DiffChange">  revision 2024-1</span><span class="DiffText">2-16</span><span class="DiffChange"> {                                                                                                  </span>
+<span id="W2L73" class="LineNr">  73 </span>    description
+<span id="W2L74" class="LineNr">  74 </span>      &quot;TBA.&quot;;
+<span id="W2L75" class="LineNr">  75 </span>    reference
+<span id="W2L76" class="LineNr">  76 </span><span class="DiffChange">      &quot;G.8052.1 v1.2.0</span><span class="DiffText">4</span><span class="DiffChange"> (Draft).&quot;;                                                                                       </span>
+<span id="W2L77" class="LineNr">  77 </span>  }
+<span id="W2L78" class="LineNr">  78 </span>
+<span id="W2L79" class="LineNr">  79 </span>  revision 2024-03-08 {
+<span id="W2L80" class="LineNr">  80 </span>    description
+<span id="W2L81" class="LineNr">  81 </span>      &quot;Added support of PM threshold profiling, configuration of
+<span id="W2L82" class="LineNr">  82 </span>      degrade defect detection, bandwidth notification and CSF OAM
+<span id="W2L83" class="LineNr">  83 </span>      functions and clarified the behaviour of the measurement
+<span id="W2L84" class="LineNr">  84 </span>      jobs.&quot;;
+<span id="W2L85" class="LineNr">  85 </span>    reference
+<span id="W2L86" class="LineNr">  86 </span>      &quot;G.8052.1 v1.2 (03/2024).&quot;;
+<span id="W2L87" class="LineNr">  87 </span>  }
+<span id="W2L88" class="LineNr">  88 </span>  revision 2023-01-13 {
+<span id="W2L89" class="LineNr">  89 </span>    description
+<span id="W2L90" class="LineNr">  90 </span>      &quot;Added support of on-demand measurement and proactive
+<span id="W2L91" class="LineNr">  91 </span>      measurement.&quot;;
+<span id="W2L92" class="LineNr">  92 </span>    reference
+<span id="W2L93" class="LineNr">  93 </span>      &quot;ITU-T G.8052.1 v1.1 (01/2023).&quot;;
+<span id="W2L94" class="LineNr">  94 </span>  }
+<span id="W2L95" class="LineNr">  95 </span>  revision 2021-01-13 {
+<span id="W2L96" class="LineNr">  96 </span>    description
+<span id="W2L97" class="LineNr">  97 </span>      &quot;Initial Version.&quot;;
+<span id="W2L98" class="LineNr">  98 </span>    reference
+<span id="W2L99" class="LineNr">  99 </span>      &quot;ITU-T G.8052.1 v1.0 (01/2021).&quot;;
+<span id="W2L100" class="LineNr"> 100 </span>  }
+<span id="W2L101" class="LineNr"> 101 </span>
+<span id="W2L102" class="LineNr"> 102 </span>  /*
+<span id="W2L103" class="LineNr"> 103 </span>   * Identities
+<span id="W2L104" class="LineNr"> 104 </span>   */
+<span id="W2L105" class="LineNr"> 105 </span>
+<span id="W2L106" class="LineNr"> 106 </span>  identity oam-type {
+<span id="W2L107" class="LineNr"> 107 </span>    description
+<span id="W2L108" class="LineNr"> 108 </span>      &quot;Base identity for the type of the OAM protocol.&quot;;
+<span id="W2L109" class="LineNr"> 109 </span>  }
+<span id="W2L110" class="LineNr"> 110 </span>
+<span id="W2L111" class="LineNr"> 111 </span>    identity dual-ended-oam-type {
+<span id="W2L112" class="LineNr"> 112 </span>      base oam-type;
+<span id="W2L113" class="LineNr"> 113 </span>      description
+<span id="W2L114" class="LineNr"> 114 </span>        &quot;Base identity for the type of the dual-ended OAM protocol.&quot;;
+<span id="W2L115" class="LineNr"> 115 </span>      reference
+<span id="W2L116" class="LineNr"> 116 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 3.2.1.&quot;;
+<span id="W2L117" class="LineNr"> 117 </span>    }
+<span id="W2L118" class="LineNr"> 118 </span>
+<span id="W2L119" class="LineNr"> 119 </span>      identity oam-lm-ccm {
+<span id="W2L120" class="LineNr"> 120 </span>        base dual-ended-oam-type;
+<span id="W2L121" class="LineNr"> 121 </span>        description
+<span id="W2L122" class="LineNr"> 122 </span>          &quot;Dual-ended CCM OAM protocol supporting loss measurement.&quot;;
+<span id="W2L123" class="LineNr"> 123 </span>        reference
+<span id="W2L124" class="LineNr"> 124 </span>          &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.2.&quot;;
+<span id="W2L125" class="LineNr"> 125 </span>      }
+<span id="W2L126" class="LineNr"> 126 </span>
+<span id="W2L127" class="Folded"> 127 </span><span class="Folded">+--2416 lines: identity oam-1dm {---------------------------------------------------------------------------------------------</span>
+<span id="W2L2543" class="LineNr">2543 </span>        &quot;The overflow threshold values used to generate an out of
+<span id="W2L2544" class="LineNr">2544 </span>        range (OOR) report for bidirectional delay measurement.&quot;;
+<span id="W2L2545" class="LineNr">2545 </span>      uses dm-performance-data;
+<span id="W2L2546" class="LineNr">2546 </span>      reference
+<span id="W2L2547" class="LineNr">2547 </span>        &quot;ITU-T G.7710 v5.1 (11/2022): clause 10.1.7.2.&quot;;
+<span id="W2L2548" class="LineNr">2548 </span>    }
+<span id="W2L2549" class="LineNr">2549 </span>  }
+<span id="W2L2550" class="LineNr">2550 </span>
+<span id="W2L2551" class="LineNr">2551 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W2L2552" class="LineNr">2552 </span>  grouping loopback-series-input {
+<span id="W2L2553" class="LineNr">2553 </span>    description
+<span id="W2L2554" class="LineNr">2554 </span>      &quot;Additional input parameters to configure an OAM Loopback
+<span id="W2L2555" class="LineNr">2555 </span>      Series operation.&quot;;
+<span id="W2L2556" class="LineNr">2556 </span>    leaf period {
+<span id="W2L2557" class="LineNr">2557 </span>      type uint32;
+<span id="W2L2558" class="LineNr">2558 </span>      units milliseconds;
+<span id="W2L2559" class="LineNr">2559 </span>      description
+<span id="W2L2560" class="LineNr">2560 </span>        &quot;The periodicity of the LBM OAM messages.
+<span id="W2L2561" class="LineNr">2561 </span>
+<span id="W2L2562" class="LineNr">2562 </span>        The default value, the value range and the granularity
+<span id="W2L2563" class="LineNr">2563 </span>        of the values within the value range are implementation
+<span id="W2L2564" class="LineNr">2564 </span>        specific.&quot;;
+<span id="W2L2565" class="LineNr">2565 </span>    }
+<span id="W2L2566" class="LineNr">2566 </span>    leaf data-tlv-length {
+<span id="W2L2567" class="LineNr">2567 </span>      type uint16;
+<span id="W2L2568" class="LineNr">2568 </span>      units octets;
+<span id="W2L2569" class="LineNr">2569 </span>      description
+<span id="W2L2570" class="LineNr">2570 </span>        &quot;The Length of the Data TLV to be inserted within the
+<span id="W2L2571" class="LineNr">2571 </span>        LBM OAM messages.&quot;;
+<span id="W2L2572" class="LineNr">2572 </span>    }
+<span id="W2L2573" class="LineNr">2573 </span>    reference
+<span id="W2L2574" class="LineNr">2574 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.8.2&quot;;
+<span id="W2L2575" class="LineNr">2575 </span>  }
+<span id="W2L2576" class="LineNr">2576 </span>
+<span id="W2L2577" class="LineNr">2577 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W2L2578" class="LineNr">2578 </span>  grouping linktrace-input {
+<span id="W2L2579" class="LineNr">2579 </span>    description
+<span id="W2L2580" class="LineNr">2580 </span>      &quot;Additional input parameters to configure an OAM Linktrace
+<span id="W2L2581" class="LineNr">2581 </span>      operation.&quot;;
+<span id="W2L2582" class="LineNr">2582 </span>    leaf priority {
+<span id="W2L2583" class="LineNr">2583 </span>      type dot1q-types:priority-type;
+<span id="W2L2584" class="LineNr">2584 </span>      description
+<span id="W2L2585" class="LineNr">2585 </span>        &quot;The priority value of the Linktrace operation.
+<span id="W2L2586" class="LineNr">2586 </span>
+<span id="W2L2587" class="LineNr">2587 </span>        The default value is the same as the CCM priority.&quot;;
+<span id="W2L2588" class="LineNr">2588 </span>    }
+<span id="W2L2589" class="LineNr">2589 </span>    reference
+<span id="W2L2590" class="LineNr">2590 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.13.2&quot;;
+<span id="W2L2591" class="LineNr">2591 </span>  }
+<span id="W2L2592" class="LineNr">2592 </span>
+<span id="W2L2593" class="LineNr">2593 </span><span class="DiffChange">  // Editors' Note:</span><span class="DiffChange">                                                                                                      </span>
+<span id="W2L2594" class="LineNr">2594 </span><span class="DiffAdd">  // - Added in G.8052.1 v1.2.03 (CD14a-10r1)</span><span class="DiffAdd">                                                                            </span>
+<span id="W2L2595" class="LineNr">2595 </span><span class="DiffAdd">  // - Updated in G.8052.1 v1.2.04 (CD14a-06)</span><span class="DiffAdd">                                                                            </span>
+<span id="W2L2596" class="LineNr">2596 </span>  grouping linktrace-output {
+<span id="W2L2597" class="LineNr">2597 </span>    description
+<span id="W2L2598" class="LineNr">2598 </span>      &quot;Additional output parameters to report the results of an OAM
+<span id="W2L2599" class="LineNr">2599 </span>      Linktrace operation.&quot;;
+<span id="W2L2600" class="LineNr">2600 </span>    leaf ltr-source-address {
+<span id="W2L2601" class="LineNr">2601 </span>      type ieee:mac-address;
+<span id="W2L2602" class="LineNr">2602 </span><span class="DiffAdd">      mandatory true;</span><span class="DiffAdd">                                                                                                    </span>
+<span id="W2L2603" class="LineNr">2603 </span>      description
+<span id="W2L2604" class="LineNr">2604 </span>        &quot;The MAC Source Address (SA) of the returned Linktrace
+<span id="W2L2605" class="LineNr">2605 </span>        Reply (LTR) OAM message.&quot;;
+<span id="W2L2606" class="LineNr">2606 </span>    }
+<span id="W2L2607" class="LineNr">2607 </span>    reference
+<span id="W2L2608" class="LineNr">2608 </span>      &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.13.2&quot;;
+<span id="W2L2609" class="LineNr">2609 </span>  }
+<span id="W2L2610" class="LineNr">2610 </span>
+<span id="W2L2611" class="LineNr">2611 </span><span class="DiffChange">  // </span><span class="DiffText">Editors' Note: Added in G.8052.1 v1.2.04 (CD14a-06)</span><span class="DiffChange">                                                                 </span>
+<span id="W2L2612" class="LineNr">2612 </span>  grouping linktrace-result {
+<span id="W2L2613" class="LineNr">2613 </span>    description
+<span id="W2L2614" class="LineNr">2614 </span>      &quot;This grouping contains the Linktrace (LT) attributes which are
+<span id="W2L2615" class="LineNr">2615 </span>      in common with those defined in IEEE CFM YANG model.
+<span id="W2L2616" class="LineNr">2616 </span>
+<span id="W2L2617" class="LineNr">2617 </span>      The data nodes names and types have been selected to enable
+<span id="W2L2618" class="LineNr">2618 </span>      replacing this grouping with a new grouping to be defined in
+<span id="W2L2619" class="LineNr">2619 </span>      a future version of IEEE CFM YANG model.
+<span id="W2L2620" class="LineNr">2620 </span>
+<span id="W2L2621" class="LineNr">2621 </span>      This grouping shall not be re-used outside of this module.&quot;;
+<span id="W2L2622" class="LineNr">2622 </span>    leaf ltr-ttl {
+<span id="W2L2623" class="LineNr">2623 </span>      type uint8 {
+<span id="W2L2624" class="LineNr">2624 </span>        range &quot;0..255&quot;;
+<span id="W2L2625" class="LineNr">2625 </span>      }
+<span id="W2L2626" class="LineNr">2626 </span>      mandatory true;
+<span id="W2L2627" class="LineNr">2627 </span>      description
+<span id="W2L2628" class="LineNr">2628 </span>        &quot;The value of the TTL field in the received LTR OAM
+<span id="W2L2629" class="LineNr">2629 </span>        Message.&quot;;
+<span id="W2L2630" class="LineNr">2630 </span>    }
+<span id="W2L2631" class="LineNr">2631 </span>    leaf ltr-forwarded {
+<span id="W2L2632" class="LineNr">2632 </span>      type boolean;
+<span id="W2L2633" class="LineNr">2633 </span>      description
+<span id="W2L2634" class="LineNr">2634 </span>        &quot;Indicates whether the modified LTM OAM Message has been
+<span id="W2L2635" class="LineNr">2635 </span>        relayed or not based on the FwdYes flag of received LTR OAM
+<span id="W2L2636" class="LineNr">2636 </span>        Message.
+<span id="W2L2637" class="LineNr">2637 </span>
+<span id="W2L2638" class="LineNr">2638 </span><span class="DiffChange">        </span><span class="DiffText">Implementations compliant with the 2006 edition of ITU-T</span><span class="DiffChange">                                                         </span>
+<span id="W2L2639" class="LineNr">2639 </span><span class="DiffChange">        </span><span class="DiffText">G.8013 are not required to support the FwdYes flag of</span><span class="DiffChange">                                                            </span>
+<span id="W2L2640" class="LineNr">2640 </span><span class="DiffAdd">        received LTR OAM Message. These implementations shall not</span><span class="DiffAdd">                                                        </span>
+<span id="W2L2641" class="LineNr">2641 </span><span class="DiffAdd">        report this attribute.&quot;;</span><span class="DiffAdd">                                                                                         </span>
+<span id="W2L2642" class="LineNr">2642 </span>      reference
+<span id="W2L2643" class="LineNr">2643 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W2L2644" class="LineNr">2644 </span>    }
+<span id="W2L2645" class="LineNr">2645 </span>    leaf ltr-terminal-mep {
+<span id="W2L2646" class="LineNr">2646 </span>      type boolean;
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W2L2647" class="LineNr">2647 </span>      description
+<span id="W2L2648" class="LineNr">2648 </span>        &quot;Indicates whether the Reply Egress TLV (or Reply Ingress
+<span id="W2L2649" class="LineNr">2649 </span>        TLV, if the Reply Egress TLV is not present) is a MEP or
+<span id="W2L2650" class="LineNr">2650 </span>        not.
+<span id="W2L2651" class="LineNr">2651 </span>
+<span id="W2L2652" class="LineNr">2652 </span><span class="DiffChange">        </span><span class="DiffText">Implementations compliant with the 2006 edition of ITU-T</span><span class="DiffChange">                                                         </span>
+<span id="W2L2653" class="LineNr">2653 </span><span class="DiffChange">        </span><span class="DiffText">G.8013 are not required to support the Reply Egress TLV nor</span><span class="DiffChange">                                                      </span>
+<span id="W2L2654" class="LineNr">2654 </span><span class="DiffAdd">        the Reply Ingress TLV of received LTR OAM Message. These</span><span class="DiffAdd">                                                         </span>
+<span id="W2L2655" class="LineNr">2655 </span><span class="DiffAdd">        implementations shall not report this attribute.&quot;;</span><span class="DiffAdd">                                                               </span>
+<span id="W2L2656" class="LineNr">2656 </span>      reference
+<span id="W2L2657" class="LineNr">2657 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W2L2658" class="LineNr">2658 </span>    }
+<span id="W2L2659" class="LineNr">2659 </span>    container ltr-last-egress-identifier {
+<span id="W2L2660" class="LineNr">2660 </span>      presence
+<span id="W2L2661" class="LineNr">2661 </span>        &quot;When present indicates that the LTR Egress Identifier TLV
+<span id="W2L2662" class="LineNr">2662 </span>        was present in the received LTR OAM Message.&quot;;
+<span id="W2L2663" class="LineNr">2663 </span>      description
+<span id="W2L2664" class="LineNr">2664 </span>        &quot;The information in the Last Egress Identifier field of LTR
+<span id="W2L2665" class="LineNr">2665 </span>        Egress Identifier TLV in the received LTR OAM Message.&quot;;
+<span id="W2L2666" class="LineNr">2666 </span>      uses dot1q-cfm:ltm-egress-identifier-grouping;
+<span id="W2L2667" class="LineNr">2667 </span>      reference
+<span id="W2L2668" class="LineNr">2668 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W2L2669" class="LineNr">2669 </span>    }
+<span id="W2L2670" class="LineNr">2670 </span>    container ltr-next-egress-identifier {
+<span id="W2L2671" class="LineNr">2671 </span>      presence
+<span id="W2L2672" class="LineNr">2672 </span>        &quot;When present indicates that the LTR Egress Identifier TLV
+<span id="W2L2673" class="LineNr">2673 </span>        was present in the received LTR OAM Message.&quot;;
+<span id="W2L2674" class="LineNr">2674 </span>      description
+<span id="W2L2675" class="LineNr">2675 </span>        &quot;The information in the Next Egress Identifier field of LTR
+<span id="W2L2676" class="LineNr">2676 </span>        Egress Identifier TLV in the received LTR OAM Message.&quot;;
+<span id="W2L2677" class="LineNr">2677 </span>      uses dot1q-cfm:ltm-egress-identifier-grouping;
+<span id="W2L2678" class="LineNr">2678 </span>      reference
+<span id="W2L2679" class="LineNr">2679 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2 and annex B&quot;;
+<span id="W2L2680" class="LineNr">2680 </span>    }
+<span id="W2L2681" class="LineNr">2681 </span>    leaf ltr-relay {
+<span id="W2L2682" class="LineNr">2682 </span>      type cfm-types:relay-action-field-value-type;
+<span id="W2L2683" class="LineNr">2683 </span>      description
+<span id="W2L2684" class="LineNr">2684 </span>        &quot;The value of the Relay Action field in the received LTR OAM
+<span id="W2L2685" class="LineNr">2685 </span>        Message.&quot;;
+<span id="W2L2686" class="LineNr">2686 </span>      reference
+<span id="W2L2687" class="LineNr">2687 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2&quot;;
+<span id="W2L2688" class="LineNr">2688 </span>    }
+<span id="W2L2689" class="LineNr">2689 </span>    leaf ltr-ingress {
+<span id="W2L2690" class="LineNr">2690 </span>      type cfm-types:ingress-action-field-value-type;
+<span id="W2L2691" class="LineNr">2691 </span>      description
+<span id="W2L2692" class="LineNr">2692 </span>        &quot;The value of the Ingress Action field of the Reply Ingress
+<span id="W2L2693" class="LineNr">2693 </span>        TLV in the received LTR OAM Message.
+<span id="W2L2694" class="LineNr">2694 </span>
+<span id="W2L2695" class="LineNr">2695 </span>        This leaf is not present if the Reply Ingress TLV was not
+<span id="W2L2696" class="LineNr">2696 </span>        present in the received LTR OAM Message.&quot;;
+<span id="W2L2697" class="LineNr">2697 </span>      reference
+<span id="W2L2698" class="LineNr">2698 </span>        &quot;ITU-T G.8013 v6.1 (01/2024): clause 9.6.2&quot;;
+<span id="W2L2699" class="LineNr">2699 </span>    }
+<span id="W2L2700" class="LineNr">2700 </span>    leaf ltr-ingress-mac {
+<span id="W2L2701" class="LineNr">2701 </span>      when &quot;../eth-oam:ltr-ingress&quot;;
+<span id="W2L2702" class="LineNr">2702 </span>      type ieee:mac-address;
+<span id="W2L2703" class="LineNr">2703 </span>      mandatory true;
+<span id="W2L2704" class="LineNr">2704 </span>      description
+<span id="W2L2705" class="LineNr">2705 </span>        &quot;The MAC address in the Ingress MAC Address field of the
+<span id="W2L2706" class="Folded">2706 </span><span class="Folded">+--508 lines: Reply Ingress TLV in the received LTR OAM Message.&quot;;------------------------------------------------------------</span>
+<span id="W2L3214" class="LineNr">3214 </span>        An G.8021 compliant implementation supports only OAM Loopback
+<span id="W2L3215" class="LineNr">3215 </span>        operation at the same time and on the same MEP. The request
+<span id="W2L3216" class="LineNr">3216 </span>        to perform an OAM Loopback operation will be rejected if
+<span id="W2L3217" class="LineNr">3217 </span>        there is already an on-going OAM Loopback operation on the
+<span id="W2L3218" class="LineNr">3218 </span>        same MEP.&quot;;
+<span id="W2L3219" class="LineNr">3219 </span>      container loopback-discovery {
+<span id="W2L3220" class="LineNr">3220 </span>        presence
+<span id="W2L3221" class="LineNr">3221 </span>          &quot;When present indicates a request for an OAM Loopback
+<span id="W2L3222" class="LineNr">3222 </span>          Discovery operation, as defined in ITU-T G.8021.&quot;;
+<span id="W2L3223" class="LineNr">3223 </span>        description
+<span id="W2L3224" class="LineNr">3224 </span>          &quot;An ITU-T G.8021 compliant implementation is not required
+<span id="W2L3225" class="LineNr">3225 </span>          to support the configuration of the
+<span id="W2L3226" class="LineNr">3226 </span>          lbm-dest-ucast-mac-address, lbm-dest-mep-id, lbm-messages,
+<span id="W2L3227" class="LineNr">3227 </span>          lbm-drop-eligible and lbm-data-tlv input attributeds for
+<span id="W2L3228" class="LineNr">3228 </span>          OAM Loopback Discovery operations and may reject the RPC
+<span id="W2L3229" class="LineNr">3229 </span>          request if some of these input attributes are configured.&quot;;
+<span id="W2L3230" class="LineNr">3230 </span>      }
+<span id="W2L3231" class="LineNr">3231 </span>      container loopback-series {
+<span id="W2L3232" class="LineNr">3232 </span>        presence
+<span id="W2L3233" class="LineNr">3233 </span>          &quot;When present indicates a request for an OAM Loopback
+<span id="W2L3234" class="LineNr">3234 </span>          Series operation, as defined in ITU-T G.8021.&quot;;
+<span id="W2L3235" class="LineNr">3235 </span>        description
+<span id="W2L3236" class="LineNr">3236 </span>          &quot;An ITU-T G.8021 compliant implementation is required to
+<span id="W2L3237" class="LineNr">3237 </span>          support the configuration of the data-tlv-length input
+<span id="W2L3238" class="LineNr">3238 </span>          attribute instead of the lbm-data-tlv for OAM Loopback
+<span id="W2L3239" class="LineNr">3239 </span>          Series operations and may reject the RPC request if the
+<span id="W2L3240" class="LineNr">3240 </span>          lbm-data-tlv input attribute is configured.&quot;;
+<span id="W2L3241" class="LineNr">3241 </span>        uses loopback-series-input {
+<span id="W2L3242" class="LineNr">3242 </span>          refine data-tlv-length {
+<span id="W2L3243" class="LineNr">3243 </span>            must &quot;not (. and ../../dot1q-cfm:lbm-data-tlv)&quot; {
+<span id="W2L3244" class="LineNr">3244 </span>              description
+<span id="W2L3245" class="LineNr">3245 </span>                &quot;The data-tlv-length and the lbm-data-tlv input
+<span id="W2L3246" class="LineNr">3246 </span>                attributes are mutually exclusive.&quot;;
+<span id="W2L3247" class="LineNr">3247 </span>            }
+<span id="W2L3248" class="LineNr">3248 </span>          }
+<span id="W2L3249" class="LineNr">3249 </span>        }
+<span id="W2L3250" class="LineNr">3250 </span>      }
+<span id="W2L3251" class="LineNr">3251 </span>      reference
+<span id="W2L3252" class="LineNr">3252 </span>        &quot;ITU-T G.8021 v8.1 (01/2024): clause 8.1.8.&quot;;
+<span id="W2L3253" class="LineNr">3253 </span>    }
+<span id="W2L3254" class="LineNr">3254 </span>  } // Augment Transmit LB input
+<span id="W2L3255" class="LineNr">3255 </span>
+<span id="W2L3256" class="LineNr">3256 </span>  // Editors' Note: Added in G.8052.1 v1.2.03 (CD14a-10r1)
+<span id="W2L3257" class="LineNr">3257 </span>  augment &quot;/dot1q-cfm:cfm/dot1q-cfm:maintenance-group&quot;
+<span id="W2L3258" class="LineNr">3258 </span>        + &quot;/dot1q-cfm:mep/dot1q-cfm:transmit-linktrace&quot;
+<span id="W2L3259" class="LineNr">3259 </span>        + &quot;/dot1q-cfm:input&quot; {
+<span id="W2L3260" class="LineNr">3260 </span>    description
+<span id="W2L3261" class="LineNr">3261 </span>      &quot;Augment the input for Transmit Linktrace action.&quot;;
+<span id="W2L3262" class="LineNr">3262 </span>    uses linktrace-input;
+<span id="W2L3263" class="LineNr">3263 </span>  } // Augment Transmit LT input
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">     </span><span class="DiffDelete">-------------------------------------------------------------------------------------------------------------------------</span>
+<span id="W2L3264" class="LineNr">3264 </span>}
+</pre>
+</div></td>
+</tr>
+</table>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
+

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>diff</title>
+<meta name="Generator" content="Vim/9.1">
+<meta name="plugin-version" content="vim9.0_v2">
+<meta name="settings" content="number_lines,whole_filler,use_css,no_foldcolumn,expand_tabs,line_ids,prevent_copy=,use_input_for_pc=none">
+<meta name="colorscheme" content="none">
+<style>
+<!--
+pre { font-family: monospace; color: #000000; background-color: #ffffff; }
+body { font-family: monospace; color: #000000; background-color: #ffffff; }
+* { font-size: 1em; }
+.Folded { color: #0000c0; background-color: #a8a8a8; padding-bottom: 1px; }
+.LineNr { color: #af5f00; }
+.DiffText { background-color: #ff6060; padding-bottom: 1px; font-weight: bold; }
+.DiffAdd { background-color: #5fd7ff; padding-bottom: 1px; }
+.DiffChange { background-color: #ffd7ff; padding-bottom: 1px; }
+.DiffDelete { color: #8080ff; background-color: #afffff; padding-bottom: 1px; }
+-->
+<!--
+table { table-layout: fixed; }
+html, body, table, tbody { width: 100%; margin: 0; padding: 0; }
+table, td, th { border: 1px solid; }
+td { vertical-align: top; }
+th, td { width: 50.0%; }
+td div { overflow: auto; }
+-->
+</style>
+<script>
+<!--
+
+/* function to open any folds containing a jumped-to line before jumping to it */
+function JumpToLine()
+{
+  var lineNum;
+  lineNum = window.location.hash;
+  lineNum = lineNum.substr(1); /* strip off '#' */
+
+  if (lineNum.indexOf('L') == -1) {
+    lineNum = 'L'+lineNum;
+  }
+  if (lineNum.indexOf('W') == -1) {
+    lineNum = 'W1'+lineNum;
+  }
+  var lineElem = document.getElementById(lineNum);
+  /* Always jump to new location even if the line was hidden inside a fold, or
+   * we corrected the raw number to a line ID.
+   */
+  if (lineElem) {
+    lineElem.scrollIntoView(true);
+  }
+  return true;
+}
+if ('onhashchange' in window) {
+  window.onhashchange = JumpToLine;
+}
+
+-->
+</script>
+</head>
+<body onload='JumpToLine();'>
+<table id='vimCodeElement'>
+<tr>
+<th>/tmp/git-blob-j9WLp3/itut-eth-oam.tree</th>
+<th>itut-eth-oam.tree</th>
+</tr><tr>
+<td><div>
+<pre>
+<span id="W1L1" class="Folded">  1 </span><span class="Folded">+--489 lines: module: itut-eth-oam--------------------------------------------------------------------------------------------</span>
+<span id="W1L490" class="LineNr">490 </span>    |  |  |  +--:(dest-mep-id)
+<span id="W1L491" class="LineNr">491 </span>    |  |  |     +--ro lbm-dest-mep-id?
+<span id="W1L492" class="LineNr">492 </span>    |  |  |             cfm-types:mep-id-type
+<span id="W1L493" class="LineNr">493 </span>    |  |  +--ro lbm-messages?                              uint16
+<span id="W1L494" class="LineNr">494 </span>    |  |  +--ro lbm-priority?
+<span id="W1L495" class="LineNr">495 </span>    |  |  |       dot1q-types:priority-type
+<span id="W1L496" class="LineNr">496 </span>    |  |  +--ro lbm-drop-eligible?                         boolean
+<span id="W1L497" class="LineNr">497 </span>    |  |  +--ro lbm-data-tlv?
+<span id="W1L498" class="LineNr">498 </span>    |  |          cfm-types:lbm-data-tlv-type
+<span id="W1L499" class="LineNr">499 </span>    |  +--ro result
+<span id="W1L500" class="LineNr">500 </span>    |     +--ro peer-mep-address*   ieee:mac-address
+<span id="W1L501" class="LineNr">501 </span>    +--ro loopback-series-state
+<span id="W1L502" class="LineNr">502 </span>    |  +--ro input
+<span id="W1L503" class="LineNr">503 </span>    |  |  +--ro (lbm-destination)?
+<span id="W1L504" class="LineNr">504 </span>    |  |  |  +--:(dest-ucast-mac-address)
+<span id="W1L505" class="LineNr">505 </span>    |  |  |  |  +--ro lbm-dest-ucast-mac-address?
+<span id="W1L506" class="LineNr">506 </span>    |  |  |  |          cfm-types:unicast-mac-address-type
+<span id="W1L507" class="LineNr">507 </span>    |  |  |  +--:(dest-mcast-class1-mac-address)
+<span id="W1L508" class="LineNr">508 </span>    |  |  |  |  +--ro lbm-dest-mcast-class1-mac-address?
+<span id="W1L509" class="LineNr">509 </span>    |  |  |  |          cfm-types:multicast-class1-mac-address-type
+<span id="W1L510" class="LineNr">510 </span>    |  |  |  +--:(dest-mep-id)
+<span id="W1L511" class="LineNr">511 </span>    |  |  |     +--ro lbm-dest-mep-id?
+<span id="W1L512" class="LineNr">512 </span>    |  |  |             cfm-types:mep-id-type
+<span id="W1L513" class="LineNr">513 </span>    |  |  +--ro lbm-messages?                              uint16
+<span id="W1L514" class="LineNr">514 </span>    |  |  +--ro lbm-priority?
+<span id="W1L515" class="LineNr">515 </span>    |  |  |       dot1q-types:priority-type
+<span id="W1L516" class="LineNr">516 </span>    |  |  +--ro lbm-drop-eligible?                         boolean
+<span id="W1L517" class="LineNr">517 </span>    |  |  +--ro lbm-data-tlv?
+<span id="W1L518" class="LineNr">518 </span>    |  |  |       cfm-types:lbm-data-tlv-type
+<span id="W1L519" class="LineNr">519 </span>    |  |  +--ro period?                                    uint32
+<span id="W1L520" class="LineNr">520 </span>    |  |  +--ro data-tlv-length?                           uint16
+<span id="W1L521" class="LineNr">521 </span>    |  +--ro result
+<span id="W1L522" class="LineNr">522 </span>    |     +--ro received?       uint16
+<span id="W1L523" class="LineNr">523 </span>    |     +--ro out-of-order?   uint16
+<span id="W1L524" class="LineNr">524 </span>    +--ro linktrace-state
+<span id="W1L525" class="LineNr">525 </span>       +--ro input
+<span id="W1L526" class="LineNr">526 </span>       |  +--ro (ltr-target)?
+<span id="W1L527" class="LineNr">527 </span>       |  |  +--:(target-ucast-mac-address)
+<span id="W1L528" class="LineNr">528 </span>       |  |  |  +--ro ltm-target-mac-address?
+<span id="W1L529" class="LineNr">529 </span>       |  |  |          cfm-types:unicast-mac-address-type
+<span id="W1L530" class="LineNr">530 </span>       |  |  +--:(target-mep-id)
+<span id="W1L531" class="LineNr">531 </span>       |  |     +--ro ltm-target-mep-id?        cfm-types:mep-id-type
+<span id="W1L532" class="LineNr">532 </span>       |  +--ro ltm-ttl?                        uint8
+<span id="W1L533" class="LineNr">533 </span>       |  +--ro ltm-flags?
+<span id="W1L534" class="LineNr">534 </span>       |  |       cfm-types:mep-tx-ltm-flags-type
+<span id="W1L535" class="LineNr">535 </span>       |  +--ro priority?
+<span id="W1L536" class="LineNr">536 </span>       |          dot1q-types:priority-type
+<span id="W1L537" class="LineNr">537 </span>       +--ro result* []
+<span id="W1L538" class="LineNr">538 </span>          +--ro ltr-ttl                       uint8
+<span id="W1L539" class="LineNr">539 </span>          +--ro ltr-forwarded?                boolean
+<span id="W1L540" class="LineNr">540 </span><span class="DiffChange">          +--ro ltr-terminal-mep</span><span class="DiffText"> </span><span class="DiffChange">             boolean                                                                     </span>
+<span id="W1L541" class="LineNr">541 </span>          +--ro ltr-last-egress-identifier!
+<span id="W1L542" class="LineNr">542 </span>          |  +--ro int        uint16
+<span id="W1L543" class="LineNr">543 </span>          |  +--ro address    ieee:mac-address
+<span id="W1L544" class="LineNr">544 </span>          +--ro ltr-next-egress-identifier!
+<span id="W1L545" class="LineNr">545 </span>          |  +--ro int        uint16
+<span id="W1L546" class="LineNr">546 </span>          |  +--ro address    ieee:mac-address
+<span id="W1L547" class="LineNr">547 </span>          +--ro ltr-relay?
+<span id="W1L548" class="LineNr">548 </span>          |       cfm-types:relay-action-field-value-type
+<span id="W1L549" class="LineNr">549 </span>          +--ro ltr-ingress?
+<span id="W1L550" class="LineNr">550 </span>          |       cfm-types:ingress-action-field-value-type
+<span id="W1L551" class="LineNr">551 </span>          +--ro ltr-ingress-mac               ieee:mac-address
+<span id="W1L552" class="LineNr">552 </span>          +--ro ltr-egress?
+<span id="W1L553" class="LineNr">553 </span>          |       cfm-types:egress-action-field-value-type
+<span id="W1L554" class="LineNr">554 </span>          +--ro ltr-egress-mac                ieee:mac-address
+<span id="W1L555" class="LineNr">555 </span><span class="DiffChange">          +--ro ltr-source-address</span><span class="DiffText">?</span><span class="DiffChange">           ieee:mac-address                                                            </span>
+<span id="W1L556" class="LineNr">556 </span>  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+<span id="W1L557" class="LineNr">557 </span>            /dot1q-cfm:transmit-loopback/dot1q-cfm:input:
+<span id="W1L558" class="LineNr">558 </span>    +---w (loopback-operation)?
+<span id="W1L559" class="LineNr">559 </span>       +--:(loopback-discovery)
+<span id="W1L560" class="LineNr">560 </span>       |  +---w loopback-discovery!
+<span id="W1L561" class="LineNr">561 </span>       +--:(loopback-series)
+<span id="W1L562" class="LineNr">562 </span>          +---w loopback-series!
+<span id="W1L563" class="LineNr">563 </span>             +---w period?            uint32
+<span id="W1L564" class="LineNr">564 </span>             +---w data-tlv-length?   uint16
+<span id="W1L565" class="LineNr">565 </span>  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+<span id="W1L566" class="LineNr">566 </span>            /dot1q-cfm:transmit-linktrace/dot1q-cfm:input:
+<span id="W1L567" class="LineNr">567 </span>    +---w priority?   dot1q-types:priority-type
+<span id="W1L568" class="LineNr">568 </span><span class="DiffAdd">  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep</span><span class="DiffAdd">                                                        </span>
+<span id="W1L569" class="LineNr">569 </span><span class="DiffAdd">            /dot1q-cfm:transmit-linktrace/dot1q-cfm:output:</span><span class="DiffAdd">                                                               </span>
+<span id="W1L570" class="LineNr">570 </span><span class="DiffAdd">    +--ro ltr-source-address?   ieee:mac-address</span><span class="DiffAdd">                                                                          </span>
+</pre>
+</div></td>
+<td><div>
+<pre>
+<span id="W2L1" class="Folded">  1 </span><span class="Folded">+--489 lines: module: itut-eth-oam--------------------------------------------------------------------------------------------</span>
+<span id="W2L490" class="LineNr">490 </span>    |  |  |  +--:(dest-mep-id)
+<span id="W2L491" class="LineNr">491 </span>    |  |  |     +--ro lbm-dest-mep-id?
+<span id="W2L492" class="LineNr">492 </span>    |  |  |             cfm-types:mep-id-type
+<span id="W2L493" class="LineNr">493 </span>    |  |  +--ro lbm-messages?                              uint16
+<span id="W2L494" class="LineNr">494 </span>    |  |  +--ro lbm-priority?
+<span id="W2L495" class="LineNr">495 </span>    |  |  |       dot1q-types:priority-type
+<span id="W2L496" class="LineNr">496 </span>    |  |  +--ro lbm-drop-eligible?                         boolean
+<span id="W2L497" class="LineNr">497 </span>    |  |  +--ro lbm-data-tlv?
+<span id="W2L498" class="LineNr">498 </span>    |  |          cfm-types:lbm-data-tlv-type
+<span id="W2L499" class="LineNr">499 </span>    |  +--ro result
+<span id="W2L500" class="LineNr">500 </span>    |     +--ro peer-mep-address*   ieee:mac-address
+<span id="W2L501" class="LineNr">501 </span>    +--ro loopback-series-state
+<span id="W2L502" class="LineNr">502 </span>    |  +--ro input
+<span id="W2L503" class="LineNr">503 </span>    |  |  +--ro (lbm-destination)?
+<span id="W2L504" class="LineNr">504 </span>    |  |  |  +--:(dest-ucast-mac-address)
+<span id="W2L505" class="LineNr">505 </span>    |  |  |  |  +--ro lbm-dest-ucast-mac-address?
+<span id="W2L506" class="LineNr">506 </span>    |  |  |  |          cfm-types:unicast-mac-address-type
+<span id="W2L507" class="LineNr">507 </span>    |  |  |  +--:(dest-mcast-class1-mac-address)
+<span id="W2L508" class="LineNr">508 </span>    |  |  |  |  +--ro lbm-dest-mcast-class1-mac-address?
+<span id="W2L509" class="LineNr">509 </span>    |  |  |  |          cfm-types:multicast-class1-mac-address-type
+<span id="W2L510" class="LineNr">510 </span>    |  |  |  +--:(dest-mep-id)
+<span id="W2L511" class="LineNr">511 </span>    |  |  |     +--ro lbm-dest-mep-id?
+<span id="W2L512" class="LineNr">512 </span>    |  |  |             cfm-types:mep-id-type
+<span id="W2L513" class="LineNr">513 </span>    |  |  +--ro lbm-messages?                              uint16
+<span id="W2L514" class="LineNr">514 </span>    |  |  +--ro lbm-priority?
+<span id="W2L515" class="LineNr">515 </span>    |  |  |       dot1q-types:priority-type
+<span id="W2L516" class="LineNr">516 </span>    |  |  +--ro lbm-drop-eligible?                         boolean
+<span id="W2L517" class="LineNr">517 </span>    |  |  +--ro lbm-data-tlv?
+<span id="W2L518" class="LineNr">518 </span>    |  |  |       cfm-types:lbm-data-tlv-type
+<span id="W2L519" class="LineNr">519 </span>    |  |  +--ro period?                                    uint32
+<span id="W2L520" class="LineNr">520 </span>    |  |  +--ro data-tlv-length?                           uint16
+<span id="W2L521" class="LineNr">521 </span>    |  +--ro result
+<span id="W2L522" class="LineNr">522 </span>    |     +--ro received?       uint16
+<span id="W2L523" class="LineNr">523 </span>    |     +--ro out-of-order?   uint16
+<span id="W2L524" class="LineNr">524 </span>    +--ro linktrace-state
+<span id="W2L525" class="LineNr">525 </span>       +--ro input
+<span id="W2L526" class="LineNr">526 </span>       |  +--ro (ltr-target)?
+<span id="W2L527" class="LineNr">527 </span>       |  |  +--:(target-ucast-mac-address)
+<span id="W2L528" class="LineNr">528 </span>       |  |  |  +--ro ltm-target-mac-address?
+<span id="W2L529" class="LineNr">529 </span>       |  |  |          cfm-types:unicast-mac-address-type
+<span id="W2L530" class="LineNr">530 </span>       |  |  +--:(target-mep-id)
+<span id="W2L531" class="LineNr">531 </span>       |  |     +--ro ltm-target-mep-id?        cfm-types:mep-id-type
+<span id="W2L532" class="LineNr">532 </span>       |  +--ro ltm-ttl?                        uint8
+<span id="W2L533" class="LineNr">533 </span>       |  +--ro ltm-flags?
+<span id="W2L534" class="LineNr">534 </span>       |  |       cfm-types:mep-tx-ltm-flags-type
+<span id="W2L535" class="LineNr">535 </span>       |  +--ro priority?
+<span id="W2L536" class="LineNr">536 </span>       |          dot1q-types:priority-type
+<span id="W2L537" class="LineNr">537 </span>       +--ro result* []
+<span id="W2L538" class="LineNr">538 </span>          +--ro ltr-ttl                       uint8
+<span id="W2L539" class="LineNr">539 </span>          +--ro ltr-forwarded?                boolean
+<span id="W2L540" class="LineNr">540 </span><span class="DiffChange">          +--ro ltr-terminal-mep</span><span class="DiffText">?</span><span class="DiffChange">             boolean                                                                     </span>
+<span id="W2L541" class="LineNr">541 </span>          +--ro ltr-last-egress-identifier!
+<span id="W2L542" class="LineNr">542 </span>          |  +--ro int        uint16
+<span id="W2L543" class="LineNr">543 </span>          |  +--ro address    ieee:mac-address
+<span id="W2L544" class="LineNr">544 </span>          +--ro ltr-next-egress-identifier!
+<span id="W2L545" class="LineNr">545 </span>          |  +--ro int        uint16
+<span id="W2L546" class="LineNr">546 </span>          |  +--ro address    ieee:mac-address
+<span id="W2L547" class="LineNr">547 </span>          +--ro ltr-relay?
+<span id="W2L548" class="LineNr">548 </span>          |       cfm-types:relay-action-field-value-type
+<span id="W2L549" class="LineNr">549 </span>          +--ro ltr-ingress?
+<span id="W2L550" class="LineNr">550 </span>          |       cfm-types:ingress-action-field-value-type
+<span id="W2L551" class="LineNr">551 </span>          +--ro ltr-ingress-mac               ieee:mac-address
+<span id="W2L552" class="LineNr">552 </span>          +--ro ltr-egress?
+<span id="W2L553" class="LineNr">553 </span>          |       cfm-types:egress-action-field-value-type
+<span id="W2L554" class="LineNr">554 </span>          +--ro ltr-egress-mac                ieee:mac-address
+<span id="W2L555" class="LineNr">555 </span><span class="DiffChange">          +--ro ltr-source-address</span><span class="DiffText"> </span><span class="DiffChange">           ieee:mac-address                                                            </span>
+<span id="W2L556" class="LineNr">556 </span>  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+<span id="W2L557" class="LineNr">557 </span>            /dot1q-cfm:transmit-loopback/dot1q-cfm:input:
+<span id="W2L558" class="LineNr">558 </span>    +---w (loopback-operation)?
+<span id="W2L559" class="LineNr">559 </span>       +--:(loopback-discovery)
+<span id="W2L560" class="LineNr">560 </span>       |  +---w loopback-discovery!
+<span id="W2L561" class="LineNr">561 </span>       +--:(loopback-series)
+<span id="W2L562" class="LineNr">562 </span>          +---w loopback-series!
+<span id="W2L563" class="LineNr">563 </span>             +---w period?            uint32
+<span id="W2L564" class="LineNr">564 </span>             +---w data-tlv-length?   uint16
+<span id="W2L565" class="LineNr">565 </span>  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+<span id="W2L566" class="LineNr">566 </span>            /dot1q-cfm:transmit-linktrace/dot1q-cfm:input:
+<span id="W2L567" class="LineNr">567 </span>    +---w priority?   dot1q-types:priority-type
+<span class="LineNr">    </span><span class="DiffDelete">--------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">    </span><span class="DiffDelete">--------------------------------------------------------------------------------------------------------------------------</span>
+<span class="LineNr">    </span><span class="DiffDelete">--------------------------------------------------------------------------------------------------------------------------</span>
+</pre>
+</div></td>
+</tr>
+</table>
+</body>
+</html>
+<!-- vim: set foldmethod=manual : -->
+

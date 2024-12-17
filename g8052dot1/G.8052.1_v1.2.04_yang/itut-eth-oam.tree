@@ -1,0 +1,567 @@
+module: itut-eth-oam
+
+  augment /dot1q-cfm:cfm:
+    +--rw threshold-profiles
+       +--rw threshold-profile* [threshold-profile-id]
+          +--rw threshold-profile-id    string
+          +--rw dm-threshold* [granularity-period]
+             +--rw granularity-period
+             |       granularity-period
+             +--rw near-end-overflow-threshold
+             |  +--rw minimum-frame-delay              uint64
+             |  +--rw average-frame-delay              uint64
+             |  +--rw maximum-frame-delay              uint64
+             |  +--rw minimum-frame-delay-variation    uint64
+             |  +--rw average-frame-delay-variation    uint64
+             |  +--rw maximum-frame-delay-variation    uint64
+             +--rw far-end-overflow-threshold
+             |  +--rw minimum-frame-delay              uint64
+             |  +--rw average-frame-delay              uint64
+             |  +--rw maximum-frame-delay              uint64
+             |  +--rw minimum-frame-delay-variation    uint64
+             |  +--rw average-frame-delay-variation    uint64
+             |  +--rw maximum-frame-delay-variation    uint64
+             +--rw bidirectional-overflow-threshold
+                +--rw minimum-frame-delay              uint64
+                +--rw average-frame-delay              uint64
+                +--rw maximum-frame-delay              uint64
+                +--rw minimum-frame-delay-variation    uint64
+                +--rw average-frame-delay-variation    uint64
+                +--rw maximum-frame-delay-variation    uint64
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-domain
+            /dot1q-cfm:maintenance-association/dot1q-cfm:ma-name:
+    +--:(ma-name-itu)
+       +--rw ma-name-itu
+          +--rw country-code?   string
+          +--rw carrier-code    string
+          +--rw meg-id-code     string
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group:
+    +--rw mip* [name]
+       +--rw name           string
+       +--ro mip-mac        ieee:mac-address
+       +--ro is-full-mip?   boolean
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep:
+    +--rw tcm-mep?                       boolean
+    +--rw client-mel                     cfm-types:md-level-type
+    +--rw eth-ais
+    |  +--rw period?     ais-lck-period
+    |  +--rw priority?   dot1q-types:priority-type
+    +--rw eth-lck
+    |  +--rw period?     ais-lck-period
+    |  +--rw priority?   dot1q-types:priority-type
+    +--rw eth-csf
+    |  +--rw csf-config?        csf-config
+    |  +--rw csf-period?        csf-period
+    |  +--rw csf-priority?      dot1q-types:priority-type
+    |  +--rw is-csf-reported?   boolean
+    +--rw eth-bandwidth-notifications
+    |  +--ro eth-bandwidth-notification* []
+    |     +--ro source-mac-address    ieee:mac-address
+    |     +--ro port-id               uint32
+    |     +--ro nominal-bandwidth     uint32
+    |     +--ro current-bandwidth     uint32
+    +--rw deg-detection
+    |  +--rw lm-deg-m?     uint8
+    |  +--rw lm-deg-thr?   decimal64
+    |  +--rw lm-tf-min?    uint32
+    |  +--rw lm-m?         uint8
+    +--rw eth-aps-priority?              dot1q-types:priority-type
+    +--rw measurement-job* [measurement-job-id]
+    |  +--rw measurement-job-id               string
+    |  +--rw (measurement-job-type)
+    |     +--:(pro-active-dual-ended)
+    |     |  +--rw pro-active-dual-ended
+    |     |     +--rw (role)
+    |     |        +--:(target)
+    |     |        |  +--rw target
+    |     |        |     +--rw oam-type          dual-ended-oam-type
+    |     |        |     +--rw enabled?          boolean
+    |     |        |     x--rw priority?
+    |     |        |     |       dot1q-types:priority-type
+    |     |        |     +--rw source-address    ieee:mac-address
+    |     |        |     +--rw dm
+    |     |        |     |  +--rw priority?
+    |     |        |     |  |       dot1q-types:priority-type
+    |     |        |     |  +--rw test-identifier?   uint32
+    |     |        |     +--rw sl
+    |     |        |     |  +--rw priority?
+    |     |        |     |  |       dot1q-types:priority-type
+    |     |        |     |  +--rw test-identifier    uint32
+    |     |        |     +--rw current-data* [granularity-period]
+    |     |        |        +--rw granularity-period
+    |     |        |        |       granularity-period
+    |     |        |        +--ro elapsed-time
+    |     |        |        |  +--ro day?      uint64
+    |     |        |        |  +--ro hour?     uint8
+    |     |        |        |  +--ro minute?   uint8
+    |     |        |        |  +--ro second?   uint8
+    |     |        |        |  +--ro msec?     uint16
+    |     |        |        +--ro suspect-interval-flag?   boolean
+    |     |        |        +--ro start-time
+    |     |        |        |       yang:date-and-time
+    |     |        |        +--rw threshold-profile-ref?   leafref
+    |     |        |        +---x reset-all-counters
+    |     |        |        +--ro dm-data
+    |     |        |        |  +--ro near-end-dm-data
+    |     |        |        |     +--ro minimum-frame-delay
+    |     |        |        |     |       uint64
+    |     |        |        |     +--ro average-frame-delay
+    |     |        |        |     |       uint64
+    |     |        |        |     +--ro maximum-frame-delay
+    |     |        |        |     |       uint64
+    |     |        |        |     +--ro minimum-frame-delay-variation
+    |     |        |        |     |       uint64
+    |     |        |        |     +--ro average-frame-delay-variation
+    |     |        |        |     |       uint64
+    |     |        |        |     +--ro maximum-frame-delay-variation
+    |     |        |        |             uint64
+    |     |        |        +--ro history-data* [period-end-time]
+    |     |        |           +--ro period-end-time
+    |     |        |           |       yang:date-and-time
+    |     |        |           +--ro granularity-period
+    |     |        |           |       granularity-period
+    |     |        |           +--ro suspect-interval-flag?   boolean
+    |     |        |           +--ro dm-data
+    |     |        |              +--ro near-end-dm-data
+    |     |        |                 +--ro minimum-frame-delay
+    |     |        |                 |       uint64
+    |     |        |                 +--ro average-frame-delay
+    |     |        |                 |       uint64
+    |     |        |                 +--ro maximum-frame-delay
+    |     |        |                 |       uint64
+    |     |        |                 +--ro minimum-frame-delay-variation
+    |     |        |                 |       uint64
+    |     |        |                 +--ro average-frame-delay-variation
+    |     |        |                 |       uint64
+    |     |        |                 +--ro maximum-frame-delay-variation
+    |     |        |                         uint64
+    |     |        +--:(initiator)
+    |     |           +--rw initiator
+    |     |              +--rw oam-type
+    |     |              |       dual-ended-oam-type
+    |     |              +--rw enabled?               boolean
+    |     |              x--rw priority?
+    |     |              |       dot1q-types:priority-type
+    |     |              +--rw destination-address
+    |     |              |       ieee:mac-address
+    |     |              +--rw dm
+    |     |              |  +--rw priority?
+    |     |              |  |       dot1q-types:priority-type
+    |     |              |  +--rw test-identifier?   uint32
+    |     |              |  +--rw period?            dm-period
+    |     |              |  +--rw data-tlv-length?   uint16
+    |     |              +--rw sl
+    |     |                 +--rw priority?
+    |     |                 |       dot1q-types:priority-type
+    |     |                 +--rw test-identifier    uint32
+    |     |                 +--rw period?            sl-period
+    |     |                 +--rw data-tlv-length?   uint16
+    |     +--:(on-demand-dual-ended)
+    |     |  +--rw on-demand-dual-ended
+    |     |     +--rw (role)
+    |     |        +--:(target)
+    |     |        |  +--rw target
+    |     |        |     +--rw oam-type
+    |     |        |     |       dual-ended-oam-type
+    |     |        |     +--rw start-time?
+    |     |        |     |       yang:date-and-time
+    |     |        |     +--rw stop-time?
+    |     |        |     |       yang:date-and-time
+    |     |        |     +--rw oam-pdu-generation-type
+    |     |        |     |       oam-pdu-generation-type
+    |     |        |     +--rw measurement-interval       uint16
+    |     |        |     +--rw repetition-period          uint32
+    |     |        |     +--rw source-address
+    |     |        |     |       ieee:mac-address
+    |     |        |     +--rw dm
+    |     |        |     |  +--rw priority?
+    |     |        |     |  |       dot1q-types:priority-type
+    |     |        |     |  +--rw test-identifier?   uint32
+    |     |        |     +--rw sl
+    |     |        |     |  +--rw priority?
+    |     |        |     |  |       dot1q-types:priority-type
+    |     |        |     |  +--rw test-identifier    uint32
+    |     |        |     +--rw test
+    |     |        |     |  +--rw test-tlv-pattern?   test-pattern
+    |     |        |     +--ro report* [time-stamp]
+    |     |        |     |  +--ro time-stamp    yang:date-and-time
+    |     |        |     |  +--ro lm-data
+    |     |        |     |  |  +--ro near-end-lm-data
+    |     |        |     |  |     +--ro transmitted-frames    uint64
+    |     |        |     |  |     +--ro lost-frames           uint64
+    |     |        |     |  +--ro dm-data
+    |     |        |     |  |  +--ro near-end-dm-data
+    |     |        |     |  |     +--ro number-of-samples
+    |     |        |     |  |     |       uint16
+    |     |        |     |  |     +--ro frame-delay*
+    |     |        |     |  |     |       uint64
+    |     |        |     |  |     +--ro frame-delay-variation*
+    |     |        |     |  |             int64
+    |     |        |     |  +--ro test-data
+    |     |        |     |     +--ro received        uint64
+    |     |        |     |     +--ro crc-error?      uint64
+    |     |        |     |     +--ro ber             uint64
+    |     |        |     |     +--ro out-of-order    uint64
+    |     |        |     +---x get-intermediate-report
+    |     |        |        +--ro output
+    |     |        |           +--ro intermediate-report!
+    |     |        |              +--ro time-stamp
+    |     |        |              |       yang:date-and-time
+    |     |        |              +--ro lm-data
+    |     |        |              |  +--ro near-end-lm-data
+    |     |        |              |     +--ro transmitted-frames
+    |     |        |              |     |       uint64
+    |     |        |              |     +--ro lost-frames
+    |     |        |              |             uint64
+    |     |        |              +--ro dm-data
+    |     |        |                 +--ro near-end-dm-data
+    |     |        |                    +--ro number-of-samples
+    |     |        |                    |       uint16
+    |     |        |                    +--ro frame-delay*
+    |     |        |                    |       uint64
+    |     |        |                    +--ro frame-delay-variation*
+    |     |        |                            int64
+    |     |        +--:(initiator)
+    |     |           +--rw initiator
+    |     |              +--rw oam-type
+    |     |              |       dual-ended-oam-type
+    |     |              +--rw start-time?
+    |     |              |       yang:date-and-time
+    |     |              +--rw stop-time?
+    |     |              |       yang:date-and-time
+    |     |              +--rw oam-pdu-generation-type
+    |     |              |       oam-pdu-generation-type
+    |     |              +--rw measurement-interval       uint16
+    |     |              +--rw repetition-period          uint32
+    |     |              +--rw destination-address
+    |     |              |       ieee:mac-address
+    |     |              +--rw dm
+    |     |              |  +--rw priority?
+    |     |              |  |       dot1q-types:priority-type
+    |     |              |  +--rw test-identifier?   uint32
+    |     |              |  +--rw period?            dm-period
+    |     |              |  +--rw data-tlv-length?   uint16
+    |     |              +--rw sl
+    |     |              |  +--rw priority?
+    |     |              |  |       dot1q-types:priority-type
+    |     |              |  +--rw test-identifier    uint32
+    |     |              |  +--rw period?            sl-period
+    |     |              |  +--rw data-tlv-length?   uint16
+    |     |              +--rw test
+    |     |              |  +--rw priority?
+    |     |              |  |       dot1q-types:priority-type
+    |     |              |  +--rw drop-eligible?      boolean
+    |     |              |  +--rw period?             uint32
+    |     |              |  +--rw test-tlv-pattern?   test-pattern
+    |     |              |  +--rw test-tlv-length?    uint16
+    |     |              +--ro report* [time-stamp]
+    |     |                 +--ro time-stamp    yang:date-and-time
+    |     |                 +--ro test-data
+    |     |                    +--ro sent    uint64
+    |     +--:(pro-active-single-ended)
+    |     |  +--rw pro-active-single-ended
+    |     |     +--rw control
+    |     |        +--rw oam-type               single-ended-oam-type
+    |     |        +--rw enabled?               boolean
+    |     |        x--rw priority?
+    |     |        |       dot1q-types:priority-type
+    |     |        +--rw destination-address    ieee:mac-address
+    |     |        +--rw dm
+    |     |        |  +--rw priority?
+    |     |        |  |       dot1q-types:priority-type
+    |     |        |  +--rw test-identifier?   uint32
+    |     |        |  +--rw period?            dm-period
+    |     |        |  +--rw data-tlv-length?   uint16
+    |     |        +--rw lm
+    |     |        |  +--rw priority?   dot1q-types:priority-type
+    |     |        |  +--rw period?     lm-period
+    |     |        +--rw sl
+    |     |        |  +--rw priority?
+    |     |        |  |       dot1q-types:priority-type
+    |     |        |  +--rw test-identifier    uint32
+    |     |        |  +--rw period?            sl-period
+    |     |        |  +--rw data-tlv-length?   uint16
+    |     |        +--rw current-data* [granularity-period]
+    |     |           +--rw granularity-period
+    |     |           |       granularity-period
+    |     |           +--ro elapsed-time
+    |     |           |  +--ro day?      uint64
+    |     |           |  +--ro hour?     uint8
+    |     |           |  +--ro minute?   uint8
+    |     |           |  +--ro second?   uint8
+    |     |           |  +--ro msec?     uint16
+    |     |           +--ro suspect-interval-flag?   boolean
+    |     |           +--ro start-time
+    |     |           |       yang:date-and-time
+    |     |           +--rw threshold-profile-ref?   leafref
+    |     |           +---x reset-all-counters
+    |     |           +--ro dm-data
+    |     |           |  +--ro near-end-dm-data
+    |     |           |  |  +--ro minimum-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro average-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro maximum-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro minimum-frame-delay-variation
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro average-frame-delay-variation
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro maximum-frame-delay-variation
+    |     |           |  |          uint64
+    |     |           |  +--ro far-end-dm-data
+    |     |           |  |  +--ro minimum-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro average-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro maximum-frame-delay
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro minimum-frame-delay-variation
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro average-frame-delay-variation
+    |     |           |  |  |       uint64
+    |     |           |  |  +--ro maximum-frame-delay-variation
+    |     |           |  |          uint64
+    |     |           |  +--ro bidirectional-dm-data
+    |     |           |     +--ro minimum-frame-delay
+    |     |           |     |       uint64
+    |     |           |     +--ro average-frame-delay
+    |     |           |     |       uint64
+    |     |           |     +--ro maximum-frame-delay
+    |     |           |     |       uint64
+    |     |           |     +--ro minimum-frame-delay-variation
+    |     |           |     |       uint64
+    |     |           |     +--ro average-frame-delay-variation
+    |     |           |     |       uint64
+    |     |           |     +--ro maximum-frame-delay-variation
+    |     |           |             uint64
+    |     |           +--ro history-data* [period-end-time]
+    |     |              +--ro period-end-time
+    |     |              |       yang:date-and-time
+    |     |              +--ro granularity-period
+    |     |              |       granularity-period
+    |     |              +--ro suspect-interval-flag?   boolean
+    |     |              +--ro dm-data
+    |     |                 +--ro near-end-dm-data
+    |     |                 |  +--ro minimum-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro average-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro maximum-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro minimum-frame-delay-variation
+    |     |                 |  |       uint64
+    |     |                 |  +--ro average-frame-delay-variation
+    |     |                 |  |       uint64
+    |     |                 |  +--ro maximum-frame-delay-variation
+    |     |                 |          uint64
+    |     |                 +--ro far-end-dm-data
+    |     |                 |  +--ro minimum-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro average-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro maximum-frame-delay
+    |     |                 |  |       uint64
+    |     |                 |  +--ro minimum-frame-delay-variation
+    |     |                 |  |       uint64
+    |     |                 |  +--ro average-frame-delay-variation
+    |     |                 |  |       uint64
+    |     |                 |  +--ro maximum-frame-delay-variation
+    |     |                 |          uint64
+    |     |                 +--ro bidirectional-dm-data
+    |     |                    +--ro minimum-frame-delay
+    |     |                    |       uint64
+    |     |                    +--ro average-frame-delay
+    |     |                    |       uint64
+    |     |                    +--ro maximum-frame-delay
+    |     |                    |       uint64
+    |     |                    +--ro minimum-frame-delay-variation
+    |     |                    |       uint64
+    |     |                    +--ro average-frame-delay-variation
+    |     |                    |       uint64
+    |     |                    +--ro maximum-frame-delay-variation
+    |     |                            uint64
+    |     +--:(on-demand-single-ended)
+    |        +--rw on-demand-single-ended
+    |           +--rw control
+    |              +--rw oam-type
+    |              |       single-ended-oam-type
+    |              +--rw start-time?
+    |              |       yang:date-and-time
+    |              +--rw stop-time?
+    |              |       yang:date-and-time
+    |              +--rw oam-pdu-generation-type
+    |              |       oam-pdu-generation-type
+    |              +--rw measurement-interval       uint16
+    |              +--rw repetition-period          uint32
+    |              +--rw destination-address        ieee:mac-address
+    |              +--rw dm
+    |              |  +--rw priority?
+    |              |  |       dot1q-types:priority-type
+    |              |  +--rw test-identifier?   uint32
+    |              |  +--rw period?            dm-period
+    |              |  +--rw data-tlv-length?   uint16
+    |              +--rw lm
+    |              |  +--rw priority?   dot1q-types:priority-type
+    |              |  +--rw period?     lm-period
+    |              +--rw sl
+    |              |  +--rw priority?
+    |              |  |       dot1q-types:priority-type
+    |              |  +--rw test-identifier    uint32
+    |              |  +--rw period?            sl-period
+    |              |  +--rw data-tlv-length?   uint16
+    |              +--rw test
+    |              |  +--rw priority?
+    |              |  |       dot1q-types:priority-type
+    |              |  +--rw drop-eligible?      boolean
+    |              |  +--rw period?             uint32
+    |              |  +--rw test-tlv-pattern?   test-pattern
+    |              |  +--rw test-tlv-length?    uint16
+    |              +--ro report* [time-stamp]
+    |              |  +--ro time-stamp    yang:date-and-time
+    |              |  +--ro dm-data
+    |              |  |  +--ro near-end-dm-data
+    |              |  |  |  +--ro number-of-samples        uint16
+    |              |  |  |  +--ro frame-delay*             uint64
+    |              |  |  |  +--ro frame-delay-variation*   int64
+    |              |  |  +--ro far-end-dm-data
+    |              |  |  |  +--ro number-of-samples        uint16
+    |              |  |  |  +--ro frame-delay*             uint64
+    |              |  |  |  +--ro frame-delay-variation*   int64
+    |              |  |  +--ro bidirectional-dm-data
+    |              |  |     +--ro number-of-samples        uint16
+    |              |  |     +--ro frame-delay*             uint64
+    |              |  |     +--ro frame-delay-variation*   int64
+    |              |  +--ro lm-data
+    |              |  |  +--ro near-end-lm-data
+    |              |  |  |  +--ro transmitted-frames    uint64
+    |              |  |  |  +--ro lost-frames           uint64
+    |              |  |  +--ro far-end-lm-data
+    |              |  |     +--ro transmitted-frames    uint64
+    |              |  |     +--ro lost-frames           uint64
+    |              |  +--ro test-data
+    |              |     +--ro sent            uint64
+    |              |     +--ro received        uint64
+    |              |     +--ro crc-error?      uint64
+    |              |     +--ro ber             uint64
+    |              |     +--ro out-of-order    uint64
+    |              +---x get-intermediate-report
+    |                 +--ro output
+    |                    +--ro intermediate-report!
+    |                       +--ro time-stamp?   yang:date-and-time
+    |                       +--ro dm-data
+    |                       |  +--ro near-end-dm-data
+    |                       |  |  +--ro number-of-samples
+    |                       |  |  |       uint16
+    |                       |  |  +--ro frame-delay*
+    |                       |  |  |       uint64
+    |                       |  |  +--ro frame-delay-variation*
+    |                       |  |          int64
+    |                       |  +--ro far-end-dm-data
+    |                       |  |  +--ro number-of-samples
+    |                       |  |  |       uint16
+    |                       |  |  +--ro frame-delay*
+    |                       |  |  |       uint64
+    |                       |  |  +--ro frame-delay-variation*
+    |                       |  |          int64
+    |                       |  +--ro bidirectional-dm-data
+    |                       |     +--ro number-of-samples
+    |                       |     |       uint16
+    |                       |     +--ro frame-delay*
+    |                       |     |       uint64
+    |                       |     +--ro frame-delay-variation*
+    |                       |             int64
+    |                       +--ro lm-data
+    |                          +--ro near-end-lm-data
+    |                          |  +--ro transmitted-frames    uint64
+    |                          |  +--ro lost-frames           uint64
+    |                          +--ro far-end-lm-data
+    |                             +--ro transmitted-frames    uint64
+    |                             +--ro lost-frames           uint64
+    +--ro loopback-discovery-state
+    |  +--ro input
+    |  |  +--ro (lbm-destination)?
+    |  |  |  +--:(dest-ucast-mac-address)
+    |  |  |  |  +--ro lbm-dest-ucast-mac-address?
+    |  |  |  |          cfm-types:unicast-mac-address-type
+    |  |  |  +--:(dest-mcast-class1-mac-address)
+    |  |  |  |  +--ro lbm-dest-mcast-class1-mac-address?
+    |  |  |  |          cfm-types:multicast-class1-mac-address-type
+    |  |  |  +--:(dest-mep-id)
+    |  |  |     +--ro lbm-dest-mep-id?
+    |  |  |             cfm-types:mep-id-type
+    |  |  +--ro lbm-messages?                              uint16
+    |  |  +--ro lbm-priority?
+    |  |  |       dot1q-types:priority-type
+    |  |  +--ro lbm-drop-eligible?                         boolean
+    |  |  +--ro lbm-data-tlv?
+    |  |          cfm-types:lbm-data-tlv-type
+    |  +--ro result
+    |     +--ro peer-mep-address*   ieee:mac-address
+    +--ro loopback-series-state
+    |  +--ro input
+    |  |  +--ro (lbm-destination)?
+    |  |  |  +--:(dest-ucast-mac-address)
+    |  |  |  |  +--ro lbm-dest-ucast-mac-address?
+    |  |  |  |          cfm-types:unicast-mac-address-type
+    |  |  |  +--:(dest-mcast-class1-mac-address)
+    |  |  |  |  +--ro lbm-dest-mcast-class1-mac-address?
+    |  |  |  |          cfm-types:multicast-class1-mac-address-type
+    |  |  |  +--:(dest-mep-id)
+    |  |  |     +--ro lbm-dest-mep-id?
+    |  |  |             cfm-types:mep-id-type
+    |  |  +--ro lbm-messages?                              uint16
+    |  |  +--ro lbm-priority?
+    |  |  |       dot1q-types:priority-type
+    |  |  +--ro lbm-drop-eligible?                         boolean
+    |  |  +--ro lbm-data-tlv?
+    |  |  |       cfm-types:lbm-data-tlv-type
+    |  |  +--ro period?                                    uint32
+    |  |  +--ro data-tlv-length?                           uint16
+    |  +--ro result
+    |     +--ro received?       uint16
+    |     +--ro out-of-order?   uint16
+    +--ro linktrace-state
+       +--ro input
+       |  +--ro (ltr-target)?
+       |  |  +--:(target-ucast-mac-address)
+       |  |  |  +--ro ltm-target-mac-address?
+       |  |  |          cfm-types:unicast-mac-address-type
+       |  |  +--:(target-mep-id)
+       |  |     +--ro ltm-target-mep-id?        cfm-types:mep-id-type
+       |  +--ro ltm-ttl?                        uint8
+       |  +--ro ltm-flags?
+       |  |       cfm-types:mep-tx-ltm-flags-type
+       |  +--ro priority?
+       |          dot1q-types:priority-type
+       +--ro result* []
+          +--ro ltr-ttl                       uint8
+          +--ro ltr-forwarded?                boolean
+          +--ro ltr-terminal-mep?             boolean
+          +--ro ltr-last-egress-identifier!
+          |  +--ro int        uint16
+          |  +--ro address    ieee:mac-address
+          +--ro ltr-next-egress-identifier!
+          |  +--ro int        uint16
+          |  +--ro address    ieee:mac-address
+          +--ro ltr-relay?
+          |       cfm-types:relay-action-field-value-type
+          +--ro ltr-ingress?
+          |       cfm-types:ingress-action-field-value-type
+          +--ro ltr-ingress-mac               ieee:mac-address
+          +--ro ltr-egress?
+          |       cfm-types:egress-action-field-value-type
+          +--ro ltr-egress-mac                ieee:mac-address
+          +--ro ltr-source-address            ieee:mac-address
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+            /dot1q-cfm:transmit-loopback/dot1q-cfm:input:
+    +---w (loopback-operation)?
+       +--:(loopback-discovery)
+       |  +---w loopback-discovery!
+       +--:(loopback-series)
+          +---w loopback-series!
+             +---w period?            uint32
+             +---w data-tlv-length?   uint16
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep
+            /dot1q-cfm:transmit-linktrace/dot1q-cfm:input:
+    +---w priority?   dot1q-types:priority-type
