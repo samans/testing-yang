@@ -2,7 +2,7 @@
 'Generate png with java -jar plantuml.jar <file> 
 'Output in img/<module>.png 
 'If Java spits out memory error increase heap size with java -Xmx1024m  -jar plantuml.jar <file> 
-@startuml img/minerals-augment_minerals.png 
+@startuml img/minerals.png 
 hide empty fields 
 hide empty methods 
 hide <<case>> circle
@@ -11,21 +11,9 @@ hide <<choice>> circle
 hide <<leafref>> stereotype
 hide <<leafref>> circle
 page 1x1 
-Title minerals-augment_minerals 
+Title minerals 
 package "m:minerals" as m_minerals { 
 } 
-note top of ma_minerals_augment : <b>Namespace: </b> urn:test:minerals-augment \n<b>Prefix: </b> ma \n<b>Organization : </b>\nTest \n<b>Contact : </b>\nTest contact \n<b>Revision : </b> 2022-09-19 \n
-package "ma:minerals-augment" as ma_minerals_augment { 
-m_minerals +-- ma_minerals_augment
-class "minerals-augment" as minerals_augment << (M, #33CCFF) module>> 
-class "/m:mineral-db/m:mineral" as m_mineral_db_m_mineral << (A,CadetBlue) augment>>
-minerals_augment *--  m_mineral_db_m_mineral 
-note bottom of m_mineral_db_m_mineral
-<b>When: </b>m:hardness = 10.0
-end note 
-m_mineral_db_m_mineral : diamondSerialNumber : uint16  
-} 
-
 note top of m_minerals : <b>Namespace: </b> urn:test:minerals \n<b>Prefix: </b> m \n<b>Organization : </b>\nTest \n<b>Contact : </b>\nTest contact \n<b>Revision : </b> 2021-09-22 \n
 package "m:minerals" as m_minerals { 
 class "minerals" as minerals << (M, #33CCFF) module>> 
@@ -33,13 +21,13 @@ class "mineral-db" as  minerals_I_mineral_db <<container>>
 minerals *-- "1" minerals_I_mineral_db 
 class "mineral" as minerals_I_mineral_db_I_mineral << (L, #FF7700) list>> 
 minerals_I_mineral_db *-- "0..N" minerals_I_mineral_db_I_mineral 
-minerals_I_mineral_db_I_mineral : +mineral-name : string  {key} 
-minerals_I_mineral_db_I_mineral : physical-properties : string  
-minerals_I_mineral_db_I_mineral : hardness : decimal64   {mohs}
 note bottom of minerals_I_mineral_db_I_mineral
 <b>Must:</b>
 hardness >= 0.0 and hardness <= 10.0
 end note 
+minerals_I_mineral_db_I_mineral : +mineral-name : string  {key} 
+minerals_I_mineral_db_I_mineral : physical-properties : string  
+minerals_I_mineral_db_I_mineral : hardness : decimal64   {mohs}
 class "samples" as  minerals_I_samples <<container>> 
 minerals *-- "1" minerals_I_samples 
 class "sample" as minerals_I_samples_I_sample << (L, #FF7700) list>> 
@@ -51,8 +39,7 @@ minerals_I_samples_I_sample : mineral-ref : leafref : /mineral-db/mineral/minera
 } 
 
 minerals_I_samples_I_sample-->"mineral-name"minerals_I_mineral_db_I_mineral: mineral-ref
-m_mineral_db_m_mineral-->minerals_I_mineral_db_I_mineral : augments
 center footer
- <size:20> UML Generated : 2022-09-19 06:14 </size>
+ <size:20> UML Generated : 2024-12-05 14:03 </size>
  endfooter 
 @enduml 
