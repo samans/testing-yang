@@ -1,0 +1,15 @@
+{
+  "ieee802-dot1q-cfm:cfm": {
+    "maintenance-group": [
+      {
+        "maintenance-group-id": "Example-MEG",
+        "mep": [
+          {
+            "mep-id": 1,
+            "transmit-loopback": {}
+          }
+        ]
+      }
+    ]
+  }
+}

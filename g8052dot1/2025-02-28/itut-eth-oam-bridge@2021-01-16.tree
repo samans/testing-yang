@@ -1,0 +1,9 @@
+module: itut-eth-oam-bridge
+
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/dot1q-cfm:mep:
+    +--rw bridge-port    port-ref
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group/eth-oam:mip:
+    +--rw bridge-port    port-ref
+  augment /dot1q-cfm:cfm/dot1q-cfm:maintenance-group:
+    +--rw itut-oam-fm-supported?   boolean
+    +--rw vlan-id*                 dot1q-types:vlanid

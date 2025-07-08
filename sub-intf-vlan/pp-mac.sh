@@ -1,0 +1,4 @@
+
+pyang -f yang --keep-comments --yang-line-length 69 -p ~/gits/yang/standard/ietf/RFC -p ~/gits/yang/standard/iana -p ~/gits/yang/standard/ieee/published/802 -p ~/gits/yang/standard/ieee/published/802.1 -p ~/gits/yang/experimental/ietf-extracted-YANG-modules -p ~/gits/yang/standard/ieee/published/802.1/ieee802-dot1q-types.yang ietf-if-flexible-encapsulation@2025-01-29.yang >if-flex-encap-pretty.yang
+
+pyang -f yang --keep-comments --yang-line-length 69 -p ~/gits/yang/standard/ietf/RFC -p ~/gits/yang/standard/iana -p ~/gits/yang/standard/ieee/published/802 -p ~/gits/yang/standard/ieee/published/802.1 -p ~/gits/yang/experimental/ietf-extracted-YANG-modules -p ~/gits/yang/standard/ieee/published/802.1/ieee802-dot1q-types.yang ietf-if-vlan-encapsulation@2025-01-29.yang >if-vlan-encap-pretty.yang

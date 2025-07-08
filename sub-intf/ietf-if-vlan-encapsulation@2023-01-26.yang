@@ -18,8 +18,9 @@ module ietf-if-vlan-encapsulation {
   import ieee802-dot1q-types {
     prefix dot1q-types;
     reference
-      "IEEE Std 802.1Q-2022: IEEE Standard for Local and
-       metropolitan area networks -- Bridges and Bridged Networks";
+      "IEEE Std 802.1Q Bridges and Bridged Networks:
+       IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023,
+       IEEE Std 802.1Qcw-2023, IEEE Std 802.1Qcj-2023";
   }
 
   import ietf-if-extensions {
@@ -43,7 +44,7 @@ module ietf-if-vlan-encapsulation {
      VLAN tagged Ethernet traffic by exactly matching the tag type
      and VLAN identifier of one or two 802.1Q VLAN tags in the frame.
 
-     Copyright (c) 2023 IETF Trust and the persons identified as
+     Copyright (c) 2025 IETF Trust and the persons identified as
      authors of the code.  All rights reserved.
 
      Redistribution and use in source and binary forms, with or
@@ -63,7 +64,7 @@ module ietf-if-vlan-encapsulation {
      described in BCP 14 (RFC 2119) (RFC 8174) when, and only when,
      they appear in all capitals, as shown here.";
 
-  revision 2023-01-26 {
+  revision 2025-01-12 {
     description
       "Latest draft revision";
     reference

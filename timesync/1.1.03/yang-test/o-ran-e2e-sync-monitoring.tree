@@ -1,0 +1,55 @@
+module: o-ran-e2e-sync-monitoring
+
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro is-supported?           boolean
+       +--ro supported-version?      uint8
+       +--ro extended-device-type?   ptp-extended-device-type
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:current-ds:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro time-since-current-clock-state?   uint32
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro ptp-timestamp-records-ds
+       |  +--ro update-frequency?    uint8
+       |  +--ro number-of-records?   uint16
+       |  +--ro timestamp-info* [index]
+       |     +--ro index               uint16
+       |     +--ro timestamp-record
+       |        +--ro record-time?    uint64
+       |        +--ro t1-sec?         uint64
+       |        +--ro t1-nsec?        uint32
+       |        +--ro t2-sec?         uint64
+       |        +--ro t2-nsec?        uint32
+       |        +--ro sequence-id?    uint16
+       |        +--ro cf?             int64
+       |        +--ro path-delay?     int64
+       |        +--ro message-type?   message-type
+       +--ro all-time-transmitter-ds
+          +--ro time-transmitter* [index]
+             +--ro index                 uint16
+             +--ro parent-ds
+             |  +--ro parent-port-identity
+             |  |  +--ro clock-identity?   clock-identity
+             |  |  +--ro port-number?      uint16
+             |  +--ro grandmaster-identity?        ptp-tt:clock-identity
+             |  +--ro grandmaster-clock-quality
+             |  |  +--ro clock-class?                  identityref
+             |  |  +--ro clock-accuracy?               identityref
+             |  |  +--ro offset-scaled-log-variance?   uint16
+             |  +--ro grandmaster-priority1?       uint8
+             |  +--ro grandmaster-priority2?       uint8
+             |  +--ro synchronization-uncertain?   boolean
+             +--ro time-properties-ds
+             |  +--ro current-utc-offset?         int16
+             |  +--ro current-utc-offset-valid?   boolean
+             |  +--ro leap59?                     boolean
+             |  +--ro leap61?                     boolean
+             |  +--ro time-traceable?             boolean
+             |  +--ro frequency-traceable?        boolean
+             |  +--ro ptp-timescale?              boolean
+             |  +--ro time-source?                identityref
+             +--ro port-ds
+                +--ro port-identity
+                   +--ro clock-identity?   clock-identity
+                   +--ro port-number?      uint16

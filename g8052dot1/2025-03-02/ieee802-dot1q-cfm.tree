@@ -1,0 +1,166 @@
+module: ieee802-dot1q-cfm
+  +--rw cfm
+     +--rw maintenance-domain* [md-id]
+     |  +--rw md-id                              cfm-types:name-key-type
+     |  +--rw (md-name)?
+     |  |  +--:(none)
+     |  |  |  +--rw none?                        empty
+     |  |  +--:(dns-like-name)
+     |  |  |  +--rw dns-like-name?               string
+     |  |  +--:(mac-address-and-uint)
+     |  |  |  +--rw mac-address-and-uint-type
+     |  |  |     +--rw address    ieee:mac-address
+     |  |  |     +--rw int        uint16
+     |  |  +--:(char-string)
+     |  |     +--rw char-string?                 string
+     |  +--rw md-level?                          cfm-types:md-level-type
+     |  +--rw mhf-creation?                      cfm-types:mhf-creation-type
+     |  +--rw id-permission?                     cfm-types:sender-id-permission-type
+     |  +--rw fault-alarm-transmission?          cfm-types:fault-alarm-type
+     |  +--rw maintenance-association* [ma-id]
+     |     +--rw ma-id                          cfm-types:name-key-type
+     |     +--rw (ma-name)
+     |     |  +--:(primary-vid)
+     |     |  |  +--rw primary-vid?             dot1q-types:vlanid
+     |     |  +--:(char-string)
+     |     |  |  +--rw char-string?             string
+     |     |  +--:(unsigned-int16)
+     |     |  |  +--rw unsigned-int16?          uint16
+     |     |  +--:(rfc2865-vpn-id)
+     |     |     +--rw vpn-id
+     |     |        +--rw vpn-oui      uint32
+     |     |        +--rw vpn-index    uint32
+     |     +--rw ccm-interval?                  cfm-types:ccm-interval-type
+     |     +--rw fault-alarm-transmission?      cfm-types:fault-alarm-type
+     |     +--rw mhf-creation?                  cfm-types:mhf-creation-type
+     |     +--rw id-permission?                 cfm-types:sender-id-permission-type
+     |     +--rw maintenance-association-mep* [mep-id]
+     |        +--rw mep-id    cfm-types:mep-id-type
+     +--rw maintenance-group* [maintenance-group-id]
+        +--rw maintenance-group-id    cfm-types:name-key-type
+        +--rw md-id                   -> /cfm/maintenance-domain/md-id
+        +--rw ma-id                   -> /cfm/maintenance-domain[md-id = current()/../md-id]/maintenance-association/ma-id
+        +--rw mep* [mep-id]
+           +--rw mep-id                 -> /cfm/maintenance-domain[md-id = current()/../../md-id]/maintenance-association[ma-id = current()/../../ma-id]/maintenance-association-mep/mep-id
+           +--rw direction              cfm-types:mp-direction-type
+           +--rw enabled?               boolean
+           +--rw ccm-ltm-priority?      dot1q-types:priority-type
+           +--ro mac-address            ieee:mac-address
+           +--rw inactive-remote-mep* [inactive-rmep-id]
+           |  +--rw inactive-rmep-id    -> /cfm/maintenance-domain[md-id = current()/../../../md-id]/maintenance-association[ma-id = current()/../../../ma-id]/maintenance-association-mep/mep-id
+           +--ro mep-db* [rmep-id]
+           |  +--ro rmep-id                     cfm-types:mep-id-type
+           |  +--ro rmep-state                  cfm-types:remote-mep-state-type
+           |  +--ro rmep-failed-ok-time         yang:timeticks
+           |  +--ro mac-address                 ieee:mac-address
+           |  +--ro rdi                         boolean
+           |  +--ro port-status-tlv?            cfm-types:port-status-tlv-value-type
+           |  +--ro interface-status-tlv?       cfm-types:interface-status-tlv-value-type
+           |  +--ro chassis-id-subtype?         ieee:chassis-id-subtype-type
+           |  +--ro chassis-id?                 ieee:chassis-id-type
+           |  +--ro transport-service-domain
+           |  |  +--ro domain?                  yang:object-identifier-128
+           |  |  +--ro (management-address)
+           |  |     +--:(ip)
+           |  |     |  +--ro ip-address         inet:ip-address
+           |  |     |  +--ro ip-port            inet:port-number
+           |  |     +--:(local)
+           |  |     |  +--ro local-address      string
+           |  |     +--:(dns)
+           |  |     |  +--ro dns-address        string
+           |  |     +--:(other)
+           |  |        +--ro unknown-address?   binary
+           |  +--ro rmep-is-active?             boolean
+           +--rw continuity-check
+           |  +--rw ccm-enabled?                boolean
+           |  +--ro fng-state?                  cfm-types:fng-state-type
+           |  +--rw fault-alarm-transmission?   cfm-types:fault-alarm-type
+           |  +--rw lowest-priority-defect?     cfm-types:lowest-alarm-priority-type
+           |  +--rw fng-alarm-time?             uint16
+           |  +--rw fng-reset-time?             uint16
+           |  +--ro highest-priority-defect     cfm-types:highest-defect-priority-type
+           |  +--ro defects                     cfm-types:mep-defects-type
+           |  +--ro error-ccm-last-failure?     binary
+           |  +--ro xcon-ccm-last-failure?      binary
+           +--ro stats
+           |  +--ro mep-ccm-sequence-errors    yang:counter64
+           |  +--ro mep-ccms-sent              yang:counter64
+           |  +--ro mep-lbr-in                 yang:counter64
+           |  +--ro mep-lbr-in-out-of-order    yang:counter64
+           |  +--ro mep-lbr-bad-msdu           yang:counter64
+           |  +--ro mep-unexpected-ltr-in      yang:counter64
+           |  +--ro mep-lbr-out                yang:counter64
+           +--ro linktrace-reply* [ltr-transaction-id]
+           |  +--ro ltr-transaction-id    cfm-types:seq-number-type
+           |  +--ro linktrace-input
+           |  |  +--ro (ltr-target)
+           |  |  |  +--:(target-ucast-mac-address)
+           |  |  |  |  +--ro ltm-target-mac-address?   cfm-types:unicast-mac-address-type
+           |  |  |  +--:(target-mep-id)
+           |  |  |     +--ro ltm-target-mep-id?        cfm-types:mep-id-type
+           |  |  +--ro ltm-ttl?                        uint8
+           |  |  +--ro ltm-flags?                      cfm-types:mep-tx-ltm-flags-type
+           |  +--ro responses* [ltr-receive-order]
+           |     +--ro ltr-receive-order                uint32
+           |     +--ro ltr-ttl                          uint8
+           |     +--ro ltr-forwarded                    boolean
+           |     +--ro ltr-terminal-mep                 boolean
+           |     +--ro ltr-last-egress-identifier
+           |     |  +--ro int        uint16
+           |     |  +--ro address    ieee:mac-address
+           |     +--ro ltr-next-egress-identifier
+           |     |  +--ro int        uint16
+           |     |  +--ro address    ieee:mac-address
+           |     +--ro ltr-relay                        cfm-types:relay-action-field-value-type
+           |     +--ro ltr-chassis-id-subtype?          ieee:chassis-id-subtype-type
+           |     +--ro ltr-chassis-id                   ieee:chassis-id-type
+           |     +--ro ltr-transport-service-domain
+           |     |  +--ro domain?                  yang:object-identifier-128
+           |     |  +--ro (management-address)
+           |     |     +--:(ip)
+           |     |     |  +--ro ip-address         inet:ip-address
+           |     |     |  +--ro ip-port            inet:port-number
+           |     |     +--:(local)
+           |     |     |  +--ro local-address      string
+           |     |     +--:(dns)
+           |     |     |  +--ro dns-address        string
+           |     |     +--:(other)
+           |     |        +--ro unknown-address?   binary
+           |     +--ro ltr-ingress?                     cfm-types:ingress-action-field-value-type
+           |     +--ro ltr-ingress-mac                  ieee:mac-address
+           |     +--ro ltr-ingress-port-id-subtype?     ieee:port-id-subtype-type
+           |     +--ro ltr-ingress-port-id              ieee:port-id-type
+           |     +--ro ltr-egress?                      cfm-types:egress-action-field-value-type
+           |     +--ro ltr-egress-mac                   ieee:mac-address
+           |     +--ro ltr-egress-port-id-subtype?      ieee:port-id-subtype-type
+           |     +--ro ltr-egress-port-id               ieee:port-id-type
+           |     +--ro ltr-organization-specific-tlv?   binary
+           +---x transmit-loopback
+           |  +---w input
+           |  |  +---w (lbm-destination)
+           |  |  |  +--:(dest-ucast-mac-address)
+           |  |  |  |  +---w lbm-dest-ucast-mac-address?          cfm-types:unicast-mac-address-type
+           |  |  |  +--:(dest-mcast-class1-mac-address)
+           |  |  |  |  +---w lbm-dest-mcast-class1-mac-address?   cfm-types:multicast-class1-mac-address-type
+           |  |  |  +--:(dest-mep-id)
+           |  |  |     +---w lbm-dest-mep-id?                     cfm-types:mep-id-type
+           |  |  +---w lbm-messages?                              uint16
+           |  |  +---w lbm-priority?                              dot1q-types:priority-type
+           |  |  +---w lbm-drop-eligible?                         boolean
+           |  |  +---w lbm-data-tlv?                              cfm-types:lbm-data-tlv-type
+           |  +--ro output
+           |     +--ro lbm-request-id    cfm-types:seq-number-type
+           +---x transmit-linktrace
+              +---w input
+              |  +---w (ltr-target)
+              |  |  +--:(target-ucast-mac-address)
+              |  |  |  +---w ltm-target-mac-address?   cfm-types:unicast-mac-address-type
+              |  |  +--:(target-mep-id)
+              |  |     +---w ltm-target-mep-id?        cfm-types:mep-id-type
+              |  +---w ltm-ttl?                        uint8
+              |  +---w ltm-flags?                      cfm-types:mep-tx-ltm-flags-type
+              +--ro output
+                 +--ro ltm-transaction-id       cfm-types:seq-number-type
+                 +--ro ltm-egress-identifier
+                    +--ro int        uint16
+                    +--ro address    ieee:mac-address

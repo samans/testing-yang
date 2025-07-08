@@ -1,0 +1,65 @@
+module: ietf-if-flexible-encapsulation
+
+  augment /if:interfaces/if:interface/if-ext:encapsulation
+            /if-ext:encaps-type:
+    +--:(flexible)
+       +--rw flexible
+          +--rw match
+          |  +--rw (match-type)
+          |     +--:(default)
+          |     |  +--rw default?                 empty
+          |     +--:(untagged)
+          |     |  +--rw untagged?                empty
+          |     +--:(dot1q-priority-tagged)
+          |     |  +--rw dot1q-priority-tagged
+          |     |     +--rw tag-type    dot1q-types:dot1q-tag-type
+          |     +--:(dot1q-vlan-tagged)
+          |        +--rw dot1q-vlan-tagged
+          |           +--rw outer-tag
+          |           |  +--rw tag-type    dot1q-tag-type
+          |           |  +--rw vlan-id     union
+          |           +--rw second-tag!
+          |           |  +--rw tag-type    dot1q-tag-type
+          |           |  +--rw vlan-id     union
+          |           +--rw match-exact-tags?   empty
+          +--rw rewrite {flexible-rewrites}?
+          |  +--rw (direction)?
+          |     +--:(symmetrical)
+          |     |  +--rw symmetrical
+          |     |     +--rw dot1q-tag-rewrite {dot1q-tag-rewrites}?
+          |     |        +--rw pop-tags?    uint8
+          |     |        +--rw push-tags!
+          |     |           +--rw outer-tag
+          |     |           |  +--rw tag-type    dot1q-tag-type
+          |     |           |  +--rw vlan-id     vlanid
+          |     |           +--rw second-tag!
+          |     |              +--rw tag-type    dot1q-tag-type
+          |     |              +--rw vlan-id     vlanid
+          |     +--:(asymmetrical) {asymmetric-rewrites}?
+          |        +--rw ingress
+          |        |  +--rw dot1q-tag-rewrite {dot1q-tag-rewrites}?
+          |        |     +--rw pop-tags?    uint8
+          |        |     +--rw push-tags!
+          |        |        +--rw outer-tag
+          |        |        |  +--rw tag-type    dot1q-tag-type
+          |        |        |  +--rw vlan-id     vlanid
+          |        |        +--rw second-tag!
+          |        |           +--rw tag-type    dot1q-tag-type
+          |        |           +--rw vlan-id     vlanid
+          |        +--rw egress
+          |           +--rw dot1q-tag-rewrite {dot1q-tag-rewrites}?
+          |              +--rw pop-tags?    uint8
+          |              +--rw push-tags!
+          |                 +--rw outer-tag
+          |                 |  +--rw tag-type    dot1q-tag-type
+          |                 |  +--rw vlan-id     vlanid
+          |                 +--rw second-tag!
+          |                    +--rw tag-type    dot1q-tag-type
+          |                    +--rw vlan-id     vlanid
+          +--rw local-traffic-default-encaps!
+             +--rw outer-tag
+             |  +--rw tag-type    dot1q-tag-type
+             |  +--rw vlan-id     vlanid
+             +--rw second-tag!
+                +--rw tag-type    dot1q-tag-type
+                +--rw vlan-id     vlanid

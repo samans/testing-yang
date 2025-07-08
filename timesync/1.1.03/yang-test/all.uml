@@ -1,0 +1,279 @@
+'Download plantuml from http://plantuml.sourceforge.net/ 
+'Generate png with java -jar plantuml.jar <file> 
+'Output in img/<module>.png 
+'If Java spits out memory error increase heap size with java -Xmx1024m  -jar plantuml.jar <file> 
+@startuml img/ieee802-dot1as-gptp_ieee802-dot1.png 
+hide empty fields 
+hide empty methods 
+hide <<case>> circle
+hide <<augment>> circle
+hide <<choice>> circle
+hide <<leafref>> stereotype
+hide <<leafref>> circle
+page 1x1 
+Title ieee802-dot1as-gptp_ieee802-dot1 
+package "yang:ietf-yang-types" as yang_ietf_yang_types { 
+} 
+package "ptp-tt:ieee1588-ptp-tt" as ptp_tt_ieee1588_ptp_tt { 
+} 
+package "dot1as-gptp:ieee802-dot1as-gptp" as dot1as_gptp_ieee802_dot1as_gptp { 
+} 
+note top of dot1as_gptp_ieee802_dot1as_gptp : <b>Namespace: </b> urn:ieee:std:802.1AS:yang:ieee802-dot1as-gptp \n<b>Prefix: </b> dot1as-gptp \n<b>Organization : </b>\nIEEE 802.1 Working Group \n<b>Contact : </b>\nWG-URL: http://ieee802.org/1/ \nWG-EMail: stds-802-1-l@ieee.org \n \nContact: IEEE 802.1 Working Group Chair \n        Postal: C/O IEEE 802.1 Working Group \n        IEEE Standards Association \n        445 Hoes Lane \n        Piscataway, NJ 08854 \n        USA \n \nE-mail: stds-802-1-chairs@ieee.org \n<b>Revision : </b> 2025-02-04 \n
+package "dot1as-gptp:ieee802-dot1as-gptp" as dot1as_gptp_ieee802_dot1as_gptp { 
+class "ieee802-dot1as-gptp" as ieee802_dot1as_gptp << (M, #33CCFF) module>> 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_default_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_default_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:current-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_current_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_current_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:parent-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_parent_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_parent_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_ptp_tt_port_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_ptp_tt_port_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port 
+class "port-statistics-ds" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_statistics_ds <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_statistics_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port << (A,CadetBlue) augment>>
+class "asymmetry-measurement-mode-ds" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_asymmetry_measurement_mode_ds <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_asymmetry_measurement_mode_ds 
+class "/ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port/ptp-tt:link-port-ds" as ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port_ptp_tt_link_port_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port_ptp_tt_link_port_ds 
+class "/ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port" as ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port << (A,CadetBlue) augment>>
+ieee802_dot1as_gptp *--  ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port 
+class "port-statistics-ds" as  ieee1588_ptp_tt_I_ptp_I_common_services_I_cmlds_I_ports_I_port_I_port_statistics_ds <<container>> 
+ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port *-- "1" ieee1588_ptp_tt_I_ptp_I_common_services_I_cmlds_I_ports_I_port_I_port_statistics_ds 
+class "/ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port" as ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port << (A,CadetBlue) augment>>
+class "asymmetry-measurement-mode-ds" as  ieee1588_ptp_tt_I_ptp_I_common_services_I_cmlds_I_ports_I_port_I_asymmetry_measurement_mode_ds <<container>> 
+ptp_tt_ptp_ptp_tt_common_services_ptp_tt_cmlds_ptp_tt_ports_ptp_tt_port *-- "1" ieee1588_ptp_tt_I_ptp_I_common_services_I_cmlds_I_ports_I_port_I_asymmetry_measurement_mode_ds 
+} 
+
+yang_ietf_yang_types +-- dot1as_gptp_ieee802_dot1as_gptp
+ptp_tt_ieee1588_ptp_tt +-- dot1as_gptp_ieee802_dot1as_gptp
+package "yang:ietf-yang-types" as yang_ietf_yang_types { 
+} 
+package "ptp-tt:ieee1588-ptp-tt" as ptp_tt_ieee1588_ptp_tt { 
+} 
+package "dot1as-gptp:ieee802-dot1as-gptp" as dot1as_gptp_ieee802_dot1as_gptp { 
+} 
+package "dot1as-hs:ieee802-dot1as-hs" as dot1as_hs_ieee802_dot1as_hs { 
+} 
+note top of dot1as_hs_ieee802_dot1as_hs : <b>Namespace: </b> urn:ieee:std:802.1AS:yang:ieee802-dot1as-hs \n<b>Prefix: </b> dot1as-hs \n<b>Organization : </b>\nIEEE 802.1 Working Group \n<b>Contact : </b>\nWG-URL: http://ieee802.org/1/ \nWG-EMail: stds-802-1-l@ieee.org \n \nContact: IEEE 802.1 Working Group Chair \n         Postal: C/O IEEE 802.1 Working Group \n         IEEE Standards Association \n         445 Hoes Lane \n         Piscataway, NJ 08854 \n         USA \n \nE-mail: stds-802-1-chairs@ieee.org \n<b>Revision : </b> 2025-02-04 \n
+package "dot1as-hs:ieee802-dot1as-hs" as dot1as_hs_ieee802_dot1as_hs { 
+class "ieee802-dot1as-hs" as ieee802_dot1as_hs << (M, #33CCFF) module>> 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:parent-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_parent_ds << (A,CadetBlue) augment>>
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance << (A,CadetBlue) augment>>
+ieee802_dot1as_hs *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance 
+class "ptp-instance-sync-ds" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ptp_instance_sync_ds <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ptp_instance_sync_ds 
+class "drift-tracking-ds" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_drift_tracking_ds <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_drift_tracking_ds 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_ptp_tt_port_ds << (A,CadetBlue) augment>>
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/dot1as-gptp:port-statistics-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_dot1as_gptp_port_statistics_ds << (A,CadetBlue) augment>>
+ieee802_dot1as_hs *--  ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_dot1as_gptp_port_statistics_ds 
+class "/ptp-tt:ptp/ptp-tt:common-services" as ptp_tt_ptp_ptp_tt_common_services << (A,CadetBlue) augment>>
+ieee802_dot1as_hs *--  ptp_tt_ptp_ptp_tt_common_services 
+class "hot-standby-service" as  ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service <<container>> 
+ptp_tt_ptp_ptp_tt_common_services *-- "1" ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service 
+note bottom of ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service
+<b>if-feature: </b>hot-standby
+end note 
+class "hot-standby-system" as ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system << (L, #FF7700) list>> 
+ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service *-- "0..N" ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system 
+class "hot-standby-system-ds" as  ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system_I_hot_standby_system_ds <<container>> 
+ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system *-- "1" ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system_I_hot_standby_system_ds 
+class "hot-standby-system-description-ds" as  ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system_I_hot_standby_system_description_ds <<container>> 
+ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system *-- "1" ieee1588_ptp_tt_I_ptp_I_common_services_I_hot_standby_service_I_hot_standby_system_I_hot_standby_system_description_ds 
+} 
+
+yang_ietf_yang_types +-- dot1as_hs_ieee802_dot1as_hs
+ptp_tt_ieee1588_ptp_tt +-- dot1as_hs_ieee802_dot1as_hs
+dot1as_gptp_ieee802_dot1as_gptp +-- dot1as_hs_ieee802_dot1as_hs
+package "ptp-tlp-types:itut-ptp-telecom-profile-types" as ptp_tlp_types_itut_ptp_telecom_profile_types { 
+} 
+note top of ptp_tlp_types_itut_ptp_telecom_profile_types : <b>Namespace: </b> urn:itu:t:rec:sync-ne:yang:itut-ptp-telecom-profile-types \n<b>Prefix: </b> ptp-tlp-types \n<b>Organization : </b>\nITU-T Study Group 15 (SG15) - International Telecommunication \nUnion \n<b>Contact : </b>\ntsbsg15@itu.int \n<b>Revision : </b> 2025-04-28 \n
+package "ptp-tlp-types:itut-ptp-telecom-profile-types" as ptp_tlp_types_itut_ptp_telecom_profile_types { 
+class "itut-ptp-telecom-profile-types" as itut_ptp_telecom_profile_types << (M, #33CCFF) module>> 
+class "common-ptp-tlp-port-ds-pac" as itut_ptp_telecom_profile_types_I_common_ptp_tlp_port_ds_pac_grouping <<(G,Lime) grouping>> 
+class "common-ptp-tlp-default-ds-pac" as itut_ptp_telecom_profile_types_I_common_ptp_tlp_default_ds_pac_grouping <<(G,Lime) grouping>> 
+class "ptp-profile-version" as itut_ptp_telecom_profile_types_I_ptp_profile_version_grouping <<(G,Lime) grouping>> 
+class "G.8275.1-node-class" as ptp_tlp_types_G__8275__1_node_class_identity << (I,Silver) identity>> 
+class "G.8275.2-node-class" as ptp_tlp_types_G__8275__2_node_class_identity << (I,Silver) identity>> 
+class "prtc-a" as ptp_tlp_types_prtc_a_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_prtc_a_identity 
+class "prtc-b" as ptp_tlp_types_prtc_b_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_prtc_b_identity 
+class "eprtc-a" as ptp_tlp_types_eprtc_a_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_eprtc_a_identity 
+class "cnprtc" as ptp_tlp_types_cnprtc_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_cnprtc_identity 
+class "class-a" as ptp_tlp_types_class_a_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_class_a_identity 
+class "class-b" as ptp_tlp_types_class_b_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_class_b_identity 
+class "class-c" as ptp_tlp_types_class_c_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_class_c_identity 
+class "class-d" as ptp_tlp_types_class_d_identity << (I,Silver) identity>> 
+ptp_tlp_types_G__8275__1_node_class_identity <|-- ptp_tlp_types_class_d_identity 
+} 
+
+package "ptp:ietf-ptp" as ptp_ietf_ptp { 
+} 
+package "ptp-tlp-types:itut-ptp-telecom-profile-types" as ptp_tlp_types_itut_ptp_telecom_profile_types { 
+} 
+package "ptp-tlp:itut-ptp-telecom-profile" as ptp_tlp_itut_ptp_telecom_profile { 
+} 
+note top of ptp_tlp_itut_ptp_telecom_profile : <b>Namespace: </b> urn:itu:t:rec:sync-ne:yang:itut-ptp-telecom-profile \n<b>Prefix: </b> ptp-tlp \n<b>Organization : </b>\nITU-T Study Group 15 (SG15) - International Telecommunication \nUnion \n<b>Contact : </b>\ntsbsg15@itu.int \n<b>Revision : </b> 2025-04-28 \n
+package "ptp-tlp:itut-ptp-telecom-profile" as ptp_tlp_itut_ptp_telecom_profile { 
+class "itut-ptp-telecom-profile" as itut_ptp_telecom_profile << (M, #33CCFF) module>> 
+class "ptp-profile-version" as itut_ptp_telecom_profile_I_ptp_profile_version_grouping <<(G,Lime) grouping>> 
+note bottom of itut_ptp_telecom_profile_I_ptp_profile_version_grouping
+<b>Status: </b>deprecated
+end note 
+class "/ptp:ptp/ptp:instance-list/ptp:port-ds-list" as ptp_ptp_ptp_instance_list_ptp_port_ds_list << (A,CadetBlue) augment>>
+itut_ptp_telecom_profile *--  ptp_ptp_ptp_instance_list_ptp_port_ds_list 
+class "ptp-telecom-profile" as  ietf_ptp_I_ptp_I_instance_list_I_port_ds_list_I_ptp_telecom_profile <<container>> 
+ptp_ptp_ptp_instance_list_ptp_port_ds_list *-- "1" ietf_ptp_I_ptp_I_instance_list_I_port_ds_list_I_ptp_telecom_profile 
+note bottom of ietf_ptp_I_ptp_I_instance_list_I_port_ds_list_I_ptp_telecom_profile
+<b>When: </b>../../ptp:default-ds/ptp-telecom-profile
+end note 
+ietf_ptp_I_ptp_I_instance_list_I_port_ds_list_I_ptp_telecom_profile : ptp-tlp-types:common-ptp-tlp-port-ds-pac {uses} 
+class "/ptp:ptp/ptp:instance-list/ptp:default-ds" as ptp_ptp_ptp_instance_list_ptp_default_ds << (A,CadetBlue) augment>>
+itut_ptp_telecom_profile *--  ptp_ptp_ptp_instance_list_ptp_default_ds 
+class "ptp-telecom-profile" as  ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile <<container>> 
+ptp_ptp_ptp_instance_list_ptp_default_ds *-- "0..1" ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile 
+note bottom of ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile
+<b>Presence: </b>When present, the PTP Instance is a PTP Telecom Profile
+Instance.
+
+The conformance level of optional attributes, default
+values and value ranges are defined in the relevant PTP
+Telecom Profile Recommendations, as defined in
+G.7721.1/Annex A.
+end note 
+class "profile-version" as  ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile_I_profile_version <<container>> 
+ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile *-- "1" ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile_I_profile_version 
+ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile_I_profile_version : ptp-tlp-types:ptp-profile-version {uses} 
+ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile : ptp-tlp-types:common-ptp-tlp-default-ds-pac {uses} 
+class "/ptp:ptp/ptp:transparent-clock-default-ds" as ptp_ptp_ptp_transparent_clock_default_ds << (A,CadetBlue) augment>>
+itut_ptp_telecom_profile *--  ptp_ptp_ptp_transparent_clock_default_ds 
+class "ptp-telecom-profile" as  ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile <<container>> 
+ptp_ptp_ptp_transparent_clock_default_ds *-- "0..1" ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile 
+note bottom of ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile
+<b>Presence: </b>When present, the PTP Transparent Clock (TC) Node is a PTP
+Telecom Profile TC Node.
+
+The conformance level of optional attributes, default
+values and value ranges are defined in the relevant PTP
+Telecom Profile Recommendations, as defined in
+G.7721.1/Annex A.
+end note 
+class "profile-version" as  ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_version <<container>> 
+ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile *-- "1" ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_version 
+ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_version : ptp-tlp-types:ptp-profile-version {uses} 
+} 
+
+ptp_ietf_ptp +-- ptp_tlp_itut_ptp_telecom_profile
+ptp_tlp_types_itut_ptp_telecom_profile_types +-- ptp_tlp_itut_ptp_telecom_profile
+package "ptp-tt:ieee1588-ptp-tt" as ptp_tt_ieee1588_ptp_tt { 
+} 
+package "ptp-tlp-types:itut-ptp-telecom-profile-types" as ptp_tlp_types_itut_ptp_telecom_profile_types { 
+} 
+package "ptp-tlp:itut-ptp-tt-telecom-profile" as ptp_tlp_itut_ptp_tt_telecom_profile { 
+} 
+note top of ptp_tlp_itut_ptp_tt_telecom_profile : <b>Namespace: </b> urn:itu:t:rec:sync-ne:yang:itut-ptp-tt-telecom-profile \n<b>Prefix: </b> ptp-tlp \n<b>Organization : </b>\nITU-T Study Group 15 (SG15) - International Telecommunication \nUnion \n<b>Contact : </b>\ntsbsg15@itu.int \n<b>Revision : </b> 2025-04-28 \n
+package "ptp-tlp:itut-ptp-tt-telecom-profile" as ptp_tlp_itut_ptp_tt_telecom_profile { 
+class "itut-ptp-tt-telecom-profile" as itut_ptp_tt_telecom_profile << (M, #33CCFF) module>> 
+class "ptp-tlp-profile-identifier" as itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_grouping <<(G,Lime) grouping>> 
+class "version" as  itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_I_version <<container>> 
+itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_grouping *-- "1" itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_I_version 
+itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_I_version : ptp-tlp-types:ptp-profile-version {uses} 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_default_ds << (A,CadetBlue) augment>>
+class "ptp-telecom-profile" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_default_ds *-- "0..1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile 
+note bottom of ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile
+<b>Presence: </b>When present, the PTP Instance is a PTP Telecom Profile
+Instance.
+
+The conformance level of optional attributes, default
+values and value ranges are defined in the relevant PTP
+Telecom Profile Recommendations, as defined in
+G.7721.1/Annex A.
+end note 
+class "profile-identifier" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile_I_profile_identifier <<container>> 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile_I_profile_identifier 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile_I_profile_identifier : ptp-tlp-profile-identifier {uses} 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile : ptp-tlp-types:common-ptp-tlp-default-ds-pac {uses} 
+class "/ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds" as ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_ptp_tt_port_ds << (A,CadetBlue) augment>>
+class "ptp-telecom-profile" as  ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_ds_I_ptp_telecom_profile <<container>> 
+ptp_tt_ptp_ptp_tt_instances_ptp_tt_instance_ptp_tt_ports_ptp_tt_port_ptp_tt_port_ds *-- "1" ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_ds_I_ptp_telecom_profile 
+note bottom of ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_ds_I_ptp_telecom_profile
+<b>When: </b>../../../../ptp-tt:default-ds/ptp-telecom-profile
+end note 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_ds_I_ptp_telecom_profile : ptp-tlp-types:common-ptp-tlp-port-ds-pac {uses} 
+class "/ptp-tt:ptp/ptp-tt:transparent-clock-default-ds" as ptp_tt_ptp_ptp_tt_transparent_clock_default_ds << (A,CadetBlue) augment>>
+itut_ptp_tt_telecom_profile *--  ptp_tt_ptp_ptp_tt_transparent_clock_default_ds 
+class "ptp-telecom-profile" as  ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile <<container>> 
+ptp_tt_ptp_ptp_tt_transparent_clock_default_ds *-- "0..1" ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile 
+note bottom of ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile
+<b>Presence: </b>When present, the PTP Transparent Clock (TC) Node is a
+PTP Telecom Profile TC Node.
+
+The conformance level of optional attributes, default
+values and value ranges are defined in the relevant PTP
+Telecom Profile Recommendations, as defined in
+G.7721.1/Annex A.
+end note 
+note bottom of ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile
+<b>Status: </b>deprecated
+end note 
+class "profile-identifier" as  ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_identifier <<container>> 
+ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile *-- "1" ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_identifier 
+note bottom of ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_identifier
+<b>Status: </b>deprecated
+end note 
+ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_identifier : ptp-tlp-profile-identifier {uses} 
+} 
+
+ptp_tt_ieee1588_ptp_tt +-- ptp_tlp_itut_ptp_tt_telecom_profile
+ptp_tlp_types_itut_ptp_telecom_profile_types +-- ptp_tlp_itut_ptp_tt_telecom_profile
+package "if:ietf-interfaces" as if_ietf_interfaces { 
+} 
+package "sync-phy:itut-sync-phy" as sync_phy_itut_sync_phy { 
+} 
+note top of sync_phy_itut_sync_phy : <b>Namespace: </b> urn:itu:t:rec:sync-ne:yang:itut-sync-phy \n<b>Prefix: </b> sync-phy \n<b>Organization : </b>\nITU-T Study Group 15 (SG15) - International Telecommunication \nUnion \n<b>Contact : </b>\ntsbsg15@itu.int \n<b>Revision : </b> 2025-04-28 \n
+package "sync-phy:itut-sync-phy" as sync_phy_itut_sync_phy { 
+class "itut-sync-phy" as itut_sync_phy << (M, #33CCFF) module>> 
+class "sync-phy" as  itut_sync_phy_I_sync_phy <<container>> 
+itut_sync_phy *-- "1" itut_sync_phy_I_sync_phy 
+class "default-ds" as  itut_sync_phy_I_sync_phy_I_default_ds <<container>> 
+itut_sync_phy_I_sync_phy *-- "1" itut_sync_phy_I_sync_phy_I_default_ds 
+class "current-ds" as  itut_sync_phy_I_sync_phy_I_current_ds <<container>> 
+itut_sync_phy_I_sync_phy *-- "1" itut_sync_phy_I_sync_phy_I_current_ds 
+class "parent-ds" as  itut_sync_phy_I_sync_phy_I_parent_ds <<container>> 
+itut_sync_phy_I_sync_phy *-- "1" itut_sync_phy_I_sync_phy_I_parent_ds 
+class "ports" as  itut_sync_phy_I_sync_phy_I_ports <<container>> 
+itut_sync_phy_I_sync_phy *-- "1" itut_sync_phy_I_sync_phy_I_ports 
+class "port" as itut_sync_phy_I_sync_phy_I_ports_I_port << (L, #FF7700) list>> 
+itut_sync_phy_I_sync_phy_I_ports *-- "0..N" itut_sync_phy_I_sync_phy_I_ports_I_port 
+class "port-ds" as  itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds <<container>> 
+itut_sync_phy_I_sync_phy_I_ports_I_port *-- "1" itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds 
+class "station-clock-port" as  itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds_I_station_clock_port <<container>> 
+itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds *-- "1" itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds_I_station_clock_port 
+class "line-clock-port" as  itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds_I_line_clock_port <<container>> 
+itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds *-- "1" itut_sync_phy_I_sync_phy_I_ports_I_port_I_port_ds_I_line_clock_port 
+} 
+
+if_ietf_interfaces +-- sync_phy_itut_sync_phy
+ietf_ptp_I_ptp_I_instance_list_I_port_ds_list_I_ptp_telecom_profile --> itut_ptp_telecom_profile_types_I_common_ptp_tlp_port_ds_pac_grouping : uses 
+ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile_I_profile_version --> itut_ptp_telecom_profile_types_I_ptp_profile_version_grouping : uses 
+ietf_ptp_I_ptp_I_instance_list_I_default_ds_I_ptp_telecom_profile --> itut_ptp_telecom_profile_types_I_common_ptp_tlp_default_ds_pac_grouping : uses 
+ietf_ptp_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_version --> itut_ptp_telecom_profile_types_I_ptp_profile_version_grouping : uses 
+itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_I_version --> itut_ptp_telecom_profile_types_I_ptp_profile_version_grouping : uses 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile_I_profile_identifier --> itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_grouping : uses 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_default_ds_I_ptp_telecom_profile --> itut_ptp_telecom_profile_types_I_common_ptp_tlp_default_ds_pac_grouping : uses 
+ieee1588_ptp_tt_I_ptp_I_instances_I_instance_I_ports_I_port_I_port_ds_I_ptp_telecom_profile --> itut_ptp_telecom_profile_types_I_common_ptp_tlp_port_ds_pac_grouping : uses 
+ieee1588_ptp_tt_I_ptp_I_transparent_clock_default_ds_I_ptp_telecom_profile_I_profile_identifier --> itut_ptp_tt_telecom_profile_I_ptp_tlp_profile_identifier_grouping : uses 
+center footer
+ <size:20> UML Generated : 2025-06-09 11:41 </size>
+ endfooter 
+@enduml 

@@ -1,0 +1,27 @@
+module modaction-mand {
+  yang-version 1.1;
+  namespace "urn:yanglint:modaction-mand";
+  prefix mam;
+
+  container con {
+    list ls {
+      key "lfkey";
+      leaf lfkey {
+        type string;
+      }
+      action act {
+        input {
+          leaf lfi {
+            type string;
+	    mandatory true;
+          }
+        }
+        output {
+          leaf lfo {
+            type int16;
+          }
+        }
+      }
+    }
+  }
+}

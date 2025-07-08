@@ -18,6 +18,7 @@ module ietf-if-flexible-encapsulation {
 
   import ieee802-dot1q-types {
     prefix dot1q-types;
+    revision-date 2022-01-19;
     reference
       "IEEE Std 802.1Q-2022: IEEE Standard for Local and
        metropolitan area networks -- Bridges and Bridged Networks";
@@ -129,6 +130,7 @@ module ietf-if-flexible-encapsulation {
       case untagged {
         description
           "Match untagged Ethernet frames only";
+
         leaf untagged {
           type empty;
 
@@ -155,7 +157,6 @@ module ietf-if-flexible-encapsulation {
           }
         }
       }
-
       case dot1q-vlan-tagged {
         container dot1q-vlan-tagged {
           description
@@ -252,7 +253,6 @@ module ietf-if-flexible-encapsulation {
            + 'tag-type = "dot1q-types:c-vlan"' {
 
           error-message "Only C-VLAN and S-VLAN tags can be pushed.";
-
           description
             "For IEEE 802.1Q interoperability, only C-VLAN and S-VLAN
              tags can be pushed.";
@@ -301,7 +301,6 @@ module ietf-if-flexible-encapsulation {
 
     container dot1q-tag-rewrite {
       if-feature "dot1q-tag-rewrites";
-
       description
         "802.1Q VLAN tag rewrite.
 

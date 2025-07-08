@@ -1,0 +1,52 @@
+{
+  "ieee802-dot1q-cfm:cfm": {
+    "maintenance-domain": [
+      {
+        "md-id": "Example-MD",
+        "none": [null],
+        "maintenance-association": [
+          {
+            "ma-id": "Example-MA",
+            "char-string": "Example MA",
+            "maintenance-association-mep": [
+              {
+                "mep-id": 1
+              },
+              {
+                "mep-id": 2
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "maintenance-group": [
+      {
+        "maintenance-group-id": "Example-MEG",
+        "md-id": "Example-MD",
+        "ma-id": "Example-MA",
+        "mep": [
+          {
+            "mep-id": 1,
+            "direction": "down",
+            "mac-address": "00-19-A7-D3-A4-F6",
+            "itut-eth-oam:tcm-mep": false,
+            "continuity-check": {
+              "highest-priority-defect": "none",
+              "defects": ""
+            },
+            "stats": {
+              "mep-ccm-sequence-errors": "0",
+              "mep-ccms-sent": "0",
+              "mep-lbr-in": "0",
+              "mep-lbr-in-out-of-order": "0",
+              "mep-lbr-bad-msdu": "0",
+              "mep-unexpected-ltr-in": "0",
+              "mep-lbr-out": "0"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

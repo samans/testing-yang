@@ -1,0 +1,53 @@
+module: itut-sync-phy
+  +--rw sync-phy
+     +--rw default-ds
+     |  +--ro clock-identity?                  clock-identity
+     |  +--ro quality-level?                   quality-level
+     |  +--rw eql-sel?                         boolean
+     |  +--rw sync-network-option?             enumeration
+     |  +--ro clock-mode?                      enumeration
+     |  +--ro time-since-current-clock-mode?   uint32
+     |  +--rw clock-operation?                 enumeration
+     |  +--rw source-switch-type?              enumeration
+     |  +--rw forced-source                    port-ref
+     |  +--rw manual-source                    port-ref
+     |  +--rw wtr-time?                        uint8
+     |  +--rw ql-enable?                       boolean
+     +--rw current-ds
+     |  +--ro source-port?                       port-ref
+     |  +--ro mixed-chain?                       boolean {eql-tlv}?
+     |  +--ro partial-chain?                     boolean {eql-tlv}?
+     |  +--ro hops-number?                       uint8 {eql-tlv}?
+     |  +--ro enhanced-hops-number?              uint8 {eql-tlv}?
+     |  +--ro frequency-offset-from-ck-source?   int16
+     +--rw parent-ds
+     |  +--ro system-clock-source-id?   clock-identity {eql-tlv}?
+     |  +--ro system-clock-source-ql?   quality-level
+     +--rw ports
+        +--rw port* [underlying-interface]
+           +--rw underlying-interface    if:interface-ref
+           +--rw port-ds
+              +--ro port-name?                         string
+              +--ro port-type?                         enumeration
+              +--ro port-status?                       enumeration
+              +--rw lock-out?                          boolean
+              +--rw ssm-supp?                          boolean
+              +--ro essm-supp?                         boolean {eql-tlv}?
+              +--rw local-priority-for-system-clock?   uint8
+              +--rw ssm-send-enable?                   boolean
+              +--ro ql-input-info?                     quality-level
+              +--rw ql-overwrite?                      enumeration
+              +--rw ql-fixed-value?                    quality-level
+              +--ro ql-output-info?                    quality-level
+              +--rw ssm-in-sa-bit?                     sa-bit
+              +--rw ssm-out-sa-bit?                    sa-bit
+              +--ro wtr-remaining-time?                uint16
+              +--rw station-clock-port
+              |  +--rw port-type?            enumeration
+              |  +--rw ssm-out-threshold?    quality-level
+              |  +--rw output-selector?      enumeration
+              |  +--ro output-source-port?   port-ref
+              |  +--ro output-source-id?     clock-identity {eql-tlv}?
+              |  +--ro output-source-ql?     quality-level
+              +--rw line-clock-port
+                 +--rw line-clock-tm-mode?   boolean

@@ -1,0 +1,10 @@
+cp ~/gits/yang/experimental/ietf-extracted-YANG-modules/ietf-network-inventory@*.yang net-inv-pub
+cp ~/gits/yang/experimental/ietf-extracted-YANG-modules/ietf-network-inventory-topology@*.yang net-inv-pub
+cp ~/gits/yang/experimental/ietf-extracted-YANG-modules/ietf-ni-location@*.yang net-inv-pub
+cp ~/gits/yang/experimental/ietf-extracted-YANG-modules/ietf-network-inventory-sw-ext@*.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/iana-hardware.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/ietf-yang-types.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/ietf-inet-types.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/ietf-network.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/ietf-network-topology.yang net-inv-pub
+cp ~/gits/yang/standard/ietf/RFC/ietf-geo-location.yang net-inv-pub

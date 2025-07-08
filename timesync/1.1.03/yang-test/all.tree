@@ -1,0 +1,358 @@
+module: ieee802-dot1as-gptp
+
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds:
+    +--ro gm-capable?                 boolean
+    +--ro current-utc-offset?         int16
+    +--ro current-utc-offset-valid?   boolean
+    +--ro leap59?                     boolean
+    +--ro leap61?                     boolean
+    +--ro time-traceable?             boolean
+    +--ro frequency-traceable?        boolean
+    +--ro ptp-timescale?              boolean
+    +--ro time-source?                identityref
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:current-ds:
+    +--ro last-gm-phase-change?        scaled-ns
+    +--ro last-gm-freq-change?         float64
+    +--ro gm-timebase-indicator?       uint16
+    +--ro gm-change-count?             yang:counter32
+    +--ro time-of-last-gm-change?      yang:timestamp
+    +--ro time-of-last-phase-change?   yang:timestamp
+    +--ro time-of-last-freq-change?    yang:timestamp
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:parent-ds:
+    +--ro cumulative-rate-ratio?   int32
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds:
+    +--ro is-measuring-delay?                    boolean
+    +--ro as-capable?                            boolean
+    +--rw mean-link-delay-thresh?                ptp-tt:time-interval
+    +--rw neg-mean-link-delay-thresh?            ptp-tt:time-interval
+    +--ro neighbor-rate-ratio?                   int32
+    +--rw initial-log-announce-interval?         int8
+    +--ro current-log-announce-interval?         int8
+    +--rw use-mgt-log-announce-interval?         boolean
+    +--rw initial-log-sync-interval?             int8
+    +--ro current-log-sync-interval?             int8
+    +--rw use-mgt-log-sync-interval?             boolean
+    +--rw sync-receipt-timeout?                  uint8
+    +--ro sync-receipt-timeout-interval?         uscaled-ns
+    +--rw initial-log-pdelay-req-interval?       int8
+    +--ro current-log-pdelay-req-interval?       int8
+    +--rw use-mgt-log-pdelay-req-interval?       boolean
+    +--rw mgt-log-pdelay-req-interval?           int8
+    +--rw initial-log-gptp-cap-interval?         int8
+    +--ro current-log-gptp-cap-interval?         int8
+    +--rw use-mgt-log-gptp-cap-interval?         boolean
+    +--rw mgt-log-gptp-cap-interval?             int8
+    +--rw initial-compute-neighbor-rate-ratio?   boolean
+    +--ro current-compute-neighbor-rate-ratio?   boolean
+    +--rw use-mgt-compute-neighbor-rate-ratio?   boolean
+    +--rw mgt-compute-neighbor-rate-ratio?       boolean
+    +--rw initial-compute-mean-link-delay?       boolean
+    +--ro current-compute-mean-link-delay?       boolean
+    +--rw use-mgt-compute-mean-link-delay?       boolean
+    +--rw mgt-compute-mean-link-delay?           boolean
+    +--rw allowed-lost-responses?                uint8
+    +--rw allowed-faults?                        uint8
+    +--rw gptp-cap-receipt-timeout?              uint8
+    +--rw nup?                                   float64
+    +--rw ndown?                                 float64
+    +--ro one-step-tx-oper?                      boolean
+    +--ro one-step-receive?                      boolean
+    +--ro one-step-transmit?                     boolean
+    +--rw initial-one-step-tx-oper?              boolean
+    +--ro current-one-step-tx-oper?              boolean
+    +--rw use-mgt-one-step-tx-oper?              boolean
+    +--rw mgt-one-step-tx-oper?                  boolean
+    +--ro sync-locked?                           boolean
+    +--ro pdelay-truncated-timestamps*           uinteger48
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port:
+    +--rw port-statistics-ds
+       +--ro rx-sync-count?                             yang:counter32
+       +--ro rx-one-step-sync-count?                    yang:counter32
+       +--ro rx-follow-up-count?                        yang:counter32
+       +--ro rx-pdelay-req-count?                       yang:counter32
+       +--ro rx-pdelay-resp-count?                      yang:counter32
+       +--ro rx-pdelay-resp-follow-up-count?            yang:counter32
+       +--ro rx-announce-count?                         yang:counter32
+       +--ro rx-packet-discard-count?                   yang:counter32
+       +--ro sync-receipt-timeout-count?                yang:counter32
+       +--ro announce-receipt-timeout-count?            yang:counter32
+       +--ro pdelay-allowed-lost-exceeded-count?        yang:counter32
+       +--ro tx-sync-count?                             yang:counter32
+       +--ro tx-one-step-sync-count?                    yang:counter32
+       +--ro tx-follow-up-count?                        yang:counter32
+       +--ro tx-pdelay-req-count?                       yang:counter32
+       +--ro tx-pdelay-resp-count?                      yang:counter32
+       +--ro tx-pdelay-resp-follow-up-count?            yang:counter32
+       +--ro tx-announce-count?                         yang:counter32
+       +--ro dot1as-hs:rx-sync-count-time-receiver-p?   yang:counter32
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port:
+    +--rw asymmetry-measurement-mode-ds
+       +--rw enabled?   boolean
+  augment /ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port/ptp-tt:link-port-ds:
+    +--ro cmlds-link-port-enabled?               boolean
+    +--ro is-measuring-delay?                    boolean
+    +--ro as-capable-across-domains?             boolean
+    +--rw mean-link-delay-thresh?                ptp-tt:time-interval
+    +--rw neg-mean-link-delay-thresh?            ptp-tt:time-interval
+    +--rw initial-log-pdelay-req-interval?       int8
+    +--ro current-log-pdelay-req-interval?       int8
+    +--rw use-mgt-log-pdelay-req-interval?       boolean
+    +--rw mgt-log-pdelay-req-interval?           int8
+    +--rw initial-compute-neighbor-rate-ratio?   boolean
+    +--ro current-compute-neighbor-rate-ratio?   boolean
+    +--rw use-mgt-compute-neighbor-rate-ratio?   boolean
+    +--rw mgt-compute-neighbor-rate-ratio?       boolean
+    +--rw initial-compute-mean-link-delay?       boolean
+    +--ro current-compute-mean-link-delay?       boolean
+    +--rw use-mgt-compute-mean-link-delay?       boolean
+    +--rw mgt-compute-mean-link-delay?           boolean
+    +--rw allowed-lost-responses?                uint8
+    +--rw allowed-faults?                        uint8
+    +--ro pdelay-truncated-timestamps*           uinteger48
+  augment /ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port:
+    +--rw port-statistics-ds
+       +--ro rx-pdelay-req-count?                  yang:counter32
+       +--ro rx-pdelay-resp-count?                 yang:counter32
+       +--ro rx-pdelay-resp-follow-up-count?       yang:counter32
+       +--ro rx-packet-discard-count?              yang:counter32
+       +--ro pdelay-allowed-lost-exceeded-count?   yang:counter32
+       +--ro tx-pdelay-req-count?                  yang:counter32
+       +--ro tx-pdelay-resp-count?                 yang:counter32
+       +--ro tx-pdelay-resp-follow-up-count?       yang:counter32
+  augment /ptp-tt:ptp/ptp-tt:common-services/ptp-tt:cmlds/ptp-tt:ports/ptp-tt:port:
+    +--rw asymmetry-measurement-mode-ds
+       +--rw enabled?   boolean
+
+module: ieee802-dot1as-hs
+
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:parent-ds:
+    +--ro gm-present?   boolean
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance:
+    +--rw ptp-instance-sync-ds
+    |  +--ro is-synced?                              boolean
+    |  +--rw offset-from-time-transmitter-max?       ptp-tt:time-interval
+    |  +--rw rx-sync-count-time-receiver-p-thresh?   uint32
+    |  +--rw offset-max-exceeded-count-thresh?       uint32
+    |  +--rw offset-max-met-count-thresh?            uint32
+    +--rw drift-tracking-ds
+       +--rw drift-tracking-tlv-support?   boolean
+       +--ro sync-grandmaster-identity?    ptp-tt:clock-identity
+       +--ro sync-steps-removed?           uint32
+       +--ro rate-ratio-drift?             int32
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds:
+    +--rw gptp-capable-state-machines-enabled?   boolean
+    +--ro nrr-pdelay?                            int32
+    +--ro nrr-sync?                              int32
+    +--rw nrr-comp-method?                       nrr-comp-method-type
+    +--rw as-capable-across-domains?             boolean
+  augment /ptp-tt:ptp/ptp-tt:common-services:
+    +--rw hot-standby-service {hot-standby}?
+       +--rw hot-standby-system* [hot-standby-system-index]
+          +--rw hot-standby-system-index             uint8
+          +--rw hot-standby-system-ds
+          |  +--rw primary-ptp-instance-index?                uint32
+          |  +--rw secondary-ptp-instance-index?              uint32
+          |  +--rw hot-standby-system-enable?                 boolean
+          |  +--ro hot-standby-system-state?                  hot-standby-system-state-type
+          |  +--rw hot-standby-system-split-functionality?    boolean
+          |  +--ro primary-secondary-offset?                  dot1as-gptp:scaled-ns
+          |  +--rw primary-secondary-offset-thresh?           dot1as-gptp:scaled-ns
+          |  +--rw hot-standby-system-log-sync-time-thresh?   int8
+          +--rw hot-standby-system-description-ds
+             +--rw user-description?   string
+
+module: itut-ptp-telecom-profile
+
+  augment /ptp:ptp/ptp:instance-list/ptp:port-ds-list:
+    +--rw ptp-telecom-profile
+       o--rw master-only?                  uint8
+       +--rw time-transmitter-only?        boolean
+       +--rw port-enable?                  boolean
+       +--rw local-priority?               uint8
+       +--ro two-step-flag?                boolean
+       +--rw sync-receipt-timeout?         uint16
+       +--rw delay-resp-receipt-timeout?   uint16
+       +--rw not-time-transmitter?         boolean
+       +--rw monitor-sender?               boolean
+       +--rw monitor-receiver?             boolean
+       +--rw sf?                           boolean
+       +--ro sf-lotm?                      boolean
+       +--ro sf-unusable?                  boolean
+       +--ro sf-su?                        boolean
+       +--ro wtr-state?                    boolean
+  augment /ptp:ptp/ptp:instance-list/ptp:default-ds:
+    +--rw ptp-telecom-profile!
+       +--rw profile                                      ptp-tlp-types:ptp-telecom-profile-type
+       +--rw profile-version
+       |  +--rw primary-version?   uint8
+       |  +--rw revision-number?   uint8
+       +--ro profile-identifier?                          string
+       +--rw clock-type                                   union
+       +--rw max-steps-removed?                           uint8
+       +--rw instance-enable?                             boolean
+       +--rw local-priority?                              uint8
+       +--rw holdover-within-spec-duration?               uint16
+       +--rw holdover-within-spec-time-error-threshold?   uint16
+       +--ro holdover-within-spec-capability?             enumeration
+       +--ro holdover-within-spec-remaining-duration?     uint16
+       +--rw wtr-time?                                    uint8
+       +--ro clock-mode?                                  union
+       +--ro node-class?                                  union
+  augment /ptp:ptp/ptp:transparent-clock-default-ds:
+    +--rw ptp-telecom-profile!
+       +--rw profile-version
+       |  +--rw primary-version?   uint8
+       |  +--rw revision-number?   uint8
+       +--ro profile-identifier?   string
+
+module: itut-ptp-tt-telecom-profile
+
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds:
+    +--rw ptp-telecom-profile!
+       +--rw profile-identifier
+       |  +--rw type          ptp-tlp-types:ptp-telecom-profile-type
+       |  +--rw version
+       |  |  +--rw primary-version?   uint8
+       |  |  +--rw revision-number?   uint8
+       |  +--ro identifier?   string
+       +--rw device-type                                  union
+       +--rw local-priority?                              uint8
+       +--rw holdover-within-spec-duration?               uint16
+       +--rw holdover-within-spec-time-error-threshold?   uint16
+       +--ro holdover-within-spec-capability?             enumeration
+       +--ro holdover-within-spec-remaining-duration?     uint16
+       +--rw wtr-time?                                    uint8
+       +--ro clock-mode?                                  union
+       +--ro node-class?                                  union
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:ports/ptp-tt:port/ptp-tt:port-ds:
+    +--rw ptp-telecom-profile
+       +--rw local-priority?               uint8
+       +--ro two-step-flag?                boolean
+       +--rw sync-receipt-timeout?         uint16
+       +--rw delay-resp-receipt-timeout?   uint16
+       +--rw not-time-transmitter?         boolean
+       +--rw monitor-sender?               boolean
+       +--rw monitor-receiver?             boolean
+       +--ro sf?                           boolean
+       +--ro sf-lotm?                      boolean
+       +--ro sf-unusable?                  boolean
+       +--ro sf-su?                        boolean
+       +--ro wtr-state?                    boolean
+  augment /ptp-tt:ptp/ptp-tt:transparent-clock-default-ds:
+    x--rw ptp-telecom-profile!
+       x--rw profile-identifier
+          +--rw type          ptp-tlp-types:ptp-telecom-profile-type
+          +--rw version
+          |  +--rw primary-version?   uint8
+          |  +--rw revision-number?   uint8
+          +--ro identifier?   string
+
+module: itut-sync-phy
+  +--rw sync-phy
+     +--rw default-ds
+     |  +--ro clock-identity?                  clock-identity
+     |  +--ro quality-level?                   quality-level
+     |  +--rw eql-sel?                         boolean
+     |  +--rw sync-network-option?             enumeration
+     |  +--ro clock-mode?                      enumeration
+     |  +--ro time-since-current-clock-mode?   uint32
+     |  +--rw clock-operation?                 enumeration
+     |  +--rw source-switch-type?              enumeration
+     |  +--rw forced-source                    port-ref
+     |  +--rw manual-source                    port-ref
+     |  +--rw wtr-time?                        uint8
+     |  +--rw ql-enable?                       boolean
+     +--rw current-ds
+     |  +--ro source-port?                       port-ref
+     |  +--ro mixed-chain?                       boolean {eql-tlv}?
+     |  +--ro partial-chain?                     boolean {eql-tlv}?
+     |  +--ro hops-number?                       uint8 {eql-tlv}?
+     |  +--ro enhanced-hops-number?              uint8 {eql-tlv}?
+     |  +--ro frequency-offset-from-ck-source?   int16
+     +--rw parent-ds
+     |  +--ro system-clock-source-id?   clock-identity {eql-tlv}?
+     |  +--ro system-clock-source-ql?   quality-level
+     +--rw ports
+        +--rw port* [underlying-interface]
+           +--rw underlying-interface    if:interface-ref
+           +--rw port-ds
+              +--ro port-name?                         string
+              +--ro port-type?                         enumeration
+              +--ro port-status?                       enumeration
+              +--rw lock-out?                          boolean
+              +--rw ssm-supp?                          boolean
+              +--ro essm-supp?                         boolean {eql-tlv}?
+              +--rw local-priority-for-system-clock?   uint8
+              +--rw ssm-send-enable?                   boolean
+              +--ro ql-input-info?                     quality-level
+              +--rw ql-overwrite?                      enumeration
+              +--rw ql-fixed-value?                    quality-level
+              +--ro ql-output-info?                    quality-level
+              +--rw ssm-in-sa-bit?                     sa-bit
+              +--rw ssm-out-sa-bit?                    sa-bit
+              +--ro wtr-remaining-time?                uint16
+              +--rw station-clock-port
+              |  +--rw port-type?            enumeration
+              |  +--rw ssm-out-threshold?    quality-level
+              |  +--rw output-selector?      enumeration
+              |  +--ro output-source-port?   port-ref
+              |  +--ro output-source-id?     clock-identity {eql-tlv}?
+              |  +--ro output-source-ql?     quality-level
+              +--rw line-clock-port
+                 +--rw line-clock-tm-mode?   boolean
+
+module: o-ran-e2e-sync-monitoring
+
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:default-ds:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro is-supported?           boolean
+       +--ro supported-version?      uint8
+       +--ro extended-device-type?   ptp-extended-device-type
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance/ptp-tt:current-ds:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro time-since-current-clock-state?   uint32
+  augment /ptp-tt:ptp/ptp-tt:instances/ptp-tt:instance:
+    +--ro o-ran-e2e-sync-monitoring-ds!
+       +--ro ptp-timestamp-records-ds
+       |  +--ro update-frequency?    uint8
+       |  +--ro number-of-records?   uint16
+       |  +--ro timestamp-info* [index]
+       |     +--ro index               uint16
+       |     +--ro timestamp-record
+       |        +--ro record-time?    uint64
+       |        +--ro t1-sec?         uint64
+       |        +--ro t1-nsec?        uint32
+       |        +--ro t2-sec?         uint64
+       |        +--ro t2-nsec?        uint32
+       |        +--ro sequence-id?    uint16
+       |        +--ro cf?             int64
+       |        +--ro path-delay?     int64
+       |        +--ro message-type?   message-type
+       +--ro all-time-transmitter-ds
+          +--ro time-transmitter* [index]
+             +--ro index                 uint16
+             +--ro parent-ds
+             |  +--ro parent-port-identity
+             |  |  +--ro clock-identity?   clock-identity
+             |  |  +--ro port-number?      uint16
+             |  +--ro grandmaster-identity?        ptp-tt:clock-identity
+             |  +--ro grandmaster-clock-quality
+             |  |  +--ro clock-class?                  identityref
+             |  |  +--ro clock-accuracy?               identityref
+             |  |  +--ro offset-scaled-log-variance?   uint16
+             |  +--ro grandmaster-priority1?       uint8
+             |  +--ro grandmaster-priority2?       uint8
+             |  +--ro synchronization-uncertain?   boolean
+             +--ro time-properties-ds
+             |  +--ro current-utc-offset?         int16
+             |  +--ro current-utc-offset-valid?   boolean
+             |  +--ro leap59?                     boolean
+             |  +--ro leap61?                     boolean
+             |  +--ro time-traceable?             boolean
+             |  +--ro frequency-traceable?        boolean
+             |  +--ro ptp-timescale?              boolean
+             |  +--ro time-source?                identityref
+             +--ro port-ds
+                +--ro port-identity
+                   +--ro clock-identity?   clock-identity
+                   +--ro port-number?      uint16

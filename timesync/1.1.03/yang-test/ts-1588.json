@@ -1,0 +1,116 @@
+{
+   "ietf-interfaces:interfaces": {
+      "interface": [
+         {
+            "name": "eth0",
+            "type": "iana-if-type:ethernetCsmacd",
+            "oper-status": "up",
+            "admin-status": "up",
+            "if-index": 10,
+            "statistics": {
+               "discontinuity-time": "2025-06-10T11:00:00+02:00"
+            }
+         },
+         {
+            "name": "eth1",
+            "type": "iana-if-type:ethernetCsmacd",
+            "oper-status": "up",
+            "admin-status": "up",
+            "if-index": 10,
+            "statistics": {
+               "discontinuity-time": "2025-06-10T11:00:00+02:00"
+            }
+         },
+         {
+            "name": "eth2",
+            "type": "iana-if-type:ethernetCsmacd",
+            "oper-status": "up",
+            "admin-status": "up",
+            "if-index": 10,
+            "statistics": {
+               "discontinuity-time": "2025-06-10T11:00:00+02:00"
+            }
+         }
+      ]
+   },
+   "ieee1588-ptp-tt:ptp": {
+      "instances": {
+         "instance": [
+            {
+               "instance-index": 100,
+               "description-ds": {
+                  "user-description": "Boundary Clock-1"
+               },
+               "ports": {
+                  "port": [
+                     {
+                        "port-index": 1100,
+                        "underlying-interface": "eth0",
+                        "port-ds": {
+                           "port-state": "time-receiver"
+                        }
+                     },
+                     {
+                        "port-index": 2100,
+                        "underlying-interface": "eth1",
+                        "port-ds": {
+                           "port-state": "time-transmitter"
+                        }
+                     },
+                     {
+                        "port-index": 3100,
+                        "underlying-interface": "eth2",
+                        "port-ds": {
+                           "port-state": "time-transmitter"
+                        }
+                     }
+                  ]
+               },
+               "default-ds": {
+                  "instance-type": "bc"
+               }
+            },
+            {
+               "instance-index": 200,
+               "description-ds": {
+                  "user-description": "Ordinary Clock-1, GM"
+               },
+               "ports": {
+                  "port": [
+                     {
+                        "port-index": 1200,
+                        "underlying-interface": "eth0",
+                        "port-ds": {
+                           "port-state": "time-transmitter"
+                        }
+                     }
+                  ]
+               },
+               "default-ds": {
+                  "instance-type": "oc"
+               }
+            },
+            {
+               "instance-index": 300,
+               "description-ds": {
+                  "user-description": "Ordinary Clock-2"
+               },
+               "ports": {
+                  "port": [
+                     {
+                        "port-index": 1300,
+                        "underlying-interface": "eth1",
+                        "port-ds": {
+                           "port-state": "time-receiver"
+                        }
+                     }
+                  ]
+               },
+               "default-ds": {
+                  "instance-type": "oc"
+               }
+            }
+         ]
+      }
+   }
+}
