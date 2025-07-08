@@ -16,7 +16,7 @@ module minerals {
     reference
       "minerals";
   }
-
+  
   container mineral-db {
     description
       "minerals";
