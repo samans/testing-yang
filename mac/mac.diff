@@ -1,0 +1,47 @@
+*** /Users/scott/gits/yang/standard/ieee/published/802/ieee802-types.yang	Wed Nov 20 18:44:02 2024
+--- ieee802-types@2025-07-25.yang	Sat Jul 26 11:48:15 2025
+***************
+*** 24,29 ****
+--- 24,44 ----
+  
+      This version of this YANG module is part of IEEE Std 802.1Q; see the
+      standard itself for full legal notices.";
++ 
++   revision 2025-07-25 {
++     description
++       "Published as part of IEEE Std 802.1Q-202X.
++ 
++       The following reference statement identifies each referenced IEEE
++       Standard as updated by applicable amendments.";
++     reference
++       "IEEE Std 802.1Q Bridges and Bridged Networks:
++       IEEE Std 802.1Q-2022, IEEE Std 802.1Qcz-2023, IEEE Std 802.1Qcw-2023. 
++       IEEE Std 802 Overview and Architecture:
++       IEEE Std 802-2014.
++       IEEE 802.1AS Timing and Synchronization for Time-Sensitive Applications:
++       IEEE Std 802.1AS-2020.";
++   }
+    revision 2023-10-22 {
+      description
+        "Published as part of IEEE Std 802.1Qcw-2023.
+***************
+*** 64,72 ****
+        "IEEE Std 802.1Q-2018, Bridges and Bridged Networks.";
+    }
+    typedef mac-address {
+!     type string {
+!       pattern "[0-9a-fA-F]{2}(-[0-9a-fA-F]{2}){5}";
+!     }
+      description
+        "The mac-address type represents a MAC address in the canonical format
+        and hexadecimal format specified by IEEE Std 802. The hexadecimal
+--- 79,87 ----
+        "IEEE Std 802.1Q-2018, Bridges and Bridged Networks.";
+    }
+    typedef mac-address {
+!      type string {
+!        pattern "([0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5})|([0-9a-fA-F]{2}(-[0-9a-fA-F]{2}){5})";
+!      }
+      description
+        "The mac-address type represents a MAC address in the canonical format
+        and hexadecimal format specified by IEEE Std 802. The hexadecimal
