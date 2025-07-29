@@ -1,0 +1,23 @@
+{
+  "minerals:mineral-db": {
+    "mineral": [
+      {
+        "mineral-name": "Talc",
+        "physical-properties": "White, Green, Gray, or Black. Greasy",
+        "hardness": "1.0"
+      },
+      {
+        "mineral-name": "Gypsum",
+        "physical-properties": "Colorless or White. Glassy",
+        "hardness": "2.0",
+        "rock-mac": "Aa:Bb:Cc:Dd:Ee:Ff"
+      },
+      {
+        "mineral-name": "Diamond",
+        "physical-properties": "Clear",
+        "hardness": "10.0",
+        "rock-mac": "Aa-Bb-Cc-Dd-Ee-Ff"
+      }
+    ]
+  }
+}

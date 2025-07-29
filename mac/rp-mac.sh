@@ -1,0 +1,1 @@
+pyang --ieee minerals.yang
