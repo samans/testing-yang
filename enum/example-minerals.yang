@@ -1,0 +1,129 @@
+module example-minerals {
+  yang-version 1.1;
+  namespace "urn:test:example-minerals";
+  prefix e-m;
+
+  import ieee802-types {
+    prefix ieee;
+  }
+
+  organization
+    "Test";
+  contact
+    "Test contact";
+  description
+    "Mineral Example";
+
+  revision 2024-02-15 {
+    description
+      "Initial revision.";
+    reference
+      "minerals with augment example";
+  }
+
+  typedef foobaseEnum {
+    type enumeration {
+      enum FOO-1 {
+        description "FOO-1";
+      }
+      enum FOO-2 {
+        description "FOO-2";
+      }
+    }
+    description
+      "testing enumeration extensions";
+  }
+
+  identity foobaseIdentity {
+    description
+      "foobase as an identity";
+  }
+
+  identity FOO-1-IDENTITY {
+    base foobaseIdentity;
+    description
+      "FOO-1 as an identity";
+  }
+
+  identity FOO-2-IDENTITY {
+    base foobaseIdentity;
+    description
+      "FOO-2 as an identity";
+  }
+
+  container mineral-db {
+    description
+      "minerals";
+    list mineral {
+      must 'hardness >= 0.0 and hardness <= 10.0';
+      key "mineral-name";
+      description
+         "minerals test";
+      leaf mineral-name {
+        type string;
+        description
+          "Name of Mineral";
+      }
+      leaf physical-properties {
+        type string;
+        description
+          "Physical properties of mineral";
+      }
+      leaf hardness {
+        type decimal64 {
+          fraction-digits 1;
+        }
+        units "mohs";
+        description
+           "Hardness of mineral";
+      }
+      leaf rock-mac {
+        type ieee:mac-address;
+        description
+          "The rock's mac address";
+      }
+      leaf fooenum {
+        type foobaseEnum;
+        description
+          "testing enumeration extensions";
+      }
+      leaf fooidentity {
+        type identityref {
+          base foobaseIdentity;
+        }
+        description
+          "testing identity extensions";
+      }
+      leaf fooint {
+        type int16 {
+          range "0..2500";
+        }
+        must
+          "(../fooenum != 'FOO-1' or (../fooint >= 1 and ../fooint <=100))" {
+            error-message "FOO-1 range is 1-100";
+          }
+        must
+          "(../fooenum != 'FOO-2' or (../fooint >= 101 and ../fooint <=200))" {
+            error-message "FOO-2 range is 101-200";
+          }
+        description
+          "testing enumeration extensions";
+      }
+      leaf fooint-with-identity {
+        type int16 {
+          range "0..2500";
+        }
+        must
+          "(not(derived-from-or-self(../fooidentity, 'FOO-1-IDENTITY')) or (../fooint-with-identity >= 1 and ../fooint-with-identity <=100))" {
+            error-message "FOO-1 range is 1-100";
+          }
+        must
+          "(not(derived-from-or-self(../fooidentity, 'FOO-2-IDENTITY')) or (../fooint-with-identity >= 101 and ../fooint-with-identity <=200))" {
+            error-message "FOO-2 range is 101-200";
+          }
+        description
+          "testing enumeration extensions";
+      }
+    }
+  }
+}

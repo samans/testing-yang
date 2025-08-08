@@ -1,0 +1,2 @@
+
+          "((../fooenum = 'FOO-1') and (fooint => 0 and fooint < 100))";
